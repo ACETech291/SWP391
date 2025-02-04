@@ -4,8 +4,88 @@
         <title>SWP391</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                margin: 0;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
+
+            header {
+                background: #f0f0f0;
+                padding: 20px;
+                text-align: center;
+                color: red;
+            }
+
+            main {
+                flex: 1;
+                padding: 20px;
+                text-align: center;
+            }
+
+            footer {
+                background-color: #333;
+                color: white;
+                text-align: center;
+                padding: 10px;
+                font-family: Arial, sans-serif;
+                position: sticky;
+                bottom: 0;
+            }
+
+            .content-link {
+                display: inline-block;
+                margin: 20px;
+                padding: 15px 30px;
+                background-color: #4CAF50;
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;
+                transition: background-color 0.3s;
+            }
+
+            .content-link:hover {
+                background-color: #45a049;
+            }
+
+            #datetime {
+                font-weight: bold;
+                color: #4CAF50;
+            }
+        </style>
     </head>
     <body>
-        <div>Happy New Year !!!</div>
+        <header>
+            <label>Happy New Year 2025</label>
+        </header>
+
+        <main>
+            <a href="#" class="content-link">Click vào đây để truy cập trang web</a>
+        </main>
+
+        <footer>
+            Current Date and Time: <span id="datetime"></span>
+        </footer>
+
+        <script>
+            function updateDateTime() {
+                const now = new Date();
+                const datetimeElement = document.getElementById('datetime');
+                const options = {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: true
+                };
+                datetimeElement.innerHTML = now.toLocaleString('en-US', options);
+            }
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+        </script>
     </body>
 </html>
