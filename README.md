@@ -2,4 +2,4 @@
 
 This is the final project of SWP391
 
-![Real-time](https://img.shields.io/date/1700000000?label=Current%20Date%20and%20Time&color=green)
+![Real-time](https://img.shields.io/date/<!--TIME-->?label=Current%20Date%20and%20Time&color=green)
