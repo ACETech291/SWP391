@@ -1,9 +1,9 @@
-name: Update README with Time
+name: Update README with Current Time
 
 on:
   schedule:
-    - cron: '*/30 * * * *'  # Cập nhật mỗi 30 phút
-  workflow_dispatch:  # Cho phép chạy thủ công
+    - cron: '0 * * * *'  # Chạy mỗi giờ
+  workflow_dispatch:
 
 jobs:
   update-readme:
@@ -12,14 +12,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Update README.md
+      - name: Update timestamp in README.md
         run: |
-          TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S UTC")
+          TIMESTAMP=$(date +"%s")
+          # Thay thế placeholder <!--TIME--> bằng timestamp hiện tại
           sed -i "s|<!--TIME-->|$TIMESTAMP|g" README.md
 
-      - name: Commit and push changes
+      - name: Commit changes
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git commit -am "Updated README with current time" || exit 0
+          git commit -am "Update README with current timestamp" || echo "No changes to commit"
           git push
