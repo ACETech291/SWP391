@@ -1,3 +1,8 @@
+DROP DATABASE IF EXISTS SWP391;
+CREATE DATABASE SWP391;
+USE SWP391;
+
+
 CREATE TABLE Admin (
   id_admin       int(11) NOT NULL AUTO_INCREMENT, 
   username_admin varchar(255) NOT NULL, 
@@ -16,11 +21,11 @@ CREATE TABLE Advertising (
 CREATE TABLE Customer (
   id_customer           int(11) NOT NULL AUTO_INCREMENT, 
   name_customer         varchar(255) NOT NULL, 
+  phone_number_customer varchar(11) NOT NULL,
   email_customer        varchar(255) NOT NULL, 
-  password_customer     varchar(255) NOT NULL, 
-  phone_number_customer varchar(11) NOT NULL, 
-  id_role               int(11) NOT NULL, 
-  status_customer       bit(1) NOT NULL, 
+  password_customer     varchar(255) NOT NULL,
+  status_customer       bit(1) NOT NULL,  
+  id_role               int(11) NOT NULL,  
   PRIMARY KEY (id_customer), 
   INDEX (id_customer));
 CREATE TABLE Feetback (
@@ -70,7 +75,7 @@ CREATE TABLE Station (
   name_station varchar(255) NOT NULL, 
   PRIMARY KEY (id_station));
 CREATE TABLE Status (
-  id_status   int(11) NOT NULL AUTO_INCREMENT, 
+  id_status   int(11) NOT NULL, 
   name_status varchar(255) NOT NULL, 
   PRIMARY KEY (id_status));
 CREATE TABLE Ticket (
@@ -163,3 +168,19 @@ ALTER TABLE Trip ADD CONSTRAINT FKTrip936788 FOREIGN KEY (id_station_from_ticket
 ALTER TABLE Trip ADD CONSTRAINT FKTrip894600 FOREIGN KEY (id_station_to_ticket) REFERENCES Station (id_station);
 ALTER TABLE Trip ADD CONSTRAINT FKTrip442899 FOREIGN KEY (id_train) REFERENCES Train (id_train);
 ALTER TABLE Ticket ADD CONSTRAINT FKTicket171889 FOREIGN KEY (id_trip) REFERENCES Trip (id_trip);
+
+INSERT INTO `role` (id_role, name_role)
+VALUES
+  (1, 'admin'),
+  (2, 'manager'),
+  (3, 'customer');
+
+INSERT INTO `status`(id_status, name_status)
+	VALUES 
+		(0, 'blocked'),
+		(1, 'active');
+		
+INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer)
+VALUES 
+  ('John Doe', 'john.doe@example.com', 'password123', '1234567890', 3, 1),
+  ('Jane Smith', 'jane.smith@example.com', 'password456', '0987654321', 3, 0);
