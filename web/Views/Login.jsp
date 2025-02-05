@@ -1,192 +1,93 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Login</title>
-        <link rel="icon" href="PRJ_Assignment/images/donut.icon"> 
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign In</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <style>
-
+            body {
+                background: linear-gradient(135deg, #667eea, #764ba2);
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
             body, html {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    background-repeat: no-repeat;
-    background-size: cover; /* Đảm bảo ảnh phủ toàn bộ màn hình */
-    background-position: center; /* Canh giữa ảnh */
-    background-attachment: fixed; /* Giữ ảnh cố định khi cuộn */
-    background-image: url('../SWP391/images/logo-image.png'); /* Đường dẫn ảnh */
-}
-            
-            
-
-            .card-container.card {
-                max-width: 350px;
-                padding: 40px 40px;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                background-repeat: no-repeat;
+                background-size: cover; /* ??m b?o ?nh ph? to�n b? m�n h�nh */
+                background-position: center; /* Canh gi?a ?nh */
+                background-attachment: fixed; /* Gi? ?nh c? ??nh khi cu?n */
+                background-image: url('../SWP391/images/logo-image.png'); /* ???ng d?n ?nh */
             }
-
-            .btn {
-                font-weight: 700;
-                height: 36px;
-                -moz-user-select: none;
-                -webkit-user-select: none;
-                user-select: none;
-                cursor: default;
+            .login-container {
+                background: #fff;
+                padding: 2rem;
+                border-radius: 10px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             }
-
-            /*
-             * Card component
-             */
-            .card {
-                background-color: #F7F7F7;
-                /* just in case there no content*/
-                padding: 20px 25px 30px;
-                margin: 0 auto 25px;
-                margin-top: 50px;
-                /* shadows and rounded borders */
-                -moz-border-radius: 2px;
-                -webkit-border-radius: 2px;
-                border-radius: 2px;
-                -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-                -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-                box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            .form-control {
+                border-radius: 8px;
             }
-
-            .profile-img-card {
-                width: 96px;
-                height: 96px;
-                margin: 0 auto 10px;
-                display: block;
-                -moz-border-radius: 50%;
-                -webkit-border-radius: 50%;
-                border-radius: 50%;
+            .btn-custom {
+                border-radius: 8px;
             }
-
-            /*
-             * Form styles
-             */
-            .profile-name-card {
-                font-size: 16px;
-                font-weight: bold;
-                text-align: center;
-                margin: 10px 0 0;
-                min-height: 1em;
+            .social-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
-
-            .reauth-email {
-                display: block;
-                color: #404040;
-                line-height: 2;
-                margin-bottom: 10px;
-                font-size: 14px;
-                text-align: center;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                -moz-box-sizing: border-box;
-                -webkit-box-sizing: border-box;
-                box-sizing: border-box;
-            }
-
-            .form-signin #inputEmail,
-            .form-signin #inputPassword {
-                direction: ltr;
-                height: 44px;
-                font-size: 16px;
-            }
-
-            .form-signin input[type=email],
-            .form-signin input[type=password],
-            .form-signin input[type=text],
-            .form-signin button {
-                width: 100%;
-                display: block;
-                margin-bottom: 10px;
-                z-index: 1;
-                position: relative;
-                -moz-box-sizing: border-box;
-                -webkit-box-sizing: border-box;
-                box-sizing: border-box;
-            }
-
-            .form-signin .form-control:focus {
-                border-color: rgb(104, 145, 162);
-                outline: 0;
-                -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
-                box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
-            }
-
-            .btn.btn-signin {
-                /*background-color: #4d90fe; */
-                background-color: rgb(104, 145, 162);
-                /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
-                padding: 0px;
-                font-weight: 700;
-                font-size: 14px;
-                height: 36px;
-                -moz-border-radius: 3px;
-                -webkit-border-radius: 3px;
-                border-radius: 3px;
-                border: none;
-                -o-transition: all 0.218s;
-                -moz-transition: all 0.218s;
-                -webkit-transition: all 0.218s;
-                transition: all 0.218s;
-            }
-
-            .btn.btn-signin:hover,
-            .btn.btn-signin:active,
-            .btn.btn-signin:focus {
-                background-color: rgb(12, 97, 33);
-            }
-
-            .forgot-password {
-                color: rgb(104, 145, 162);
-            }
-
-            .forgot-password:hover,
-            .forgot-password:active,
-            .forgot-password:focus{
-                color: rgb(12, 97, 33);
+            .social-btn svg {
+                margin-right: 8px;
             }
         </style>
     </head>
     <body>
-
         <div class="container">
-            <div class="card card-container">
-                <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
-<!--                <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />-->
-            <img id="profile-img" class="profile-img-card" src="../SWP391/images/logotau.jpg"/>
-                <c:if test="${err != null}">
-                    <p id="profile-name" class="text-danger">
-                        ${err}
-                    </p>
-                </c:if>
-                <form method="post" action="login" class="form-signin">
-                    <span id="reauth-email" class="reauth-email"></span>
-                    <input type="email" id="inputEmail" class="form-control" placeholder="Nhập email của bạn" name="Email" required autofocus>
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Nhập mật khẩu" name="Password" required>
-                    <!--                    <div id="remember" class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value="remember-me"> Lưu mật khẩu
-                                            </label>
-                                        </div>-->
-                    <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Đăng nhập</button>
-                    <input type="checkbox" id="rememberMe" name="rememberMe" <%= request.getAttribute("rememberMeChecked") != null ? "checked" : "" %>>
-                        <label for="rememberMe">Ghi nhớ đăng nhập</label><br>
-                </form><!-- /form -->
-                
-    
-                <a href="EmailController" class="forgot-password">
-                                    Quên mật khẩu?
-                                </a><br>
-                <a href="register" class="btn btn-block forgot-password">
-                    Đăng ký Ngay
-                </a>
-            </div><!-- /card-container -->
-        </div><!-- /container -->
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-5">
+                    <div class="login-container text-center">
+                        <h2 class="fw-bold">Sign In</h2>
+                        <p class="text-muted">Don't have an account? <a href="#">Sign up</a></p>
+                        <form action="#" method="POST">
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                                <label for="email">Email</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="password" placeholder="Password" required>
+                                <label for="password">Password</label>
+                            </div>
+                            <div class="d-flex justify-content-between mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="rememberMe">
+                                    <label class="form-check-label" for="rememberMe">Remember me</label>
+                                </div>
+                                <a href="#" class="text-decoration-none">Forgot password?</a>
+                            </div>
+                            <button class="btn btn-primary btn-lg w-100 btn-custom" type="submit">Log in</button>
+                        </form>
+                        <div class="my-3">or</div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-danger btn-lg social-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">
+                                <path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z" />
+                                </svg>
+                                Sign in with Google
+                            </button>
+                            <button class="btn btn-outline-primary btn-lg social-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
+                                </svg>
+                                Sign in with Facebook
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
