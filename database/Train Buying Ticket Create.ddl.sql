@@ -21,11 +21,11 @@ CREATE TABLE Advertising (
 CREATE TABLE Customer (
   id_customer           int(11) NOT NULL AUTO_INCREMENT, 
   name_customer         varchar(255) NOT NULL, 
-  phone_number_customer varchar(11) NOT NULL,
+  phone_number_customer varchar(11) NOT NULL, 
   email_customer        varchar(255) NOT NULL, 
-  password_customer     varchar(255) NOT NULL,
-  status_customer       bit(1) NOT NULL,  
-  id_role               int(11) NOT NULL,  
+  password_customer     varchar(255) NOT NULL, 
+  status_customer       bit(1) NOT NULL, 
+  id_role               int(11) NOT NULL, 
   PRIMARY KEY (id_customer), 
   INDEX (id_customer));
 CREATE TABLE Feetback (
@@ -75,7 +75,7 @@ CREATE TABLE Station (
   name_station varchar(255) NOT NULL, 
   PRIMARY KEY (id_station));
 CREATE TABLE Status (
-  id_status   int(11) NOT NULL, 
+  id_status   int(11) NOT NULL AUTO_INCREMENT, 
   name_status varchar(255) NOT NULL, 
   PRIMARY KEY (id_status));
 CREATE TABLE Ticket (
@@ -117,13 +117,6 @@ CREATE TABLE Train_carriage (
   total_chair                       int(11) NOT NULL, 
   PRIMARY KEY (id_train_carriage), 
   INDEX (id_train_carriage));
-CREATE TABLE Train_chair (
-  id_train_chair     int(11) NOT NULL AUTO_INCREMENT, 
-  status_train_chair int(11) NOT NULL, 
-  id_train_carriage  int(11) NOT NULL, 
-  id_status          int(11) NOT NULL, 
-  PRIMARY KEY (id_train_chair), 
-  INDEX (id_train_chair));
 CREATE TABLE Train_compartment_segmentation (
   id_train_compartment_segmentation    int(11) NOT NULL AUTO_INCREMENT, 
   code_train_compartment               varchar(255) NOT NULL, 
@@ -131,6 +124,13 @@ CREATE TABLE Train_compartment_segmentation (
   price_train_compartment_segmentation int(11) NOT NULL, 
   PRIMARY KEY (id_train_compartment_segmentation), 
   INDEX (id_train_compartment_segmentation));
+CREATE TABLE Train_seat (
+  id_train_chair     int(11) NOT NULL AUTO_INCREMENT, 
+  status_train_chair int(11) NOT NULL, 
+  id_train_carriage  int(11) NOT NULL, 
+  id_status          int(11) NOT NULL, 
+  PRIMARY KEY (id_train_chair), 
+  INDEX (id_train_chair));
 CREATE TABLE Trip (
   id_trip                int(11) NOT NULL AUTO_INCREMENT, 
   id_station_from_ticket int(11) NOT NULL, 
@@ -147,15 +147,15 @@ ALTER TABLE Customer ADD CONSTRAINT FKCustomer71540 FOREIGN KEY (id_role) REFERE
 ALTER TABLE Train_brand ADD CONSTRAINT FKTrain_bran376661 FOREIGN KEY (id_manager) REFERENCES Manager (id_manager);
 ALTER TABLE Train ADD CONSTRAINT FKTrain713859 FOREIGN KEY (id_train_brand) REFERENCES Train_brand (id_train_brand);
 ALTER TABLE Train_carriage ADD CONSTRAINT FKTrain_carr450355 FOREIGN KEY (id_train) REFERENCES Train (id_train);
-ALTER TABLE Train_chair ADD CONSTRAINT FKTrain_chai7288 FOREIGN KEY (id_train_carriage) REFERENCES Train_carriage (id_train_carriage);
+ALTER TABLE Train_seat ADD CONSTRAINT FKTrain_seat492502 FOREIGN KEY (id_train_carriage) REFERENCES Train_carriage (id_train_carriage);
 ALTER TABLE Train ADD CONSTRAINT FKTrain834987 FOREIGN KEY (id_status) REFERENCES Status (id_status);
 ALTER TABLE Train_carriage ADD CONSTRAINT FKTrain_carr696581 FOREIGN KEY (id_status) REFERENCES Status (id_status);
-ALTER TABLE Train_chair ADD CONSTRAINT FKTrain_chai621238 FOREIGN KEY (id_status) REFERENCES Status (id_status);
+ALTER TABLE Train_seat ADD CONSTRAINT FKTrain_seat106453 FOREIGN KEY (id_status) REFERENCES Status (id_status);
 ALTER TABLE Ticket ADD CONSTRAINT FKTicket453453 FOREIGN KEY (id_customer) REFERENCES Customer (id_customer);
 ALTER TABLE Ticket ADD CONSTRAINT FKTicket450055 FOREIGN KEY (id_train_brand) REFERENCES Train_brand (id_train_brand);
 ALTER TABLE Ticket ADD CONSTRAINT FKTicket818009 FOREIGN KEY (id_train) REFERENCES Train (id_train);
 ALTER TABLE Ticket ADD CONSTRAINT FKTicket57122 FOREIGN KEY (id_train_carriage) REFERENCES Train_carriage (id_train_carriage);
-ALTER TABLE Ticket ADD CONSTRAINT FKTicket573643 FOREIGN KEY (id_train_chair) REFERENCES Train_chair (id_train_chair);
+ALTER TABLE Ticket ADD CONSTRAINT FKTicket88429 FOREIGN KEY (id_train_chair) REFERENCES Train_seat (id_train_chair);
 ALTER TABLE Feetback ADD CONSTRAINT FKFeetback467684 FOREIGN KEY (id_customer) REFERENCES Customer (id_customer);
 ALTER TABLE Train_carriage ADD CONSTRAINT FKTrain_carr367283 FOREIGN KEY (id_train_compartment_segmentation) REFERENCES Train_compartment_segmentation (id_train_compartment_segmentation);
 ALTER TABLE Advertising ADD CONSTRAINT FKAdvertisin553227 FOREIGN KEY (id_manager) REFERENCES Manager (id_manager);
@@ -169,16 +169,13 @@ ALTER TABLE Trip ADD CONSTRAINT FKTrip894600 FOREIGN KEY (id_station_to_ticket) 
 ALTER TABLE Trip ADD CONSTRAINT FKTrip442899 FOREIGN KEY (id_train) REFERENCES Train (id_train);
 ALTER TABLE Ticket ADD CONSTRAINT FKTicket171889 FOREIGN KEY (id_trip) REFERENCES Trip (id_trip);
 
+
 INSERT INTO `role` (id_role, name_role)
 VALUES
   (1, 'admin'),
   (2, 'manager'),
   (3, 'customer');
 
-INSERT INTO `status`(id_status, name_status)
-	VALUES 
-		(0, 'blocked'),
-		(1, 'active');
 		
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer)
 VALUES 
