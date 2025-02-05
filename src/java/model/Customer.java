@@ -12,43 +12,39 @@ public class Customer {
 
     private int id;
     private String userName;
-    private String password;
     private String phoneNumber;
     private String email;
+    private String password;
     private int status;
     private Role role;
 
     public Customer() {
     }
 
-    public Customer(int id, String userName, String password, String phoneNumber, String email, int status, Role role) {
+    public Customer(int id, String userName, String phoneNumber, String email, String password, int status, Role role) {
         this.id = id;
         this.userName = userName;
-        this.password = password;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.password = password;
         this.status = status;
         this.role = role;
     }
-
-    public Customer(String userName, String password, String phoneNumber, String email, int status, Role role) {
+    public Customer( String userName, String phoneNumber, String email, String password, int status) {
         this.userName = userName;
-        this.password = password;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.password = password;
+        this.status = status;
+    }
+    public Customer( String userName, String phoneNumber, String email, String password, int status, Role role) {
+        this.userName = userName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.password = password;
         this.status = status;
         this.role = role;
     }
-    
-    public Customer(String userName, String password, String phoneNumber, String email, int status) {
-        this.userName = userName;
-        this.password = password;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.status = status;
-    }
-    
-    
 
     public int getId() {
         return id;
@@ -66,14 +62,6 @@ public class Customer {
         this.userName = userName;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -88,6 +76,14 @@ public class Customer {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public int getStatus() {
@@ -108,8 +104,10 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" + "id=" + id + ", userName=" + userName + ", password=" + password + ", phoneNumber=" + phoneNumber + ", email=" + email + ", status=" + status + ", role=" + role + '}';
+        return "Customer{" + "id=" + id + ", userName=" + userName + ", phoneNumber=" + phoneNumber + ", email=" + email + ", password=" + password + ", status=" + status + ", role=" + role + '}';
     }
+
+    
     
     
 
