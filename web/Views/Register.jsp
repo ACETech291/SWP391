@@ -55,24 +55,16 @@
                                     </div> <!-- form-group end.// -->
 
                                 </div> <!-- form-row end.// -->
+                                                                <div class="form-group">
+                                    <label>Số điện thoại</label>   
+                                    <input name="phoneNumber" type="text" class="form-control" placeholder="" required>
+                                </div> <!-- form-group end.// -->
                                 <div class="form-group">
                                     <label>Địa chỉ Email</label>
                                     <input name="emailAddress" type="email" class="form-control" placeholder="" required>
                                     <small class="form-text text-muted">Email của bạn sẽ không bị chia sẻ với bất kì ai.</small>
                                 </div> <!-- form-group end.// -->
-                                <div class="form-group">
-                                    <label>Số điện thoại</label>   
-                                    <input name="phoneNumber" type="text" class="form-control" placeholder="" required>
-                                </div> <!-- form-group end.// -->
-                                <div class="form-row">
-                                    <div class="form-group col-md-12">
-                                        <label>Tên tài khoản</label>
-                                        <input name="account" type="text" class="form-control" required>
-                                    </div> <!-- form-group end.// -->
-                                    <div class="form-group ">
 
-                                    </div> <!-- form-group end.// -->
-                                </div> <!-- form-row.// -->
                                 <div class="form-group">
                                     <label for="password">Mật Khẩu</label>
                                     <input name="password" id="password" class="form-control" type="password" required onkeyup="validatePassword();" required>

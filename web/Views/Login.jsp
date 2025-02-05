@@ -167,15 +167,19 @@
                 </c:if>
                 <form method="post" action="login" class="form-signin">
                     <span id="reauth-email" class="reauth-email"></span>
-                    <input type="text" id="inputEmail" class="form-control" placeholder="User Name" name="UserName" required autofocus>
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="Password" required>
+                    <input type="email" id="inputEmail" class="form-control" placeholder="Nhập email của bạn" name="Email" required autofocus>
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Nhập mật khẩu" name="Password" required>
                     <!--                    <div id="remember" class="checkbox">
                                             <label>
                                                 <input type="checkbox" value="remember-me"> Lưu mật khẩu
                                             </label>
                                         </div>-->
                     <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Đăng nhập</button>
+                    <input type="checkbox" id="rememberMe" name="rememberMe" <%= request.getAttribute("rememberMeChecked") != null ? "checked" : "" %>>
+                        <label for="rememberMe">Ghi nhớ đăng nhập</label><br>
                 </form><!-- /form -->
+                
+    
                 <a href="EmailController" class="forgot-password">
                                     Quên mật khẩu?
                                 </a><br>
