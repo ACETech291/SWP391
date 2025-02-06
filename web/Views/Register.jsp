@@ -4,21 +4,21 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Sign up </title>
         <style>
             body, html {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    background-repeat: no-repeat;
-    background-size: cover; /* Đảm bảo ảnh phủ toàn bộ màn hình */
-    background-position: center; /* Canh giữa ảnh */
-    background-attachment: fixed; /* Giữ ảnh cố định khi cuộn */
-    background-image: url('../SWP391/images/logo-image.png'); /* Đường dẫn ảnh */
-}
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                background-repeat: no-repeat;
+                background-size: cover; /* Đảm bảo ảnh phủ toàn bộ màn hình */
+                background-position: center; /* Canh giữa ảnh */
+                background-attachment: fixed; /* Giữ ảnh cố định khi cuộn */
+                background-image: url('../SWP391/images/logo-image.png'); /* Đường dẫn ảnh */
+            }
         </style>
     </head>
     <body>
@@ -43,42 +43,45 @@
                             <h4 class="card-title mt-2">Đăng Kí</h4>
                         </header>
                         <c:if test="${Success ne null}">
-                            <h3 style="font-weight: bold;text-align: center">${Success}</h3>
+                            <h3 style="color: green;font-weight: bold;text-align: center">${Success}</h3>
                         </c:if>
                         <h3 style="color: red;text-align: center">${error1}</h3>  
                         <article class="card-body">
-                            <form method="post">
+                            <form method="post" action="register">
                                 <div class="form-row">
                                     <div class="col form-group">
                                         <label>Họ và tên </label>   
-                                        <input name="Name" type="text" class="form-control" placeholder="" required>
+                                        <input name="Name" type="text" class="form-control" placeholder="" required value="${param.Name}">
                                     </div> <!-- form-group end.// -->
 
                                 </div> <!-- form-row end.// -->
-                                                                <div class="form-group">
+                                <div class="form-group">
                                     <label>Số điện thoại</label>   
-                                    <input name="phoneNumber" type="text" class="form-control" placeholder="" required>
+                                    <input name="phoneNumber" type="text" class="form-control" placeholder="" required value="${param.phoneNumber}">
                                 </div> <!-- form-group end.// -->
                                 <div class="form-group">
                                     <label>Địa chỉ Email</label>
-                                    <input name="emailAddress" type="email" class="form-control" placeholder="" required>
                                     <small class="form-text text-muted">Email của bạn sẽ không bị chia sẻ với bất kì ai.</small>
+                                    <input name="emailAddress" type="email" class="form-control" placeholder="" required value="${param.emailAddress}">
+
                                 </div> <!-- form-group end.// -->
 
                                 <div class="form-group">
-                                    <label for="password">Mật Khẩu</label>
+
+                                    <label for="password">Mật khẩu</label>
+                                    <small class="form-text text-muted">Mật khẩu phải có ít nhất 6 kí tự</small>
                                     <input name="password" id="password" class="form-control" type="password" required onkeyup="validatePassword();" required>
                                 </div> 
-                                <span id="message" style="text-align: center; font-style: italic; color:"red"></span><br>
-                                    <div class="form-group">
-                                <label for="confirmpassword">Nhập Lại Mật Khẩu</label>
-                                <input name="confirmpassword" id="confirmPassword" class="form-control" type="password" required onkeyup="validatePassword();" required>
+                                <span id="message" style="text-align: center; font-style: italic; color:red"></span><br>
+                                <div class="form-group">
+                                    <label for="confirmpassword">Nhập lại mật khẩu</label>
+                                    <input name="confirmpassword" id="confirmPassword" class="form-control" type="password" required onkeyup="validatePassword();" required>
                                 </div> 
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-block"> Đăng ký  </button>
                                 </div> <!-- form-group// -->      
                                 <small class="text-muted">Bằng cách nhấp vào nút 'Đăng ký', bạn xác nhận rằng bạn chấp nhận  <br> 
-                                    Điều khoản sử dụng và Chính sách bảo mật của chúng tôi.</small>                                          
+                                    <a href="#">Điều khoản sử dụng và Chính sách bảo mật của chúng tôi.</a></small>                                          
                             </form>
                         </article> <!-- card-body end .// -->
                         <div class="border-top card-body text-center">Đã có tài khoản? <a href="login">Đăng Nhập</a></div>
@@ -105,6 +108,21 @@
                     message.innerHTML = "";
                 }
             }
+
+            document.addEventListener("DOMContentLoaded", function () {
+                var inputs = document.querySelectorAll("input");
+                var errorMessage = document.querySelector("h3[style*='color: red']");
+                var successMessage = document.querySelector("h3[style*='color: green']");
+
+                inputs.forEach(input => {
+                    input.addEventListener("input", function () {
+                        if (errorMessage)
+                            errorMessage.style.display = "none";
+                        if (successMessage)
+                            successMessage.style.display = "none";
+                    });
+                });
+            });
         </script>
     </article>
 

@@ -2112,3 +2112,12 @@
             }
         })();</script>
 </html>
+<div class="register-login">
+    <c:if test="${sessionScope.account.role.id == null}">
+        <a href="register" data-target="#register"><i class="icon-user mr-1"></i> Đăng kí</a>
+        <a href="login" data-target="#login"><i class="icon-login mr-1"></i> Đăng nhập</a>
+    </c:if>
+    <c:if test="${sessionScope.account.role.id != null}">
+        <a href="logout" data-target="#login"><i class="icon-login mr-1"></i> Đăng xuất</a>
+    </c:if>
+</div>

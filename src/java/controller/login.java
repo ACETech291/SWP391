@@ -39,7 +39,7 @@ public class login extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet login</title>");            
+            out.println("<title>Servlet login</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet login at " + request.getContextPath() + "</h1>");
@@ -61,33 +61,8 @@ public class login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-////            String userName = request.getParameter("UserName");
-////            String pw = request.getParameter("Password");
-////            String password = Encoding.toSHA1(pw);
-////            CustomerDAO ga = new CustomerDAO();
-////            List<Customer> listCustomer = ga.getAllCustomer();
-////            HttpSession session = request.getSession();
-////            
-////            
-////            Customer a = ga.getCustomer(userName, password);
-////            if(a == null){
-////                request.setAttribute("err", "Tài khoản hoặc mật khẩu không chính xác! Xin vui lòng nhập lại.");
-////                request.getRequestDispatcher("Views/LoginForm.jsp").forward(request, response);
-////            }
-////            if(a.getRole().getId()==1){ 
-////                session.setAttribute("ADMIN", 1);
-////                session.setAttribute("nameUser",a);        
-////                 System.out.println("Acc " + a);
-////                request.getRequestDispatcher("home").forward(request, response);
-////            }
-////            if(a.getRole().getId()==2){
-////                session.setAttribute("nameUser", a);
-////                session.setAttribute("checkUser", "1");
-////                System.out.println("Acc " + a);
-////                request.getRequestDispatcher("home").forward(request, response);
-////            }
-//                request.getRequestDispatcher("Views/Login.jsp").forward(request, response);
-            processRequest(request, response);
+
+        processRequest(request, response);
     }
 
     /**
@@ -101,7 +76,39 @@ public class login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String email = request.getParameter("email");
+        String pw = request.getParameter("password");
+        String password = Encoding.toSHA1(pw);
+        CustomerDAO dao = new CustomerDAO();
+        List<Customer> listCustomer = dao.getAllCustomer();
+        HttpSession session = request.getSession();
+
+        Customer acc = dao.getCustomer(email, password);
+        if (acc == null) {
+            request.setAttribute(email, "email");
+            request.setAttribute("err", "Tài khoản hoặc mật khẩu không chính xác! Xin vui lòng nhập lại.");
+            request.getRequestDispatcher("Views/Login.jsp").forward(request, response);
+        }else{
+        if (acc.getRole().getId()== 1) {
+            session.setAttribute("ADMIN", 1);
+            session.setAttribute("account", acc);
+            System.out.println("Acc " + acc);
+            request.getRequestDispatcher("home").forward(request, response);
+        }
+         if (acc.getRole().getId() == 2) {
+            session.setAttribute("Manager", 2);
+            session.setAttribute("account", acc);
+            System.out.println("Acc " + acc);
+            request.getRequestDispatcher("home").forward(request, response);
+        }
+         if (acc.getRole().getId()== 3) {
+            session.setAttribute("Customer", 3);
+            session.setAttribute("account", acc);
+            System.out.println("Acc " + acc);
+            request.getRequestDispatcher("home").forward(request, response);
+        }
+        request.getRequestDispatcher("Views/Login.jsp").forward(request, response);
+        }
     }
 
     /**
