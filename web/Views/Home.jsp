@@ -246,8 +246,26 @@
                 </ul>
             </nav>
             <div class="user-actions">
-                <a href="login" class="btn-login">Đăng nhập</a>
-                <a href="register" class="btn-register">Đăng ký</a>
+                <c:if test="${sessionScope.account.role.id == null}">
+                    <li>
+                        <a href="login" style="color: white;">
+                            <span class="user_icon">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                            </span> 
+                            Đăng nhập
+                        </a>
+                    </li>
+                </c:if>
+                <c:if test="${sessionScope.account.role.id  != null}">
+                    <li>
+                        <a href="logout" style="color: white;">
+                            <span class="user_icon">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                            </span> 
+                            Đăng xuất
+                        </a>
+                    </li>
+                            </c:if>
             </div>
         </header>
 

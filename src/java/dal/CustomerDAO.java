@@ -18,51 +18,87 @@ import model.Role;
  * @author Nguyen Ba Hien
  */
 public class CustomerDAO {
-    
+
     private Connection connect;
     
-    public List<Customer> getAllCustomer(){
-        return null;
+    public CustomerDAO() {
+        this.connect = DBConnect.MySQLConnect(); // Gán kết nối vào biến connect
+        if (this.connect == null) {
+            System.err.println("Database connection failed!");
+        }
     }
-    
-    public void createAcc(Customer a){
-        String sql = "INSERT INTO [dbo].[Customer]\n" +
-"           ,[userName]\n" +
-"           ,[password]\n" +
-"           ,[phoneNumber]\n" +
-"           ,[email]\n" +
-"           ,[roleId])\n" +
-"     VALUES\n" +
-"           (?,?,?,?,?)";
+    public List<Customer> getAllCustomer() {
+        List<Customer> listCustomers = new ArrayList<>();
+        String sql = "select * from customer a join role r ON a.id_role = r.id_role";
+        try {
+            PreparedStatement ps = connect.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Role role = new Role(rs.getInt(8), rs.getString(9));
+                listCustomers.add(new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), role));
+            }
+        } catch (Exception e) {
+        }
+        return listCustomers;
+    }
+
+    public void createAccount(Customer a) {
+                String sql = "INSERT INTO customer (name_customer, phone_number_customer, email_customer, password_customer, status_customer, id_role) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = connect.prepareStatement(sql);
             ps.setString(1, a.getUserName());
-            ps.setString(2, a.getPassword());
-            ps.setString(3, a.getPhoneNumber());
-            ps.setString(4, a.getEmail());
-            ps.setInt(5, a.getRole().getId());
+            ps.setString(2, a.getPhoneNumber());
+            ps.setString(3, a.getEmail());
+            ps.setString(4, a.getPassword());
+            ps.setInt(5,a.getStatus());
+            ps.setInt(6, a.getRole().getId());
             ps.executeUpdate();
         } catch (Exception e) {
-            
+
         }
     }
-    
+
     public Role getRoleById(int id) {
-        String sql = "select * from role\n"
-                + "where id = ?";
+        String sql = "select * from role where id_role = ?";
+        Role role = null;
         try {
             PreparedStatement ps = connect.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                Role role = new Role(rs.getInt("id"), rs.getString("roleName"));
-                return role;
+            if (rs.next()) {
+                 role = new Role(rs.getInt(1), rs.getString(2));
+                
             }
+        } catch (Exception e) {
+    }
+        return role;
+    }
+    
+    public Customer getCustomer(String email, String password) {
+        String sql = "select * from customer a join `role` r on a.id_role = r.id_role where a.email_customer = ? AND a.password_customer= ?";
+        try {
+            PreparedStatement ps = connect.prepareStatement(sql);
+            ps.setString(1, email);
+            ps.setString(2, password);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                if(rs.getString(9)!= null){
+                     Role role = new Role(rs.getInt(8),
+                        rs.getString(9));
+                     return new Customer(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), role);
+                }
+                if(rs.getString(9) == null){
+                    return null;
+                }              
+            }
+            
+
         } catch (Exception e) {
         }
         return null;
+
     }
-    
 //    public List<Customer> getListCustomer() {
 //        List<Customer> listCustomer = new ArrayList<>();
 //        String sql = "select *\n"
@@ -83,38 +119,18 @@ public class CustomerDAO {
 //        }
 //        return listCustomer;
 //    }
-
-//    public Customer getCustomer(String userName, String password) {
-//        String sql = "select * from Account a join role r on a.roleId = r.id where a.userName = ? and [password]=?";
-//        try {
-//            PreparedStatement ps = connect.prepareStatement(sql);
-//            ps.setString(1, userName);
-//            ps.setString(2, password);
-//            ResultSet rs = ps.executeQuery();
-//            
-//            while(rs.next()){
-//                if(rs.getString(9)!= null){
-//                     Role role = new Role(rs.getInt(8),
-//                        rs.getString(9));
-//                     return new Customer(rs.getString(1),
-//                             rs.getString(2),
-//                        rs.getString(3),
-//                        rs.getString(4), 
-//                        rs.getString(5),
-//                        rs.getString(6),
-//                             role);
-//                }
-//                if(rs.getString(9) == null){
-//                    return null;
-//                }
-//                 
-//            }
-//            
-//
-//        } catch (Exception e) {
+    
+    public static void main(String[] args) {
+        CustomerDAO cd = new CustomerDAO();
+//        List<Customer> a = cd.getAllCustomer();
+//        for (Customer customer : a) {
+//            System.out.println(customer.toString());
 //        }
-//        return null;
-//
-//    }
+//        System.out.println("a");
+//        Role role = cd.getRoleById(3);
+//        System.out.println(role.toString());    
+        System.out.println("a");
+        Customer cus = cd.getCustomer("1", "1");
+        System.out.println(cus.toString());
+    }
 }
-
