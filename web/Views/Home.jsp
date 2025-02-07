@@ -341,151 +341,77 @@
                     <h2 class="m-0">Danh sách <span>Các chuyến đi</span></h2>
                     <p class="mb-0">Danh sách các chuyến đi khả dụng</p>
                 </div>  
-                <div id="cart-main" class="cart-main pb-10">
+                <div id="cart-main" class="cart-main pb-4">
                     <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-auto mx-auto">
-                                <div class="cart-inner">
-                                    <div class="cart-table-list">
-                                        <div class="order-list">
-                                            <table class="shop_table rt-checkout-review-order-table bg-white">
-                                                <thead>
+                        <div class="row justify-content-center">
+                            <div class="col-12">
+                                <div class="card shadow-sm">
+                                    <div class="card-body p-0">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover mb-0">
+                                                <thead class="thead-light">
                                                     <tr>
-                                                        <th>Mã số tàu</th>
-                                                        <th class="product-name">Hình ảnh</th>
-                                                        <th class="product-name">Thời gian khởi hành</th>
-                                                        <th class="product-name">Thời gian dự kiến</th>
-                                                        <th class="product-name">Điểm đi</th>
-                                                        <th class="product-name">Điểm đến</th>
-                                                        <th class="product-total">Giá tiền</th>
-                                                        <th class="product-name">Đặt ghế</th>
+                                                        <th class="text-center align-middle" style="width: 100px;">Mã tàu</th>
+                                                        <th class="text-center align-middle" style="width: 120px;">Hình ảnh</th>
+                                                        <th class="text-center align-middle" style="min-width: 160px;">Khởi hành</th>
+                                                        <th class="text-center align-middle" style="min-width: 160px;">Dự kiến đến</th>
+                                                        <th class="text-center align-middle">Điểm đi</th>
+                                                        <th class="text-center align-middle">Điểm đến</th>
+                                                        <th class="text-center align-middle" style="min-width: 120px;">Giá vé</th>
+                                                        <th class="text-center align-middle" style="width: 150px;"></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td><strong>01</strong></td>
-                                                        <td>
-                                                            <img src="${pageContext.request.contextPath}/libs/images/trains/6.jpg" alt="image" class="w-25">
+                                                        <td class="text-center font-weight-bold align-middle">E01</td>
+
+                                                        <td class="text-center align-middle">
+                                                            <img src="${pageContext.request.contextPath}/libs/images/trains/6.jpg" 
+                                                                 alt="Tàu E01" 
+                                                                 class="img-thumbnail" 
+                                                                 style="width: 100px; height: 60px; object-fit: cover;">
                                                         </td>
 
-                                                        <td class="cart_item">
-                                                            <span class="product-name"><strong>February 6, 2025 06:26:17 PM</strong></span> 
+                                                        <td class="text-center align-middle">
+                                                            <div class="blue">06/02/2025</div>
+                                                            <div class="text-muted small">18:26</div>
                                                         </td>
 
-                                                        <td class="cart_item">
-                                                            <span class="product-name"><strong>February 7, 2025 06:26:17 PM</strong></span> 
+                                                        <td class="text-center align-middle">
+                                                            <div class="blue">07/02/2025</div>
+                                                            <div class="text-muted small">18:26</div>
+                                                        </td>
+                                                        
+                                                        
+                                                        <td class="text-center align-middle">
+                                                            <div class="input-box">
+                                                                <i class="flaticon-placeholder"></i>
+                                                                <span>HÀ NỘI</span>
+                                                            </div>
                                                         </td>
 
-                                                        <td class="cart_item">
-                                                            <span class="product-name"><strong>Hà Nội</strong></span> 
+                                                        <td class="text-center align-middle">
+                                                            <div class="input-box">
+                                                                <i class="flaticon-placeholder"></i>
+                                                                <span>SÀI GÒN</span>
+                                                            </div>
+                                                        </td>   
+
+                                                        <td class="text-center align-middle">
+                                                            <span class="text-danger font-weight-bold">1.000.000đ</span>
                                                         </td>
 
-                                                        <td class="cart_item">
-                                                            <span class="product-name"><strong>Sài Gòn</strong></span> 
-                                                        </td>
-
-                                                        <td class="cart-subtotal">
-                                                            <span class="rt-Price-amount">1.000.000đ</span>
-                                                        </td>
-                                                        <td class="wish-edit d-flex">
-                                                            <a href="#"><i class="fa fa-edit pr-2"></i></a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><strong>01</strong></td>
-                                                        <td>
-                                                            <img src="${pageContext.request.contextPath}/libs/images/trains/6.jpg" alt="image" class="w-25">
-                                                        </td>
-
-                                                        <td class="cart_item">
-                                                            <span class="product-name"><strong>February 6, 2025 06:26:17 PM</strong></span> 
-                                                        </td>
-
-                                                        <td class="cart_item">
-                                                            <span class="product-name"><strong>February 7, 2025 06:26:17 PM</strong></span> 
-                                                        </td>
-
-                                                        <td class="cart_item">
-                                                            <span class="product-name"><strong>Hà Nội</strong></span> 
-                                                        </td>
-
-                                                        <td class="cart_item">
-                                                            <span class="product-name"><strong>Sài Gòn</strong></span> 
-                                                        </td>
-
-                                                        <td class="cart-subtotal">
-                                                            <span class="rt-Price-amount">1.000.000đ</span>
-                                                        </td>
-                                                        <td class="wish-edit d-flex">
-                                                            <a href="#"><i class="fa fa-edit pr-2"></i></a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><strong>01</strong></td>
-                                                        <td>
-                                                            <img src="${pageContext.request.contextPath}/libs/images/trains/6.jpg" alt="image" class="w-25">
-                                                        </td>
-
-                                                        <td class="cart_item">
-                                                            <span class="product-name"><strong>February 6, 2025 06:26:17 PM</strong></span> 
-                                                        </td>
-
-                                                        <td class="cart_item">
-                                                            <span class="product-name"><strong>February 7, 2025 06:26:17 PM</strong></span> 
-                                                        </td>
-
-                                                        <td class="cart_item">
-                                                            <span class="product-name"><strong>Hà Nội</strong></span> 
-                                                        </td>
-
-                                                        <td class="cart_item">
-                                                            <span class="product-name"><strong>Sài Gòn</strong></span> 
-                                                        </td>
-
-                                                        <td class="cart-subtotal">
-                                                            <span class="rt-Price-amount">1.000.000đ</span>
-                                                        </td>
-                                                        <td class="wish-edit d-flex">
-                                                            <a href="#"><i class="fa fa-edit pr-2"></i></a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><strong>01</strong></td>
-                                                        <td>
-                                                            <img src="${pageContext.request.contextPath}/libs/images/trains/6.jpg" alt="image" class="w-25">
-                                                        </td>
-
-                                                        <td class="cart_item">
-                                                            <span class="product-name"><strong>February 6, 2025 06:26:17 PM</strong></span> 
-                                                        </td>
-
-                                                        <td class="cart_item">
-                                                            <span class="product-name"><strong>February 7, 2025 06:26:17 PM</strong></span> 
-                                                        </td>
-
-                                                        <td class="cart_item">
-                                                            <span class="product-name"><strong>Hà Nội</strong></span> 
-                                                        </td>
-
-                                                        <td class="cart_item">
-                                                            <span class="product-name"><strong>Sài Gòn</strong></span> 
-                                                        </td>
-
-                                                        <td class="cart-subtotal">
-                                                            <span class="rt-Price-amount">1.000.000đ</span>
-                                                        </td>
-                                                        <td class="wish-edit d-flex">
-                                                            <a href="#"><i class="fa fa-edit pr-2"></i></a>
+                                                        <td class="text-center align-middle">
+                                                            <a href="#" class="nir-btn w-100"><i class="fas fa-chair mr-1 mr-2"></i>Đặt vé</a>
                                                         </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
-                        </div>        
+                        </div>
                     </div>
                 </div> 
             </div>
