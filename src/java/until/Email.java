@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Properties;
+import java.util.UUID;
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -19,7 +20,19 @@ import javax.activation.DataSource;
 public class Email {
     // Email: tungletest1.email@gmail.com
     // Password: nebeekfipcstxcox
-
+    private final int LIMIT_MINUS = 10;
+    
+    public String generateToken() {
+        return UUID.randomUUID().toString();
+    }
+    
+    public LocalDateTime expireDateTime() {
+        return LocalDateTime.now().plusMinutes(LIMIT_MINUS);
+    }
+    
+    public boolean isExpireTime(LocalDateTime time) {
+        return LocalDateTime.now().isAfter(time);
+    }
     public static boolean sendEmail(String to, String tieuDe, String noiDung) {
         // Properties : khai báo các thuộc tính
         Properties props = new Properties();
@@ -72,11 +85,10 @@ public class Email {
                 + "</style></head>"
                 + "<body>"
                 + "<div class='container'>"
-                + "<h2>Xác Nhận Mật Khẩu</h2>"
+                + "<h2>Lấy lại Mật Khẩu</h2>"
                 + "<p>Xin chào,</p>"
-                + "<p>Cảm ơn bạn đã yêu cầu xác nhận lại email. Dưới đây là mật khẩu hiện tại của bạn, hãy dùng mật khẩu này để đăng nhập:</p>"
+                + "<p>Cảm ơn bạn đã yêu cầu xác nhận lại email. Dưới đây là đường dẫn giúp bạn có thể vào và đặt lại mật khẩu:</p>"
                 + "<p><strong><h1>" + noiDung + "<h1></strong></p>"
-                + "<p>Vui lòng sử dụng mật khẩu này để đăng nhập vào tài khoản của bạn.</p>"
                 + "<p>Trân trọng,<br>Đội ngũ hỗ trợ khách hàng</p>"
                 + "</div>"
                 + "</body>"

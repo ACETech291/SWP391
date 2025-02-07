@@ -87,8 +87,16 @@ public class register extends HttpServlet {
         String confirmpassword = Encoding.toSHA1(cf);
 
         int check = 1;
-
-        if (!password.equals(confirmpassword) || raw_password.length() < 6) {
+        
+        if (raw_password.length() < 6) {
+            check = 2;
+            request.setAttribute(email, "email");
+            request.setAttribute(userName, "name");
+            request.setAttribute(phone, "phone");
+            request.setAttribute("error1", "Mật khẩu phải chứa ít nhất 6 kí tự");
+            request.getRequestDispatcher("Views/Register.jsp").forward(request, response);
+        }
+        if (!password.equals(confirmpassword)) {
             check = 2;
             request.setAttribute(email, "email");
             request.setAttribute(userName, "name");

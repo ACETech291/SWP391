@@ -182,7 +182,7 @@
                                                 <input type="checkbox" value="remember-me"> Lưu mật khẩu
                                             </label>
                                         </div>-->
-                    <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Gửi mật khẩu qua email</button>
+                    <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Gửi email</button>
                 </form><!-- /form -->
                 <a href="register" class="btn btn-block forgot-password">
                     Đăng ký ngay

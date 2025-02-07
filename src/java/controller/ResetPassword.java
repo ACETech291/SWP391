@@ -4,19 +4,28 @@
  */
 package controller;
 
+import dal.CustomerDAO;
+import dal.TokenDAO;
+import until.Email;
+import until.Email;
+import model.Customer;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import model.TokenForgetPassword;
+import until.Encoding;
 
 /**
  *
  * @author Nguyen Ba Hien
  */
 public class ResetPassword extends HttpServlet {
-
+        TokenDAO DAOToken = new TokenDAO();
+        CustomerDAO DAOUser = new CustomerDAO();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -55,7 +64,34 @@ public class ResetPassword extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String token = request.getParameter("token");
+        HttpSession session = request.getSession();
+        if(token != null) {
+            TokenForgetPassword tokenForgetPassword = DAOToken.getTokenPassword(token);
+            Email service = new Email();
+            
+            if(tokenForgetPassword == null) {
+                request.setAttribute("err", "token không hợp lệ");
+                request.getRequestDispatcher("Views/EmailPassword.jsp").forward(request, response);
+                return;
+            }
+            if(tokenForgetPassword.isIsUsed()) {
+                request.setAttribute("err", "token đã được sử dụng");
+                request.getRequestDispatcher("Views/EmailPassword.jsp").forward(request, response);
+                return;
+            }
+            if(service.isExpireTime(tokenForgetPassword.getExpiryTime())) {
+                request.setAttribute("err", "token đã quá thời hạn");
+                request.getRequestDispatcher("Views/EmailPassword.jsp").forward(request, response);
+                return;
+            }
+            Customer customer = DAOUser.getUserById(tokenForgetPassword.getUserId());
+            request.setAttribute("email", customer.getEmail());
+            session.setAttribute("token", tokenForgetPassword.getToken());
+            request.getRequestDispatcher("Views/ResetPassword.jsp").forward(request, response);
+        } else {
+            request.getRequestDispatcher("Views/EmailPassword.jsp").forward(request, response);
+        }
     }
 
     /**
@@ -69,7 +105,55 @@ public class ResetPassword extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String email = request.getParameter("email");
+        String raw_password = request.getParameter("password");
+        String password_encode = Encoding.toSHA1(raw_password);
+        String confirmPassword = request.getParameter("confirm_password");
+        //validate password...
+        if(raw_password.length() < 6) {
+            request.setAttribute("err", "Mật khẩu phải chứa ít nhất 6 kí tự");
+            request.setAttribute("email", email);
+            request.getRequestDispatcher("Views/ResetPassword.jsp").forward(request, response);
+            return;
+        }
+        if(!raw_password.equals(confirmPassword)) {
+            request.setAttribute("err", "Mật khẩu nhập lại không khớp");
+            request.setAttribute("email", email);
+            request.getRequestDispatcher("Views/ResetPassword.jsp").forward(request, response);
+            return;
+        }
+        
+        HttpSession session = request.getSession();
+        String tokenStr = (String) session.getAttribute("token");
+        TokenForgetPassword tokenForgetPassword = DAOToken.getTokenPassword(tokenStr);
+        //check token is valid, of time, of used
+        Email service = new Email();
+        if (tokenForgetPassword == null) {
+            request.setAttribute("err", "token invalid");
+            request.getRequestDispatcher("Views/EmailPassword.jsp").forward(request, response);
+            return;
+        }
+        if (tokenForgetPassword.isIsUsed()) {
+            request.setAttribute("err", "token is used");
+            request.getRequestDispatcher("Views/EmailPassword.jsp").forward(request, response);
+            return;
+        }
+        if (service.isExpireTime(tokenForgetPassword.getExpiryTime())) {
+            request.setAttribute("err", "token is expiry time");
+            request.getRequestDispatcher("Views/EmailPassword.jsp").forward(request, response);
+            return;
+        }
+
+        //update is used of token
+        tokenForgetPassword.setToken(tokenStr);
+        tokenForgetPassword.setIsUsed(true);
+
+        DAOUser.updatePassword(email, password_encode);
+        DAOToken.updateStatus(tokenForgetPassword);
+
+        //save user in session and redirect to home
+        request.setAttribute("success", "Bạn đã đổi mật khẩu thành công");
+        request.getRequestDispatcher("Views/Login.jsp").forward(request, response);
     }
 
     /**

@@ -55,6 +55,7 @@
                         <h2 class="fw-bold">Đăng nhập</h2>
                         <p class="text-muted">Chưa có tài khoản? <a href="register">Đăng ký</a></p>
                         <h6 id="error-message" class="message" style="color: red;text-align: center">${err}</h6>  
+                        <h6 id="error-message" class="message" style="color: green;text-align: center">${success}</h6>
                         <c:set var ="cookie" value="${pageContext.request.cookies}" />
                         <form action="login" method="POST">
                             <div class="form-floating mb-3">

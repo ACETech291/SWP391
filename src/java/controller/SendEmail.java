@@ -5,15 +5,17 @@
 package controller;
 
 import dal.CustomerDAO;
+import dal.TokenDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.Email;
+import java.time.LocalDateTime;
+import until.Email;
 import model.Customer;
-
+import model.TokenForgetPassword;
 
 /**
  *
@@ -38,7 +40,7 @@ public class SendEmail extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SendEmail</title>");            
+            out.println("<title>Servlet SendEmail</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet SendEmail at " + request.getContextPath() + "</h1>");
@@ -59,7 +61,7 @@ public class SendEmail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.getRequestDispatcher("Views/EmailPassword.jsp").forward(request, response);
     }
 
     /**
@@ -74,13 +76,32 @@ public class SendEmail extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String email = request.getParameter("email");
-        CustomerDAO dao = new CustomerDAO();
-        Customer a = dao.getCustomerByEmail(email);
-        Email.sendEmail(email, "Reset password - "+System.currentTimeMillis(),"http://localhost:8080/SWP391/ResetPassword");
-        if(a != null){
-            request.setAttribute("success", "Lấy lại mật khẩu thành công, vui lòng kiểm tra email");
-        }else{
+        TokenDAO tokenDao = new TokenDAO();
+        CustomerDAO customerDAO = new CustomerDAO();
+        Customer customer = customerDAO.getCustomerByEmail(email);
+        if (customer != null) {
+            Email emailService = new Email();
+            String token = emailService.generateToken();
+            String linkResetPassword = "http://localhost:8080/SWP391/ResetPassword?token=" + token;
+            System.out.println("token:"+token);
+            System.out.println("customer:"+customer);
+            TokenForgetPassword newTokenForgetPassword = new TokenForgetPassword(customer.getId(), false, token, emailService.expireDateTime());
+            boolean isInsert = tokenDao.insertTokenForget(newTokenForgetPassword);
+
+            if (!isInsert) {
+                request.setAttribute("err", "Have error in server");
+                request.getRequestDispatcher("Views/EmailPassword.jsp").forward(request, response);
+                return;
+            }
+            String content ="<a href="+linkResetPassword+">Bấm vào đây</a></p>";
+            
+            Email.sendEmail(email, "Reset password -"+System.currentTimeMillis(), content);
+            
+            request.setAttribute("success", "Gửi email thành công,vui lòng kiểm tra email");
+            request.getRequestDispatcher("Views/EmailPassword.jsp").forward(request, response);
+        } else {
             request.setAttribute("err", "Tài khoản email không tồn tại");
+            request.getRequestDispatcher("Views/EmailPassword.jsp").forward(request, response);
         }
         request.getRequestDispatcher("Views/EmailPassword.jsp").forward(request, response);
     }
