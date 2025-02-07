@@ -64,7 +64,7 @@
                                         <li><a href="register"><span class="user_icon"><i class="fa fa-user" aria-hidden="true"></i></span>Đăng Ký</a></li>
                                                 </c:if>
                                 <c:if test="${sessionScope.account.role.id  != null}">
-                                        <li><a href="logout"><span class="user_icon"><i class="fa fa-sign-out" aria-hidden="true"></i></span>Đăng Xuất</a></li>
+                                        <li><a href="Logout"><span class="user_icon"><i class="fa fa-sign-out" aria-hidden="true"></i></span>Đăng Xuất</a></li>
                                                 </c:if>
                             </div>
 

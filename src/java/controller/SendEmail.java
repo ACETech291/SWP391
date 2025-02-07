@@ -4,6 +4,7 @@
  */
 package controller;
 
+import dal.CustomerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -31,7 +32,7 @@ public class SendEmail extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-16");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -72,13 +73,16 @@ public class SendEmail extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        String email = request.getParameter("email");
-//        //CRUDAccount dao = new CRUDAccount();
-//        Customer a = dao.getAccountByEmail(email);
-//        dao.updatePassword(a.getUserName(), "123456789");
-//        Email.sendEmail(email, "Xác minh mật khẩu -"+System.currentTimeMillis(),"123456789");
-//        request.setAttribute("abc", "Xác nhận mật khẩu thành công");
-//        request.getRequestDispatcher("Views/EmailPassword.jsp").forward(request, response);
+        String email = request.getParameter("email");
+        CustomerDAO dao = new CustomerDAO();
+        Customer a = dao.getCustomerByEmail(email);
+        Email.sendEmail(email, "Reset password - "+System.currentTimeMillis(),"http://localhost:8080/SWP391/ResetPassword");
+        if(a != null){
+            request.setAttribute("success", "Lấy lại mật khẩu thành công, vui lòng kiểm tra email");
+        }else{
+            request.setAttribute("err", "Tài khoản email không tồn tại");
+        }
+        request.getRequestDispatcher("Views/EmailPassword.jsp").forward(request, response);
     }
 
     /**

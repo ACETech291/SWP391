@@ -1,7 +1,8 @@
 
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -167,6 +168,11 @@
                         ${err}
                     </p>
                 </c:if>
+                <c:if test="${success != null}">
+                    <p id="profile-name" class="text-success">
+                        ${success}
+                    </p>
+                </c:if>    
                 <form method="post" action="SendEmail" class="form-signin">
                     <span id="reauth-email" class="reauth-email"></span>
                     <p style="color: green">Vui lòng nhập email của bạn</p>
@@ -178,14 +184,8 @@
                                         </div>-->
                     <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Gửi mật khẩu qua email</button>
                 </form><!-- /form -->
-                <c:if test="${abc != null}">
-                    <p id="profile-name" class="text-dark">
-                        ${abc}
-                    </p>
-                    <a href="login"><span class="user_icon"><i class="fa fa-user" aria-hidden="true"></i></span>Đăng Nhập Ngay</a>
-                </c:if>
                 <a href="register" class="btn btn-block forgot-password">
-                    Đăng ký Ngay
+                    Đăng ký ngay
                 </a>
             </div><!-- /card-container -->
         </div><!-- /container -->
