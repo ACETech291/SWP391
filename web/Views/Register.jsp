@@ -7,7 +7,7 @@
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Đăng kí tài khoản </title>
+        <title>Đăng ký tài khoản </title>
         <style>
             body, html {
                 height: 100%;
@@ -40,7 +40,7 @@
                     <div class="card">
                         <header class="card-header">
                             <a href="login" class="float-right btn btn-outline-primary mt-1">Đăng Nhập</a>
-                            <h4 class="card-title mt-2">Đăng Kí</h4>
+                            <h4 class="card-title mt-2">Đăng Ký</h4>
                         </header>
                         <c:if test="${Success ne null}">
                             <h3 style="color: green;font-weight: bold;text-align: center">${Success}</h3>

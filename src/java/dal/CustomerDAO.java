@@ -99,6 +99,28 @@ public class CustomerDAO {
         return null;
 
     }
+    
+    public Customer getCustomerByEmail(String email) {
+        String sql = "select * from customer a join `role` r on a.id_role = r.id_role where email_customer =?";
+        try {
+            PreparedStatement ps = connect.prepareStatement(sql);
+            ps.setString(1,email);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                if(rs.getString(9)!= null){
+                     Role role = new Role(rs.getInt(8),
+                        rs.getString(9));
+                     return new Customer(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), role);
+                }
+                if(rs.getString(9) == null){
+                    return null;
+                }
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+    
 //    public List<Customer> getListCustomer() {
 //        List<Customer> listCustomer = new ArrayList<>();
 //        String sql = "select *\n"
@@ -128,5 +150,16 @@ public class CustomerDAO {
 //        }
         Customer customer = cd.getCustomer("a@gmail.com", "a");
         System.out.println(customer);
+//        System.out.println("a");
+//        Role role = cd.getRoleById(3);
+//        System.out.println(role.toString());    
+//        System.out.println("a");
+//        Customer cus = cd.getCustomer("1", "1");
+//        System.out.println(cus.toString());
+
+            Customer cus = cd.getCustomerByEmail("test@gmail.com");
+            System.out.println(cus.toString());
     }
+
+    
 }

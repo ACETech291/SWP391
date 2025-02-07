@@ -57,7 +57,6 @@
                                     </li>
                                 </ul>
                             </div><!-- /.navbar-collapse -->   
-
                             <c:if test="${sessionScope.account.role.id == null}">
                                 <div class="register-login">
                                     <a href="register"><i class="icon-user mr-1"></i> Đăng kí</a>

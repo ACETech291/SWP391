@@ -4,22 +4,18 @@
  */
 package controller;
 
-import dal.CustomerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.Email;
-import model.Customer;
-
 
 /**
  *
  * @author Nguyen Ba Hien
  */
-public class SendEmail extends HttpServlet {
+public class ResetPassword extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,16 +28,16 @@ public class SendEmail extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-16");
+        response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SendEmail</title>");            
+            out.println("<title>Servlet ResetPassword</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SendEmail at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ResetPassword at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -73,16 +69,7 @@ public class SendEmail extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = request.getParameter("email");
-        CustomerDAO dao = new CustomerDAO();
-        Customer a = dao.getCustomerByEmail(email);
-        Email.sendEmail(email, "Reset password - "+System.currentTimeMillis(),"http://localhost:8080/SWP391/ResetPassword");
-        if(a != null){
-            request.setAttribute("success", "Lấy lại mật khẩu thành công, vui lòng kiểm tra email");
-        }else{
-            request.setAttribute("err", "Tài khoản email không tồn tại");
-        }
-        request.getRequestDispatcher("Views/EmailPassword.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
