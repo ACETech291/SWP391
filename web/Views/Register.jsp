@@ -7,7 +7,7 @@
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Sign up </title>
+        <title>Đăng kí tài khoản </title>
         <style>
             body, html {
                 height: 100%;
@@ -81,7 +81,7 @@
                                     <button type="submit" class="btn btn-primary btn-block"> Đăng ký  </button>
                                 </div> <!-- form-group// -->      
                                 <small class="text-muted">Bằng cách nhấp vào nút 'Đăng ký', bạn xác nhận rằng bạn chấp nhận  <br> 
-                                    <a href="#">Điều khoản sử dụng và Chính sách bảo mật của chúng tôi.</a></small>                                          
+                                    <a href="#" data-toggle="modal" data-target="#termsModal">Điều khoản sử dụng và Chính sách bảo mật của chúng tôi.</a></small>                                          
                             </form>
                         </article> <!-- card-body end .// -->
                         <div class="border-top card-body text-center">Đã có tài khoản? <a href="login">Đăng Nhập</a></div>
