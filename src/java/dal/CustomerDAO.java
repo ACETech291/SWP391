@@ -126,11 +126,7 @@ public class CustomerDAO {
 //        for (Customer customer : a) {
 //            System.out.println(customer.toString());
 //        }
-//        System.out.println("a");
-//        Role role = cd.getRoleById(3);
-//        System.out.println(role.toString());    
-        System.out.println("a");
-        Customer cus = cd.getCustomer("1", "1");
-        System.out.println(cus.toString());
+        Customer customer = cd.getCustomer("a@gmail.com", "a");
+        System.out.println(customer);
     }
 }

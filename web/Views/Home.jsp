@@ -58,15 +58,18 @@
                                 </ul>
                             </div><!-- /.navbar-collapse -->   
 
-                            <div class="register-login">
-                                <c:if test="${sessionScope.account.role.id == null}">
-                                        <li><a href="login"><span class="user_icon"><i class="fa fa-user" aria-hidden="true"></i></span>Đăng Nhập</a></li>
-                                        <li><a href="register"><span class="user_icon"><i class="fa fa-user" aria-hidden="true"></i></span>Đăng Ký</a></li>
-                                                </c:if>
-                                <c:if test="${sessionScope.account.role.id  != null}">
-                                        <li><a href="logout"><span class="user_icon"><i class="fa fa-sign-out" aria-hidden="true"></i></span>Đăng Xuất</a></li>
-                                                </c:if>
-                            </div>
+                            <c:if test="${sessionScope.account.role.id == null}">
+                                <div class="register-login">
+                                    <a href="register"><i class="icon-user mr-1"></i> Đăng kí</a>
+                                    <a href="login"><i class="icon-login mr-1"></i> Đăng nhập</a>
+                                </div>
+                            </c:if>
+                            <c:if test="${sessionScope.account.role.id  != null}">
+                                <div class="register-login">
+                                    <a href="#"><i class="icon-user mr-1"></i> ${sessionScope.account.userName}</a>
+                                    <a href="logout"><i class="icon-login mr-1"></i> Đăng xuất</a>
+                                </div>
+                            </c:if>
 
                             <div id="slicknav-mobile"></div>
                         </div>
@@ -386,8 +389,8 @@
                                                             <div class="blue">07/02/2025</div>
                                                             <div class="text-muted small">18:26</div>
                                                         </td>
-                                                        
-                                                        
+
+
                                                         <td class="text-center align-middle">
                                                             <div class="input-box">
                                                                 <i class="flaticon-placeholder"></i>
@@ -409,6 +412,135 @@
                                                         <td class="text-center align-middle">
                                                             <a href="#" class="nir-btn w-100"><i class="fas fa-chair mr-1 mr-2"></i>Đặt vé</a>
                                                         </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center font-weight-bold align-middle">E01</td>
+
+                                                        <td class="text-center align-middle">
+                                                            <img src="${pageContext.request.contextPath}/libs/images/trains/6.jpg" 
+                                                                 alt="Tàu E01" 
+                                                                 class="img-thumbnail" 
+                                                                 style="width: 100px; height: 60px; object-fit: cover;">
+                                                        </td>
+
+                                                        <td class="text-center align-middle">
+                                                            <div class="blue">06/02/2025</div>
+                                                            <div class="text-muted small">18:26</div>
+                                                        </td>
+
+                                                        <td class="text-center align-middle">
+                                                            <div class="blue">07/02/2025</div>
+                                                            <div class="text-muted small">18:26</div>
+                                                        </td>
+
+
+                                                        <td class="text-center align-middle">
+                                                            <div class="input-box">
+                                                                <i class="flaticon-placeholder"></i>
+                                                                <span>HÀ NỘI</span>
+                                                            </div>
+                                                        </td>
+
+                                                        <td class="text-center align-middle">
+                                                            <div class="input-box">
+                                                                <i class="flaticon-placeholder"></i>
+                                                                <span>SÀI GÒN</span>
+                                                            </div>
+                                                        </td>   
+
+                                                        <td class="text-center align-middle">
+                                                            <span class="text-danger font-weight-bold">1.000.000đ</span>
+                                                        </td>
+
+                                                        <td class="text-center align-middle">
+                                                            <a href="#" class="nir-btn w-100"><i class="fas fa-chair mr-1 mr-2"></i>Đặt vé</a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center font-weight-bold align-middle">E01</td>
+
+                                                        <td class="text-center align-middle">
+                                                            <img src="${pageContext.request.contextPath}/libs/images/trains/6.jpg" 
+                                                                 alt="Tàu E01" 
+                                                                 class="img-thumbnail" 
+                                                                 style="width: 100px; height: 60px; object-fit: cover;">
+                                                        </td>
+
+                                                        <td class="text-center align-middle">
+                                                            <div class="blue">06/02/2025</div>
+                                                            <div class="text-muted small">18:26</div>
+                                                        </td>
+
+                                                        <td class="text-center align-middle">
+                                                            <div class="blue">07/02/2025</div>
+                                                            <div class="text-muted small">18:26</div>
+                                                        </td>
+
+
+                                                        <td class="text-center align-middle">
+                                                            <div class="input-box">
+                                                                <i class="flaticon-placeholder"></i>
+                                                                <span>HÀ NỘI</span>
+                                                            </div>
+                                                        </td>
+
+                                                        <td class="text-center align-middle">
+                                                            <div class="input-box">
+                                                                <i class="flaticon-placeholder"></i>
+                                                                <span>SÀI GÒN</span>
+                                                            </div>
+                                                        </td>   
+
+                                                        <td class="text-center align-middle">
+                                                            <span class="text-danger font-weight-bold">1.000.000đ</span>
+                                                        </td>
+
+                                                        <td class="text-center align-middle">
+                                                            <a href="#" class="nir-btn w-100"><i class="fas fa-chair mr-1 mr-2"></i>Đặt vé</a>
+                                                        </td>
+                                                    <tr>
+                                                        <td class="text-center font-weight-bold align-middle">E01</td>
+
+                                                        <td class="text-center align-middle">
+                                                            <img src="${pageContext.request.contextPath}/libs/images/trains/6.jpg" 
+                                                                 alt="Tàu E01" 
+                                                                 class="img-thumbnail" 
+                                                                 style="width: 100px; height: 60px; object-fit: cover;">
+                                                        </td>
+
+                                                        <td class="text-center align-middle">
+                                                            <div class="blue">06/02/2025</div>
+                                                            <div class="text-muted small">18:26</div>
+                                                        </td>
+
+                                                        <td class="text-center align-middle">
+                                                            <div class="blue">07/02/2025</div>
+                                                            <div class="text-muted small">18:26</div>
+                                                        </td>
+
+
+                                                        <td class="text-center align-middle">
+                                                            <div class="input-box">
+                                                                <i class="flaticon-placeholder"></i>
+                                                                <span>HÀ NỘI</span>
+                                                            </div>
+                                                        </td>
+
+                                                        <td class="text-center align-middle">
+                                                            <div class="input-box">
+                                                                <i class="flaticon-placeholder"></i>
+                                                                <span>SÀI GÒN</span>
+                                                            </div>
+                                                        </td>   
+
+                                                        <td class="text-center align-middle">
+                                                            <span class="text-danger font-weight-bold">1.000.000đ</span>
+                                                        </td>
+
+                                                        <td class="text-center align-middle">
+                                                            <a href="#" class="nir-btn w-100"><i class="fas fa-chair mr-1 mr-2"></i>Đặt vé</a>
+                                                        </td>
+                                                    </tr>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -2043,12 +2175,3 @@
             }
         })();</script>
 </html>
-<div class="register-login">
-    <c:if test="${sessionScope.account.role.id == null}">
-        <a href="register" data-target="#register"><i class="icon-user mr-1"></i> Đăng kí</a>
-        <a href="login" data-target="#login"><i class="icon-login mr-1"></i> Đăng nhập</a>
-    </c:if>
-    <c:if test="${sessionScope.account.role.id != null}">
-        <a href="logout" data-target="#login"><i class="icon-login mr-1"></i> Đăng xuất</a>
-    </c:if>
-</div>

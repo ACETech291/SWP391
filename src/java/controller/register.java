@@ -39,7 +39,7 @@ public class register extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet register</title>");            
+            out.println("<title>Servlet register</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet register at " + request.getContextPath() + "</h1>");
@@ -60,12 +60,10 @@ public class register extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         request.getRequestDispatcher("Views/Register.jsp").forward(request, response);
-        
-        
+
     }
-    
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -89,8 +87,8 @@ public class register extends HttpServlet {
         String confirmpassword = Encoding.toSHA1(cf);
 
         int check = 1;
-       
-        if(!password.equals(confirmpassword) || raw_password.length() < 6){
+
+        if (!password.equals(confirmpassword) || raw_password.length() < 6) {
             check = 2;
             request.setAttribute(email, "email");
             request.setAttribute(userName, "name");
@@ -98,27 +96,26 @@ public class register extends HttpServlet {
             request.setAttribute("error1", "Đăng Kí Thất Bại");
             request.getRequestDispatcher("Views/Register.jsp").forward(request, response);
         }
-       
-        Role role = cu.getRoleById(3);     
+
+        Role role = cu.getRoleById(3);
         for (Customer customer : listCustomer) {
             System.out.println(customer.toString());
         }
         for (Customer customer : listCustomer) {
             System.out.println(customer.toString());
-                    System.out.println(role.toString());
-            if(customer.getEmail().equalsIgnoreCase(email)){
+            System.out.println(role.toString());
+            if (customer.getEmail().equalsIgnoreCase(email)) {
                 check = 3;
             }
-               
+
         }
 
-        if(check==1){
+        if (check == 1) {
             Customer newCustomer = new Customer(userName, phone, email, password, 1, role);
             System.out.println(newCustomer.toString());
             cu.createAccount(newCustomer);
-                request.setAttribute("Success", "Tạo tài khoản thành công!!!");
-        }
-        else if(check ==3){
+            request.setAttribute("Success", "Tạo tài khoản thành công!!!");
+        } else if (check == 3) {
             request.setAttribute("error1", "Email đã có người sử dụng!!!");
         }
         request.getRequestDispatcher("Views/Register.jsp").forward(request, response);
