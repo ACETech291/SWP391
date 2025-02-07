@@ -61,7 +61,7 @@ public class Logout extends HttpServlet {
         session.removeAttribute("ADMIN");
         session.removeAttribute("Manager");
         session.removeAttribute("Customer");
-        request.getRequestDispatcher("home").forward(request, response);
+        response.sendRedirect("home");
         processRequest(request, response);
     }
 
