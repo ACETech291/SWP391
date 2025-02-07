@@ -45,7 +45,6 @@ public class register extends HttpServlet {
             out.println("<h1>Servlet register at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-            request.getRequestDispatcher("Views/Register.jsp").forward(request, response);
         }
     }
 
@@ -64,7 +63,6 @@ public class register extends HttpServlet {
         
         request.getRequestDispatcher("Views/Register.jsp").forward(request, response);
         
-        processRequest(request, response);
         
     }
     

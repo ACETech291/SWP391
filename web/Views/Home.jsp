@@ -59,8 +59,13 @@
                             </div><!-- /.navbar-collapse -->   
 
                             <div class="register-login">
-                                <a href="register" data-target="#register"><i class="icon-user mr-1"></i> Đăng kí</a>
-                                <a href="login" data-target="#login"><i class="icon-login mr-1"></i> Đăng nhập</a>
+                                <c:if test="${sessionScope.account.role.id == null}">
+                                        <li><a href="login"><span class="user_icon"><i class="fa fa-user" aria-hidden="true"></i></span>Đăng Nhập</a></li>
+                                        <li><a href="register"><span class="user_icon"><i class="fa fa-user" aria-hidden="true"></i></span>Đăng Ký</a></li>
+                                                </c:if>
+                                <c:if test="${sessionScope.account.role.id  != null}">
+                                        <li><a href="logout"><span class="user_icon"><i class="fa fa-sign-out" aria-hidden="true"></i></span>Đăng Xuất</a></li>
+                                                </c:if>
                             </div>
 
                             <div id="slicknav-mobile"></div>
