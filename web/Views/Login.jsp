@@ -62,7 +62,7 @@
                                 <label for="email">Nhập email</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input name="password" type="password" class="form-control" id="password" placeholder="Password" required value="${cookie.cookiePassword.value}>
+                                <input name="password" type="password" class="form-control" id="password" placeholder="Password" required value="${cookie.cookiePassword.value}">
                                 <label for="password">Nhập mật khẩu</label>
                             </div>
                             <div class="d-flex justify-content-between mb-3">
