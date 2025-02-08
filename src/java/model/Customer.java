@@ -8,9 +8,9 @@ package model;
  *
  * @author Nguyen Ba Hien
  */
-public class Customer {
+public class Customer implements SQLInsert{
 
-    private int id;
+    private int id_customer;
     private String userName;
     private String phoneNumber;
     private String email;
@@ -21,8 +21,8 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(int id, String userName, String phoneNumber, String email, String password, int status, Role role) {
-        this.id = id;
+    public Customer(int id_customer, String userName, String phoneNumber, String email, String password, int status, Role role) {
+        this.id_customer = id_customer;
         this.userName = userName;
         this.phoneNumber = phoneNumber;
         this.email = email;
@@ -46,12 +46,12 @@ public class Customer {
         this.role = role;
     }
 
-    public int getId() {
-        return id;
+    public int getId_customer() {
+        return id_customer;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int id_customer) {
+        this.id_customer = id_customer;
     }
 
     public String getUserName() {
@@ -104,10 +104,14 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" + "id=" + id + ", userName=" + userName + ", phoneNumber=" + phoneNumber + ", email=" + email + ", password=" + password + ", status=" + status + ", role=" + role + '}';
+        return "Customer{" + "id=" + id_customer + ", userName=" + userName + ", phoneNumber=" + phoneNumber + ", email=" + email + ", password=" + password + ", status=" + status + ", role=" + role + '}';
     }
 
-    
+    @Override
+    public String toSQLInsert(){
+        return String.format("INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer)"
+                + " VALUES ('%s','%s','%s','%s',3,%d) ", userName, email, password, phoneNumber,status);
+    }
     
     
 

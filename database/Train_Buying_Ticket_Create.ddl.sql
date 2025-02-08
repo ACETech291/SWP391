@@ -175,9 +175,11 @@ VALUES
   (1, 'admin'),
   (2, 'manager'),
   (3, 'customer');
-
 		
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer)
 VALUES 
-  ('John Doe', 'john.doe@example.com', 'password123', '1234567890', 3, 1),
-  ('Jane Smith', 'jane.smith@example.com', 'password456', '0987654321', 3, 0);
+  ('John Doe', 'john.doe@example.com', 'XTwxySnggWC4I9UyCPsk3dtA5ug=', '1234567890', 3, 1),
+  ('Jane Smith', 'jane.smith@example.com', '5FBuh9cjOTg921vBh0Lkjhd2+CQ=', '0987654321', 3, 0);
+
+
+INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('BenKei','dungquentena@gmail.com','LwwQbBAWkqpsESVxiB0LwFd7fDc=','123456789',3,1) 

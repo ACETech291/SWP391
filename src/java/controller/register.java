@@ -15,6 +15,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import model.Role;
 import until.Encoding;
+import model.SQLInsert;
+import java.io.*;
 
 /**
  *
@@ -31,6 +33,24 @@ public class register extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    public void insertDatabase(SQLInsert x) {
+        String add = x.toSQLInsert();
+
+        
+        String filePath = "D:\\SWPFinal\\SWP391\\database\\Train_Buying_Ticket_Create.ddl.sql";
+
+
+        try (FileWriter writer = new FileWriter(filePath, true); BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
+
+            bufferedWriter.write(add);
+            bufferedWriter.newLine();
+            System.out.println("Đã ghi thêm dòng vào file thành công!");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -87,7 +107,7 @@ public class register extends HttpServlet {
         String confirmpassword = Encoding.toSHA1(cf);
 
         int check = 1;
-        
+
         if (raw_password.length() < 6) {
             check = 2;
             request.setAttribute(email, "email");
@@ -121,6 +141,7 @@ public class register extends HttpServlet {
         if (check == 1) {
             Customer newCustomer = new Customer(userName, phone, email, password, 1, role);
             System.out.println(newCustomer.toString());
+            insertDatabase(newCustomer);
             cu.createAccount(newCustomer);
             request.setAttribute("Success", "Tạo tài khoản thành công!!!");
         } else if (check == 3) {
