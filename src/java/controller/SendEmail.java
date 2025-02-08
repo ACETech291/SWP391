@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.time.LocalDateTime;
-import until.Email;
+import until.EmailService;
 import model.Customer;
 import model.TokenForgetPassword;
 
@@ -80,7 +80,7 @@ public class SendEmail extends HttpServlet {
         CustomerDAO customerDAO = new CustomerDAO();
         Customer customer = customerDAO.getCustomerByEmail(email);
         if (customer != null) {
-            Email emailService = new Email();
+            EmailService emailService = new EmailService();
             String token = emailService.generateToken();
             String linkResetPassword = "http://localhost:8080/SWP391/ResetPassword?token=" + token;
             System.out.println("token:"+token);
@@ -95,7 +95,7 @@ public class SendEmail extends HttpServlet {
             }
             String content ="<a href="+linkResetPassword+">Bấm vào đây</a></p>";
             
-            Email.sendEmail(email, "Reset password -"+System.currentTimeMillis(), content);
+            EmailService.sendEmail(email, "Reset password -"+System.currentTimeMillis(), content);
             
             request.setAttribute("success", "Gửi email thành công,vui lòng kiểm tra email");
             request.getRequestDispatcher("Views/EmailPassword.jsp").forward(request, response);
