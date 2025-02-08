@@ -17,8 +17,8 @@ import javax.mail.internet.MimeMessage;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 
-public class Email {
-    // Email: tungletest1.email@gmail.com
+public class EmailService {
+    // EmailService: tungletest1.email@gmail.com
     // Password: nebeekfipcstxcox
     private final int LIMIT_MINUS = 10;
     
@@ -105,7 +105,7 @@ public class Email {
         }
     }
     
-    public static boolean sendEmail2(String to, String tieuDe, String noiDung,String ngayDatHang,String diaChiNhanHang ) {
+    public static boolean sendEmail2(String to, String tieuDe, String noiDung ) {
         // Properties : khai báo các thuộc tính
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com"); // SMTP HOST
@@ -148,29 +148,23 @@ public class Email {
             // msg.setReplyTo(InternetAddress.parse(from, false))
             // Nội dung
             msg.setContent("<html>"
-            + "<head><style>"
-            + "body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }"
-            + ".container { background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }"
-            + "h2 { color: #333; }"
-            + "p { color: #555; }"
-            + ".button { background-color: #28a745; color: white; padding: 10px 15px; text-decoration: none; border-radius: 4px; }"
-            + "</style></head>"
-            + "<body>"
-            + "<div class='container'>"
-            + "<h2>Đơn Hàng Của Bạn</h2>"
-            + "<p>Xin chào,</p>"
-            + "<p>Cảm ơn bạn đã đặt hàng. Dưới đây là thông tin đơn hàng của bạn:</p>"
-            + "<p><strong>Mã giao dịch</strong> " + System.currentTimeMillis() + "</p>"
-            + "<p><strong>Thời gian đặt hàng:</strong> " + ngayDatHang + "</p>"
-            + "<p><strong>Địa chỉ nhận hàng : </strong> " + diaChiNhanHang + "</p>"
-            + "<p><strong>Thời gian dự kiến nhận hàng:</strong> 15->30 phút </p>"
-            + "<p><strong>Số điện thoại người giao:</strong> " + noiDung + "</p>"
-            + "<p><a href=\"https://www.facebook.com/hien.nguyenba.7311?locale=vi_VN\">Liên hệ quản lý<i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></a>.</p>"
-            + "<p>Chúc bạn có 1 trải nghiệm tuyệt vời.</p>"
-            + "<p>Trân trọng,<br>Đội ngũ hỗ trợ khách hàng</p>"
-            + "</div>"
-            + "</body>"
-            + "</html>", "text/HTML; charset=UTF-8");
+                + "<head><style>"
+                + "body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }"
+                + ".container { background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }"
+                + "h2 { color: #333; }"
+                + "p { color: #555; }"
+                + ".button { background-color: #28a745; color: white; padding: 10px 15px; text-decoration: none; border-radius: 4px; }"
+                + "</style></head>"
+                + "<body>"
+                + "<div class='container'>"
+                + "<h2>Xác minh tài khoản</h2>"
+                + "<p>Xin chào,</p>"
+                + "<p>Cảm ơn bạn đã đăng ký tài khoản. Dưới đây là mã Otp giúp bạn có thể nhập để xác minh tài khoản:</p>"
+                + "<p><strong><h1>" + noiDung + "<h1></strong></p>"
+                + "<p>Trân trọng,<br>Đội ngũ hỗ trợ khách hàng</p>"
+                + "</div>"
+                + "</body>"
+                + "</html>", "text/HTML; charset=UTF-8");
 
             // Gửi email
             Transport.send(msg);

@@ -5,6 +5,7 @@
 package controller;
 
 import dal.CustomerDAO;
+import dal.OtpDAO;
 import model.Customer;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,11 +13,19 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.time.LocalDateTime;
 import java.util.List;
 import model.Role;
+import model.OTP;
+import until.EmailService;
 import until.Encoding;
+<<<<<<< HEAD
 import model.SQLInsert;
 import java.io.*;
+=======
+import until.OTPService;
+>>>>>>> 8aacc370867458d8012d7e85444b2cd1c6cd28e7
 
 /**
  *
@@ -96,8 +105,12 @@ public class register extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        CustomerDAO cu = new CustomerDAO();
-        List<Customer> listCustomer = cu.getAllCustomer();
+        int customer_id_fake = 1;
+        HttpSession session = request.getSession();
+        OtpDAO otpDAO = new OtpDAO();
+        OTPService otpService = new OTPService();
+        CustomerDAO customerDAO = new CustomerDAO();
+        List<Customer> listCustomer = customerDAO.getAllCustomer();
         String userName = request.getParameter("Name");
         String phone = request.getParameter("phoneNumber");
         String email = request.getParameter("emailAddress");
@@ -115,6 +128,7 @@ public class register extends HttpServlet {
             request.setAttribute(phone, "phone");
             request.setAttribute("error1", "Mật khẩu phải chứa ít nhất 6 kí tự");
             request.getRequestDispatcher("Views/Register.jsp").forward(request, response);
+            return;
         }
         if (!password.equals(confirmpassword)) {
             check = 2;
@@ -123,9 +137,10 @@ public class register extends HttpServlet {
             request.setAttribute(phone, "phone");
             request.setAttribute("error1", "Đăng Kí Thất Bại");
             request.getRequestDispatcher("Views/Register.jsp").forward(request, response);
+            return;
         }
 
-        Role role = cu.getRoleById(3);
+        Role role = customerDAO.getRoleById(3);
         for (Customer customer : listCustomer) {
             System.out.println(customer.toString());
         }
@@ -140,14 +155,29 @@ public class register extends HttpServlet {
 
         if (check == 1) {
             Customer newCustomer = new Customer(userName, phone, email, password, 1, role);
+            session.setAttribute("newCustomer", newCustomer);
             System.out.println(newCustomer.toString());
+<<<<<<< HEAD
             insertDatabase(newCustomer);
             cu.createAccount(newCustomer);
             request.setAttribute("Success", "Tạo tài khoản thành công!!!");
+=======
+            request.setAttribute("email", newCustomer.getEmail());
+            String otpCode = otpService.generateOtp();
+            session.setAttribute("otpCode", otpCode);
+            customer_id_fake +=1;
+            OTP otp = new OTP(0, false, otpCode, otpService.expireDateTime());
+            otpDAO.insertOtp(otp);
+            EmailService.sendEmail2(newCustomer.getEmail(),"Verify email -"+System.currentTimeMillis(), otpCode );
+            request.getRequestDispatcher("OtpService").forward(request, response);
+            return;
+
+>>>>>>> 8aacc370867458d8012d7e85444b2cd1c6cd28e7
         } else if (check == 3) {
             request.setAttribute("error1", "Email đã có người sử dụng!!!");
         }
         request.getRequestDispatcher("Views/Register.jsp").forward(request, response);
+        return;
     }
 
     /**

@@ -6,8 +6,8 @@ package controller;
 
 import dal.CustomerDAO;
 import dal.TokenDAO;
-import until.Email;
-import until.Email;
+import until.EmailService;
+import until.EmailService;
 import model.Customer;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -68,7 +68,7 @@ public class ResetPassword extends HttpServlet {
         HttpSession session = request.getSession();
         if(token != null) {
             TokenForgetPassword tokenForgetPassword = DAOToken.getTokenPassword(token);
-            Email service = new Email();
+            EmailService service = new EmailService();
             
             if(tokenForgetPassword == null) {
                 request.setAttribute("err", "token không hợp lệ");
@@ -127,7 +127,7 @@ public class ResetPassword extends HttpServlet {
         String tokenStr = (String) session.getAttribute("token");
         TokenForgetPassword tokenForgetPassword = DAOToken.getTokenPassword(tokenStr);
         //check token is valid, of time, of used
-        Email service = new Email();
+        EmailService service = new EmailService();
         if (tokenForgetPassword == null) {
             request.setAttribute("err", "token invalid");
             request.getRequestDispatcher("Views/EmailPassword.jsp").forward(request, response);
