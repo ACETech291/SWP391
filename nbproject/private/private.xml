@@ -3,22 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/SWPFinal/SWP391/web/Views/Login.jsp</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/until/Encoding.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/model/GoogleAccount.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/model/Status.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/dal/DBConnect.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/model/Role.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/controller/home.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/model/Email.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/dal/CustomerDAO.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/model/test.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/controller/Logout.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/model/Customer.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/controller/register.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/controller/EmailController.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/controller/login.java</file>
-            <file>file:/D:/SWP301-Project/SWP391/src/java/controller/SendEmail.java</file>
+            <file>file:/D:/SWPFinal/SWP391/web/Views/EmailPassword.jsp</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/SendEmail.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/until/EmailService.java</file>
         </group>
     </open-files>
 </project-private>
