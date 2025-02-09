@@ -3,8 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/SWPFinal/SWP391/src/java/controller/LoginGoogle.java</file>
             <file>file:/D:/SWPFinal/SWP391/web/Views/ResetPassword.jsp</file>
+=======
+            <file>file:/D:/SWPFinal/SWP391/web/Views/EmailPassword.jsp</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/SendEmail.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/until/EmailService.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/dal/TokenDAO.java</file>
+>>>>>>> 4dfaad499cb070f488fc4c725684d8c95afc20b4
             <file>file:/D:/SWPFinal/SWP391/web/Views/VerifyEmail.jsp</file>
             <file>file:/D:/SWPFinal/SWP391/web/Views/Register.jsp</file>
             <file>file:/D:/SWPFinal/SWP391/web/Views/Home.jsp</file>
