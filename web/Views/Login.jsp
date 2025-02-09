@@ -14,6 +14,12 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/font-awesome/5.11.2/css/all.min.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/fonts/line-icons.css" type="text/css">
+        <style>
+            label[for="rememberMe"],
+            a label {
+                cursor: pointer;
+            }
+        </style>
     </head>
     <body class="home-search" style="background-image: url(${pageContext.request.contextPath}/libs/images/slider/8.jpg)">
         <!-- Preloader -->
@@ -58,7 +64,7 @@
                                                 <div class="col-lg-8">
                                                     <div class="form-group">
                                                         <input name="remember" type="checkbox" id="rememberMe" ${cookie.cookieRemember!=null?"checked":""} value="ON" />
-                                                        <label>Ghi nhớ đăng nhập</label>
+                                                        <label for="rememberMe">Ghi nhớ đăng nhập</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-4">
@@ -102,8 +108,26 @@
         <script src="${pageContext.request.contextPath}/libs/js/particlerun.js"></script>
         <script src="${pageContext.request.contextPath}/libs/js/plugin.js"></script>
         <script src="${pageContext.request.contextPath}/libs/js/main.js"></script>
-        
+
         <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var errorMessage = document.getElementById("error-message");
+                var emailInput = document.getElementById("email");
+                var passwordInput = document.getElementById("password");
+
+                function hideError() {
+                    if (errorMessage) {
+                        errorMessage.style.display = "none";
+                    }
+                }
+
+                if (errorMessage && errorMessage.innerText.trim() !== "") {
+                    errorMessage.style.display = "block"; // Hiện lỗi nếu có thông báo từ server
+                }
+
+                emailInput.addEventListener("input", hideError);
+                passwordInput.addEventListener("input", hideError);
+            });
             (function () {
                 function c() {
                     var b = a.contentDocument || a.contentWindow.document;

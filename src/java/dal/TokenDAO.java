@@ -33,7 +33,7 @@ public class TokenDAO {
             ps.setString(1, tokenForget.getToken());
             ps.setTimestamp(2, tokenForget.getExpiryTime() != null ? Timestamp.valueOf(tokenForget.getExpiryTime()) : null);
             ps.setBoolean(3, tokenForget.isIsUsed());
-            ps.setInt(4, 0);
+            ps.setInt(4, tokenForget.getUserId());
 
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {

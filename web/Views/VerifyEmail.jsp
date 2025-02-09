@@ -66,7 +66,7 @@
                                     <div class="row gy-3 overflow-hidden">
                                         <div class="col-12">
                                             <div class="form-floating mb-3">
-                                                <input type="email" class="form-control" value="${email}" name="email" id="email" placeholder="name@example.com" required>
+                                                <input type="email" class="form-control" value="${email}" name="email" id="email" placeholder="name@example.com" required readonly>
                                                 <label for="email" class="form-label">Email</label>
                                             </div>
                                         </div>
