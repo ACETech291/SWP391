@@ -1,11 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controller;
 
 import dal.CustomerDAO;
 import dal.OtpDAO;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import model.Customer;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,18 +12,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.time.LocalDateTime;
 import java.util.List;
 import model.Role;
 import model.OTP;
 import until.EmailService;
 import until.Encoding;
-<<<<<<< HEAD
 import model.SQLInsert;
-import java.io.*;
-=======
 import until.OTPService;
->>>>>>> 8aacc370867458d8012d7e85444b2cd1c6cd28e7
 
 /**
  *
@@ -45,9 +38,7 @@ public class register extends HttpServlet {
     public void insertDatabase(SQLInsert x) {
         String add = x.toSQLInsert();
 
-        
         String filePath = "D:\\SWPFinal\\SWP391\\database\\Train_Buying_Ticket_Create.ddl.sql";
-
 
         try (FileWriter writer = new FileWriter(filePath, true); BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
 
@@ -157,22 +148,18 @@ public class register extends HttpServlet {
             Customer newCustomer = new Customer(userName, phone, email, password, 1, role);
             session.setAttribute("newCustomer", newCustomer);
             System.out.println(newCustomer.toString());
-<<<<<<< HEAD
             insertDatabase(newCustomer);
-            cu.createAccount(newCustomer);
+            customerDAO.createAccount(newCustomer);
             request.setAttribute("Success", "Tạo tài khoản thành công!!!");
-=======
             request.setAttribute("email", newCustomer.getEmail());
             String otpCode = otpService.generateOtp();
             session.setAttribute("otpCode", otpCode);
-            customer_id_fake +=1;
+            customer_id_fake += 1;
             OTP otp = new OTP(0, false, otpCode, otpService.expireDateTime());
             otpDAO.insertOtp(otp);
-            EmailService.sendEmail2(newCustomer.getEmail(),"Verify email -"+System.currentTimeMillis(), otpCode );
+            EmailService.sendEmail2(newCustomer.getEmail(), "Verify email -" + System.currentTimeMillis(), otpCode);
             request.getRequestDispatcher("OtpService").forward(request, response);
             return;
-
->>>>>>> 8aacc370867458d8012d7e85444b2cd1c6cd28e7
         } else if (check == 3) {
             request.setAttribute("error1", "Email đã có người sử dụng!!!");
         }

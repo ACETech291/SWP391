@@ -183,3 +183,4 @@ VALUES
 
 
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('BenKei','dungquentena@gmail.com','LwwQbBAWkqpsESVxiB0LwFd7fDc=','123456789',3,1) 
+INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Gà Hp','st1989mp3@gmail.com','JzKOKpzxikm6sWiQvTqU8B3WZOg=','0966755095',3,1) 
