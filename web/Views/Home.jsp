@@ -555,7 +555,7 @@
         <!-- List train trip Ends -->
 
         <!-- Station Starts -->
-        <section class="trending destination pb-6 pt-9"  style="background-image: url(images/bg/bg4.jpg);">
+        <section class="trending destination pb-6 pt-9"  style="background-image: url(${pageContext.request.contextPath}/libs/images/bg/bg4.jpg);">
             <div class="container">
                 <div class="section-title section-title-w text-center mb-5 pb-2 w-50 mx-auto">
                     <h2 class="m-0 white">Nhà <strong>Ga</strong></h2>

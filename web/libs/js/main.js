@@ -478,10 +478,10 @@
          }
      });
      //Do not include! This prevents the form from submitting for DEMO purposes only!
-     $('form').submit(function(event) {
-         event.preventDefault();
-         return false;
-     });
+//     $('form').submit(function(event) {
+//         event.preventDefault();
+//         return false;
+//     });
 
  })(jQuery);
 

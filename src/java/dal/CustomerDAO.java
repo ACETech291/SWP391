@@ -55,8 +55,8 @@ public class CustomerDAO {
             ps.setInt(5, a.getStatus());
             ps.setInt(6, a.getRole().getId());
             ps.executeUpdate();
-        } catch (Exception e) {
-
+        } catch (SQLException e) {
+            System.out.println(e);
         }
     }
 

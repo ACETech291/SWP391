@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controller;
 
 import dal.CustomerDAO;
@@ -13,9 +9,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.util.List;
 import model.Customer;
-import model.GoogleAccount;
 import until.Encoding;
 
 /**
@@ -63,7 +57,6 @@ public class login extends HttpServlet {
         response.addCookie(cookieRemember);
 
         CustomerDAO dao = new CustomerDAO();
-        List<Customer> listCustomer = dao.getAllCustomer();
         HttpSession session = request.getSession();
 
         Customer acc = dao.getCustomer(email, password);

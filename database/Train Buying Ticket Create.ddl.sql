@@ -21,7 +21,7 @@ CREATE TABLE Advertising (
 CREATE TABLE Customer (
   id_customer           int(11) NOT NULL AUTO_INCREMENT, 
   name_customer         varchar(255) NOT NULL, 
-  phone_number_customer varchar(11) NOT NULL, 
+  phone_number_customer varchar(11) NULL, 
   email_customer        varchar(255) NOT NULL, 
   password_customer     varchar(255) NOT NULL, 
   status_customer       bit(1) NOT NULL, 
