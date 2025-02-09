@@ -88,8 +88,8 @@ public class EmailService {
                 + "<h2>Lấy lại Mật Khẩu</h2>"
                 + "<p>Xin chào,</p>"
                 + "<p>Cảm ơn bạn đã yêu cầu xác nhận lại email. Dưới đây là đường dẫn giúp bạn có thể vào và đặt lại mật khẩu:</p>"
-                + "<p><strong><h1>" + noiDung + "<h1></strong></p>"
                 + "<p>Trân trọng,<br>Đội ngũ hỗ trợ khách hàng</p>"
+                + "<p><strong><h1>" + noiDung + "<h1></strong></p>"              
                 + "</div>"
                 + "</body>"
                 + "</html>", "text/HTML; charset=UTF-8");

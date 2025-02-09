@@ -6,6 +6,11 @@
             <file>file:/D:/SWPFinal/SWP391/web/Views/EmailPassword.jsp</file>
             <file>file:/D:/SWPFinal/SWP391/src/java/controller/SendEmail.java</file>
             <file>file:/D:/SWPFinal/SWP391/src/java/until/EmailService.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/dal/TokenDAO.java</file>
+            <file>file:/D:/SWPFinal/SWP391/web/Views/VerifyEmail.jsp</file>
+            <file>file:/D:/SWPFinal/SWP391/web/Views/Login.jsp</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/OtpService.java</file>
+            <file>file:/D:/SWPFinal/SWP391/web/Views/Register.jsp</file>
         </group>
     </open-files>
 </project-private>

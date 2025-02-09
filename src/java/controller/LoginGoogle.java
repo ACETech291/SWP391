@@ -38,7 +38,7 @@ public class LoginGoogle extends HttpServlet {
             String passwordRandom = PasswordUtil.generateRandomPassword(8);
             String passwordEncode = Encoding.toSHA1(passwordRandom);
             Role role = customerDAO.getRoleById(3);
-            Customer customer = new Customer(account.getName(), null, account.getEmail(), passwordEncode, 1, role);
+            Customer customer = new Customer(account.getName(), "0123456", account.getEmail(), passwordEncode, 1, role);
             customerDAO.createAccount(customer);
             session.setAttribute("Customer", 3);
             session.setAttribute("account", customer);
