@@ -8,9 +8,9 @@ public class DBConnect {
 
     public static Connection MySQLConnect() {
         // Database credentials and URL
-        String DB_URL = "jdbc:mysql://localhost:3306/SWP391"; // This is the name of database
+        String DB_URL = "jdbc:mysql://localhost:3306/swp391"; // This is the name of database
         String DB_USER = "root"; // Replace with your MySQL username
-        String DB_PASSWORD = "sasasa"; // Replace with your MySQL password
+        String DB_PASSWORD = "Hieupham123@"; // Replace with your MySQL password
 
         Connection connection = null;
 

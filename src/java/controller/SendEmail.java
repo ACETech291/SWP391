@@ -85,7 +85,7 @@ public class SendEmail extends HttpServlet {
             String linkResetPassword = "http://localhost:8080/SWP391/ResetPassword?token=" + token;
             System.out.println("token:"+token);
             System.out.println("customer:"+customer);
-            TokenForgetPassword newTokenForgetPassword = new TokenForgetPassword(customer.getId(), false, token, emailService.expireDateTime());
+            TokenForgetPassword newTokenForgetPassword = new TokenForgetPassword(customer.getId_customer(), false, token, emailService.expireDateTime());
             boolean isInsert = tokenDao.insertTokenForget(newTokenForgetPassword);
 
             if (!isInsert) {

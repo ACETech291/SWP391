@@ -20,7 +20,12 @@ import model.Role;
 import model.OTP;
 import until.EmailService;
 import until.Encoding;
+<<<<<<< HEAD
+import model.SQLInsert;
+import java.io.*;
+=======
 import until.OTPService;
+>>>>>>> 8aacc370867458d8012d7e85444b2cd1c6cd28e7
 
 /**
  *
@@ -37,6 +42,24 @@ public class register extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    public void insertDatabase(SQLInsert x) {
+        String add = x.toSQLInsert();
+
+        
+        String filePath = "D:\\SWPFinal\\SWP391\\database\\Train_Buying_Ticket_Create.ddl.sql";
+
+
+        try (FileWriter writer = new FileWriter(filePath, true); BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
+
+            bufferedWriter.write(add);
+            bufferedWriter.newLine();
+            System.out.println("Đã ghi thêm dòng vào file thành công!");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -97,7 +120,7 @@ public class register extends HttpServlet {
         String confirmpassword = Encoding.toSHA1(cf);
 
         int check = 1;
-        
+
         if (raw_password.length() < 6) {
             check = 2;
             request.setAttribute(email, "email");
@@ -134,6 +157,11 @@ public class register extends HttpServlet {
             Customer newCustomer = new Customer(userName, phone, email, password, 1, role);
             session.setAttribute("newCustomer", newCustomer);
             System.out.println(newCustomer.toString());
+<<<<<<< HEAD
+            insertDatabase(newCustomer);
+            cu.createAccount(newCustomer);
+            request.setAttribute("Success", "Tạo tài khoản thành công!!!");
+=======
             request.setAttribute("email", newCustomer.getEmail());
             String otpCode = otpService.generateOtp();
             session.setAttribute("otpCode", otpCode);
@@ -144,6 +172,7 @@ public class register extends HttpServlet {
             request.getRequestDispatcher("OtpService").forward(request, response);
             return;
 
+>>>>>>> 8aacc370867458d8012d7e85444b2cd1c6cd28e7
         } else if (check == 3) {
             request.setAttribute("error1", "Email đã có người sử dụng!!!");
         }
