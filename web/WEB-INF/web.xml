@@ -53,6 +53,10 @@
         <servlet-class>controller.Profile</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ChangeInformation</servlet-name>
+        <servlet-class>controller.ChangeInformation</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ChangePassword</servlet-name>
         <servlet-class>controller.ChangePassword</servlet-class>
     </servlet>
@@ -107,6 +111,10 @@
     <servlet-mapping>
         <servlet-name>Profile</servlet-name>
         <url-pattern>/Profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangeInformation</servlet-name>
+        <url-pattern>/ChangeInformation</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ChangePassword</servlet-name>

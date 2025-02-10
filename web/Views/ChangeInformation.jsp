@@ -40,7 +40,7 @@
                 text-decoration: none;
                 background-color: #f7f7f7;
             }
-            
+
 
         </style>
     </head>
@@ -54,12 +54,12 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="mb-5">
-                                            <h3>Thay đổi mật khẩu</h3>
+                                            <h3>Thay đổi thông tin</h3>
                                         </div>
                                     </div>
                                 </div>
                                 <p class="text-danger">${err}</p>
-                                <form action="ChangePassword" method="POST">
+                                <form action="ChangeInformation" method="POST">
                                     <div class="row gy-3 overflow-hidden">
                                         <div class="col-12">
                                             <div class="form-floating mb-3">
@@ -68,22 +68,21 @@
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <small class="form-text text-muted">Mật khẩu phải có ít nhất 6 kí tự</small>
                                             <div class="form-floating mb-3">
-                                                <input type="password" class="form-control" name="password" id="password" value="" placeholder="Password" required>
-                                                <label for="password" class="form-label">Mật khẩu</label>
+                                                <input type="text" class="form-control" value="${name}" name="name" id="name" placeholder="Tên người dùng" required>
+                                                <label for="name" class="form-label">Tên người dùng</label>
                                             </div>
                                         </div>
-                                        <small><span id="message" style="text-align: center; font-style: italic; color:red"></span></small>
+
                                         <div class="col-12">
                                             <div class="form-floating mb-3">
-                                                <input type="password" class="form-control" name="confirm_password" id="confirm_password" value="" placeholder="Password" required>
-                                                <label for="confirm_password" class="form-label">Mật khẩu nhập lại </label>
+                                                <input type="text" class="form-control" value="${phone}" name="phone" id="phone" placeholder="Số điện thoại" required>
+                                                <label for="phone" class="form-label">Số điện thoại</label>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="d-grid">
-                                                <button class="btn bsb-btn-2xl btn-primary" type="submit">Đổi mật khẩu</button>
+                                                <button class="btn bsb-btn-2xl btn-primary" type="submit">Thay đổi thông tin</button>
                                             </div>
                                         </div>
                                     </div>
@@ -136,3 +135,4 @@
         </script>
     </body>
 </html>
+

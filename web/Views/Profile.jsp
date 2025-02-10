@@ -20,7 +20,7 @@
 
 
         <div class="position-absolute start-0 top-0 w-100 h-100" style="background: radial-gradient(125% 125% at 50% 10%, lightgreen 50%, purple 100%);"></div>
-<div class="position-absolute top-0 start-0 h-100 w-100" style="background-image: linear-gradient(90deg, rgba(var(--bs-body-color-rgb), .2) 1px, transparent 0), linear-gradient(180deg, rgba(var(--bs-body-color-rgb), .2) 1px, transparent 0); background-size: 1rem 1rem;"></div>
+        <div class="position-absolute top-0 start-0 h-100 w-100" style="background-image: linear-gradient(90deg, rgba(var(--bs-body-color-rgb), .2) 1px, transparent 0), linear-gradient(180deg, rgba(var(--bs-body-color-rgb), .2) 1px, transparent 0); background-size: 1rem 1rem;"></div>
         <section class="vh-100" style="background-color: #f4f5f7;">
             <div class="container py-5 h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
@@ -47,7 +47,6 @@
                                             <div class="col-6 mb-3">
                                                 <h6>Số điện thoại</h6>
                                                 <p class="text-muted">${phone}</p>
-                                                <a href="ChangePassword" style="color:red" class="text-primary"><small>Thay đổi số điện thoại</small></a>
                                             </div>
                                         </div>
                                         <h6>Thông tin tài khoản</h6>
@@ -56,7 +55,6 @@
                                             <div class="col-6 mb-3">
                                                 <h6>Tên người dùng</h6>
                                                 <p class="text-muted">${name}</p>
-                                                <a href="ChangePassword" style="color:red" class="text-primary"><small>Thay đổi tên người dùng </small></a>
                                             </div>
                                             <div class="col-6 mb-3">
                                                 <h6>Mật khẩu</h6>
@@ -66,11 +64,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <form action="home">
-                                    <div class="button-container" style="margin-left: 300px;">
-                                        <input type="submit" value="Quay lại" class="btn btn-primary">
-                                    </div>
-                                </form>    
+                                <div class="d-flex justify-content-start mt-3" style="padding-left: 20px;">
+                                    
+                                        <a href ="ChangeInformation?email=${email}&phone=${phone}&name=${name}"><input type="submit" style="margin-left: 190PX" value="Thay đổi thông tin cá nhân" class="btn btn-success"></a>
+                                             
+                                    <form action="home">
+                                        <input type="submit" style="margin-left: 40PX" value="Quay lại" class="btn btn-primary">
+                                    </form>    
+                                </div>
                             </div>
                         </div>
                     </div>
