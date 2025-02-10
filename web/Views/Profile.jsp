@@ -35,6 +35,7 @@
                                     <p></p>
                                 </div>
                                 <div class="col-md-8">
+                                    <h3 style="color: green; font-weight: bold; text-align: center">${Success}</h3>
                                     <div class="card-body p-4">
                                         <h6>Thông tin cá nhân</h6>
                                         <hr class="mt-0 mb-4">
@@ -46,19 +47,21 @@
                                             <div class="col-6 mb-3">
                                                 <h6>Số điện thoại</h6>
                                                 <p class="text-muted">${phone}</p>
+                                                <a href="ChangePassword" style="color:red" class="text-primary"><small>Thay đổi số điện thoại</small></a>
                                             </div>
                                         </div>
                                         <h6>Thông tin tài khoản</h6>
                                         <hr class="mt-0 mb-4">
                                         <div class="row pt-1">
                                             <div class="col-6 mb-3">
-                                                <h6>Tên tài khoản</h6>
-                                                <p class="text-muted">${account}</p>
+                                                <h6>Tên người dùng</h6>
+                                                <p class="text-muted">${name}</p>
+                                                <a href="ChangePassword" style="color:red" class="text-primary"><small>Thay đổi tên người dùng </small></a>
                                             </div>
                                             <div class="col-6 mb-3">
                                                 <h6>Mật khẩu</h6>
                                                 <p class="text-muted" >*******</p>
-                                                <a href="ChangePassword" style="color:red" class="text-primary"><small>Thay đổi mật khẩu</small></a>
+                                                <a href="ChangePassword?email=${email}" style="color:red" class="text-primary"><small>Thay đổi mật khẩu</small></a>
                                             </div>
                                         </div>
                                     </div>

@@ -30,19 +30,20 @@ public class Profile extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Profile</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Profile at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        HttpSession session = request.getSession();
+        Customer user = (Customer)session.getAttribute("account");
+        System.out.println(user.toString());
+        String a = user.getUserName();
+        String b = user.getEmail();
+        String c = user.getPassword();
+        String d = user.getPhoneNumber();
+        request.setAttribute("name", a);
+        request.setAttribute("email", b);
+        request.setAttribute("password", c);
+        request.setAttribute("phone", d);
+        request.getRequestDispatcher("Views/Profile.jsp").forward(request, response);
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -58,17 +59,15 @@ public class Profile extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Customer user = (Customer) session.getAttribute("account");
+        Customer user = (Customer)session.getAttribute("account");
         String a = user.getUserName();
         String b = user.getEmail();
         String c = user.getPassword();
         String d = user.getPhoneNumber();
-        String e = user.getUserName();
         request.setAttribute("name", a);
         request.setAttribute("email", b);
         request.setAttribute("password", c);
         request.setAttribute("phone", d);
-        request.setAttribute("account", e);
         request.getRequestDispatcher("Views/Profile.jsp").forward(request, response);
     }
 

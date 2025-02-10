@@ -54,12 +54,12 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="mb-5">
-                                            <h3>Khôi phục mật khẩu</h3>
+                                            <h3>Thay đổi mật khẩu</h3>
                                         </div>
                                     </div>
                                 </div>
                                 <p class="text-danger">${err}</p>
-                                <form action="ResetPassword" method="POST">
+                                <form action="ChangePassword" method="POST">
                                     <div class="row gy-3 overflow-hidden">
                                         <div class="col-12">
                                             <div class="form-floating mb-3">
@@ -71,30 +71,24 @@
                                             <small class="form-text text-muted">Mật khẩu phải có ít nhất 6 kí tự</small>
                                             <div class="form-floating mb-3">
                                                 <input type="password" class="form-control" name="password" id="password" value="" placeholder="Password" required>
-                                                <label for="password" class="form-label">Nhập mật khẩu</label>
+                                                <label for="password" class="form-label">Mật khẩu</label>
                                             </div>
                                         </div>
                                         <small><span id="message" style="text-align: center; font-style: italic; color:red"></span></small>
                                         <div class="col-12">
                                             <div class="form-floating mb-3">
                                                 <input type="password" class="form-control" name="confirm_password" id="confirm_password" value="" placeholder="Password" required>
-                                                <label for="confirm_password" class="form-label">Nhập lại mật khẩu</label>
+                                                <label for="confirm_password" class="form-label">Mật khẩu nhập lại </label>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="d-grid">
-                                                <button class="btn bsb-btn-2xl btn-primary" type="submit">Khôi phục mật khẩu</button>
+                                                <button class="btn bsb-btn-2xl btn-primary" type="submit">Đổi mật khẩu</button>
                                             </div>
                                         </div>
                                     </div>
 
                                 </form>
-                                <a href="login" class="btn btn-block forgot-password">
-                                    Đăng nhập
-                                </a>
-                                <a href="register" id="register" class="btn btn-block forgot-password">
-                                    Đăng ký 
-                                </a>
                             </div>
                         </div>
                     </div>

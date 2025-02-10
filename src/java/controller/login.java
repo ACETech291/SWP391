@@ -69,19 +69,19 @@ public class login extends HttpServlet {
                 session.setAttribute("admin", 1);
                 session.setAttribute("account", acc);
                 System.out.println("Acc " + acc);
-                response.sendRedirect("home");
+                request.getRequestDispatcher("home").forward(request, response);
             }
             if (acc.getRole().getId() == 2) {
                 session.setAttribute("manager", 2);
                 session.setAttribute("account", acc);
                 System.out.println("Acc " + acc);
-                response.sendRedirect("home");
+                request.getRequestDispatcher("home").forward(request, response);
             }
             if (acc.getRole().getId() == 3) {
                 session.setAttribute("customer", 3);
                 session.setAttribute("account", acc);
                 System.out.println("Acc " + acc);
-                response.sendRedirect("home");
+                request.getRequestDispatcher("home").forward(request, response);
             }
         }
     }
