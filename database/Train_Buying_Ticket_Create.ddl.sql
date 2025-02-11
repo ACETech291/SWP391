@@ -191,5 +191,3 @@ INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_
 VALUES 
   ('John Doe', 'john.doe@example.com', 'password123', '1234567890', 3, 1),
   ('Jane Smith', 'jane.smith@example.com', 'password456', '0987654321', 3, 0);
-INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Nguyễn Hữu Hiệp','st2345mp3@gmail.com','QY5kHPZGTkNrY5BZJf9XEzJIZD8=','0123456789',3,1); 
-INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('gà HP','hiepgacute1989@gmail.com','ZRh97iLl0Z7ahXLPI0pd+XwIyuM=','0123456',3,1); 
