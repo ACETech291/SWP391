@@ -7,9 +7,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import model.GoogleAccount;
 import model.Customer;
 import model.Role;
+import model.SQLInsert;
 import until.GoogleLogin;
 import until.Encoding;
 import until.PasswordUtil;
@@ -19,6 +22,21 @@ import until.PasswordUtil;
  * @author hiepg
  */
 public class LoginGoogle extends HttpServlet {
+    public void insertDatabase(SQLInsert x) {
+        String add = x.toSQLInsert();
+
+        String filePath = "D:\\SWPFinal\\SWP391\\database\\Train_Buying_Ticket_Create.ddl.sql";
+
+        try (FileWriter writer = new FileWriter(filePath, true); BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
+
+            bufferedWriter.write(add);
+            bufferedWriter.newLine();
+            System.out.println("Đã ghi thêm dòng vào file thành công!");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -40,6 +58,7 @@ public class LoginGoogle extends HttpServlet {
             Role role = customerDAO.getRoleById(3);
             Customer customer = new Customer(account.getName(), "0123456", account.getEmail(), passwordEncode, 1, role);
             customerDAO.createAccount(customer);
+            insertDatabase(customer);
             session.setAttribute("Customer", 3);
             session.setAttribute("account", customer);
             response.sendRedirect("home");

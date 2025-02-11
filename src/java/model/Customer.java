@@ -9,7 +9,7 @@ package model;
  * @author Nguyen Ba Hien
  */
 //implements SQLInsert
-public class Customer {
+public class Customer implements SQLInsert{
 
     private int id_customer;
     private String userName;
@@ -108,11 +108,11 @@ public class Customer {
         return "Customer{" + "id=" + id_customer + ", userName=" + userName + ", phoneNumber=" + phoneNumber + ", email=" + email + ", password=" + password + ", status=" + status + ", role=" + role + '}';
     }
 
-//    @Override
-//    public String toSQLInsert(){
-//        return String.format("INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer)"
-//                + " VALUES ('%s','%s','%s','%s',3,%d); ", userName, email, password, phoneNumber,status);
-//    }
+    @Override
+    public String toSQLInsert(){
+        return String.format("INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer)"
+                + " VALUES ('%s','%s','%s','%s',3,%d); ", userName, email, password, phoneNumber,status);
+    }
     
     
 
