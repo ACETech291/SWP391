@@ -17,7 +17,7 @@ import model.Role;
 import model.OTP;
 import until.EmailService;
 import until.Encoding;
-import model.SQLInsert;
+//import model.SQLInsert;
 import until.OTPService;
 
 /**
@@ -35,21 +35,21 @@ public class register extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    public void insertDatabase(SQLInsert x) {
-        String add = x.toSQLInsert();
-
-        String filePath = "D:\\SWPFinal\\SWP391\\database\\Train_Buying_Ticket_Create.ddl.sql";
-
-        try (FileWriter writer = new FileWriter(filePath, true); BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
-
-            bufferedWriter.write(add);
-            bufferedWriter.newLine();
-            System.out.println("Đã ghi thêm dòng vào file thành công!");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    public void insertDatabase(SQLInsert x) {
+//        String add = x.toSQLInsert();
+//
+//        String filePath = "D:\\SWPFinal\\SWP391\\database\\Train_Buying_Ticket_Create.ddl.sql";
+//
+//        try (FileWriter writer = new FileWriter(filePath, true); BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
+//
+//            bufferedWriter.write(add);
+//            bufferedWriter.newLine();
+//            System.out.println("Đã ghi thêm dòng vào file thành công!");
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

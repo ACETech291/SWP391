@@ -182,6 +182,7 @@ VALUES
   ('Jane Smith', 'jane.smith@example.com', '5FBuh9cjOTg921vBh0Lkjhd2+CQ=', '0987654321', 3, 0);
 
 
+<<<<<<< HEAD
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('BenKei','dungquentena@gmail.com','LwwQbBAWkqpsESVxiB0LwFd7fDc=','123456789',3,1) 
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Gà Hp','st1989mp3@gmail.com','JzKOKpzxikm6sWiQvTqU8B3WZOg=','0966755095',3,1) 
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Gà Hp','hiepnhhe181338@fpt.edu.vn','62BNYU3mbXUmmlJnctlLNdXK+FU=','0966755095',3,1) 
@@ -197,3 +198,34 @@ INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Hi?n Nguy?n B�','nguyenbahien170604@gmail.com','6NWFIsI1V5KNFeeazNcq35qxRUE=','0332671182',3,1) 
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Nguy?n B� Hi?n','nguyenbahien170604@gmail.com','6NWFIsI1V5KNFeeazNcq35qxRUE=','0332671182',3,1) 
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Nguy?n B� Hi?n','nguyenbahien170604@gmail.com','6NWFIsI1V5KNFeeazNcq35qxRUE=','0332671182',3,1) 
+=======
+INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('BenKei','dungquentena@gmail.com','LwwQbBAWkqpsESVxiB0LwFd7fDc=','123456789',3,1); 
+INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Gà Hp','st1989mp3@gmail.com','JzKOKpzxikm6sWiQvTqU8B3WZOg=','0966755095',3,1); 
+INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Gà Hp','hiepnhhe181338@fpt.edu.vn','62BNYU3mbXUmmlJnctlLNdXK+FU=','0966755095',3,1); 
+INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Nguy?n B� Hi?n','hiennbhe181773@fpt.edu.vnsadsadd','6NWFIsI1V5KNFeeazNcq35qxRUE=','0332671182',3,1); 
+INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('122','djas@gdsk.com','6NWFIsI1V5KNFeeazNcq35qxRUE=','123',3,1); 
+INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('122','nguyenbahien170604@gmail.com','6NWFIsI1V5KNFeeazNcq35qxRUE=','123',3,1); 
+INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('122','djas@gdsk.comn','6NWFIsI1V5KNFeeazNcq35qxRUE=','123',3,1); 
+INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('122','123@gmail','6NWFIsI1V5KNFeeazNcq35qxRUE=','123',3,1); 
+INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Nguy?n B� Hi?n','hiennbhe181773@fpt.edu.vnsadsaddd','6NWFIsI1V5KNFeeazNcq35qxRUE=','0332671182',3,1); 
+INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Nguy?n B� Hi?n','hiennbhe181773@fpt.edu.vnsadsadddd','6NWFIsI1V5KNFeeazNcq35qxRUE=','0332671182',3,1); 
+INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('122','djas@gdsk.coma','6NWFIsI1V5KNFeeazNcq35qxRUE=','123',3,1); 
+INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Nguyễn Hữu Hiệp','admin@gmail.com','Gzy3BSM1BTMz8WpR7DvTP17/IxU=','0123456789',3,1); 
+
+CREATE TABLE tokenForgetPassword (
+id INT AUTO_INCREMENT PRIMARY KEY,
+token VARCHAR(255) NOT NULL,
+expiryTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+isUsed BOOLEAN NOT NULL,
+userId INT NOT NULL,
+FOREIGN KEY (userId) REFERENCES customer(id_customer)
+);
+
+CREATE TABLE otp (
+id INT AUTO_INCREMENT PRIMARY KEY,
+code_otp VARCHAR(255) NOT NULL,
+expiryTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+isUsed BOOLEAN NOT NULL,
+email VARCHAR(255) NOT NULL
+);
+>>>>>>> 7e40a32db46a5341b38e5a9abf4c75d580d03ac9
