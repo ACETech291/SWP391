@@ -27,10 +27,10 @@ public class OtpDAO {
     }
     
     public boolean insertOtp(OTP otp) {
-        String sql = "INSERT INTO otp (code_otp, expiryTime, isUsed, email) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Otp (code_otp, expiry_time, is_used, email) VALUES (?, ?, ?, ?)";
         try (PreparedStatement ps = connect.prepareStatement(sql)) {
             ps.setString(1, otp.getCode());
-            ps.setTimestamp(2, otp.getExpiryTime() != null ? Timestamp.valueOf(otp.getExpiryTime()) : null);
+            ps.setTimestamp(2, otp.getExpiryTime()!= null ? Timestamp.valueOf(otp.getExpiryTime()) : null);
             ps.setBoolean(3, otp.isIsUsed());
             ps.setString(4, otp.getEmail());
 
@@ -42,17 +42,17 @@ public class OtpDAO {
     }
     
     public OTP getOTP(String otp) {
-        String sql = "SELECT * FROM otp WHERE code_otp = ?";
+        String sql = "SELECT * FROM Otp WHERE code_otp = ?";
         try (PreparedStatement st = connect.prepareStatement(sql)) {
             st.setString(1, otp);
             try (ResultSet rs = st.executeQuery()) {
                 if (rs.next()) {
                     return new OTP(
-                        rs.getInt("id"),
+                        rs.getInt("id_otp"),
                         rs.getString("email"),
-                        rs.getBoolean("isUsed"),
+                        rs.getBoolean("is_used"),
                         rs.getString("code_otp"),
-                        rs.getTimestamp("expiryTime").toLocalDateTime()
+                        rs.getTimestamp("expiry_time").toLocalDateTime()
                     );
                 }
             }
@@ -63,7 +63,7 @@ public class OtpDAO {
     }
     
     public void updateStatusOtp(OTP otp) {
-        String sql = "UPDATE otp SET isUsed = ? WHERE code_otp = ?";
+        String sql = "UPDATE Otp SET is_used = ? WHERE code_otp = ?";
         try (PreparedStatement st = connect.prepareStatement(sql)) {
             st.setBoolean(1, otp.isIsUsed());
             st.setString(2, otp.getCode());

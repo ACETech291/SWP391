@@ -13,8 +13,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import model.Customer;
 import model.OTP;
+//import model.SQLInsert;
 import until.EmailService;
 import until.OTPService;
 
@@ -23,7 +26,21 @@ import until.OTPService;
  * @author Nguyen Ba Hien
  */
 public class OtpService extends HttpServlet {
-
+//    public void insertDatabase(SQLInsert x) {
+//        String add = x.toSQLInsert();
+//
+//        String filePath = "D:\\SWPFinal\\SWP391\\database\\Train_Buying_Ticket_Create.ddl.sql";
+//
+//        try (FileWriter writer = new FileWriter(filePath, true); BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
+//
+//            bufferedWriter.write(add);
+//            bufferedWriter.newLine();
+//            System.out.println("Đã ghi thêm dòng vào file thành công!");
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -127,6 +144,7 @@ public class OtpService extends HttpServlet {
         
         System.out.println("user done :"+newCustomer.toString());
         customerDAO.createAccount(newCustomer);
+//        insertDatabase(newCustomer);
         session.removeAttribute("newCustomer");
         request.setAttribute("success", "Bạn đã đăng ký tài khoản thành công");
         request.getRequestDispatcher("Views/Login.jsp").forward(request, response);

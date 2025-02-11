@@ -36,6 +36,7 @@
                     </div>
                     <div>
                         <h6 id="error-message" class="message" style="color: red; text-align: center">${err}</h6>
+                        <h6 id="error-message" class="message" style="color: green; text-align: center">${success}</h6>
                     </div>
                     <div class="block-box mx-auto form-content" style="max-width: 500px">
                         <div class="row d-flex">
