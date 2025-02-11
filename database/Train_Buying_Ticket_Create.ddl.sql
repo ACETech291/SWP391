@@ -194,8 +194,6 @@ INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Nguy?n B� Hi?n','hiennbhe181773@fpt.edu.vnsadsadddd','6NWFIsI1V5KNFeeazNcq35qxRUE=','0332671182',3,1); 
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('122','djas@gdsk.coma','6NWFIsI1V5KNFeeazNcq35qxRUE=','123',3,1); 
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Nguyễn Hữu Hiệp','admin@gmail.com','Gzy3BSM1BTMz8WpR7DvTP17/IxU=','0123456789',3,1); 
-INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('phu','phu1@gmail.com','6NWFIsI1V5KNFeeazNcq35qxRUE=','0373016402',3,1); 
-INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('phu123','phu123@gmail.com','6NWFIsI1V5KNFeeazNcq35qxRUE=','0373016403',3,1); 
 
 CREATE TABLE tokenForgetPassword (
 id INT AUTO_INCREMENT PRIMARY KEY,
