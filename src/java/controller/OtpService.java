@@ -26,6 +26,7 @@ import until.OTPService;
  * @author Nguyen Ba Hien
  */
 public class OtpService extends HttpServlet {
+
     public void insertDatabase(SQLInsert x) {
         String add = x.toSQLInsert();
 
@@ -41,6 +42,7 @@ public class OtpService extends HttpServlet {
             e.printStackTrace();
         }
     }
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -112,11 +114,10 @@ public class OtpService extends HttpServlet {
             throws ServletException, IOException {
         CustomerDAO customerDAO = new CustomerDAO();
         HttpSession session = request.getSession();
-        Customer newCustomer = (Customer)session.getAttribute("newCustomer");
+        Customer newCustomer = (Customer) session.getAttribute("newCustomer");
         OtpDAO otpDAO = new OtpDAO();
         String input_otp = request.getParameter("otp");
         String otpCode = (String) session.getAttribute("otpCode");
-               
 
         if (!input_otp.equalsIgnoreCase(otpCode)) {
             request.setAttribute("err", "Mã otp không đúng, vui lòng nhập lại");
@@ -127,22 +128,21 @@ public class OtpService extends HttpServlet {
 
         OTP instance_otp = otpDAO.getOTP(otpCode);
         OTPService otpService = new OTPService();
-        System.out.println("otp done :"+instance_otp.getCode());
+        System.out.println("otp done :" + instance_otp.getCode());
 
         if (otpService.isExpireTime(instance_otp.getExpiryTime())) {
             request.setAttribute("err", "Mã otp đã hết thời hạn");
             request.setAttribute("email", newCustomer.getEmail());
-            
+
             request.getRequestDispatcher("Views/VerifyEmail.jsp").forward(request, response);
             return;
         }
-        
+
         instance_otp.setIsUsed(true);
-        
+
         otpDAO.updateStatusOtp(instance_otp);
-        
-        
-        System.out.println("user done :"+newCustomer.toString());
+
+        System.out.println("user done :" + newCustomer.toString());
         customerDAO.createAccount(newCustomer);
         insertDatabase(newCustomer);
         session.removeAttribute("newCustomer");
@@ -161,22 +161,22 @@ public class OtpService extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            HttpSession session = request.getSession();
-            OtpDAO otpDAO = new OtpDAO();
-            String old_otp = (String)session.getAttribute("otpCode");
-            OTP otp_instance = otpDAO.getOTP(old_otp);
-            otpDAO.updateStatusOtp(otp_instance);
-            session.removeAttribute("otpCode");
-            OTPService otpService = new OTPService();
-            Customer newCustomer = (Customer)session.getAttribute("newCustomer");
-            String otpCode = otpService.generateOtp();
-            session.setAttribute("otpCode", otpCode);
-            OTP otp = new OTP(newCustomer.getEmail(), false, otpCode, otpService.expireDateTime());
-            otpDAO.insertOtp(otp);
-            request.setAttribute("email", newCustomer.getEmail());
-            System.out.println("Post, otp");
-            EmailService.sendEmail2(newCustomer.getEmail(), "Verify email -" + System.currentTimeMillis(), otpCode);
-            request.getRequestDispatcher("Views/VerifyEmail.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        OtpDAO otpDAO = new OtpDAO();
+        String old_otp = (String) session.getAttribute("otpCode");
+        OTP otp_instance = otpDAO.getOTP(old_otp);
+        otpDAO.updateStatusOtp(otp_instance);
+        session.removeAttribute("otpCode");
+        OTPService otpService = new OTPService();
+        Customer newCustomer = (Customer) session.getAttribute("newCustomer");
+        String otpCode = otpService.generateOtp();
+        session.setAttribute("otpCode", otpCode);
+        OTP otp = new OTP(newCustomer.getEmail(), false, otpCode, otpService.expireDateTime());
+        otpDAO.insertOtp(otp);
+        request.setAttribute("email", newCustomer.getEmail());
+        System.out.println("Post, otp");
+        EmailService.sendEmail2(newCustomer.getEmail(), "Verify email -" + System.currentTimeMillis(), otpCode);
+        request.getRequestDispatcher("Views/VerifyEmail.jsp").forward(request, response);
     }
 
     /**

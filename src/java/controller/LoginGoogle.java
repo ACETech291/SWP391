@@ -22,6 +22,7 @@ import until.PasswordUtil;
  * @author hiepg
  */
 public class LoginGoogle extends HttpServlet {
+
     public void insertDatabase(SQLInsert x) {
         String add = x.toSQLInsert();
 

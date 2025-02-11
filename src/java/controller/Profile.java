@@ -31,7 +31,7 @@ public class Profile extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Customer user = (Customer)session.getAttribute("account");
+        Customer user = (Customer) session.getAttribute("account");
         System.out.println(user.toString());
 //        String a = user.getUserName();
 //        String b = user.getEmail();
@@ -44,12 +44,11 @@ public class Profile extends HttpServlet {
         String email = request.getParameter("email");
         String name = request.getParameter("name");
         String phone = request.getParameter("phone");
-        request.setAttribute("email",email);
-        request.setAttribute("name",name);
-        request.setAttribute("phone",phone);
+        request.setAttribute("email", email);
+        request.setAttribute("name", name);
+        request.setAttribute("phone", phone);
         request.getRequestDispatcher("Views/Profile.jsp").forward(request, response);
-        
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -65,7 +64,7 @@ public class Profile extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Customer user = (Customer)session.getAttribute("account");
+        Customer user = (Customer) session.getAttribute("account");
         String a = user.getUserName();
         String b = user.getEmail();
         String c = user.getPassword();
@@ -74,7 +73,7 @@ public class Profile extends HttpServlet {
         request.setAttribute("email", b);
         request.setAttribute("password", c);
         request.setAttribute("phone", d);
-        
+
         request.getRequestDispatcher("Views/Profile.jsp").forward(request, response);
     }
 

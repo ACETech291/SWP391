@@ -38,7 +38,7 @@ public class ChangePassword extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ChangePassword</title>");            
+            out.println("<title>Servlet ChangePassword</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ChangePassword at " + request.getContextPath() + "</h1>");
@@ -59,7 +59,7 @@ public class ChangePassword extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = (String)request.getParameter("email");
+        String email = (String) request.getParameter("email");
         request.setAttribute("email", email);
         request.getRequestDispatcher("Views/ChangePassword.jsp").forward(request, response);
     }
@@ -82,13 +82,13 @@ public class ChangePassword extends HttpServlet {
         String password_encode = Encoding.toSHA1(raw_password);
         String confirmPassword = request.getParameter("confirm_password");
         //validate password...
-        if(raw_password.length() < 6) {
+        if (raw_password.length() < 6) {
             request.setAttribute("err", "Mật khẩu phải chứa ít nhất 6 kí tự");
             request.setAttribute("email", email);
             request.getRequestDispatcher("Views/ChangePassword.jsp").forward(request, response);
             return;
         }
-        if(!raw_password.equals(confirmPassword)) {
+        if (!raw_password.equals(confirmPassword)) {
             request.setAttribute("err", "Mật khẩu nhập lại không khớp");
             request.setAttribute("email", email);
             request.getRequestDispatcher("Views/ChangePassword.jsp").forward(request, response);
@@ -97,11 +97,7 @@ public class ChangePassword extends HttpServlet {
         customerDAO.updatePassword(email, password_encode);
         request.setAttribute("success", "Đổi mật khẩu thành công");
         request.getRequestDispatcher("Profile").forward(request, response);
-        
-        
-        
-        
-        
+
     }
 
     /**

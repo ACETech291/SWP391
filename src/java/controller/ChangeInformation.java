@@ -38,7 +38,7 @@ public class ChangeInformation extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ChangePassword</title>");            
+            out.println("<title>Servlet ChangePassword</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ChangePassword at " + request.getContextPath() + "</h1>");
@@ -59,15 +59,15 @@ public class ChangeInformation extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = (String)request.getParameter("email");
-        String name = (String)request.getParameter("name");
-        String phone = (String)request.getParameter("phone");
+        String email = (String) request.getParameter("email");
+        String name = (String) request.getParameter("name");
+        String phone = (String) request.getParameter("phone");
         request.setAttribute("name", name);
         request.setAttribute("phone", phone);
         request.setAttribute("email", email);
-        request.setAttribute("email",email);
-        request.setAttribute("name",name);
-        request.setAttribute("phone",phone);
+        request.setAttribute("email", email);
+        request.setAttribute("name", name);
+        request.setAttribute("phone", phone);
         request.getRequestDispatcher("Views/ChangeInformation.jsp").forward(request, response);
     }
 
@@ -89,16 +89,12 @@ public class ChangeInformation extends HttpServlet {
         String phone = request.getParameter("phone");
         customerDAO.updatePhone(email, phone);
         customerDAO.updateName(email, name);
-        request.setAttribute("email",email);
-        request.setAttribute("name",name);
-        request.setAttribute("phone",phone);
+        request.setAttribute("email", email);
+        request.setAttribute("name", name);
+        request.setAttribute("phone", phone);
         request.setAttribute("success", "Đổi mật khẩu thành công");
         request.getRequestDispatcher("Profile").forward(request, response);
-        
-        
-        
-        
-        
+
     }
 
     /**

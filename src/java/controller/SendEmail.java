@@ -83,8 +83,8 @@ public class SendEmail extends HttpServlet {
             EmailService emailService = new EmailService();
             String token = emailService.generateToken();
             String linkResetPassword = "http://localhost:8080/SWP391/ResetPassword?token=" + token;
-            System.out.println("token:"+token);
-            System.out.println("customer:"+customer);
+            System.out.println("token:" + token);
+            System.out.println("customer:" + customer);
             TokenForgetPassword newTokenForgetPassword = new TokenForgetPassword(customer.getId_customer(), false, token, emailService.expireDateTime());
             boolean isInsert = tokenDao.insertTokenForget(newTokenForgetPassword);
 
@@ -93,10 +93,10 @@ public class SendEmail extends HttpServlet {
                 request.getRequestDispatcher("Views/EmailPassword.jsp").forward(request, response);
                 return;
             }
-            String content ="<a href="+linkResetPassword+">Bấm vào đây</a></p>";
-            
-            EmailService.sendEmail(email, "Reset password -"+System.currentTimeMillis(), content);
-            
+            String content = "<a href=" + linkResetPassword + ">Bấm vào đây</a></p>";
+
+            EmailService.sendEmail(email, "Reset password -" + System.currentTimeMillis(), content);
+
             request.setAttribute("success", "Gửi email thành công,vui lòng kiểm tra email");
             request.getRequestDispatcher("Views/EmailPassword.jsp").forward(request, response);
         } else {

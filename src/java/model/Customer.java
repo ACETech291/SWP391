@@ -9,7 +9,7 @@ package model;
  * @author Nguyen Ba Hien
  */
 //implements SQLInsert
-public class Customer implements SQLInsert{
+public class Customer implements SQLInsert {
 
     private int id_customer;
     private String userName;
@@ -31,14 +31,16 @@ public class Customer implements SQLInsert{
         this.status = status;
         this.role = role;
     }
-    public Customer( String userName, String phoneNumber, String email, String password, int status) {
+
+    public Customer(String userName, String phoneNumber, String email, String password, int status) {
         this.userName = userName;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.password = password;
         this.status = status;
     }
-    public Customer( String userName, String phoneNumber, String email, String password, int status, Role role) {
+
+    public Customer(String userName, String phoneNumber, String email, String password, int status, Role role) {
         this.userName = userName;
         this.phoneNumber = phoneNumber;
         this.email = email;
@@ -109,13 +111,9 @@ public class Customer implements SQLInsert{
     }
 
     @Override
-    public String toSQLInsert(){
+    public String toSQLInsert() {
         return String.format("INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer)"
-                + " VALUES ('%s','%s','%s','%s',3,%d); ", userName, email, password, phoneNumber,status);
+                + " VALUES ('%s','%s','%s','%s',3,%d); ", userName, email, password, phoneNumber, status);
     }
-    
-    
 
-    
-    
 }

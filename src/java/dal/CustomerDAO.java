@@ -142,6 +142,7 @@ public class CustomerDAO {
         }
         return null;
     }
+
     public boolean updateName(String email, String name) {
         String sql = "UPDATE customer SET name_customer = ? WHERE email_customer = ?";
         try (PreparedStatement ps = connect.prepareStatement(sql)) {
@@ -160,6 +161,7 @@ public class CustomerDAO {
         }
         return false;
     }
+
     public boolean updatePhone(String email, String phone) {
         String sql = "UPDATE customer SET phone_number_customer = ? WHERE email_customer = ?";
         try (PreparedStatement ps = connect.prepareStatement(sql)) {
