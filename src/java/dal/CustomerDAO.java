@@ -142,6 +142,42 @@ public class CustomerDAO {
         }
         return null;
     }
+    public boolean updateName(String email, String name) {
+        String sql = "UPDATE customer SET name_customer = ? WHERE email_customer = ?";
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+            ps.setString(1, name);
+            ps.setString(2, email);
+
+            int rowsUpdated = ps.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Name updated successfully for email: " + email);
+                return true;
+            } else {
+                System.err.println("Error: No customer found with email: " + email);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error updating name: " + e.getMessage());
+        }
+        return false;
+    }
+    public boolean updatePhone(String email, String phone) {
+        String sql = "UPDATE customer SET phone_number_customer = ? WHERE email_customer = ?";
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+            ps.setString(1, phone);
+            ps.setString(2, email);
+
+            int rowsUpdated = ps.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Phone updated successfully for email: " + email);
+                return true;
+            } else {
+                System.err.println("Error: No customer found with email: " + email);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error updating phone: " + e.getMessage());
+        }
+        return false;
+    }
 
     public boolean updatePassword(String email, String password_encode) {
         String sql = "UPDATE customer SET password_customer = ? WHERE email_customer = ?";

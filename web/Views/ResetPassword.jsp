@@ -71,14 +71,14 @@
                                             <small class="form-text text-muted">Mật khẩu phải có ít nhất 6 kí tự</small>
                                             <div class="form-floating mb-3">
                                                 <input type="password" class="form-control" name="password" id="password" value="" placeholder="Password" required>
-                                                <label for="password" class="form-label">Password</label>
+                                                <label for="password" class="form-label">Nhập mật khẩu</label>
                                             </div>
                                         </div>
                                         <small><span id="message" style="text-align: center; font-style: italic; color:red"></span></small>
                                         <div class="col-12">
                                             <div class="form-floating mb-3">
                                                 <input type="password" class="form-control" name="confirm_password" id="confirm_password" value="" placeholder="Password" required>
-                                                <label for="confirm_password" class="form-label">Confirm Password</label>
+                                                <label for="confirm_password" class="form-label">Nhập lại mật khẩu</label>
                                             </div>
                                         </div>
                                         <div class="col-12">

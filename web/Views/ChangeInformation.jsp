@@ -54,18 +54,12 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="mb-5">
-                                            <h3>Xác Thực Email</h3>
+                                            <h3>Thay đổi thông tin</h3>
                                         </div>
                                     </div>
                                 </div>
-                                <c:if test="${not empty err}">
-                                    <p class="text-danger">${err}</p>
-                                    <form action="OtpService" method="POST">
-                                        <input type="hidden" name="resend" value="true">
-                                        <button type="submit" class="nir-btn">Gửi lại mã?</button>
-                                    </form>
-                                </c:if>
-                                <form action="OtpService" method="get">
+                                <p class="text-danger">${err}</p>
+                                <form action="ChangeInformation" method="POST">
                                     <div class="row gy-3 overflow-hidden">
                                         <div class="col-12">
                                             <div class="form-floating mb-3">
@@ -75,24 +69,25 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-floating mb-3">
-                                                <input type="text" class="form-control" name="otp" id="password" value="" placeholder="mã có 5 chữ số" required>
-                                                <label for="password" class="form-label">Nhập mã Otp</label>
+                                                <input type="text" class="form-control" value="${name}" name="name" id="name" placeholder="Tên người dùng" required>
+                                                <label for="name" class="form-label">Tên người dùng</label>
                                             </div>
-                                        </div>                                        
+                                        </div>
+
+                                        <div class="col-12">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control" value="${phone}" name="phone" id="phone" placeholder="Số điện thoại" required>
+                                                <label for="phone" class="form-label">Số điện thoại</label>
+                                            </div>
+                                        </div>
                                         <div class="col-12">
                                             <div class="d-grid">
-                                                <button class="btn bsb-btn-2xl btn-primary" type="submit">Gửi mã</button>
+                                                <button class="btn bsb-btn-2xl btn-primary" type="submit">Thay đổi thông tin</button>
                                             </div>
                                         </div>
                                     </div>
 
                                 </form>
-                                <a href="login" class="btn btn-block forgot-password">
-                                    Đăng nhập
-                                </a>
-                                <a href="register" id="register" class="btn btn-block forgot-password">
-                                    Đăng ký 
-                                </a>
                             </div>
                         </div>
                     </div>

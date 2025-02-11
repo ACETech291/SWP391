@@ -65,7 +65,7 @@
                             </c:if>
                             <c:if test="${sessionScope.account.role.id  != null}">
                                 <div class="register-login">
-                                    <a href="#"><i class="icon-user mr-1"></i> ${sessionScope.account.userName}</a>
+                                    <a href="Profile"><i class="icon-user mr-1"></i> ${sessionScope.account.userName}</a>
                                     <a href="Logout"><i class="icon-login mr-1"></i> Đăng xuất</a>
                                 </div>
                             </c:if>

@@ -66,22 +66,22 @@ public class login extends HttpServlet {
             request.getRequestDispatcher("Views/Login.jsp").forward(request, response);
         } else {
             if (acc.getRole().getId() == 1) {
-                session.setAttribute("ADMIN", 1);
+                session.setAttribute("admin", 1);
                 session.setAttribute("account", acc);
                 System.out.println("Acc " + acc);
-                response.sendRedirect("home");
+                request.getRequestDispatcher("home").forward(request, response);
             }
             if (acc.getRole().getId() == 2) {
-                session.setAttribute("Manager", 2);
+                session.setAttribute("manager", 2);
                 session.setAttribute("account", acc);
                 System.out.println("Acc " + acc);
-                response.sendRedirect("home");
+                request.getRequestDispatcher("home").forward(request, response);
             }
             if (acc.getRole().getId() == 3) {
-                session.setAttribute("Customer", 3);
+                session.setAttribute("customer", 3);
                 session.setAttribute("account", acc);
                 System.out.println("Acc " + acc);
-                response.sendRedirect("home");
+                request.getRequestDispatcher("home").forward(request, response);
             }
         }
     }

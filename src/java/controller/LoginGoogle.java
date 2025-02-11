@@ -45,19 +45,19 @@ public class LoginGoogle extends HttpServlet {
             response.sendRedirect("home");
         } else {
             if (customerCheck.getRole().getId() == 1) {
-                session.setAttribute("ADMIN", 1);
+                session.setAttribute("admin", 1);
                 session.setAttribute("account", customerCheck);
-                response.sendRedirect("home");
+                request.getRequestDispatcher("home").forward(request, response);
             }
             if (customerCheck.getRole().getId() == 2) {
-                session.setAttribute("Manager", 2);
+                session.setAttribute("manager", 2);
                 session.setAttribute("account", customerCheck);
-                response.sendRedirect("home");
+                request.getRequestDispatcher("home").forward(request, response);
             }
             if (customerCheck.getRole().getId() == 3) {
-                session.setAttribute("Customer", 3);
+                session.setAttribute("customer", 3);
                 session.setAttribute("account", customerCheck);
-                response.sendRedirect("home");
+                request.getRequestDispatcher("home").forward(request, response);
             }
         }
     }
