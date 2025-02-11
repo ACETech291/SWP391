@@ -8,7 +8,7 @@ CREATE TABLE Admin (
   username_admin varchar(255) NOT NULL, 
   password_admin varchar(255) NOT NULL, 
   email_admin    varchar(255) NOT NULL, 
-  Roleid_role    int(11) NOT NULL, 
+  id_role        int(11) NOT NULL, 
   PRIMARY KEY (id_admin), 
   INDEX (id_admin));
 CREATE TABLE Advertising (
@@ -21,7 +21,7 @@ CREATE TABLE Advertising (
 CREATE TABLE Customer (
   id_customer           int(11) NOT NULL AUTO_INCREMENT, 
   name_customer         varchar(255) NOT NULL, 
-  phone_number_customer varchar(11) NULL, 
+  phone_number_customer varchar(11), 
   email_customer        varchar(255) NOT NULL, 
   password_customer     varchar(255) NOT NULL, 
   status_customer       bit(1) NOT NULL, 
@@ -29,10 +29,10 @@ CREATE TABLE Customer (
   PRIMARY KEY (id_customer), 
   INDEX (id_customer));
 CREATE TABLE Feetback (
-  id_feetback                  int(11) NOT NULL AUTO_INCREMENT, 
-  voting_feetback              int(11) NOT NULL, 
-  description_comment_feetback varchar(255), 
-  id_customer                  int(11) NOT NULL, 
+  id_feetback     int(11) NOT NULL AUTO_INCREMENT, 
+  voting_feetback int(11) NOT NULL, 
+  content         varchar(255), 
+  id_customer     int(11) NOT NULL, 
   PRIMARY KEY (id_feetback), 
   INDEX (id_feetback));
 CREATE TABLE Manager (
@@ -40,10 +40,18 @@ CREATE TABLE Manager (
   username_manager varchar(255) NOT NULL, 
   password_manager varchar(255) NOT NULL, 
   email_manager    varchar(255) NOT NULL, 
-  Roleid_role      int(11) NOT NULL, 
+  id_role          int(11) NOT NULL, 
   status_manager   bit(1) NOT NULL, 
   PRIMARY KEY (id_manager), 
   INDEX (id_manager));
+CREATE TABLE Otp (
+  id_otp      int(11) NOT NULL AUTO_INCREMENT, 
+  code_otp    varchar(255) NOT NULL, 
+  expiry_time timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL, 
+  is_used     bit(1) NOT NULL, 
+  email       varchar(255) NOT NULL, 
+  PRIMARY KEY (id_otp), 
+  INDEX (id_otp));
 CREATE TABLE Payment_method (
   id_payment_method   int(11) NOT NULL AUTO_INCREMENT, 
   name_payment_method varchar(255) NOT NULL, 
@@ -91,6 +99,14 @@ CREATE TABLE Ticket (
   id_train_chair      int(11) NOT NULL, 
   PRIMARY KEY (id_ticket), 
   INDEX (id_ticket));
+CREATE TABLE Token_forget_password (
+  id_token    int(11) NOT NULL AUTO_INCREMENT, 
+  token       varchar(255) NOT NULL, 
+  expiry_time timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL, 
+  is_used     bit(1) NOT NULL, 
+  id_user     int(11) NOT NULL, 
+  PRIMARY KEY (id_token), 
+  INDEX (id_token));
 CREATE TABLE Train (
   id_train          int(11) NOT NULL AUTO_INCREMENT, 
   name_train        varchar(255) NOT NULL, 
@@ -117,13 +133,6 @@ CREATE TABLE Train_carriage (
   total_chair                       int(11) NOT NULL, 
   PRIMARY KEY (id_train_carriage), 
   INDEX (id_train_carriage));
-CREATE TABLE Train_compartment_segmentation (
-  id_train_compartment_segmentation    int(11) NOT NULL AUTO_INCREMENT, 
-  code_train_compartment               varchar(255) NOT NULL, 
-  name_train_compartment_segmentation  varchar(255) NOT NULL, 
-  price_train_compartment_segmentation int(11) NOT NULL, 
-  PRIMARY KEY (id_train_compartment_segmentation), 
-  INDEX (id_train_compartment_segmentation));
 CREATE TABLE Train_seat (
   id_train_chair     int(11) NOT NULL AUTO_INCREMENT, 
   status_train_chair int(11) NOT NULL, 
@@ -141,8 +150,8 @@ CREATE TABLE Trip (
   total_chair            int(11) NOT NULL, 
   ordered_chair          int(11) NOT NULL, 
   PRIMARY KEY (id_trip));
-ALTER TABLE Admin ADD CONSTRAINT FKAdmin462398 FOREIGN KEY (Roleid_role) REFERENCES Role (id_role);
-ALTER TABLE Manager ADD CONSTRAINT FKManager337572 FOREIGN KEY (Roleid_role) REFERENCES Role (id_role);
+ALTER TABLE Admin ADD CONSTRAINT FKAdmin775394 FOREIGN KEY (id_role) REFERENCES Role (id_role);
+ALTER TABLE Manager ADD CONSTRAINT FKManager24576 FOREIGN KEY (id_role) REFERENCES Role (id_role);
 ALTER TABLE Customer ADD CONSTRAINT FKCustomer71540 FOREIGN KEY (id_role) REFERENCES Role (id_role);
 ALTER TABLE Train_brand ADD CONSTRAINT FKTrain_bran376661 FOREIGN KEY (id_manager) REFERENCES Manager (id_manager);
 ALTER TABLE Train ADD CONSTRAINT FKTrain713859 FOREIGN KEY (id_train_brand) REFERENCES Train_brand (id_train_brand);
@@ -157,7 +166,6 @@ ALTER TABLE Ticket ADD CONSTRAINT FKTicket818009 FOREIGN KEY (id_train) REFERENC
 ALTER TABLE Ticket ADD CONSTRAINT FKTicket57122 FOREIGN KEY (id_train_carriage) REFERENCES Train_carriage (id_train_carriage);
 ALTER TABLE Ticket ADD CONSTRAINT FKTicket88429 FOREIGN KEY (id_train_chair) REFERENCES Train_seat (id_train_chair);
 ALTER TABLE Feetback ADD CONSTRAINT FKFeetback467684 FOREIGN KEY (id_customer) REFERENCES Customer (id_customer);
-ALTER TABLE Train_carriage ADD CONSTRAINT FKTrain_carr367283 FOREIGN KEY (id_train_compartment_segmentation) REFERENCES Train_compartment_segmentation (id_train_compartment_segmentation);
 ALTER TABLE Advertising ADD CONSTRAINT FKAdvertisin553227 FOREIGN KEY (id_manager) REFERENCES Manager (id_manager);
 ALTER TABLE Revenue ADD CONSTRAINT FKRevenue325678 FOREIGN KEY (id_manager) REFERENCES Manager (id_manager);
 ALTER TABLE Purchase_history ADD CONSTRAINT FKPurchase_h933427 FOREIGN KEY (id_customer) REFERENCES Customer (id_customer);
@@ -168,6 +176,7 @@ ALTER TABLE Trip ADD CONSTRAINT FKTrip936788 FOREIGN KEY (id_station_from_ticket
 ALTER TABLE Trip ADD CONSTRAINT FKTrip894600 FOREIGN KEY (id_station_to_ticket) REFERENCES Station (id_station);
 ALTER TABLE Trip ADD CONSTRAINT FKTrip442899 FOREIGN KEY (id_train) REFERENCES Train (id_train);
 ALTER TABLE Ticket ADD CONSTRAINT FKTicket171889 FOREIGN KEY (id_trip) REFERENCES Trip (id_trip);
+ALTER TABLE Token_forget_password ADD CONSTRAINT FKToken_forg905909 FOREIGN KEY (id_user) REFERENCES Customer (id_customer);
 
 
 INSERT INTO `role` (id_role, name_role)
