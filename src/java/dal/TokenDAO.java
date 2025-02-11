@@ -28,7 +28,7 @@ public class TokenDAO {
      * @return true if insertion is successful, false otherwise
      */
     public boolean insertTokenForget(TokenForgetPassword tokenForget) {
-        String sql = "INSERT INTO tokenForgetPassword (token, expiryTime, isUsed, userId) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Token_forget_password (token, expiry_time, is_used, id_user) VALUES (?, ?, ?, ?)";
         try (PreparedStatement ps = connect.prepareStatement(sql)) {
             ps.setString(1, tokenForget.getToken());
             ps.setTimestamp(2, tokenForget.getExpiryTime() != null ? Timestamp.valueOf(tokenForget.getExpiryTime()) : null);
@@ -48,17 +48,17 @@ public class TokenDAO {
      * @return TokenForgetPassword object or null if not found
      */
     public TokenForgetPassword getTokenPassword(String token) {
-        String sql = "SELECT * FROM tokenForgetPassword WHERE token = ?";
+        String sql = "SELECT * FROM Token_forget_password WHERE token = ?";
         try (PreparedStatement st = connect.prepareStatement(sql)) {
             st.setString(1, token);
             try (ResultSet rs = st.executeQuery()) {
                 if (rs.next()) {
                     return new TokenForgetPassword(
-                        rs.getInt("id"),
-                        rs.getInt("userId"),
-                        rs.getBoolean("isUsed"),
+                        rs.getInt("id_token"),
+                        rs.getInt("id_user"),
+                        rs.getBoolean("is_used"),
                         rs.getString("token"),
-                        rs.getTimestamp("expiryTime").toLocalDateTime()
+                        rs.getTimestamp("expiry_time").toLocalDateTime()
                     );
                 }
             }
@@ -73,7 +73,7 @@ public class TokenDAO {
      * @param token TokenForgetPassword object
      */
     public void updateStatus(TokenForgetPassword token) {
-        String sql = "UPDATE tokenForgetPassword SET isUsed = ? WHERE token = ?";
+        String sql = "UPDATE Token_forget_password SET is_used = ? WHERE token = ?";
         try (PreparedStatement st = connect.prepareStatement(sql)) {
             st.setBoolean(1, token.isIsUsed());
             st.setString(2, token.getToken());
