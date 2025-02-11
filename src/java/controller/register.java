@@ -122,7 +122,6 @@ public class register extends HttpServlet {
             return;
         }
         if (!password.equals(confirmpassword)) {
-            check = 2;
             request.setAttribute(email, "email");
             request.setAttribute(userName, "name");
             request.setAttribute(phone, "phone");
@@ -133,31 +132,23 @@ public class register extends HttpServlet {
 
         Role role = customerDAO.getRoleById(3);
         for (Customer customer : listCustomer) {
-            System.out.println(customer.toString());
-        }
-        for (Customer customer : listCustomer) {
-            System.out.println(customer.toString());
-            System.out.println(role.toString());
             if (customer.getEmail().equalsIgnoreCase(email)) {
                 check = 3;
             }
 
         }
 
-        if (check == 1) {
+        if (check == 1) {       
             Customer newCustomer = new Customer(userName, phone, email, password, 1, role);
             session.setAttribute("newCustomer", newCustomer);
             System.out.println(newCustomer.toString());
-            insertDatabase(newCustomer);
-            customerDAO.createAccount(newCustomer);
             request.setAttribute("Success", "Tạo tài khoản thành công!!!");
             request.setAttribute("email", newCustomer.getEmail());
             String otpCode = otpService.generateOtp();
             session.setAttribute("otpCode", otpCode);
             customer_id_fake += 1;
-            OTP otp = new OTP(0, false, otpCode, otpService.expireDateTime());
+            OTP otp = new OTP(newCustomer.getEmail(), false, otpCode, otpService.expireDateTime());
             otpDAO.insertOtp(otp);
-            EmailService.sendEmail2(newCustomer.getEmail(), "Verify email -" + System.currentTimeMillis(), otpCode);
             request.getRequestDispatcher("OtpService").forward(request, response);
             return;
         } else if (check == 3) {

@@ -27,12 +27,12 @@ public class OtpDAO {
     }
     
     public boolean insertOtp(OTP otp) {
-        String sql = "INSERT INTO otp (code_otp, expiryTime, isUsed, userId) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO otp (code_otp, expiryTime, isUsed, email) VALUES (?, ?, ?, ?)";
         try (PreparedStatement ps = connect.prepareStatement(sql)) {
             ps.setString(1, otp.getCode());
             ps.setTimestamp(2, otp.getExpiryTime() != null ? Timestamp.valueOf(otp.getExpiryTime()) : null);
             ps.setBoolean(3, otp.isIsUsed());
-            ps.setInt(4, otp.getUserId());
+            ps.setString(4, otp.getEmail());
 
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -49,7 +49,7 @@ public class OtpDAO {
                 if (rs.next()) {
                     return new OTP(
                         rs.getInt("id"),
-                        rs.getInt("userId"),
+                        rs.getString("email"),
                         rs.getBoolean("isUsed"),
                         rs.getString("code_otp"),
                         rs.getTimestamp("expiryTime").toLocalDateTime()
