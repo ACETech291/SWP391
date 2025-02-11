@@ -177,17 +177,3 @@ ALTER TABLE Trip ADD CONSTRAINT FKTrip894600 FOREIGN KEY (id_station_to_ticket) 
 ALTER TABLE Trip ADD CONSTRAINT FKTrip442899 FOREIGN KEY (id_train) REFERENCES Train (id_train);
 ALTER TABLE Ticket ADD CONSTRAINT FKTicket171889 FOREIGN KEY (id_trip) REFERENCES Trip (id_trip);
 ALTER TABLE Token_forget_password ADD CONSTRAINT FKToken_forg905909 FOREIGN KEY (id_user) REFERENCES Customer (id_customer);
-
-
-
-INSERT INTO `role` (id_role, name_role)
-VALUES
-  (1, 'admin'),
-  (2, 'manager'),
-  (3, 'customer');
-
-		
-INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer)
-VALUES 
-  ('John Doe', 'john.doe@example.com', 'password123', '1234567890', 3, 1),
-  ('Jane Smith', 'jane.smith@example.com', 'password456', '0987654321', 3, 0);
