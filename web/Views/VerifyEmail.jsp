@@ -40,7 +40,7 @@
                 text-decoration: none;
                 background-color: #f7f7f7;
             }
-
+            
 
         </style>
     </head>
@@ -59,11 +59,8 @@
                                     </div>
                                 </div>
                                 <c:if test="${not empty err}">
-                                    <p class="text-danger">${err}</p>
-                                    <form action="OtpService" method="POST">
-                                        <input type="hidden" name="resend" value="true">
-                                        <button type="submit" class="nir-btn">Gửi lại mã?</button>
-                                    </form>
+                                <p class="text-danger">${err}</p>
+<!--                                <a name="again" href="OtpService?resend=true">Gửi lại mã?</a>-->
                                 </c:if>
                                 <form action="OtpService" method="get">
                                     <div class="row gy-3 overflow-hidden">

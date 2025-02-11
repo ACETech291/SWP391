@@ -11,8 +11,7 @@ import java.time.LocalDateTime;
  * @author Nguyen Ba Hien
  */
 public class OTP {
-    private int id;
-    private String email;
+    private int id, userId;
     private boolean isUsed;
     private String code;
     private LocalDateTime expiryTime;
@@ -20,8 +19,8 @@ public class OTP {
     public OTP() {
     }
 
-    public OTP(String email, boolean isUsed, String code, LocalDateTime expiryTime) {
-        this.email = email;
+    public OTP(int userId, boolean isUsed, String code, LocalDateTime expiryTime) {
+        this.userId = userId;
         this.isUsed = isUsed;
         this.code = code;
         this.expiryTime = expiryTime;
@@ -29,9 +28,9 @@ public class OTP {
     
     
     
-    public OTP(int id, String email, boolean isUsed, String code, LocalDateTime expiryTime) {
+    public OTP(int id, int userId, boolean isUsed, String code, LocalDateTime expiryTime) {
         this.id = id;
-        this.email = email;
+        this.userId = userId;
         this.isUsed = isUsed;
         this.code = code;
         this.expiryTime = expiryTime;
@@ -45,15 +44,13 @@ public class OTP {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
-
-    
 
     public boolean isIsUsed() {
         return isUsed;
@@ -81,7 +78,7 @@ public class OTP {
 
     @Override
     public String toString() {
-        return "OTP{" + "id=" + id + ", email=" + email + ", isUsed=" + isUsed + ", code=" + code + ", expiryTime=" + expiryTime + '}';
+        return "OTP{" + "id=" + id + ", userId=" + userId + ", isUsed=" + isUsed + ", code=" + code + ", expiryTime=" + expiryTime + '}';
     }
     
     
