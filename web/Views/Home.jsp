@@ -50,10 +50,10 @@
                                         <a href="home">Nhà ga</a>
                                     </li>
                                     <li>
-                                        <a href="home">Chính sách</a>
+                                        <a href="#" data-toggle="modal" data-target="#termsModal">Chính Sách</a>.
                                     </li>
                                     <li>
-                                        <a href="home">Liên hệ</a>
+                                        <a href="#" class="btn btn-success" data-toggle="modal" data-target="#guideModal">Hướng dẫn</a>
                                     </li>
                                 </ul>
                             </div><!-- /.navbar-collapse -->   
@@ -1066,6 +1066,75 @@
                 <div class="overlay hide"></div>
             </div>
         </div>
+        <div class="modal fade" id="termsModal" tabindex="-1" role="dialog" aria-labelledby="termsModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="termsModalLabel">Điều khoản sử dụng</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h6>1. Quy định đổi vé và hủy vé</h6>
+                        <p><strong>Hủy vé:</strong> Hành khách có thể hủy vé trước giờ khởi hành ít nhất 24 giờ. Phí hủy vé: 10% - 30% giá vé.</p>
+                        <p><strong>Đổi vé:</strong> Việc đổi vé phải thực hiện trước 12 giờ so với giờ tàu chạy.</p>
+
+                        <h6>2. Nguyên tắc khi đi tàu</h6>
+                        <p>- Hành khách phải có vé hợp lệ khi lên tàu.</p>
+                        <p>- Không được hút thuốc, xả rác, hoặc gây mất trật tự trên tàu.</p>
+
+                        <h6>3. Quy định hành lý</h6>
+                        <p>- Mỗi hành khách được mang tối đa 20kg hành lý miễn phí.</p>
+                        <p>- Hành lý có kích thước quá lớn hoặc hàng hóa nguy hiểm sẽ không được mang lên tàu.</p>
+
+                        <h6>4. Trách nhiệm của hành khách</h6>
+                        <p>- Hành khách cần đến ga trước giờ khởi hành ít nhất 30 phút.</p>
+                        <p>- Tuân thủ hướng dẫn của nhân viên đường sắt.</p>
+
+                        <h6>5. Liên hệ</h6>
+                        <p>📞 Hotline: 0332671183</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="guideModal" tabindex="-1" role="dialog" aria-labelledby="guideModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="guideModalLabel">Hướng Dẫn Đặt Vé Tàu</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h6>1. Chọn hành trình</h6>
+                        <p>- Truy cập trang web và chọn điểm đi, điểm đến, ngày đi</p>
+
+                        <h6>2. Chọn chuyến tàu</h6>
+                        <p>- Xem danh sách các chuyến tàu phù hợp và chọn vị trí theo ý muốn.</p>
+
+                        <h6>3. Nhập thông tin hành khách</h6>
+                        <p>- Điền thông tin cá nhân: Họ tên, số điện thoại, email.</p>
+
+                        <h6>4. Thanh toán</h6>
+                        <p>- Chọn phương thức thanh toán: Ví điện tử, thẻ ngân hàng hoặc tại quầy.</p>
+
+                        <h6>5. Nhận vé</h6>
+                        <p>- Sau khi thanh toán, bạn sẽ nhận được vé điện tử qua email hoặc SMS.</p>
+
+                        <h6>6. Lên tàu</h6>
+                        <p>- Đến ga trước giờ khởi hành ít nhất 30 phút, xuất trình vé điện tử để lên tàu.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+            </div>
+        </div>                  
     </body>
     <script data-cfasync="false" src="${pageContext.request.contextPath}/libs/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="libs/js/jquery-3.5.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/libs/js/bootstrap.min.js"></script>
