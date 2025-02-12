@@ -52,10 +52,10 @@
                                         <a href="home">Nhà ga</a>
                                     </li>
                                     <li>
-                                        <a href="#" data-toggle="modal" data-target="#termsModal">Chính Sách</a>.
+                                        <a href="#" data-toggle="modal" data-target="#termsModal">Chính Sách</a>
                                     </li>
                                     <li>
-                                        <a href="#" class="btn btn-success" data-toggle="modal" data-target="#guideModal">Hướng dẫn</a>
+                                        <a href="#" data-toggle="modal" data-target="#guideModal">Hướng dẫn</a>
                                     </li>
                                 </ul>
                             </div><!-- /.navbar-collapse -->   

@@ -27,3 +27,4 @@ INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Nguyen Ba Hien QP 982','hiennbhe181773@fpt.edu.vn','wFsWPPDpwkiwkt8J9RRe6BILtug=','0123456',3,1); 
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Nguyen Ba Hien QP 982','hiennbhe181773@fpt.edu.vn','AwflvDy+6Clr0GbYNqVHT+AJLZs=','0123456',3,1); 
 
+INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('gà HP','hiepgacute1989@gmail.com','e+zUZiS/+vRC8BHtgbSNguZIGTU=','0123456',3,1); 
