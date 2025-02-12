@@ -43,9 +43,9 @@ public class login extends HttpServlet {
         Cookie cookieRemember = new Cookie("cookieRemember", rem);
 
         if (rem != null) {
-            cookieEmail.setMaxAge(60 * 60 * 24 * 180);
-            cookiePassword.setMaxAge(60 * 60 * 24 * 180);
-            cookieRemember.setMaxAge(60 * 60 * 24 * 180);
+            cookieEmail.setMaxAge(60 * 60 * 24 * 30);
+            cookiePassword.setMaxAge(60 * 60 * 24 * 30);
+            cookieRemember.setMaxAge(60 * 60 * 24 * 30);
         } else {
             cookieEmail.setMaxAge(0);
             cookiePassword.setMaxAge(0);
