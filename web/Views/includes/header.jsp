@@ -20,10 +20,13 @@
                                 <a href="home">Trang chủ</a>
                             </li>
                             <li>
-                                <a href="home">Tàu</a>
+                                <a href="listtrain">Tàu</a>
                             </li>
                             <li>
-                                <a href="home">Nhà ga</a>
+                                <a href="liststation">Nhà ga</a>
+                            </li>
+                            <li>
+                                <a href="advertising">Bản tin</a>
                             </li>
                             <li>
                                 <a href="#" data-toggle="modal" data-target="#termsModal">Chính Sách</a>

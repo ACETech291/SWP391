@@ -29,3 +29,5 @@ INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_
 
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('gà HP','hiepgacute1989@gmail.com','e+zUZiS/+vRC8BHtgbSNguZIGTU=','0123456',3,1); 
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('gà HP','hiepgacute1989@gmail.com','leuo4MlJi+m2iInVXSiDmXdlCMA=','0123456',3,1); 
+INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('gà HP','hiepgacute1989@gmail.com','cnmXLmR1myV9CgKsJ6NyK8VHlmQ=','0123456',3,1); 
+INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('gà HP','hiepgacute1989@gmail.com','AVtIwtnGDpirVNsQYGY7iHqjAJA=','0123456',3,1); 

@@ -14,8 +14,6 @@
         <link href="${pageContext.request.contextPath}/libs/css/dashboard.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath}/libs/fonts/flaticon.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath}/libs/css/icons.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"/>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/fonts/line-icons.css" type="text/css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/font-awesome/5.11.2/css/all.min.css">
@@ -174,6 +172,8 @@
 
         <!-- footer starts -->
         <jsp:include page="includes/footer.jsp"></jsp:include>
+        <jsp:include page="includes/rule.jsp"></jsp:include>
+        <jsp:include page="includes/support.jsp"></jsp:include>
         <!-- footer ends -->
 
         <!-- Back to top start -->
