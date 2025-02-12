@@ -74,8 +74,10 @@ CREATE TABLE Role (
   name_role varchar(255) NOT NULL, 
   PRIMARY KEY (id_role));
 CREATE TABLE Station (
-  id_station   int(11) NOT NULL AUTO_INCREMENT, 
-  name_station varchar(255) NOT NULL, 
+  id_station          int(11) NOT NULL AUTO_INCREMENT, 
+  name_station        varchar(255) NOT NULL, 
+  image_station       blob NOT NULL, 
+  description_station varchar(255), 
   PRIMARY KEY (id_station));
 CREATE TABLE Status (
   id_status   int(11) NOT NULL AUTO_INCREMENT, 
@@ -105,6 +107,7 @@ CREATE TABLE Token_forget_password (
 CREATE TABLE Train (
   id_train          int(11) NOT NULL AUTO_INCREMENT, 
   name_train        varchar(255) NOT NULL, 
+  image_train       blob NOT NULL, 
   description_train varchar(255) NOT NULL, 
   id_train_brand    int(11) NOT NULL, 
   id_status         int(11) NOT NULL, 
@@ -113,6 +116,7 @@ CREATE TABLE Train_brand (
   id_train_brand          int(11) NOT NULL AUTO_INCREMENT, 
   id_manager              int(11) NOT NULL, 
   name_train_brand        varchar(255) NOT NULL, 
+  image_train_brand       blob NOT NULL, 
   description_train_brand varchar(255), 
   PRIMARY KEY (id_train_brand), 
   INDEX (id_train_brand));
