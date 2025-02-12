@@ -6,7 +6,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>SWP391</title>
+        <title>Home</title>
         <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/libs/images/favicon.png">
         <link href="${pageContext.request.contextPath}/libs/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="${pageContext.request.contextPath}/libs/css/style.css" rel="stylesheet" type="text/css">
@@ -15,6 +15,8 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/font-awesome/5.11.2/css/all.min.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/fonts/line-icons.css" type="text/css">
+        <link href="${pageContext.request.contextPath}/libs/css/dashboard.css" rel="stylesheet" type="text/css" />
+        <link href="${pageContext.request.contextPath}/libs/css/icons.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <!-- Preloader -->
@@ -65,11 +67,19 @@
                             </c:if>
                             <c:if test="${sessionScope.account.role.id  != null}">
                                 <div class="register-login">
-                                    <a href="Profile"><i class="icon-user mr-1"></i> ${sessionScope.account.userName}</a>
-                                    <a href="Logout"><i class="icon-login mr-1"></i> Đăng xuất</a>
+                                    <div class="register-login">
+                                        <div class="dropdown">
+                                            <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-user-circle"></i> ${sessionScope.account.userName}
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="Profile"><i class="sl sl-icon-user"></i> Thông tin cá nhân</a>
+                                                <a class="dropdown-item" href="Logout"><i class="sl sl-icon-power"></i> Đăng xuất</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </c:if>
-
                             <div id="slicknav-mobile"></div>
                         </div>
                     </div><!-- /.container-fluid --> 
@@ -888,186 +898,9 @@
             <a href="#"></a>
         </div>
         <!-- Back to top ends -->
-
-        <!-- Register Modal -->
-        <div class="modal fade" id="register" tabindex="-1" role="dialog"  aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header bordernone p-0">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body p-0">
-                        <div class="login-content p-4 text-center">
-                            <div class="login-title section-border">
-                                <h3 class="pink mb-1">Register</h3>  
-                                <p>Access thousands of online classes in design, business, and more!</p>                  
-                            </div>
-                            <div class="login-form text-center">
-                                <form>
-                                    <div class="form-group">
-                                        <input type="text" placeholder="Enter Full Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="email" placeholder="Enter email address">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" placeholder="Enter password">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" placeholder="Confirm password">
-                                    </div>
-                                </form>
-                                <div class="form-btn">
-                                    <a href="#" class="nir-btn">Register</a>
-                                </div>
-                                <div class="form-group mb-0 form-checkbox mt-3">
-                                    <input type="checkbox"> By clicking this, you are agree to to<a href="#" class=""> our terms of use</a> and <a href="#" class="">privacy policy</a> including the use of cookies
-                                </div>
-                            </div>
-                            <div class="login-social border-t mt-3 pt-2 mb-3">
-                                <p class="mb-2">OR continue with</p>
-                                <a href="#" class="btn-facebook"><i class="fab fa-facebook" aria-hidden="true"></i> Facebook</a>
-                                <a href="#" class="btn-twitter"><i class="fab fa-twitter" aria-hidden="true"></i> Twitter</a>
-                                <a href="#" class="btn-google"><i class="fab fa-google" aria-hidden="true"></i> Google</a>
-                            </div>
-                            <div class="sign-up">
-                                <p class="m-0">Already have an account? <a href="login.html" class="pink">Login</a></p>
-                            </div>                
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- login Modal -->
-        <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header bordernone p-0">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body p-0">
-                        <div class="login-content p-4 text-center">
-                            <div class="login-title section-border">
-                                <h3 class="pink">Login</h3>                    
-                            </div>
-                            <div class="login-form">
-                                <form>
-                                    <div class="form-group">
-                                        <input type="email" placeholder="Enter email address">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" placeholder="Enter password">
-                                    </div>
-                                </form>
-                                <div class="form-btn">
-                                    <a href="#" class="nir-btn">LOGIN</a>
-                                </div>
-                                <div class="form-group mb-0 form-checkbox mt-3">
-                                    <input type="checkbox"> Remember Me | <a href="#" class="">Forgot password?</a>
-                                </div>
-                            </div>
-                            <div class="login-social border-t mt-3 pt-2 mb-3">
-                                <p class="mb-2">OR continue with</p>
-                                <a href="#" class="btn-facebook"><i class="fab fa-facebook" aria-hidden="true"></i> Facebook</a>
-                                <a href="#" class="btn-twitter"><i class="fab fa-twitter" aria-hidden="true"></i> Twitter</a>
-                            </div>
-                            <div class="sign-up">
-                                <p class="m-0">Do not have an account? <a href="login.html" class="pink">Sign Up</a></p>
-                            </div>                
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- header side menu --> 
-        <div class="header_sidemenu">
-            <div class="header_sidemenu_in">
-                <div class="menu">
-                    <div class="close-menu">
-                        <i class="fa fa-times white"></i>
-                    </div>
-                    <div class="m-contentmain">
-                        <div class="cart-main">
-                            <div class="cart-box">
-                                <div class="popup-container">
-                                    <h5 class="p-3 mb-0 bg-pink white text-caps">My Carts(3 Items)</h5>
-                                    <div class="cart-entry d-flex align-items-center p-3">
-                                        <a href="#" class="image">
-                                            <img src="${pageContext.request.contextPath}/libs/images/shop/shop1.jpg" alt="">
-                                        </a>
-                                        <div class="content">
-                                            <a href="#" class="title font-weight-bold">Pullover Batwing</a>
-                                            <p class="quantity m-0">Quantity: 3</p>
-                                            <span class="price">$45.00</span>
-                                        </div>
-                                        <div class="button-x">
-                                            <i class="icon-close"></i>
-                                        </div>
-                                    </div>
-                                    <div class="cart-entry d-flex align-items-center p-3">
-                                        <a href="#" class="image">
-                                            <img src="${pageContext.request.contextPath}/libs/images/shop/shop2.jpg" alt="">
-                                        </a>
-                                        <div class="content">
-                                            <a href="#" class="title font-weight-bold">Pullover Batwing</a>
-                                            <p class="quantity m-0">Quantity: 3</p>
-                                            <span class="price">$90.00</span>
-                                        </div>
-                                        <div class="button-x">
-                                            <i class="icon-close"></i>
-                                        </div>
-                                    </div>
-                                    <div class="cart-entry d-flex align-items-center p-3">
-                                        <a href="#" class="image">
-                                            <img src="${pageContext.request.contextPath}/libs/images/shop/shop6.jpg" alt="">
-                                        </a>
-                                        <div class="content">
-                                            <a href="#" class="title font-weight-bold">Pullover Batwing</a>
-                                            <p class="quantity m-0">Quantity: 3</p>
-                                            <span class="price">$90.00</span>
-                                        </div>
-                                        <div class="button-x">
-                                            <i class="icon-close"></i>
-                                        </div>
-                                    </div>
-                                    <div class="summary-total">
-                                        <div class="summary d-flex align-items-center justify-content-between">
-                                            <div class="subtotal font-weight-bold">Delivery Charge</div>
-                                            <div class="price-s">$10</div>
-                                        </div>
-                                        <div class="summary d-flex align-items-center justify-content-between">
-                                            <div class="subtotal font-weight-bold">Sub Total</div>
-                                            <div class="price-s">$200</div>
-                                        </div>
-                                        <div class="summary d-flex align-items-center justify-content-between">
-                                            <div class="subtotal font-weight-bold">Discount</div>
-                                            <div class="price-s">$2</div>
-                                        </div>
-                                        <div class="summary d-flex align-items-center justify-content-between">
-                                            <div class="subtotal font-weight-bold">Total</div>
-                                            <div class="price-s">$208</div>
-                                        </div>
-                                    </div>
-                                    <div class="cart-buttons d-flex align-items-center justify-content-between">
-                                        <a href="#" class="nir-btn">View Cart</a>
-                                        <a href="#" class="nir-btn-black">Checkout</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>    
-                </div>
-                <div class="overlay hide"></div>
-            </div>
-        </div>
     </body>
-    <script data-cfasync="false" src="${pageContext.request.contextPath}/libs/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="libs/js/jquery-3.5.1.min.js"></script>
+    <script data-cfasync="false" src="${pageContext.request.contextPath}/libs/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="${pageContext.request.contextPath}/libs/js/jquery-3.5.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/libs/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/libs/js/particles.js"></script>
     <script src="${pageContext.request.contextPath}/libs/js/particlerun.js"></script>
@@ -1076,36 +909,36 @@
     <script src="${pageContext.request.contextPath}/libs/js/custom-swiper.js"></script>
     <script src="${pageContext.request.contextPath}/libs/js/custom-nav.js"></script>
     <script src="${pageContext.request.contextPath}/libs/js/custom-date.js"></script>
-    <script>(function () {
-            function c() {
-                var b = a.contentDocument || a.contentWindow.document;
-                if (b) {
-                    var d = b.createElement('script');
-                    d.innerHTML = "window.__CF$cv$params={r:'90d1e0ce199784ab',t:'MTczODc0Nzc5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='${pageContext.request.contextPath}/libs/cdn-cgi/challenge-platform/h/g/scripts/jsd/8a57887573f2/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";
-                    b.getElementsByTagName('head')[0].appendChild(d)
+    <script>
+        function c() {
+            var b = a.contentDocument || a.contentWindow.document;
+            if (b) {
+                var d = b.createElement('script');
+                d.innerHTML = "window.__CF$cv$params={r:'90d1e0ce199784ab',t:'MTczODc0Nzc5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='${pageContext.request.contextPath}/libs/cdn-cgi/challenge-platform/h/g/scripts/jsd/8a57887573f2/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";
+                b.getElementsByTagName('head')[0].appendChild(d)
+            }
+        }
+        if (document.body) {
+            var a = document.createElement('iframe');
+            a.height = 1;
+            a.width = 1;
+            a.style.position = 'absolute';
+            a.style.top = 0;
+            a.style.left = 0;
+            a.style.border = 'none';
+            a.style.visibility = 'hidden';
+            document.body.appendChild(a);
+            if ('loading' !== document.readyState)
+                c();
+            else if (window.addEventListener)
+                document.addEventListener('DOMContentLoaded', c);
+            else {
+                var e = document.onreadystatechange || function () {};
+                document.onreadystatechange = function (b) {
+                    e(b);
+                    'loading' !== document.readyState && (document.onreadystatechange = e, c())
                 }
             }
-            if (document.body) {
-                var a = document.createElement('iframe');
-                a.height = 1;
-                a.width = 1;
-                a.style.position = 'absolute';
-                a.style.top = 0;
-                a.style.left = 0;
-                a.style.border = 'none';
-                a.style.visibility = 'hidden';
-                document.body.appendChild(a);
-                if ('loading' !== document.readyState)
-                    c();
-                else if (window.addEventListener)
-                    document.addEventListener('DOMContentLoaded', c);
-                else {
-                    var e = document.onreadystatechange || function () {};
-                    document.onreadystatechange = function (b) {
-                        e(b);
-                        'loading' !== document.readyState && (document.onreadystatechange = e, c())
-                    }
-                }
-            }
-        })();</script>
+        }
+    </script>
 </html>

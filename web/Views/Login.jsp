@@ -5,7 +5,7 @@
 
 <html>
     <head>
-        <title>SWP391</title>
+        <title>Login</title>
         <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/libs/images/favicon.png">
         <link href="${pageContext.request.contextPath}/libs/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="${pageContext.request.contextPath}/libs/css/style.css" rel="stylesheet" type="text/css">
@@ -80,7 +80,6 @@
                                                     <div class="form-group mb-0 mt-5">
                                                         <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid&redirect_uri=http://localhost:8080/SWP391/LoginGoogle&response_type=code&client_id=580940048752-tr25k7j40lace1bbjgmauj7kk4620glv.apps.googleusercontent.com&approval_prompt=force" class="nir-btn w-100"><i class="fab fa-google"> Đăng nhập bằng Google</i></a>
                                                     </div>
-                                                   
                                                 </div>
                                             </div>
                                         </form>
