@@ -1,7 +1,8 @@
 # SWP391 - Happy New Year 2025
+This is the final project of SWP391
 
 ## Project Overview
-This is the final project of SWP391
+This project to manager train buy ticket
 
 ## Development Environment
 - **IDE**: NetBeans (versions 17-24), IntelliJ IDEA, Visual Studio Code
