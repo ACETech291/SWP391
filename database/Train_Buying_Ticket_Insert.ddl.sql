@@ -18,22 +18,22 @@ INSERT INTO Admin (username_admin, password_admin, email_admin, id_role)
 -- train brand
 INSERT INTO Train_brand (id_manager, name_train_brand, description_train_brand,image_train_brand)
 	VALUES 
-	(1, 'Alpha', 'Train brand Alpha - High speed trains', null), -- id_manager = 1 (manager1)
-	(2, 'Beta', 'Train brand Beta - Luxury trains', null);      -- id_manager = 2 (manager2)
+	(1, 'Alpha', 'Train brand Alpha - High speed trains', null), 
+	(2, 'Beta', 'Train brand Beta - Luxury trains', null);      
 
 --	status
 INSERT INTO Status (name_status)
 	VALUES 
 	-- Trạng thái cho Train
-	('On Journey'),	-- 1
-	('Waiting'),	 	-- 2
-	('Maintenance'),	-- 3
-	('Incident'),		-- 4
+	('On Journey'),	
+	('Waiting'),	 	
+	('Maintenance'),	
+	('Incident'),		
 	
 	-- Trạng thái cho Train_carriage, Train_seat
-	('Available'),	 	-- 5
-	('Booked'),			-- 6
-	('Maintenance');	-- 7
+	('Available'),	 	
+	('Booked'),			
+	('Maintenance');	
 
 -- train Alpha
 INSERT INTO Train (name_train, description_train, id_train_brand, id_status, image_train) 
@@ -396,7 +396,7 @@ INSERT INTO Trip (id_station_from_ticket, id_station_to_ticket, time_start_ticke
 (5, 4, '2025-02-04 17:00:00', '2025-02-04 17:51:00', 1, NULL),
 (4, 3, '2025-02-04 17:54:00', '2025-02-04 19:33:00', 1, NULL),
 (3, 2, '2025-02-04 19:36:00', '2025-02-04 20:38:00', 1, NULL),
-(2, 1, '2025-02-04 20:40:00', '2025-02-04 21:30:00', 1, NULL); -- 36
+(2, 1, '2025-02-04 20:40:00', '2025-02-04 21:30:00', 1, NULL); 
 
 INSERT INTO Trip (id_station_from_ticket, id_station_to_ticket, time_start_ticket, time_end_ticket, id_train, ordered_seat) VALUES
 (1, 2, '2025-02-05 06:10:00', '2025-02-05 07:11:00', 1, NULL),
@@ -434,7 +434,7 @@ INSERT INTO Trip (id_station_from_ticket, id_station_to_ticket, time_start_ticke
 (33, 34, '2025-02-06 17:00:00', '2025-02-06 17:51:00', 1, NULL),
 (34, 35, '2025-02-06 17:54:00', '2025-02-06 19:33:00', 1, NULL),
 (35, 36, '2025-02-06 19:36:00', '2025-02-06 20:38:00', 1, NULL),
-(36, 37, '2025-02-06 20:40:00', '2025-02-06 21:30:00', 1, NULL); -- 72
+(36, 37, '2025-02-06 20:40:00', '2025-02-06 21:30:00', 1, NULL); 
 
 INSERT INTO Trip (id_station_from_ticket, id_station_to_ticket, time_start_ticket, time_end_ticket, id_train, ordered_seat) VALUES
 (37, 36, '2025-02-07 06:10:00', '2025-02-07 07:12:00', 1, NULL),
@@ -472,7 +472,7 @@ INSERT INTO Trip (id_station_from_ticket, id_station_to_ticket, time_start_ticke
 (5, 4, '2025-02-08 17:00:00', '2025-02-08 17:51:00', 1, NULL),
 (4, 3, '2025-02-08 17:54:00', '2025-02-08 19:33:00', 1, NULL),
 (3, 2, '2025-02-08 19:36:00', '2025-02-08 20:38:00', 1, NULL),
-(2, 1, '2025-02-08 20:40:00', '2025-02-08 21:30:00', 1, NULL); -- 108
+(2, 1, '2025-02-08 20:40:00', '2025-02-08 21:30:00', 1, NULL); 
 
 INSERT INTO Trip (id_station_from_ticket, id_station_to_ticket, time_start_ticket, time_end_ticket, id_train, ordered_seat) VALUES
 (1, 2, '2025-02-09 06:10:00', '2025-02-09 07:11:00', 1, NULL),
@@ -510,7 +510,7 @@ INSERT INTO Trip (id_station_from_ticket, id_station_to_ticket, time_start_ticke
 (33, 34, '2025-02-10 17:00:00', '2025-02-10 17:51:00', 1, NULL),
 (34, 35, '2025-02-10 17:54:00', '2025-02-10 19:33:00', 1, NULL),
 (35, 36, '2025-02-10 19:36:00', '2025-02-10 20:38:00', 1, NULL),
-(36, 37, '2025-02-10 20:40:00', '2025-02-10 21:30:00', 1, NULL);-- 144
+(36, 37, '2025-02-10 20:40:00', '2025-02-10 21:30:00', 1, NULL);
 
 INSERT INTO Trip (id_station_from_ticket, id_station_to_ticket, time_start_ticket, time_end_ticket, id_train, ordered_seat) VALUES
 (37, 36, '2025-02-11 06:10:00', '2025-02-11 07:12:00', 1, NULL),
@@ -548,7 +548,7 @@ INSERT INTO Trip (id_station_from_ticket, id_station_to_ticket, time_start_ticke
 (5, 4, '2025-02-12 17:00:00', '2025-02-12 17:51:00', 1, NULL),
 (4, 3, '2025-02-12 17:54:00', '2025-02-12 19:33:00', 1, NULL),
 (3, 2, '2025-02-12 19:36:00', '2025-02-12 20:38:00', 1, NULL),
-(2, 1, '2025-02-12 20:40:00', '2025-02-12 21:30:00', 1, NULL);-- 180
+(2, 1, '2025-02-12 20:40:00', '2025-02-12 21:30:00', 1, NULL);
 
 INSERT INTO Trip (id_station_from_ticket, id_station_to_ticket, time_start_ticket, time_end_ticket, id_train, ordered_seat) VALUES
 (1, 2, '2025-02-13 06:10:00', '2025-02-13 07:11:00', 1, NULL),
@@ -586,7 +586,7 @@ INSERT INTO Trip (id_station_from_ticket, id_station_to_ticket, time_start_ticke
 (33, 34, '2025-02-14 17:00:00', '2025-02-14 17:51:00', 1, NULL),
 (34, 35, '2025-02-14 17:54:00', '2025-02-14 19:33:00', 1, NULL),
 (35, 36, '2025-02-14 19:36:00', '2025-02-14 20:38:00', 1, NULL),
-(36, 37, '2025-02-14 20:40:00', '2025-02-14 21:30:00', 1, NULL);-- 216
+(36, 37, '2025-02-14 20:40:00', '2025-02-14 21:30:00', 1, NULL);
 
 INSERT INTO Trip (id_station_from_ticket, id_station_to_ticket, time_start_ticket, time_end_ticket, id_train, ordered_seat) VALUES
 (37, 36, '2025-02-15 06:10:00', '2025-02-15 07:12:00', 1, NULL),
@@ -624,7 +624,7 @@ INSERT INTO Trip (id_station_from_ticket, id_station_to_ticket, time_start_ticke
 (5, 4, '2025-02-16 17:00:00', '2025-02-16 17:51:00', 1, NULL),
 (4, 3, '2025-02-16 17:54:00', '2025-02-16 19:33:00', 1, NULL),
 (3, 2, '2025-02-16 19:36:00', '2025-02-16 20:38:00', 1, NULL),
-(2, 1, '2025-02-16 20:40:00', '2025-02-16 21:30:00', 1, NULL);-- 252
+(2, 1, '2025-02-16 20:40:00', '2025-02-16 21:30:00', 1, NULL);
 
 INSERT INTO Trip (id_station_from_ticket, id_station_to_ticket, time_start_ticket, time_end_ticket, id_train, ordered_seat) VALUES
 (1, 2, '2025-02-17 06:10:00', '2025-02-17 07:11:00', 1, NULL),
@@ -662,7 +662,7 @@ INSERT INTO Trip (id_station_from_ticket, id_station_to_ticket, time_start_ticke
 (33, 34, '2025-02-18 17:00:00', '2025-02-18 17:51:00', 1, NULL),
 (34, 35, '2025-02-18 17:54:00', '2025-02-18 19:33:00', 1, NULL),
 (35, 36, '2025-02-18 19:36:00', '2025-02-18 20:38:00', 1, NULL),
-(36, 37, '2025-02-18 20:40:00', '2025-02-18 21:30:00', 1, NULL);-- 288
+(36, 37, '2025-02-18 20:40:00', '2025-02-18 21:30:00', 1, NULL);
 
 INSERT INTO Trip (id_station_from_ticket, id_station_to_ticket, time_start_ticket, time_end_ticket, id_train, ordered_seat) VALUES
 (37, 36, '2025-02-19 06:10:00', '2025-02-19 07:12:00', 1, NULL),
@@ -700,7 +700,7 @@ INSERT INTO Trip (id_station_from_ticket, id_station_to_ticket, time_start_ticke
 (5, 4, '2025-02-20 17:00:00', '2025-02-20 17:51:00', 1, NULL),
 (4, 3, '2025-02-20 17:54:00', '2025-02-20 19:33:00', 1, NULL),
 (3, 2, '2025-02-20 19:36:00', '2025-02-20 20:38:00', 1, NULL),
-(2, 1, '2025-02-20 20:40:00', '2025-02-20 21:30:00', 1, NULL);-- 324
+(2, 1, '2025-02-20 20:40:00', '2025-02-20 21:30:00', 1, NULL);
 
 INSERT INTO Trip (id_station_from_ticket, id_station_to_ticket, time_start_ticket, time_end_ticket, id_train, ordered_seat) VALUES
 (1, 2, '2025-02-21 06:10:00', '2025-02-21 07:11:00', 1, NULL),
@@ -738,7 +738,7 @@ INSERT INTO Trip (id_station_from_ticket, id_station_to_ticket, time_start_ticke
 (33, 34, '2025-02-22 17:00:00', '2025-02-22 17:51:00', 1, NULL),
 (34, 35, '2025-02-22 17:54:00', '2025-02-22 19:33:00', 1, NULL),
 (35, 36, '2025-02-22 19:36:00', '2025-02-22 20:38:00', 1, NULL),
-(36, 37, '2025-02-22 20:40:00', '2025-02-22 21:30:00', 1, NULL); -- 360
+(36, 37, '2025-02-22 20:40:00', '2025-02-22 21:30:00', 1, NULL); 
 
 INSERT INTO Trip (id_station_from_ticket, id_station_to_ticket, time_start_ticket, time_end_ticket, id_train, ordered_seat) VALUES
 (37, 36, '2025-02-23 06:10:00', '2025-02-23 07:12:00', 1, NULL),
@@ -776,7 +776,7 @@ INSERT INTO Trip (id_station_from_ticket, id_station_to_ticket, time_start_ticke
 (5, 4, '2025-02-24 17:00:00', '2025-02-24 17:51:00', 1, NULL),
 (4, 3, '2025-02-24 17:54:00', '2025-02-24 19:33:00', 1, NULL),
 (3, 2, '2025-02-24 19:36:00', '2025-02-24 20:38:00', 1, NULL),
-(2, 1, '2025-02-24 20:40:00', '2025-02-24 21:30:00', 1, NULL); -- 396
+(2, 1, '2025-02-24 20:40:00', '2025-02-24 21:30:00', 1, NULL); 
 
 INSERT INTO Trip (id_station_from_ticket, id_station_to_ticket, time_start_ticket, time_end_ticket, id_train, ordered_seat) VALUES
 (1, 2, '2025-02-25 06:10:00', '2025-02-25 07:11:00', 1, NULL),
@@ -814,7 +814,7 @@ INSERT INTO Trip (id_station_from_ticket, id_station_to_ticket, time_start_ticke
 (33, 34, '2025-02-26 17:00:00', '2025-02-26 17:51:00', 1, NULL),
 (34, 35, '2025-02-26 17:54:00', '2025-02-26 19:33:00', 1, NULL),
 (35, 36, '2025-02-26 19:36:00', '2025-02-26 20:38:00', 1, NULL),
-(36, 37, '2025-02-26 20:40:00', '2025-02-26 21:30:00', 1, NULL);-- 432
+(36, 37, '2025-02-26 20:40:00', '2025-02-26 21:30:00', 1, NULL);
 
 INSERT INTO Trip (id_station_from_ticket, id_station_to_ticket, time_start_ticket, time_end_ticket, id_train, ordered_seat) VALUES
 (37, 36, '2025-02-27 06:10:00', '2025-02-27 07:12:00', 1, NULL),
@@ -852,7 +852,7 @@ INSERT INTO Trip (id_station_from_ticket, id_station_to_ticket, time_start_ticke
 (5, 4, '2025-02-28 17:00:00', '2025-02-28 17:51:00', 1, NULL),
 (4, 3, '2025-02-28 17:54:00', '2025-02-28 19:33:00', 1, NULL),
 (3, 2, '2025-02-28 19:36:00', '2025-02-28 20:38:00', 1, NULL),
-(2, 1, '2025-02-28 20:40:00', '2025-02-28 21:30:00', 1, NULL); -- 468
+(2, 1, '2025-02-28 20:40:00', '2025-02-28 21:30:00', 1, NULL); 
 -- ---------------------------------------------------------------------------
 
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('123','ddinhphu04@gmail.com','6NWFIsI1V5KNFeeazNcq35qxRUE=','123547',3,1); 
