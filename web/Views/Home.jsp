@@ -244,7 +244,7 @@
                             <div class="trend-content-main">
                                 <div class="trend-content">
                                     <h6 class="font-weight-normal pink"><i class="fa fa-map-marker-alt"></i> Hãng A</h6>
-                                    <h4><a href="#">Tên tàu</a></h4>
+                                    <h4><a href="traindetail">Tên tàu</a></h4>
                                 </div>
                             </div>
                         </div>
@@ -257,7 +257,7 @@
                             <div class="trend-content-main">
                                 <div class="trend-content">
                                     <h6 class="font-weight-normal pink"><i class="fa fa-map-marker-alt"></i> Hãng A</h6>
-                                    <h4><a href="#">Tên tàu</a></h4>
+                                    <h4><a href="traindetail">Tên tàu</a></h4>
                                 </div>
                             </div>
                         </div>
@@ -270,7 +270,7 @@
                             <div class="trend-content-main">
                                 <div class="trend-content">
                                     <h6 class="font-weight-normal pink"><i class="fa fa-map-marker-alt"></i> Hãng A</h6>
-                                    <h4><a href="#">Tên tàu</a></h4>
+                                    <h4><a href="traindetail">Tên tàu</a></h4>
                                 </div>
                             </div>
                         </div>
@@ -283,7 +283,7 @@
                             <div class="trend-content-main">
                                 <div class="trend-content">
                                     <h6 class="font-weight-normal pink"><i class="fa fa-map-marker-alt"></i> Hãng A</h6>
-                                    <h4><a href="#">Tên tàu</a></h4>
+                                    <h4><a href="traindetail">Tên tàu</a></h4>
                                 </div>
                             </div>
                         </div>
@@ -307,8 +307,8 @@
                     <div id="date-scroll" class="d-flex overflow-auto bg-light border-bottom py-2 date-scroll"></div>
                 </div>
                 <!-- Kết thúc thanh cuộn ngày -->
-                
-                
+
+
                 <div id="cart-main" class="cart-main pb-4">
                     <div class="container-fluid">
                         <div class="row justify-content-center">
@@ -529,7 +529,7 @@
                                 <div class="col-lg-4 col-md-6 mb-4">
                                     <div class="trend-item">
                                         <div class="trend-image">
-                                            <img src="${pageContext.request.contextPath}/libs/images/trending/trending8.jpg" alt="image">
+                                            <img src="${pageContext.request.contextPath}/images/station.jpg" alt="image">
                                         </div>
                                         <div class="trend-content-main">
                                             <div class="trend-content">
@@ -543,7 +543,7 @@
                                                     </div>
                                                     <span class="ml-2">99 đánh giá</span>
                                                 </div>
-                                                <h4><a href="#">Địa điểm</a></h4>
+                                                <h4><a href="stationdetail">Địa điểm</a></h4>
                                             </div>
                                             <div class="trend-last-main">
                                                 <p class="mb-0 trend-para">Nội dung</p>
@@ -556,7 +556,7 @@
                                 <div class="col-lg-4 col-md-6 mb-4">
                                     <div class="trend-item">
                                         <div class="trend-image">
-                                            <img src="${pageContext.request.contextPath}/libs/images/trending/trending8.jpg" alt="image">
+                                            <img src="${pageContext.request.contextPath}/images/station.jpg" alt="image">
                                         </div>
                                         <div class="trend-content-main">
                                             <div class="trend-content">
@@ -570,7 +570,7 @@
                                                     </div>
                                                     <span class="ml-2">99 đánh giá</span>
                                                 </div>
-                                                <h4><a href="#">Địa điểm</a></h4>
+                                                <h4><a href="stationdetail">Địa điểm</a></h4>
                                             </div>
                                             <div class="trend-last-main">
                                                 <p class="mb-0 trend-para">Nội dung</p>
@@ -583,7 +583,7 @@
                                 <div class="col-lg-4 col-md-6 mb-4">
                                     <div class="trend-item">
                                         <div class="trend-image">
-                                            <img src="${pageContext.request.contextPath}/libs/images/trending/trending8.jpg" alt="image">
+                                            <img src="${pageContext.request.contextPath}/images/station.jpg" alt="image">
                                         </div>
                                         <div class="trend-content-main">
                                             <div class="trend-content">
@@ -597,7 +597,88 @@
                                                     </div>
                                                     <span class="ml-2">99 đánh giá</span>
                                                 </div>
-                                                <h4><a href="#">Địa điểm</a></h4>
+                                                <h4><a href="stationdetail">Địa điểm</a></h4>
+                                            </div>
+                                            <div class="trend-last-main">
+                                                <p class="mb-0 trend-para">Nội dung</p>
+                                                <div class="trend-last d-flex align-items-center justify-content-between">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="trend-item">
+                                        <div class="trend-image">
+                                            <img src="${pageContext.request.contextPath}/images/station.jpg" alt="image">
+                                        </div>
+                                        <div class="trend-content-main">
+                                            <div class="trend-content">
+                                                <div class="rating-main d-flex align-items-center pb-1">
+                                                    <div class="rating">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                    </div>
+                                                    <span class="ml-2">99 đánh giá</span>
+                                                </div>
+                                                <h4><a href="stationdetail">Địa điểm</a></h4>
+                                            </div>
+                                            <div class="trend-last-main">
+                                                <p class="mb-0 trend-para">Nội dung</p>
+                                                <div class="trend-last d-flex align-items-center justify-content-between">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="trend-item">
+                                        <div class="trend-image">
+                                            <img src="${pageContext.request.contextPath}/images/station.jpg" alt="image">
+                                        </div>
+                                        <div class="trend-content-main">
+                                            <div class="trend-content">
+                                                <div class="rating-main d-flex align-items-center pb-1">
+                                                    <div class="rating">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                    </div>
+                                                    <span class="ml-2">99 đánh giá</span>
+                                                </div>
+                                                <h4><a href="stationdetail">Địa điểm</a></h4>
+                                            </div>
+                                            <div class="trend-last-main">
+                                                <p class="mb-0 trend-para">Nội dung</p>
+                                                <div class="trend-last d-flex align-items-center justify-content-between">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="trend-item">
+                                        <div class="trend-image">
+                                            <img src="${pageContext.request.contextPath}/images/station.jpg" alt="image">
+                                        </div>
+                                        <div class="trend-content-main">
+                                            <div class="trend-content">
+                                                <div class="rating-main d-flex align-items-center pb-1">
+                                                    <div class="rating">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                    </div>
+                                                    <span class="ml-2">99 đánh giá</span>
+                                                </div>
+                                                <h4><a href="stationdetail">Địa điểm</a></h4>
                                             </div>
                                             <div class="trend-last-main">
                                                 <p class="mb-0 trend-para">Nội dung</p>
@@ -612,7 +693,7 @@
                     </div>
                 </div>   
                 <div class="justify-content-center text-center">
-                    <a href="" class="per-btn">
+                    <a href="liststation" class="per-btn">
                         <span class="white">Xem thêm</span>
                     </a>
                 </div>
@@ -633,16 +714,16 @@
                         <div class="col-lg-5 col-md-12 col-xs-12 mb-4">
                             <div class="news-item overflow-hidden">
                                 <div class="news-image">
-                                    <img src="${pageContext.request.contextPath}/libs/images/blog/blog1.jpg" alt="image">
+                                    <img src="${pageContext.request.contextPath}/images/Advertising.png" alt="image">
                                 </div>
                                 <div class="news-list mt-2 border-b pb-2 mb-2">
                                     <ul>
-                                        <li><a href="single-right.html" class="pr-3"><i class="fa fa-calendar pink pr-1"></i> Ngày đăng </a></li>
-                                        <li><a href="single-right.html" class="pr-3"><i class="fa fa-comment pink pr-1"></i> 99</a></li>
+                                        <li><a href="#" class="pr-3"><i class="fa fa-calendar pink pr-1"></i> Ngày đăng </a></li>
+                                        <li><a href="#" class="pr-3"><i class="fa fa-comment pink pr-1"></i> 99</a></li>
                                     </ul>
                                 </div>
                                 <div class="news-content mt-2">
-                                    <h4 class="pb-2 mb-2 border-b"><a href="single-right.html">Tiêu đề</a></h4>
+                                    <h4 class="pb-2 mb-2 border-b"><a href="advertisingdetail">Tiêu đề</a></h4>
                                     <p class="mb-3"> <br>Nội dung</p>
 
                                     <div class="author-img">
@@ -657,64 +738,64 @@
                                 <div class="col-lg-6 col-md-6 col-xs-12 mb-4">
                                     <div class="news-item overflow-hidden">
                                         <div class="news-image">
-                                            <img src="${pageContext.request.contextPath}/libs/images/blog/blog1.jpg" alt="image">
+                                            <img src="${pageContext.request.contextPath}/images/Advertising.png" alt="image">
                                         </div>
                                         <div class="news-list mt-2 border-b pb-2 mb-2">
                                             <ul>
-                                                <li><a href="single-right.html" class="pr-3"><i class="fa fa-calendar pink pr-1"></i> Ngày đăng </a></li>
-                                                <li><a href="single-right.html" class="pr-3"><i class="fa fa-comment pink pr-1"></i> 99</a></li>
+                                                <li><a href="#" class="pr-3"><i class="fa fa-calendar pink pr-1"></i> Ngày đăng </a></li>
+                                                <li><a href="#" class="pr-3"><i class="fa fa-comment pink pr-1"></i> 99</a></li>
                                             </ul>
                                         </div>
                                         <div class="news-content mt-2">
-                                            <h4 class="bordernone mb-0"><a href="single-right.html">Tiêu đề</a></h4>
+                                            <h4 class="bordernone mb-0"><a href="advertisingdetail">Tiêu đề</a></h4>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-xs-12 mb-4">
                                     <div class="news-item overflow-hidden">
                                         <div class="news-image">
-                                            <img src="${pageContext.request.contextPath}/libs/images/blog/blog1.jpg" alt="image">
+                                            <img src="${pageContext.request.contextPath}/images/Advertising.png" alt="image">
                                         </div>
                                         <div class="news-list mt-2 border-b pb-2 mb-2">
                                             <ul>
-                                                <li><a href="single-right.html" class="pr-3"><i class="fa fa-calendar pink pr-1"></i> Ngày đăng </a></li>
-                                                <li><a href="single-right.html" class="pr-3"><i class="fa fa-comment pink pr-1"></i> 99</a></li>
+                                                <li><a href="#" class="pr-3"><i class="fa fa-calendar pink pr-1"></i> Ngày đăng </a></li>
+                                                <li><a href="#" class="pr-3"><i class="fa fa-comment pink pr-1"></i> 99</a></li>
                                             </ul>
                                         </div>
                                         <div class="news-content mt-2">
-                                            <h4 class="bordernone mb-0"><a href="single-right.html">Tiêu đề</a></h4>
+                                            <h4 class="bordernone mb-0"><a href="advertisingdetail">Tiêu đề</a></h4>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-xs-12 mb-4">
                                     <div class="news-item overflow-hidden">
                                         <div class="news-image">
-                                            <img src="${pageContext.request.contextPath}/libs/images/blog/blog1.jpg" alt="image">
+                                            <img src="${pageContext.request.contextPath}/images/Advertising.png" alt="image">
                                         </div>
                                         <div class="news-list mt-2 border-b pb-2 mb-2">
                                             <ul>
-                                                <li><a href="single-right.html" class="pr-3"><i class="fa fa-calendar pink pr-1"></i> Ngày đăng </a></li>
-                                                <li><a href="single-right.html" class="pr-3"><i class="fa fa-comment pink pr-1"></i> 99</a></li>
+                                                <li><a href="#" class="pr-3"><i class="fa fa-calendar pink pr-1"></i> Ngày đăng </a></li>
+                                                <li><a href="#" class="pr-3"><i class="fa fa-comment pink pr-1"></i> 99</a></li>
                                             </ul>
                                         </div>
                                         <div class="news-content mt-2">
-                                            <h4 class="bordernone mb-0"><a href="single-right.html">Tiêu đề</a></h4>
+                                            <h4 class="bordernone mb-0"><a href="advertisingdetail">Tiêu đề</a></h4>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-xs-12 mb-4">
                                     <div class="news-item overflow-hidden">
                                         <div class="news-image">
-                                            <img src="${pageContext.request.contextPath}/libs/images/blog/blog1.jpg" alt="image">
+                                            <img src="${pageContext.request.contextPath}/images/Advertising.png" alt="image">
                                         </div>
                                         <div class="news-list mt-2 border-b pb-2 mb-2">
                                             <ul>
-                                                <li><a href="single-right.html" class="pr-3"><i class="fa fa-calendar pink pr-1"></i> Ngày đăng </a></li>
-                                                <li><a href="single-right.html" class="pr-3"><i class="fa fa-comment pink pr-1"></i> 99</a></li>
+                                                <li><a href="#" class="pr-3"><i class="fa fa-calendar pink pr-1"></i> Ngày đăng </a></li>
+                                                <li><a href="#" class="pr-3"><i class="fa fa-comment pink pr-1"></i> 99</a></li>
                                             </ul>
                                         </div>
                                         <div class="news-content mt-2">
-                                            <h4 class="bordernone mb-0"><a href="single-right.html">Tiêu đề</a></h4>
+                                            <h4 class="bordernone mb-0"><a href="advertisingdetail">Tiêu đề</a></h4>
                                         </div>
                                     </div>
                                 </div>

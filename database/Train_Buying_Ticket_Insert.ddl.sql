@@ -888,3 +888,4 @@ INSERT INTO Trip (id_station_from_ticket, id_station_to_ticket, time_start_ticke
 
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('gà HP','hiepgacute1989@gmail.com','NuyZcP1OLwPNEz9ZcmaqJN5i2+0=','0123456',3,1); 
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('benkei','duyquy1511@gmail.com','LwwQbBAWkqpsESVxiB0LwFd7fDc=','0123456789',3,1); 
+INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Nguyễn Hữu Hiệp','hiepgacute1989@gmail.com','KOfLlsfqVZEOkuIN4BdPektNF9w=','0966755095',3,1); 
