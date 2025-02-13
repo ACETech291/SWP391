@@ -174,4 +174,4 @@ ALTER TABLE Trip ADD CONSTRAINT FKTrip442899 FOREIGN KEY (id_train) REFERENCES T
 ALTER TABLE Ticket ADD CONSTRAINT FKTicket559089 FOREIGN KEY (id_trip_start) REFERENCES Trip (id_trip);
 ALTER TABLE Token_forget_password ADD CONSTRAINT FKToken_forg905909 FOREIGN KEY (id_user) REFERENCES Customer (id_customer);
 ALTER TABLE Trip ADD CONSTRAINT FKTrip936788 FOREIGN KEY (id_station_from_ticket) REFERENCES Station (id_station);
-ALTER TABLE Ticket ADD CONSTRAINT FKTicket783330 FOREIGN KEY (id_trip_end) REFERENCES Trip (id_trip);
+ALTER TABLE Ticket ADD CONSTRAINT FKTicket783330 FOREIGN KEY (id_trip_end) REFERENCES Trip (id_trip);INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Nguyễn Hữu Hiệp','hiepgacute1989@gmail.com','KOfLlsfqVZEOkuIN4BdPektNF9w=','0966755095',3,1); 

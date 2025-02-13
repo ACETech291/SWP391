@@ -1,143 +1,145 @@
-<%-- 
-    Document   : login.jsp
-    Created on : 4 Jun, 2024, 4:48:55 AM
-    Author     : HP
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Khôi phục mật khẩu</title>
-        <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/logins/login-6/assets/css/login-6.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Xác thực</title>
+        <jsp:include page="includes/icon.jsp"></jsp:include>
+        <link href="${pageContext.request.contextPath}/libs/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="${pageContext.request.contextPath}/libs/css/style.css" rel="stylesheet" type="text/css">
+        <link href="${pageContext.request.contextPath}/libs/css/plugin.css" rel="stylesheet" type="text/css">
+        <link href="${pageContext.request.contextPath}/libs/fonts/flaticon.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/font-awesome/5.11.2/css/all.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/fonts/line-icons.css" type="text/css">
         <style>
-            body, html {
-                height: 100%;
-                margin: 0;
-                padding: 0;
-                background-repeat: no-repeat;
-                background-size: cover; /* Đảm bảo ảnh phủ toàn bộ màn hình */
-                background-position: center; /* Canh giữa ảnh */
-                background-attachment: fixed; /* Giữ ảnh cố định khi cuộn */
-                background-image: url('../SWP391/images/logo-image.png'); /* Đường dẫn ảnh */
+            label[for="rememberMe"],
+            a label {
+                cursor: pointer;
             }
-            .forgot-password {
-                color: rgb(104, 145, 162);
-                font-weight: bold;
-                font-size: 16px;
-                padding: 12px 0;
-                transition: all 0.3s;
-                text-align: center;
-                margin-left: 30PX;
-            }
-
-            .forgot-password:hover,
-            .forgot-password:active,
-            .forgot-password:focus {
-                color: rgb(12, 97, 33);
-                text-decoration: none;
-                background-color: #f7f7f7;
-            }
-
-
         </style>
     </head>
-    <body class="bg-primary">
-        <section class="p-3 p-md-4 p-xl-5">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-12 col-md-9 col-lg-7 col-xl-6 col-xxl-5">
-                        <div class="card border-0 shadow-sm rounded-4" style="margin-top: 170px">
-                            <div class="card-body p-3 p-md-4 p-xl-5">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="mb-5">
-                                            <h3>Xác Thực Email</h3>
+    <body class="home-search" style="background-image: url(${pageContext.request.contextPath}/libs/images/slider/8.jpg)">
+        <!-- Preloader -->
+        <div id="preloader">
+            <div id="status"></div>
+        </div>
+        <!-- Preloader Ends -->
+
+        <section class="main-slider-1">
+            <div class="main-slider-inner min-vh-100 d-flex align-items-center justify-content-center">
+                <div class="container">
+                    <div class="logo-tab mb-10 text-center">
+                        <a href="home"><jsp:include page="includes/logo.jsp"></jsp:include></a>
+                        </div>
+                        <div>
+                        <c:if test="${not empty err}">
+                            <h6 id="error-message" class="message" style="color: red; text-align: center">${err}</h6>
+                        </c:if>
+                        <c:if test="${not empty otpsend}">
+                            <h6 id="error-message" class="message" style="color: green; text-align: center">${otpsend}</h6>
+                        </c:if>
+                    </div>
+                    <div class="block-box mx-auto form-content" style="max-width: 500px">
+                        <div class="row d-flex">
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade active in">
+                                    <form action="OtpService" method="GET">
+                                        <div class="row d-flex">
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label>Email</label>
+                                                    <div class="input-box">
+                                                        <input type="email" id="email" name="email" placeholder="name@example.com" required value="${email}" readonly/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label>Nhập mã Otp</label>
+                                                    <div class="input-box">
+                                                        <input type="text" id="otp" name="otp" placeholder="Mã có 5 chữ số" required value=""/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg">
+                                                <div class="form-group mb-0 mt-2">
+                                                    <button type="submit" class="nir-btn w-100">Xác thực</button>
+                                                </div>
+                                            </div>
                                         </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer text-center mt-8">
+                        <div class="copyright-content">
+                            <p class="mb-0 white">
+                                Chưa nhận được mã xác thực
+                            </p>
+                            <form action="OtpService" method="POST">
+                                <div class="col-lg">
+                                    <div class="form-group mb-0 mt-2">
+                                        <input type="hidden" name="resend" value="true">
+                                        <button type="submit" class="nir-btn">Gửi lại mã</button>
                                     </div>
                                 </div>
-                                <c:if test="${not empty err}">
-                                    <p class="text-danger">${err}</p>
-                                    <form action="OtpService" method="POST">
-                                        <input type="hidden" name="resend" value="true">
-                                        <button type="submit" class="nir-btn">Gửi lại mã?</button>
-                                    </form>
-                                </c:if>
-                                <form action="OtpService" method="get">
-                                    <div class="row gy-3 overflow-hidden">
-                                        <div class="col-12">
-                                            <div class="form-floating mb-3">
-                                                <input type="email" class="form-control" value="${email}" name="email" id="email" placeholder="name@example.com" required readonly>
-                                                <label for="email" class="form-label">Email</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-floating mb-3">
-                                                <input type="text" class="form-control" name="otp" id="password" value="" placeholder="mã có 5 chữ số" required>
-                                                <label for="password" class="form-label">Nhập mã Otp</label>
-                                            </div>
-                                        </div>                                        
-                                        <div class="col-12">
-                                            <div class="d-grid">
-                                                <button class="btn bsb-btn-2xl btn-primary" type="submit">Gửi mã</button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </form>
-                                <a href="login" class="btn btn-block forgot-password">
-                                    Đăng nhập
-                                </a>
-                                <a href="register" id="register" class="btn btn-block forgot-password">
-                                    Đăng ký 
-                                </a>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
+            <div id="particles-js"></div>
         </section>
-        <script>
-            function validatePassword() {
-                var password = document.getElementById("password").value;
-                var confirmPassword = document.getElementById("confirm_password").value;
-                var message = document.getElementById("message");
+        <div class="overlay"></div>
+    </body>
+    <!-- *Scripts* -->
+    <script src="${pageContext.request.contextPath}/libs/js/jquery-3.5.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/libs/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/libs/js/particles.js"></script>
+    <script src="${pageContext.request.contextPath}/libs/js/particlerun.js"></script>
+    <script src="${pageContext.request.contextPath}/libs/js/plugin.js"></script>
+    <script src="${pageContext.request.contextPath}/libs/js/main.js"></script>
 
-                if (password !== confirmPassword) {
-                    message.style.color = "red";
-                    message.innerHTML = "Mật khẩu nhập lại không khớp!";
-                    return false; // Ngăn form submit
-                } else {
-                    message.innerHTML = "";
-                    return true;
+    <script>
+        (function () {
+            function c() {
+                var b = a.contentDocument || a.contentWindow.document;
+                if (b) {
+                    var d = b.createElement("script");
+                    d.innerHTML =
+                            "window.__CF$cv$params={r:'90d1e19aef8884ab',t:'MTczODc0NzgyMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='${pageContext.request.contextPath}/libs/cdn-cgi/challenge-platform/h/g/scripts/jsd/8a57887573f2/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";
+                    b.getElementsByTagName("head")[0].appendChild(d);
                 }
             }
-
-            document.addEventListener("DOMContentLoaded", function () {
-                var passwordInput = document.getElementById("password");
-                var confirmPasswordInput = document.getElementById("confirm_password");
-                var message = document.getElementById("message");
-
-                // Kiểm tra lại mật khẩu mỗi khi người dùng nhập vào
-                confirmPasswordInput.addEventListener("input", function () {
-                    validatePassword();
-                });
-
-                // Khi người dùng bắt đầu nhập lại, ẩn thông báo lỗi `err`
-                var errMessage = document.querySelector(".text-danger");
-                var inputs = document.querySelectorAll("input");
-
-                inputs.forEach(input => {
-                    input.addEventListener("input", function () {
-                        if (errMessage) {
-                            errMessage.style.display = "none";
-                        }
-                    });
-                });
-            });
-        </script>
-    </body>
+            if (document.body) {
+                var a = document.createElement("iframe");
+                a.height = 1;
+                a.width = 1;
+                a.style.position = "absolute";
+                a.style.top = 0;
+                a.style.left = 0;
+                a.style.border = "none";
+                a.style.visibility = "hidden";
+                document.body.appendChild(a);
+                if ("loading" !== document.readyState)
+                    c();
+                else if (window.addEventListener)
+                    document.addEventListener("DOMContentLoaded", c);
+                else {
+                    var e = document.onreadystatechange || function () {};
+                    document.onreadystatechange = function (b) {
+                        e(b);
+                        "loading" !== document.readyState &&
+                                ((document.onreadystatechange = e), c());
+                    };
+                }
+            }
+        })();
+    </script>
 </html>
-

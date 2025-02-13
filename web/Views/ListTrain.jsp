@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Tàu</title>
-        <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/libs/images/favicon.png">
+        <jsp:include page="includes/icon.jsp"></jsp:include>
         <link href="${pageContext.request.contextPath}/libs/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="${pageContext.request.contextPath}/libs/css/style.css" rel="stylesheet" type="text/css">
         <link href="${pageContext.request.contextPath}/libs/css/plugin.css" rel="stylesheet" type="text/css">

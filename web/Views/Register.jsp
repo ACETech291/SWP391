@@ -1,137 +1,188 @@
+<!DOCTYPE html>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html>
-
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Đăng ký tài khoản</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <style>
-            body, html {
-                height: 100%;
-                margin: 0;
-                padding: 0;
-                background-repeat: no-repeat;
-                background-size: cover;
-                background-position: center;
-                background-attachment: fixed;
-                background-image: url('../SWP391/images/logo-image.png');
-            }
-        </style>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Đăng kí</title>
+        <jsp:include page="includes/icon.jsp"></jsp:include>
+        <link href="${pageContext.request.contextPath}/libs/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="${pageContext.request.contextPath}/libs/css/style.css" rel="stylesheet" type="text/css">
+        <link href="${pageContext.request.contextPath}/libs/css/plugin.css" rel="stylesheet" type="text/css">
+        <link href="${pageContext.request.contextPath}/libs/fonts/flaticon.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/font-awesome/5.11.2/css/all.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/fonts/line-icons.css" type="text/css">
     </head>
+    <body class="home-search" style="background-image: url(${pageContext.request.contextPath}/libs/images/slider/8.jpg)">
+        <!-- Preloader -->
+        <div id="preloader">
+            <div id="status"></div>
+        </div>
+        <!-- Preloader Ends -->
 
-    <body>
-
-        <div class="container">
-            <br>  
-            <hr>
-
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <div class="card">
-                        <header class="card-header">
-                            <a href="login" class="float-right btn btn-outline-primary mt-1">Đăng Nhập</a>
-                            <h4 class="card-title mt-2">Đăng Ký</h4>
-                        </header>
+        <section class="main-slider-1">
+            <div class="main-slider-inner min-vh-100 d-flex align-items-center justify-content-center">
+                <div class="container">
+                    <div class="logo-tab mb-10 text-center">
+                        <a href="home"><jsp:include page="includes/logo.jsp"></jsp:include></a>
+                    </div>
+                    <div>
                         <c:if test="${Success ne null}">
                             <h3 style="color: green; font-weight: bold; text-align: center">${Success}</h3>
                         </c:if>
                         <h3 style="color: red; text-align: center">${error1}</h3>
-                        <article class="card-body">
-                            <form method="post" action="register">
-                                
-                                <div class="form-group">
-                                    <label>Họ và tên</label>   
-                                    <input name="Name" type="text" class="form-control" required value="${param.Name}">
-                                </div>
-                                <div class="form-group">
-                                    <label>Số điện thoại</label>   
-                                    <input name="phoneNumber" type="text" class="form-control" required value="${param.phoneNumber}">
-                                </div>
-                                <div class="form-group">
-                                    <label>Địa chỉ Email</label>
-                                    <small class="form-text text-muted">Email của bạn sẽ không bị chia sẻ với bất kì ai.</small>
-                                    <input name="emailAddress" type="email" class="form-control" required value="${param.emailAddress}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">Mật khẩu</label>
-                                    <small class="form-text text-muted">Mật khẩu phải có ít nhất 6 kí tự</small>
-                                    <input name="password" id="password" class="form-control" type="password" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="confirmPassword">Nhập lại mật khẩu</label>
-                                    <input name="confirmpassword" id="confirmPassword" class="form-control" type="password" required>
-                                    <span id="message" style="color:red; font-style: italic;"></span>
-                                </div>
-                                <small class="text-muted">
-                                Bằng cách nhấp vào nút 'Đăng ký', bạn xác nhận rằng bạn chấp nhận  
-                                <a href="#" data-toggle="modal" data-target="#termsModal">Điều khoản sử dụng và Chính sách bảo mật</a>.
-                            </small>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary btn-block"> Đăng ký </button>
-                                </div>
+                    </div>
+                    <div class="block-box mx-auto form-content" style="max-width: 500px">
+                        <div class="row d-flex">
+                            <div>
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane fade active in">
+                                        <form action="register" method="POST">
+                                            <div class="row d-flex">
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Họ và tên</label>
+                                                        <div class="input-box">
+                                                            <input type="text" name="Name" required value="${param.Name}"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Số điện thoại</label>
+                                                        <div class="input-box">
+                                                            <input type="text" name="phoneNumber" placeholder="" required value="${param.phoneNumber}"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Địa chỉ email</label>
+                                                        <div class="input-box">
+                                                            <input type="email" name="emailAddress" placeholder="name@example.com" required value="${param.emailAddress}"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Mật khẩu</label>
+                                                        <div class="input-box">
+                                                            <input type="password" id="password" name="password" placeholder="Mật khẩu phải có ít nhất 6 kí tự" required/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Nhập lại mật khẩu</label>
+                                                        <div class="input-box">
+                                                            <input type="password" id="confirmPassword" name="confirmpassword" required/>
+                                                        </div>
+                                                        <span id="message" style="color:red; font-style: italic;"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <h8 class="white">
+                                                            <label> Bằng cách nhấp vào nút 'Đăng ký', bạn xác nhận rằng bạn chấp nhận</label>  
+                                                            <a href="#" data-toggle="modal" data-target="#rule2" class="white">
+                                                                <label>
+                                                                    <b class="white">Điều khoản sử dụng và Chính sách bảo mật.</b>
+                                                                </label>
+                                                            </a>
+                                                        </h8>
+                                                    </div>
+                                                </div>
 
-                            </form>
-                            
-                        </article>
-                        <div class="border-top card-body text-center">Đã có tài khoản? <a href="login">Đăng Nhập</a></div>
+                                                <div class="col-lg">
+                                                    <div class="form-group mb-0 mt-2">
+                                                        <button type="submit" class="nir-btn w-100">Đăng kí</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer text-center mt-8">
+                        <div class="copyright-content">
+                            <p class="mb-0 white">
+                                Bạn đã có tài khoản
+                                <a href="login"><label><b class="white">Đăng nhập</b></label></a>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <div id="particles-js"></div>
+        </section>
+        <div class="overlay"></div>
+        <jsp:include page="includes/rule2.jsp"></jsp:include>
+        </body>
+        <!-- *Scripts* -->
+        <script src="${pageContext.request.contextPath}/libs/js/jquery-3.5.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/libs/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/libs/js/particles.js"></script>
+    <script src="${pageContext.request.contextPath}/libs/js/particlerun.js"></script>
+    <script src="${pageContext.request.contextPath}/libs/js/plugin.js"></script>
+    <script src="${pageContext.request.contextPath}/libs/js/main.js"></script>
 
-        <div class="modal fade" id="termsModal" tabindex="-1" role="dialog" aria-labelledby="termsModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="termsModalLabel">Điều khoản sử dụng</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <h6>1. Giới thiệu</h6>
-                        <p>Chào mừng bạn đến với dịch vụ của chúng tôi. Khi sử dụng trang web này, bạn đồng ý tuân theo các điều khoản sử dụng dưới đây.</p>
+    <!-- Script kiểm tra mật khẩu -->
+    <script>
+        function validatePassword() {
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+            var message = document.getElementById("message");
 
-                        <h6>2. Quy định tài khoản</h6>
-                        <p>Bạn cần cung cấp thông tin chính xác khi đăng ký tài khoản. Không chia sẻ thông tin đăng nhập với người khác.</p>
+            if (password !== confirmPassword) {
+                message.innerHTML = "Mật khẩu nhập lại không khớp!";
+            } else {
+                message.innerHTML = "";
+            }
+        }
 
-                        <h6>3. Quyền và nghĩa vụ</h6>
-                        <p>Bạn không được sử dụng dịch vụ vào mục đích bất hợp pháp hoặc gây hại cho người khác.</p>
+        document.getElementById("password").addEventListener("input", validatePassword);
+        document.getElementById("confirmPassword").addEventListener("input", validatePassword);
+    </script>
 
-                        <h6>4. Chính sách bảo mật</h6>
-                        <p>Chúng tôi cam kết bảo vệ thông tin cá nhân của bạn theo quy định bảo mật.</p>
-
-                        <h6>5. Liên hệ</h6>
-                        <p>Nếu có thắc mắc, vui lòng liên hệ 0332671183</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Script kiểm tra mật khẩu -->
-        <script>
-            function validatePassword() {
-                var password = document.getElementById("password").value;
-                var confirmPassword = document.getElementById("confirmPassword").value;
-                var message = document.getElementById("message");
-
-                if (password !== confirmPassword) {
-                    message.innerHTML = "Mật khẩu nhập lại không khớp!";
-                } else {
-                    message.innerHTML = "";
+    <script>
+        (function () {
+            function c() {
+                var b = a.contentDocument || a.contentWindow.document;
+                if (b) {
+                    var d = b.createElement("script");
+                    d.innerHTML =
+                            "window.__CF$cv$params={r:'90d1e19aef8884ab',t:'MTczODc0NzgyMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='${pageContext.request.contextPath}/libs/cdn-cgi/challenge-platform/h/g/scripts/jsd/8a57887573f2/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";
+                    b.getElementsByTagName("head")[0].appendChild(d);
                 }
             }
-
-            document.getElementById("password").addEventListener("input", validatePassword);
-            document.getElementById("confirmPassword").addEventListener("input", validatePassword);
-        </script>
-
-    </body>
+            if (document.body) {
+                var a = document.createElement("iframe");
+                a.height = 1;
+                a.width = 1;
+                a.style.position = "absolute";
+                a.style.top = 0;
+                a.style.left = 0;
+                a.style.border = "none";
+                a.style.visibility = "hidden";
+                document.body.appendChild(a);
+                if ("loading" !== document.readyState)
+                    c();
+                else if (window.addEventListener)
+                    document.addEventListener("DOMContentLoaded", c);
+                else {
+                    var e = document.onreadystatechange || function () {};
+                    document.onreadystatechange = function (b) {
+                        e(b);
+                        "loading" !== document.readyState &&
+                                ((document.onreadystatechange = e), c());
+                    };
+                }
+            }
+        })();
+    </script>
 </html>

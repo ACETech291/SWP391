@@ -1,193 +1,142 @@
-
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
 <!DOCTYPE html>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Quên mật khẩu</title>
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <style>
-            body, html {
-                height: 100%;
-                background-repeat: no-repeat;
-                background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
-            }
-            body, html {
-                height: 100%;
-                margin: 0;
-                padding: 0;
-                background-repeat: no-repeat;
-                background-size: cover; /* ??m b?o ?nh ph? toàn b? màn hình */
-                background-position: center; /* Canh gi?a ?nh */
-                background-attachment: fixed; /* Gi? ?nh c? ??nh khi cu?n */
-                background-image: url('../SWP391/images/logo-image.png'); /* ???ng d?n ?nh */
-            }
-            .card-container.card {
-                max-width: 350px;
-                padding: 40px 40px;
-            }
-
-            .btn {
-                font-weight: 700;
-                height: 36px;
-                -moz-user-select: none;
-                -webkit-user-select: none;
-                user-select: none;
-                cursor: default;
-            }
-
-            /*
-             * Card component
-             */
-            .card {
-                background-color: #F7F7F7;
-                /* just in case there no content*/
-                padding: 20px 25px 30px;
-                margin: 0 auto 25px;
-                margin-top: 50px;
-                /* shadows and rounded borders */
-                -moz-border-radius: 2px;
-                -webkit-border-radius: 2px;
-                border-radius: 2px;
-                -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-                -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-                box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-            }
-
-            .profile-img-card {
-                width: 96px;
-                height: 96px;
-                margin: 0 auto 10px;
-                display: block;
-                -moz-border-radius: 50%;
-                -webkit-border-radius: 50%;
-                border-radius: 50%;
-            }
-
-            /*
-             * Form styles
-             */
-            .profile-name-card {
-                font-size: 16px;
-                font-weight: bold;
-                text-align: center;
-                margin: 10px 0 0;
-                min-height: 1em;
-            }
-
-            .reauth-email {
-                display: block;
-                color: #404040;
-                line-height: 2;
-                margin-bottom: 10px;
-                font-size: 14px;
-                text-align: center;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                -moz-box-sizing: border-box;
-                -webkit-box-sizing: border-box;
-                box-sizing: border-box;
-            }
-
-            .form-signin #inputEmail,
-            .form-signin #inputPassword {
-                direction: ltr;
-                height: 44px;
-                font-size: 16px;
-            }
-
-            .form-signin input[type=email],
-            .form-signin input[type=password],
-            .form-signin input[type=text],
-            .form-signin button {
-                width: 100%;
-                display: block;
-                margin-bottom: 10px;
-                z-index: 1;
-                position: relative;
-                -moz-box-sizing: border-box;
-                -webkit-box-sizing: border-box;
-                box-sizing: border-box;
-            }
-
-            .form-signin .form-control:focus {
-                border-color: rgb(104, 145, 162);
-                outline: 0;
-                -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
-                box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
-            }
-
-            .btn.btn-signin {
-                /*background-color: #4d90fe; */
-                background-color: rgb(104, 145, 162);
-                /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
-                padding: 0px;
-                font-weight: 700;
-                font-size: 14px;
-                height: 36px;
-                -moz-border-radius: 3px;
-                -webkit-border-radius: 3px;
-                border-radius: 3px;
-                border: none;
-                -o-transition: all 0.218s;
-                -moz-transition: all 0.218s;
-                -webkit-transition: all 0.218s;
-                transition: all 0.218s;
-            }
-
-            .btn.btn-signin:hover,
-            .btn.btn-signin:active,
-            .btn.btn-signin:focus {
-                background-color: rgb(12, 97, 33);
-            }
-
-            .forgot-password {
-                color: rgb(104, 145, 162);
-            }
-
-            .forgot-password:hover,
-            .forgot-password:active,
-            .forgot-password:focus{
-                color: rgb(12, 97, 33);
-            }
-        </style>
+        <jsp:include page="includes/icon.jsp"></jsp:include>
+        <link href="${pageContext.request.contextPath}/libs/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="${pageContext.request.contextPath}/libs/css/style.css" rel="stylesheet" type="text/css">
+        <link href="${pageContext.request.contextPath}/libs/css/plugin.css" rel="stylesheet" type="text/css">
+        <link href="${pageContext.request.contextPath}/libs/fonts/flaticon.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/font-awesome/5.11.2/css/all.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/fonts/line-icons.css" type="text/css">
     </head>
-    <body>
-        
-        <div class="container">
-            <div class="card card-container">
-                <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
-<!--                <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />-->
-<img id="profile-img" class="profile-img-card" src="../SWP391/images/logotau.jpg"/>
-                <c:if test="${err != null}">
-                    <p id="profile-name" class="text-danger">
-                        ${err}
-                    </p>
-                </c:if>
-                <c:if test="${success != null}">
-                    <p id="profile-name" class="text-success">
-                        ${success}
-                    </p>
-                </c:if>    
-                <form method="post" action="SendEmail" class="form-signin">
-                    <span id="reauth-email" class="reauth-email"></span>
-                    <p style="color: green">Vui lòng nhập email của bạn</p>
-                    <input type="text" id="inputEmail" class="form-control" placeholder="Email của bạn" name="email" required autofocus>
-                    <!--                    <div id="remember" class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value="remember-me"> Lưu mật khẩu
-                                            </label>
-                                        </div>-->
-                    <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Gửi email</button>
-                </form><!-- /form -->
-                <a href="register" class="btn btn-block forgot-password">
-                    Đăng ký ngay
-                </a>
-            </div><!-- /card-container -->
-        </div><!-- /container -->
+    <body class="home-search" style="background-image: url(${pageContext.request.contextPath}/libs/images/slider/8.jpg)">
+        <!-- Preloader -->
+        <div id="preloader">
+            <div id="status"></div>
+        </div>
+        <!-- Preloader Ends -->
+
+        <section class="main-slider-1">
+            <div class="main-slider-inner min-vh-100 d-flex align-items-center justify-content-center">
+                <div class="container">
+                    <div class="logo-tab mb-10 text-center">
+                        <a href="home"><jsp:include page="includes/logo.jsp"></jsp:include></a>
+                    </div>
+                    <div>
+                        <c:if test="${err != null}">
+                            <h6 id="error-message" class="message" style="color: red; text-align: center">${err}</h6>
+                        </c:if>
+                        <c:if test="${success != null}">
+                            <h6 id="error-message" class="message" style="color: green; text-align: center">${success}</h6>
+                        </c:if>
+                    </div>
+                    <div class="block-box mx-auto form-content" style="max-width: 500px">
+                        <div class="row d-flex">
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade active in">
+                                    <form action="SendEmail" method="POST">
+                                        <div class="row d-flex">
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label>Vui lòng nhập email của bạn</label>
+                                                    <div class="input-box">
+                                                        <input type="email" id="email" name="email" placeholder="name@example.com" required autofocus/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg">
+                                                <div class="form-group mb-0 mt-2">
+                                                    <button type="submit" class="nir-btn w-100">Gửi email</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer text-center mt-8">
+                        <div class="copyright-content">
+                            <p class="mb-0 white">
+                                Chưa có tài khoản?
+                                <a href="register"><label><b class="white">Đăng ký</b></label></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="particles-js"></div>
+        </section>
+        <div class="overlay"></div>
     </body>
+    <!-- *Scripts* -->
+    <script src="${pageContext.request.contextPath}/libs/js/jquery-3.5.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/libs/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/libs/js/particles.js"></script>
+    <script src="${pageContext.request.contextPath}/libs/js/particlerun.js"></script>
+    <script src="${pageContext.request.contextPath}/libs/js/plugin.js"></script>
+    <script src="${pageContext.request.contextPath}/libs/js/main.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var errorMessage = document.getElementById("error-message");
+            var emailInput = document.getElementById("email");
+            var passwordInput = document.getElementById("password");
+
+            function hideError() {
+                if (errorMessage) {
+                    errorMessage.style.display = "none";
+                }
+            }
+
+            if (errorMessage && errorMessage.innerText.trim() !== "") {
+                errorMessage.style.display = "block"; // Hiện lỗi nếu có thông báo từ server
+            }
+
+            emailInput.addEventListener("input", hideError);
+            passwordInput.addEventListener("input", hideError);
+        });
+        (function () {
+            function c() {
+                var b = a.contentDocument || a.contentWindow.document;
+                if (b) {
+                    var d = b.createElement("script");
+                    d.innerHTML =
+                            "window.__CF$cv$params={r:'90d1e19aef8884ab',t:'MTczODc0NzgyMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='${pageContext.request.contextPath}/libs/cdn-cgi/challenge-platform/h/g/scripts/jsd/8a57887573f2/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";
+                    b.getElementsByTagName("head")[0].appendChild(d);
+                }
+            }
+            if (document.body) {
+                var a = document.createElement("iframe");
+                a.height = 1;
+                a.width = 1;
+                a.style.position = "absolute";
+                a.style.top = 0;
+                a.style.left = 0;
+                a.style.border = "none";
+                a.style.visibility = "hidden";
+                document.body.appendChild(a);
+                if ("loading" !== document.readyState)
+                    c();
+                else if (window.addEventListener)
+                    document.addEventListener("DOMContentLoaded", c);
+                else {
+                    var e = document.onreadystatechange || function () {};
+                    document.onreadystatechange = function (b) {
+                        e(b);
+                        "loading" !== document.readyState &&
+                                ((document.onreadystatechange = e), c());
+                    };
+                }
+            }
+        })();
+    </script>
 </html>

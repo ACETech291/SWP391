@@ -9,8 +9,8 @@
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
                         <a class="navbar-brand" href="home">
-                            <img src="${pageContext.request.contextPath}/libs/images/logo-white.png" alt="image">
-                            <img src="${pageContext.request.contextPath}/libs/images/logo.png" alt="image">
+                            <jsp:include page="logo-white.jsp"></jsp:include>
+                            <jsp:include page="logo.jsp"></jsp:include>
                         </a>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
