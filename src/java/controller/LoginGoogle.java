@@ -26,7 +26,7 @@ public class LoginGoogle extends HttpServlet {
     public void insertDatabase(SQLInsert x) {
         String add = x.toSQLInsert();
 
-        String filePath = "D:\\SWPFinal\\SWP391\\database\\Train_Buying_Ticket_Insert.ddl.sql";
+        String filePath = "D:\\SWPFinal\\SWP391\\database\\Train_Buying_Ticket_InsertCustomer.ddl.sql";
 
         try (FileWriter writer = new FileWriter(filePath, true); BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
 

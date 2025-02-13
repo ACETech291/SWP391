@@ -17,11 +17,11 @@ public class DatabaseInitializer implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        String filePathTable = "D:\\SWPFinal\\SWP391\\database\\Train_Buying_Ticket_Create.ddl.sql";
-        String filePathInsert = "D:\\SWPFinal\\SWP391\\database\\Train_Buying_Ticket_Insert.ddl.sql";
         System.out.println("Initializing database...");
-        DBConnect.executeSQLFile(filePathTable);
-        DBConnect.executeSQLFile(filePathInsert);
+        DBConnect.executeSQLFile("D:\\SWPFinal\\SWP391\\database\\Train_Buying_Ticket_Create.ddl.sql");
+        DBConnect.executeSQLFile("D:\\SWPFinal\\SWP391\\database\\Train_Buying_Ticket_Insert.ddl.sql");
+        DBConnect.executeSQLFile("D:\\SWPFinal\\SWP391\\database\\Train_Buying_Ticket_InsertCustomer.ddl.sql");
+        DBConnect.executeSQLFile("D:\\SWPFinal\\SWP391\\database\\Train_Buying_Ticket_InsertTicket.ddl.sql");
         System.out.println("Database initialized successfully!");
     }
 
