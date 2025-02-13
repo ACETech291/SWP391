@@ -2,6 +2,41 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/SendEmail.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/register.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/until/EmailService.java</file>
+            <file>file:/D:/SWPFinal/SWP391/web/Views/Profile.jsp</file>
+            <file>file:/D:/SWPFinal/SWP391/web/libs/js/main.js</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/model/Customer.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/model/SQLInsert.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/LoginGoogle.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/AdvertisingDetail.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/until/Encoding.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/ChangeInformation.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/home.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/ListTrain.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/until/OTPService.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/model/test.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/ResetPassword.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/until/PasswordUtil.java</file>
+            <file>file:/D:/SWPFinal/SWP391/test/dal/DBConnect.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/Logout.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/Profile.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/ChangePassword.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/until/GoogleLogin.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/model/OTP.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/login.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/constant/Iconstant.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/model/TokenForgetPassword.java</file>
+            <file>file:/D:/SWPFinal/SWP391/web/libs/js/bootstrap.min.js</file>
+            <file>file:/D:/SWPFinal/SWP391/web/libs/js/custom-accordian.js</file>
+            <file>file:/D:/SWPFinal/SWP391/web/Views/Home.jsp</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/Advertising.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/ListStation.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/OtpService.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/dal/StationDAO.java</file>
+            <file>file:/D:/SWPFinal/SWP391/web/libs/css/style.css</file>
+        </group>
     </open-files>
 </project-private>

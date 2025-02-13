@@ -233,6 +233,8 @@
                     <h2 class="m-0">Danh sách <span>Tàu</span></h2>
                     <p class="mb-0">Danh sách những đoàn tàu đang hoạt động của chúng tôi</p>
                 </div> 
+
+
                 <div class="row team-slider">
                     <div class="col-lg-4 slider-item">
                         <div class="trend-item">
@@ -298,6 +300,15 @@
                     <h2 class="m-0">Danh sách <span>Các chuyến đi</span></h2>
                     <p class="mb-0">Danh sách các chuyến đi khả dụng</p>
                 </div>  
+
+
+                <!-- Thanh cuộn ngày -->
+                <div class="container-fluid mb-3">
+                    <div id="date-scroll" class="d-flex overflow-auto bg-light border-bottom py-2 date-scroll"></div>
+                </div>
+                <!-- Kết thúc thanh cuộn ngày -->
+                
+                
                 <div id="cart-main" class="cart-main pb-4">
                     <div class="container-fluid">
                         <div class="row justify-content-center">
@@ -737,6 +748,7 @@
     <script src="${pageContext.request.contextPath}/libs/js/custom-swiper.js"></script>
     <script src="${pageContext.request.contextPath}/libs/js/custom-nav.js"></script>
     <script src="${pageContext.request.contextPath}/libs/js/custom-date.js"></script>
+    <script src="${pageContext.request.contextPath}/libs/js/ScrollDay.js"></script>
     <script>
         function c() {
             var b = a.contentDocument || a.contentWindow.document;

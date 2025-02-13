@@ -6363,5 +6363,107 @@ ul.sidebar-tags li {
 @media (max-width: 639px) {
   .flight-navtab .nav-tabs li, .flight-navtab .nav-tabs a {
     width: 100%; } }
+.date-scroll-wrapper {
+    white-space: nowrap;
+    overflow-x: auto;
+    padding: 10px 0;
+    background-color: #f8f9fa;
+}
+
+.date-scroll-container {
+    display: flex;
+    gap: 10px; /* Tăng khoảng cách giữa các ô ngày */
+}
+
+.date-item {
+    display: inline-block;
+    min-width: 50px; /* Điều chỉnh lại kích thước */
+    padding: 10px;
+    text-align: center;
+    font-size: 10px;
+    background: #007bff; /* Mặc định là màu xanh dương */
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+/* Thêm khoảng cách giữa các ô */
+.date-item:not(:last-child) {
+    margin-right: 8px; /* Điều chỉnh khoảng cách giữa các ngày */
+}
+
+/* Khi hover, làm lớn một chút */
+.date-item:hover {
+    background: #0056b3;
+    transform: scale(1.1);
+}
+
+/* Ngày hiện tại mặc định có màu xanh lá */
+.current-day {
+    background: green !important;
+}
+
+/* Khi bấm vào, ngày hiện tại cũng sẽ đổi về màu xanh dương như các ngày khác */
+.date-item.clicked,
+.date-item:not(.selected) {
+    background: #007bff !important;
+}
+
+/* Khi bấm vào, chỉ ngày được chọn có màu cam */
+.selected {
+    background: orange !important;
+}
+.date-scroll-wrapper {
+    white-space: nowrap;
+    overflow-x: auto;
+    padding: 10px 0;
+    background-color: #f8f9fa;
+}
+
+.date-scroll-container {
+    display: flex;
+    gap: 10px; /* Tăng khoảng cách giữa các ô ngày */
+}
+
+.date-item {
+    display: inline-block;
+    min-width: 50px; /* Điều chỉnh lại kích thước */
+    padding: 10px;
+    text-align: center;
+    font-size: 10px;
+    background: #007bff; /* Mặc định là màu xanh dương */
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+/* Thêm khoảng cách giữa các ô */
+.date-item:not(:last-child) {
+    margin-right: 8px; /* Điều chỉnh khoảng cách giữa các ngày */
+}
+
+/* Khi hover, làm lớn một chút */
+.date-item:hover {
+    background: #0056b3;
+    transform: scale(1.1);
+}
+
+/* Ngày hôm nay mặc định có màu cam (vàng) */
+.current-day {
+    background: orange !important;
+}
+
+/* Khi bấm vào ngày khác, ngày hôm nay cũng chuyển về màu xanh dương */
+.date-item.clicked,
+.date-item:not(.selected) {
+    background: #007bff !important;
+}
+
+/* Ngày được chọn sẽ có màu cam */
+.selected {
+    background: orange !important;
+}
 
 /*# sourceMappingURL=style.css.map */
