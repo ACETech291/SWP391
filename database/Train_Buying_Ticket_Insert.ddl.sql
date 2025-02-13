@@ -976,3 +976,4 @@ INSERT INTO Trip (id_station_from_ticket, id_station_to_ticket, time_start_ticke
 
 
 
+INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('gà HP','hiepgacute1989@gmail.com','NuyZcP1OLwPNEz9ZcmaqJN5i2+0=','0123456',3,1); 
