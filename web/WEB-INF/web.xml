@@ -72,6 +72,10 @@
         <servlet-name>TrainDetail</servlet-name>
         <servlet-class>controller.TrainDetail</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetTripServlet</servlet-name>
+        <servlet-class>controller.GetTripServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>home</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -143,5 +147,9 @@
     <servlet-mapping>
         <servlet-name>TrainDetail</servlet-name>
         <url-pattern>/traindetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetTripServlet</servlet-name>
+        <url-pattern>/GetTripServlet</url-pattern>
     </servlet-mapping>
 </web-app>

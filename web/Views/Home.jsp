@@ -319,188 +319,19 @@
                                             <table class="table table-hover mb-0">
                                                 <thead class="thead-light">
                                                     <tr>
-                                                        <th class="text-center align-middle" style="width: 100px;">Mã tàu</th>
-                                                        <th class="text-center align-middle" style="width: 120px;">Hình ảnh</th>
-                                                        <th class="text-center align-middle" style="min-width: 160px;">Khởi hành</th>
-                                                        <th class="text-center align-middle" style="min-width: 160px;">Dự kiến đến</th>
+                                                        <th class="text-center align-middle">Mã tàu</th>
+                                                        <th class="text-center align-middle">Hình ảnh</th>
+                                                        <th class="text-center align-middle">Khởi hành</th>
+                                                        <th class="text-center align-middle">Dự kiến đến</th>
                                                         <th class="text-center align-middle">Điểm đi</th>
                                                         <th class="text-center align-middle">Điểm đến</th>
-                                                        <th class="text-center align-middle" style="min-width: 120px;">Giá vé</th>
-                                                        <th class="text-center align-middle" style="width: 150px;"></th>
+                                                        <th class="text-center align-middle">Giá vé</th>
+                                                        <th class="text-center align-middle"></th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody id="trip-list">
                                                     <tr>
-                                                        <td class="text-center font-weight-bold align-middle">E01</td>
-
-                                                        <td class="text-center align-middle">
-                                                            <img src="${pageContext.request.contextPath}/libs/images/trains/6.jpg" 
-                                                                 alt="Tàu E01" 
-                                                                 class="img-thumbnail" 
-                                                                 style="width: 100px; height: 60px; object-fit: cover;">
-                                                        </td>
-
-                                                        <td class="text-center align-middle">
-                                                            <div class="blue">06/02/2025</div>
-                                                            <div class="text-muted small">18:26</div>
-                                                        </td>
-
-                                                        <td class="text-center align-middle">
-                                                            <div class="blue">07/02/2025</div>
-                                                            <div class="text-muted small">18:26</div>
-                                                        </td>
-
-
-                                                        <td class="text-center align-middle">
-                                                            <div class="input-box">
-                                                                <i class="flaticon-placeholder"></i>
-                                                                <span>HÀ NỘI</span>
-                                                            </div>
-                                                        </td>
-
-                                                        <td class="text-center align-middle">
-                                                            <div class="input-box">
-                                                                <i class="flaticon-placeholder"></i>
-                                                                <span>SÀI GÒN</span>
-                                                            </div>
-                                                        </td>   
-
-                                                        <td class="text-center align-middle">
-                                                            <span class="text-danger font-weight-bold">1.000.000đ</span>
-                                                        </td>
-
-                                                        <td class="text-center align-middle">
-                                                            <a href="#" class="nir-btn w-100"><i class="fas fa-chair mr-1 mr-2"></i>Đặt vé</a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center font-weight-bold align-middle">E01</td>
-
-                                                        <td class="text-center align-middle">
-                                                            <img src="${pageContext.request.contextPath}/libs/images/trains/6.jpg" 
-                                                                 alt="Tàu E01" 
-                                                                 class="img-thumbnail" 
-                                                                 style="width: 100px; height: 60px; object-fit: cover;">
-                                                        </td>
-
-                                                        <td class="text-center align-middle">
-                                                            <div class="blue">06/02/2025</div>
-                                                            <div class="text-muted small">18:26</div>
-                                                        </td>
-
-                                                        <td class="text-center align-middle">
-                                                            <div class="blue">07/02/2025</div>
-                                                            <div class="text-muted small">18:26</div>
-                                                        </td>
-
-
-                                                        <td class="text-center align-middle">
-                                                            <div class="input-box">
-                                                                <i class="flaticon-placeholder"></i>
-                                                                <span>HÀ NỘI</span>
-                                                            </div>
-                                                        </td>
-
-                                                        <td class="text-center align-middle">
-                                                            <div class="input-box">
-                                                                <i class="flaticon-placeholder"></i>
-                                                                <span>SÀI GÒN</span>
-                                                            </div>
-                                                        </td>   
-
-                                                        <td class="text-center align-middle">
-                                                            <span class="text-danger font-weight-bold">1.000.000đ</span>
-                                                        </td>
-
-                                                        <td class="text-center align-middle">
-                                                            <a href="#" class="nir-btn w-100"><i class="fas fa-chair mr-1 mr-2"></i>Đặt vé</a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center font-weight-bold align-middle">E01</td>
-
-                                                        <td class="text-center align-middle">
-                                                            <img src="${pageContext.request.contextPath}/libs/images/trains/6.jpg" 
-                                                                 alt="Tàu E01" 
-                                                                 class="img-thumbnail" 
-                                                                 style="width: 100px; height: 60px; object-fit: cover;">
-                                                        </td>
-
-                                                        <td class="text-center align-middle">
-                                                            <div class="blue">06/02/2025</div>
-                                                            <div class="text-muted small">18:26</div>
-                                                        </td>
-
-                                                        <td class="text-center align-middle">
-                                                            <div class="blue">07/02/2025</div>
-                                                            <div class="text-muted small">18:26</div>
-                                                        </td>
-
-
-                                                        <td class="text-center align-middle">
-                                                            <div class="input-box">
-                                                                <i class="flaticon-placeholder"></i>
-                                                                <span>HÀ NỘI</span>
-                                                            </div>
-                                                        </td>
-
-                                                        <td class="text-center align-middle">
-                                                            <div class="input-box">
-                                                                <i class="flaticon-placeholder"></i>
-                                                                <span>SÀI GÒN</span>
-                                                            </div>
-                                                        </td>   
-
-                                                        <td class="text-center align-middle">
-                                                            <span class="text-danger font-weight-bold">1.000.000đ</span>
-                                                        </td>
-
-                                                        <td class="text-center align-middle">
-                                                            <a href="#" class="nir-btn w-100"><i class="fas fa-chair mr-1 mr-2"></i>Đặt vé</a>
-                                                        </td>
-                                                    <tr>
-                                                        <td class="text-center font-weight-bold align-middle">E01</td>
-
-                                                        <td class="text-center align-middle">
-                                                            <img src="${pageContext.request.contextPath}/libs/images/trains/6.jpg" 
-                                                                 alt="Tàu E01" 
-                                                                 class="img-thumbnail" 
-                                                                 style="width: 100px; height: 60px; object-fit: cover;">
-                                                        </td>
-
-                                                        <td class="text-center align-middle">
-                                                            <div class="blue">06/02/2025</div>
-                                                            <div class="text-muted small">18:26</div>
-                                                        </td>
-
-                                                        <td class="text-center align-middle">
-                                                            <div class="blue">07/02/2025</div>
-                                                            <div class="text-muted small">18:26</div>
-                                                        </td>
-
-
-                                                        <td class="text-center align-middle">
-                                                            <div class="input-box">
-                                                                <i class="flaticon-placeholder"></i>
-                                                                <span>HÀ NỘI</span>
-                                                            </div>
-                                                        </td>
-
-                                                        <td class="text-center align-middle">
-                                                            <div class="input-box">
-                                                                <i class="flaticon-placeholder"></i>
-                                                                <span>SÀI GÒN</span>
-                                                            </div>
-                                                        </td>   
-
-                                                        <td class="text-center align-middle">
-                                                            <span class="text-danger font-weight-bold">1.000.000đ</span>
-                                                        </td>
-
-                                                        <td class="text-center align-middle">
-                                                            <a href="#" class="nir-btn w-100"><i class="fas fa-chair mr-1 mr-2"></i>Đặt vé</a>
-                                                        </td>
-                                                    </tr>
+                                                        <td colspan="8" class="text-center">Đang tải dữ liệu...</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -510,7 +341,7 @@
                             </div>
                         </div>
                     </div>
-                </div> 
+                </div>
             </div>
         </section>
         <!-- List train trip Ends -->

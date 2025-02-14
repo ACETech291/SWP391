@@ -94,8 +94,7 @@ CREATE TABLE Ticket (
   id_ticket           int(11) NOT NULL AUTO_INCREMENT, 
   name_ticket         varchar(255) NOT NULL, 
   booking_time_ticket datetime NOT NULL, 
-  id_trip_start       int(11) NOT NULL, 
-  id_trip_end         int(11) NOT NULL, 
+  id_trip				 INT(11) NOT NULL,
   id_customer         int(11) NOT NULL, 
   id_train_seat       int(11) NOT NULL, 
   PRIMARY KEY (id_ticket), 
@@ -143,8 +142,8 @@ CREATE TABLE Train_seat (
   INDEX (id_train_seat));
 CREATE TABLE Trip (
   id_trip                int(11) NOT NULL AUTO_INCREMENT, 
-  id_station_from_ticket int(11) NOT NULL, 
-  id_station_to_ticket   int(11) NOT NULL, 
+  id_station_start int(11) NOT NULL, 
+  id_station_end   int(11) NOT NULL, 
   time_start_ticket      datetime NOT NULL, 
   time_end_ticket        datetime NOT NULL, 
   id_train               int(11) NOT NULL, 
@@ -169,9 +168,8 @@ ALTER TABLE Purchase_history ADD CONSTRAINT FKPurchase_h933427 FOREIGN KEY (id_c
 ALTER TABLE Purchase_history ADD CONSTRAINT FKPurchase_h731114 FOREIGN KEY (id_payment_method) REFERENCES Payment_method (id_payment_method);
 ALTER TABLE Purchase_detail_history ADD CONSTRAINT FKPurchase_d794887 FOREIGN KEY (id_purchase_history) REFERENCES Purchase_history (id_purchase_history);
 ALTER TABLE Purchase_detail_history ADD CONSTRAINT FKPurchase_d53355 FOREIGN KEY (id_ticket) REFERENCES Ticket (id_ticket);
-ALTER TABLE Trip ADD CONSTRAINT FKTrip894600 FOREIGN KEY (id_station_to_ticket) REFERENCES Station (id_station);
+ALTER TABLE Trip ADD CONSTRAINT FKTrip894600 FOREIGN KEY (id_station_end) REFERENCES Station (id_station);
 ALTER TABLE Trip ADD CONSTRAINT FKTrip442899 FOREIGN KEY (id_train) REFERENCES Train (id_train);
-ALTER TABLE Ticket ADD CONSTRAINT FKTicket559089 FOREIGN KEY (id_trip_start) REFERENCES Trip (id_trip);
 ALTER TABLE Token_forget_password ADD CONSTRAINT FKToken_forg905909 FOREIGN KEY (id_user) REFERENCES Customer (id_customer);
-ALTER TABLE Trip ADD CONSTRAINT FKTrip936788 FOREIGN KEY (id_station_from_ticket) REFERENCES Station (id_station);
-ALTER TABLE Ticket ADD CONSTRAINT FKTicket783330 FOREIGN KEY (id_trip_end) REFERENCES Trip (id_trip);INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Nguyễn Hữu Hiệp','hiepgacute1989@gmail.com','KOfLlsfqVZEOkuIN4BdPektNF9w=','0966755095',3,1); 
+ALTER TABLE Trip ADD CONSTRAINT FKTrip936788 FOREIGN KEY (id_station_start) REFERENCES Station (id_station);
+ALTER TABLE Ticket ADD CONSTRAINT FKTicket783330 FOREIGN KEY (id_trip) REFERENCES Trip (id_trip); 
