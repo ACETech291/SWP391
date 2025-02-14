@@ -301,13 +301,11 @@
                     <p class="mb-0">Danh sách các chuyến đi khả dụng</p>
                 </div>  
 
-
                 <!-- Thanh cuộn ngày -->
                 <div class="container-fluid mb-3">
                     <div id="date-scroll" class="d-flex overflow-auto bg-light border-bottom py-2 date-scroll"></div>
                 </div>
                 <!-- Kết thúc thanh cuộn ngày -->
-
 
                 <div id="cart-main" class="cart-main pb-4">
                     <div class="container-fluid">
@@ -315,7 +313,8 @@
                             <div class="col-12">
                                 <div class="card shadow-sm">
                                     <div class="card-body p-0">
-                                        <div class="table-responsive">
+                                        <!-- Bọc bảng trong div có max-height để tạo thanh cuộn -->
+                                        <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
                                             <table class="table table-hover mb-0">
                                                 <thead class="thead-light">
                                                     <tr>
@@ -336,6 +335,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
+                                        <!-- Kết thúc div table-responsive -->
                                     </div>
                                 </div>
                             </div>
@@ -344,6 +344,7 @@
                 </div>
             </div>
         </section>
+
         <!-- List train trip Ends -->
 
         <!-- Station Starts -->
