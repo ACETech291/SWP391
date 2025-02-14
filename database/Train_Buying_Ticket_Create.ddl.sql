@@ -93,15 +93,9 @@ CREATE TABLE Status (
 CREATE TABLE Ticket (
   id_ticket           int(11) NOT NULL AUTO_INCREMENT, 
   name_ticket         varchar(255) NOT NULL, 
-<<<<<<< HEAD
   booking_time_ticket datetime NOT NULL, 
   id_trip				 INT(11) NOT NULL,
-=======
   price_ticket			 INT(11) NOT NULL,
-  booking_time_ticket datetime, 
-  id_trip_start       int(11) NOT NULL, 
-  id_trip_end         int(11) NOT NULL, 
->>>>>>> 17356df55af2fb39ab50013503ad330e507ec65b
   id_customer         int(11) NOT NULL, 
   id_train_seat       int(11) NOT NULL, 
   PRIMARY KEY (id_ticket), 
@@ -178,10 +172,6 @@ ALTER TABLE Purchase_detail_history ADD CONSTRAINT FKPurchase_d53355 FOREIGN KEY
 ALTER TABLE Trip ADD CONSTRAINT FKTrip894600 FOREIGN KEY (id_station_end) REFERENCES Station (id_station);
 ALTER TABLE Trip ADD CONSTRAINT FKTrip442899 FOREIGN KEY (id_train) REFERENCES Train (id_train);
 ALTER TABLE Token_forget_password ADD CONSTRAINT FKToken_forg905909 FOREIGN KEY (id_user) REFERENCES Customer (id_customer);
-<<<<<<< HEAD
 ALTER TABLE Trip ADD CONSTRAINT FKTrip936788 FOREIGN KEY (id_station_start) REFERENCES Station (id_station);
 ALTER TABLE Ticket ADD CONSTRAINT FKTicket783330 FOREIGN KEY (id_trip) REFERENCES Trip (id_trip); 
-=======
-ALTER TABLE Trip ADD CONSTRAINT FKTrip936788 FOREIGN KEY (id_station_from_ticket) REFERENCES Station (id_station);
-ALTER TABLE Ticket ADD CONSTRAINT FKTicket783330 FOREIGN KEY (id_trip_end) REFERENCES Trip (id_trip);
->>>>>>> 17356df55af2fb39ab50013503ad330e507ec65b
+
