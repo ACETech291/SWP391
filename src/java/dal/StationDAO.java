@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Role;
 import model.Station;
+import model.Trip;
 
 /**
  *
@@ -47,17 +48,25 @@ public class StationDAO {
             return false;
         }
     }
-    
-    public static void main(String[] args) throws FileNotFoundException {
-        StationDAO stationDAO = new StationDAO();
-        Station station = new Station("Ga Hà Nội", "../SWP391/images/stations/HàNội1.jpg", "Điểm đến lí tưởng");
-
-            boolean success = stationDAO.insertStation(station);
-
-            if (success) {
-                System.out.println("Inserted successfully!");
-            } else {
-                System.out.println("Insert failed!");
+    public List<Station> getAllStations(){
+        List<Station> listStations = new ArrayList<Station>();
+        String sql = "select * from station";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                listStations.add(new Station(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4)));
             }
+        } catch (Exception e) {
+        }
+        return listStations;
+    }
+     public static void main(String[] args) {
+        StationDAO sd = new StationDAO();
+        List<Station> lt = sd.getAllStations();
+        System.out.println("LAI YEU LE");
+        for(int i = 0 ; i < lt.size(); ++i){
+            System.out.println(lt.get(i).getName_station() + " " + lt.get(i).getId_station());
+        }
     }
 }
