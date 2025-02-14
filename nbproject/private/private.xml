@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/SWPFinal/SWP391/test/dal/DBConnect.java</file>
             <file>file:/D:/SWPFinal/SWP391/src/java/dal/DatabaseInitializer.java</file>
             <file>file:/D:/SWPFinal/SWP391/src/java/controller/AdvertisingDetail.java</file>
@@ -55,6 +56,12 @@
             <file>file:/D:/SWPFinal/SWP391/src/java/controller/SendEmail.java</file>
             <file>file:/D:/SWPFinal/SWP391/web/libs/js/ScrollDay.js</file>
             <file>file:/D:/SWPFinal/SWP391/web/Views/ListTrain.jsp</file>
+=======
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/LoginGoogle.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/dal/DatabaseInitializer.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/model/GoogleAccount.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/register.java</file>
+>>>>>>> 17356df55af2fb39ab50013503ad330e507ec65b
         </group>
     </open-files>
 </project-private>
