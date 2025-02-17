@@ -4,8 +4,12 @@
  */
 package dal;
 
+import jakarta.servlet.http.HttpServlet;
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,6 +20,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Role;
+import model.SQLUpdate;
 import model.Station;
 import model.Trip;
 
@@ -23,16 +28,31 @@ import model.Trip;
  *
  * @author Nguyen Ba Hien
  */
-public class StationDAO {
+public class StationDAO extends  HttpServlet{
+    public void insertDatabase(SQLUpdate x) {
+        String add = x.toSQLUpdate();
+
+        String filePath = "D:\\SWPFinal\\SWP391\\database\\Train_Buying_Ticket_Insert.ddl.sql";
+
+        try (FileWriter writer = new FileWriter(filePath, true); BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
+
+            bufferedWriter.write(add);
+            bufferedWriter.newLine();
+            System.out.println("Đã ghi thêm dòng vào file thành công!");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     private final Connection connection;
-    
+
     public StationDAO() {
         this.connection = DBConnect.MySQLConnect(); // Gán kết nối vào biến connect
         if (this.connection == null) {
             System.err.println("Database connection failed!");
         }
     }
-    
+
     public boolean insertStation(Station station) {
         String sql = "INSERT INTO Station (name_station, image_station, description_station) VALUES ( ?, ?, ?)";
 
@@ -48,25 +68,43 @@ public class StationDAO {
             return false;
         }
     }
-    public List<Station> getAllStations(){
+
+    public boolean updateStationImage(int stationId, String newImagePath) {
+        String sql = "UPDATE Station SET image_station = ? WHERE id_station = ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, newImagePath);
+            stmt.setInt(2, stationId);
+
+            int rowsUpdated = stmt.executeUpdate();
+            return rowsUpdated > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public List<Station> getAllStations() {
         List<Station> listStations = new ArrayList<Station>();
         String sql = "select * from station";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                listStations.add(new Station(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4)));
+                listStations.add(new Station(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
             }
         } catch (Exception e) {
         }
         return listStations;
     }
-     public static void main(String[] args) {
+
+    public static void main(String[] args) {
         StationDAO sd = new StationDAO();
         List<Station> lt = sd.getAllStations();
         System.out.println("LAI YEU LE");
-        for(int i = 0 ; i < lt.size(); ++i){
-            System.out.println(lt.get(i).getName_station() + " " + lt.get(i).getId_station());
+        for (Station station : lt) {
+           station.setImage_station("../SWP391/images/stations/hanoi.jpg");
+           sd.insertDatabase(station);
         }
     }
 }

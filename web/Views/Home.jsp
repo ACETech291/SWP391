@@ -358,168 +358,37 @@
                     <div class="tab-content">
                         <div id="historical" class="tab-pane fade in active">
                             <div class="row">
-                                <div class="col-lg-4 col-md-6 mb-4">
-                                    <div class="trend-item">
-                                        <div class="trend-image">
-                                            <img src="${pageContext.request.contextPath}/images/station.jpg" alt="image">
-                                        </div>
-                                        <div class="trend-content-main">
-                                            <div class="trend-content">
-                                                <div class="rating-main d-flex align-items-center pb-1">
-                                                    <div class="rating">
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                    </div>
-                                                    <span class="ml-2">99 đánh giá</span>
+                                <c:forEach var="station" items="${listStation}" begin="0" end="5" >
+                                    <div class="col-lg-4 col-md-6 mb-4">
+                                        <div class="trend-item">
+                                            <a href="stationdetail?id=${station.id_station}">
+                                                <div class="trend-image">
+                                                    <img src="${station.image_station}" alt="${station.name_station}">
                                                 </div>
-                                                <h4><a href="stationdetail">Địa điểm</a></h4>
-                                            </div>
-                                            <div class="trend-last-main">
-                                                <p class="mb-0 trend-para">Nội dung</p>
-                                                <div class="trend-last d-flex align-items-center justify-content-between">
+                                            </a>
+                                            <div class="trend-content-main">
+                                                <div class="trend-content">
+                                                    <div class="rating-main d-flex align-items-center pb-1">
+                                                        <div class="rating">
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                        </div>
+                                                        <span class="ml-2">99 đánh giá</span>
+                                                    </div>
+                                                    <h4><a href="stationdetail">${station.name_station}</a></h4>
+                                                </div>
+                                                <div class="trend-last-main">
+                                                    <p class="mb-0 trend-para">${station.description_station}</p>
+                                                    <div class="trend-last d-flex align-items-center justify-content-between">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 mb-4">
-                                    <div class="trend-item">
-                                        <div class="trend-image">
-                                            <img src="${pageContext.request.contextPath}/images/station.jpg" alt="image">
-                                        </div>
-                                        <div class="trend-content-main">
-                                            <div class="trend-content">
-                                                <div class="rating-main d-flex align-items-center pb-1">
-                                                    <div class="rating">
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                    </div>
-                                                    <span class="ml-2">99 đánh giá</span>
-                                                </div>
-                                                <h4><a href="stationdetail">Địa điểm</a></h4>
-                                            </div>
-                                            <div class="trend-last-main">
-                                                <p class="mb-0 trend-para">Nội dung</p>
-                                                <div class="trend-last d-flex align-items-center justify-content-between">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 mb-4">
-                                    <div class="trend-item">
-                                        <div class="trend-image">
-                                            <img src="${pageContext.request.contextPath}/images/station.jpg" alt="image">
-                                        </div>
-                                        <div class="trend-content-main">
-                                            <div class="trend-content">
-                                                <div class="rating-main d-flex align-items-center pb-1">
-                                                    <div class="rating">
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                    </div>
-                                                    <span class="ml-2">99 đánh giá</span>
-                                                </div>
-                                                <h4><a href="stationdetail">Địa điểm</a></h4>
-                                            </div>
-                                            <div class="trend-last-main">
-                                                <p class="mb-0 trend-para">Nội dung</p>
-                                                <div class="trend-last d-flex align-items-center justify-content-between">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 mb-4">
-                                    <div class="trend-item">
-                                        <div class="trend-image">
-                                            <img src="${pageContext.request.contextPath}/images/station.jpg" alt="image">
-                                        </div>
-                                        <div class="trend-content-main">
-                                            <div class="trend-content">
-                                                <div class="rating-main d-flex align-items-center pb-1">
-                                                    <div class="rating">
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                    </div>
-                                                    <span class="ml-2">99 đánh giá</span>
-                                                </div>
-                                                <h4><a href="stationdetail">Địa điểm</a></h4>
-                                            </div>
-                                            <div class="trend-last-main">
-                                                <p class="mb-0 trend-para">Nội dung</p>
-                                                <div class="trend-last d-flex align-items-center justify-content-between">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 mb-4">
-                                    <div class="trend-item">
-                                        <div class="trend-image">
-                                            <img src="${pageContext.request.contextPath}/images/station.jpg" alt="image">
-                                        </div>
-                                        <div class="trend-content-main">
-                                            <div class="trend-content">
-                                                <div class="rating-main d-flex align-items-center pb-1">
-                                                    <div class="rating">
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                    </div>
-                                                    <span class="ml-2">99 đánh giá</span>
-                                                </div>
-                                                <h4><a href="stationdetail">Địa điểm</a></h4>
-                                            </div>
-                                            <div class="trend-last-main">
-                                                <p class="mb-0 trend-para">Nội dung</p>
-                                                <div class="trend-last d-flex align-items-center justify-content-between">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 mb-4">
-                                    <div class="trend-item">
-                                        <div class="trend-image">
-                                            <img src="${pageContext.request.contextPath}/images/station.jpg" alt="image">
-                                        </div>
-                                        <div class="trend-content-main">
-                                            <div class="trend-content">
-                                                <div class="rating-main d-flex align-items-center pb-1">
-                                                    <div class="rating">
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                    </div>
-                                                    <span class="ml-2">99 đánh giá</span>
-                                                </div>
-                                                <h4><a href="stationdetail">Địa điểm</a></h4>
-                                            </div>
-                                            <div class="trend-last-main">
-                                                <p class="mb-0 trend-para">Nội dung</p>
-                                                <div class="trend-last d-flex align-items-center justify-content-between">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </c:forEach>
                             </div>
                         </div>
                     </div>
