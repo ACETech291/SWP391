@@ -104,7 +104,7 @@
                                         <div class="col-lg-6 col-md-6 col-xs-12 padding-left-30">
                                             <div class="dashboard-list margin-top-0">
                                                 <div class="dashboard-list-static">
-                                                    <!-- Change Password -->
+                                                    <!-- Change info -->
                                                     <div class="my-profile">
                                                         <div class="form-group">
                                                             <label>Tên của bạn</label>
@@ -117,7 +117,7 @@
 
                                                         <div class="form-group">
                                                             <label>Địa chỉ Email</label>
-                                                            <input value="${email}" type="email" />
+                                                            <input value="${email}" type="email" readonly/>
                                                         </div>
 
                                                         <div class="form-btn">

@@ -849,4 +849,5 @@ INSERT INTO Trip (id_station_start, id_station_end, time_start_ticket, time_end_
 (5, 4, '2025-02-28 17:00:00', '2025-02-28 17:51:00', 1, NULL),
 (4, 3, '2025-02-28 17:54:00', '2025-02-28 19:33:00', 1, NULL),
 (3, 2, '2025-02-28 19:36:00', '2025-02-28 20:38:00', 1, NULL),
-(2, 1, '2025-02-28 20:40:00', '2025-02-28 21:30:00', 1, NULL); 
+(2, 1, '2025-02-28 20:40:00', '2025-02-28 21:30:00', 1, NULL); INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Nguyễn Hữu Hiệp','hiennbhe181773@fpt.edu.vn','6NWFIsI1V5KNFeeazNcq35qxRUE=','0966755095',3,1); 
+INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Nguyễn Hữu Hiệp','hiepgacute1989@gmail.com','KOfLlsfqVZEOkuIN4BdPektNF9w=','0966755095',3,1); 
