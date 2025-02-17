@@ -115,5 +115,6 @@ public class Customer implements SQLInsert {
         return String.format("INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer)"
                 + " VALUES ('%s','%s','%s','%s',3,%d); ", userName, email, password, phoneNumber, status);
     }
+ 
 
 }

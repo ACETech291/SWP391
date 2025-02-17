@@ -154,7 +154,7 @@ public class ResetPassword extends HttpServlet {
         DAOToken.updateStatus(tokenForgetPassword);
 
         //save user in session and redirect to home
-        request.setAttribute("success", "Bạn đã đổi mật khẩu thành công");
+        request.setAttribute("success", "Bạn đã xác nhận mật khẩu thành công");
         request.getRequestDispatcher("Views/Login.jsp").forward(request, response);
     }
 

@@ -10,6 +10,9 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import dal.StationDAO;
+import java.util.List;
+import model.Station;
 
 /**
  *
@@ -21,8 +24,9 @@ public class home extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-
+        StationDAO stationDAO = new StationDAO();
+        List<Station> listStation = stationDAO.getAllStations();
+        request.setAttribute("listStation", listStation);
         request.getRequestDispatcher("Views/Home.jsp").forward(request, response);
     }
 

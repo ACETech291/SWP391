@@ -10,7 +10,7 @@ import com.mysql.cj.jdbc.Blob;
  *
  * @author Nguyen Ba Hien
  */
-public class Station {
+public class Station implements SQLUpdate{
     private int id_station;
     private String name_station;
     private String image_station;
@@ -70,6 +70,14 @@ public class Station {
     public String toString() {
         return "Station{" + "id_station=" + id_station + ", name_station=" + name_station + ", image_station=" + image_station + ", description_station=" + description_station + '}';
     }
+
+    @Override
+public String toSQLUpdate() {
+    return String.format("UPDATE `station` SET "
+            + "`image_station` = '%s'"
+            + "WHERE `id_station` = %d;",
+             image_station, id_station);
+}
     
     
     
