@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import dal.StationDAO;
+import dal.TripDAO;
 import java.util.List;
 import model.Station;
 
@@ -25,6 +26,7 @@ public class home extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         StationDAO stationDAO = new StationDAO();
+
         List<Station> listStation = stationDAO.getAllStations();
         request.setAttribute("listStation", listStation);
         request.getRequestDispatcher("Views/Home.jsp").forward(request, response);

@@ -82,7 +82,7 @@ public class TripDAO {
         TripDAO td = new TripDAO();
         List<Trip> trips = td.getTripsByDate(new Date(2025-1900, 01, 14));
 
-        System.out.println("Danh sách chuyến đi trong ngày:");
+        System.out.println("Danh sách các chuyến đi trong ngày:");
         for (Trip trip : trips) {
             System.out.println(trip.getName_station_start() + " -> " + trip.getName_station_end());
         }
