@@ -76,6 +76,10 @@
         <servlet-name>GetTripServlet</servlet-name>
         <servlet-class>controller.GetTripServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SortServlet</servlet-name>
+        <servlet-class>controller.SortServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>home</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -151,5 +155,9 @@
     <servlet-mapping>
         <servlet-name>GetTripServlet</servlet-name>
         <url-pattern>/GetTripServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SortServlet</servlet-name>
+        <url-pattern>/SortServlet</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -2,7 +2,6 @@ package dal;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Connection;
@@ -30,10 +29,8 @@ public class DBConnect {
 
         } catch (ClassNotFoundException e) {
             System.err.println("MySQL JDBC Driver not found!");
-            e.printStackTrace();
         } catch (SQLException e) {
             System.err.println("Failed to connect to the database!");
-            e.printStackTrace();
         }
 
         return connection;
@@ -68,15 +65,13 @@ public class DBConnect {
             System.out.println("SQL script executed successfully!");
         } catch (IOException e) {
             System.err.println("Error reading SQL file.");
-            e.printStackTrace();
         } catch (SQLException e) {
             System.err.println("Error executing SQL script.");
-            e.printStackTrace();
         } finally {
             try {
                 connection.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                System.out.println(e);
             }
         }
     }

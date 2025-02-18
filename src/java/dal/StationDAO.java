@@ -28,7 +28,8 @@ import model.Trip;
  *
  * @author Nguyen Ba Hien
  */
-public class StationDAO extends  HttpServlet{
+public class StationDAO extends HttpServlet {
+
     public void insertDatabase(SQLUpdate x) {
         String add = x.toSQLUpdate();
 
@@ -69,6 +70,27 @@ public class StationDAO extends  HttpServlet{
         }
     }
 
+    public Station getStationById(int id) {
+        String sql = "SELECT * FROM Station WHERE id_station = ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return new Station(
+                        rs.getInt("id_station"),
+                        rs.getString("name_station"),
+                        rs.getString("image_station"),
+                        rs.getString("description_station")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public boolean updateStationImage(int stationId, String newImagePath) {
         String sql = "UPDATE Station SET image_station = ? WHERE id_station = ?";
 
@@ -100,11 +122,6 @@ public class StationDAO extends  HttpServlet{
 
     public static void main(String[] args) {
         StationDAO sd = new StationDAO();
-        List<Station> lt = sd.getAllStations();
-        System.out.println("LAI YEU LE");
-        for (Station station : lt) {
-           station.setImage_station("../SWP391/images/stations/hanoi.jpg");
-           sd.insertDatabase(station);
-        }
+        System.out.println(sd.getStationById(1).getName_station());
     }
 }

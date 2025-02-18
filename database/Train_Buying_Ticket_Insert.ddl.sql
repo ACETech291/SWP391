@@ -719,3 +719,4 @@ UPDATE `station` SET `image_station` = '../SWP391/images/stations/binhthuan.jpg'
 UPDATE `station` SET `image_station` = '../SWP391/images/stations/longkhanh.jpg' WHERE `id_station` = 40;
 UPDATE `station` SET `image_station` = '../SWP391/images/stations/bienhoa.jpg' WHERE `id_station` = 39;
 UPDATE `station` SET `image_station` = '../SWP391/images/stations/saigon.jpg' WHERE `id_station` = 38;
+

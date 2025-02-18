@@ -34,7 +34,7 @@
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="home">Trang chủ</a></li>
                                 <li class="breadcrumb-item" aria-current="page"><a href="liststation">Nhà ga</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Ga Hà Nội</li>
+                                <li class="breadcrumb-item active" aria-current="page">Ga ${station.name_station}</li>
                             </ul>
                         </nav>
                     </div>
@@ -55,7 +55,7 @@
                                 <div class="thumbnail-images">
                                     <div class="slider-store">
                                         <div>
-                                            <img src="${pageContext.request.contextPath}/images/station.jpg" alt="1">
+                                            <img src="${station.image_station}" alt="1">
                                         </div>
                                     </div>
                                 </div>
@@ -64,18 +64,18 @@
                             <div class="description" id="description">
                                 <div class="single-full-title border-b mb-2 pb-2">
                                     <div class="single-title">
-                                        <h3 class="mb-1">Ga Hà Nội</h3>
+                                        <h3 class="mb-1">Ga ${station.name_station}</h3>
                                         <div class="rating-main d-sm-flex align-items-center">
-                                            <p class="mb-0 mr-2"><i class="flaticon-location-pin"></i> Hà Nội</p>
+                                            <p class="mb-0 mr-2"><i class="flaticon-location-pin"></i>${station.name_station}</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="description-inner mb-2">
-                                    <h4>Giới thiệu về Ga Hà Nội</h4>
-                                    <p><strong>Ga Hà Nội</strong> là một trong những nhà ga quan trọng nhất của Việt Nam, đóng vai trò trung tâm giao thông đường sắt của cả nước. Được xây dựng từ năm 1902 dưới thời Pháp thuộc với tên gọi ban đầu là <em>Ga Hàng Cỏ</em>, nhà ga này không chỉ là điểm trung chuyển chính của tuyến đường sắt Bắc – Nam mà còn kết nối với nhiều tỉnh thành trong nước và quốc tế.</p>
-                                    <p>Tọa lạc tại <strong>120 Lê Duẩn, quận Hoàn Kiếm, Hà Nội</strong>, Ga Hà Nội sở hữu vị trí thuận lợi, gần trung tâm thành phố, giúp hành khách dễ dàng di chuyển đến các khu vực khác. Kiến trúc của nhà ga mang phong cách cổ điển pha lẫn hiện đại, với phần mặt tiền được cải tạo sau chiến tranh nhưng vẫn giữ lại nhiều nét đặc trưng của công trình nguyên bản.</p>
-                                    <p>Ga Hà Nội không chỉ là một địa điểm giao thông quan trọng mà còn mang ý nghĩa lịch sử và văn hóa sâu sắc. Đây là nơi chứng kiến nhiều sự kiện quan trọng trong lịch sử Việt Nam, đặc biệt trong thời kỳ kháng chiến. Ngày nay, ga tiếp tục đóng vai trò quan trọng trong việc kết nối các vùng miền, phục vụ hàng triệu lượt khách mỗi năm và góp phần phát triển hệ thống giao thông vận tải của đất nước.</p>
-                                    <p>Với sự phát triển của ngành đường sắt, Ga Hà Nội đang được nâng cấp để trở nên hiện đại hơn, đáp ứng nhu cầu đi lại ngày càng tăng của người dân. Tuy nhiên, nơi đây vẫn giữ được giá trị truyền thống, trở thành một biểu tượng quen thuộc của Thủ đô Hà Nội.</p>
+                                    <h4>Giới thiệu về ${station.name_station}</h4>
+                                    <p><strong>${station.name_station}</strong> là một trong những nhà ga quan trọng trong hệ thống đường sắt Việt Nam, đóng vai trò kết nối giao thông giữa các tỉnh thành và khu vực lân cận. Nhà ga phục vụ hành khách và hàng hóa, góp phần thúc đẩy phát triển kinh tế và giao thông vận tải.</p>
+                                    <p>Tọa lạc tại <strong>${station.name_station}</strong>, ga có vị trí thuận lợi giúp hành khách dễ dàng tiếp cận các phương tiện giao thông khác như xe buýt, taxi và phương tiện cá nhân. Kiến trúc nhà ga kết hợp giữa nét truyền thống và hiện đại, mang lại không gian tiện nghi và thoải mái cho hành khách.</p>
+                                    <p>Với lịch sử phát triển lâu đời, <strong>${station.name_station}</strong> không chỉ là một trung tâm vận tải quan trọng mà còn là một phần của nền văn hóa và lịch sử địa phương. Nhà ga đã chứng kiến sự thay đổi và phát triển của ngành đường sắt, từ những đoàn tàu hơi nước đầu tiên đến các chuyến tàu hiện đại ngày nay.</p>
+                                    <p>Hàng năm, nhà ga phục vụ hàng triệu lượt hành khách, góp phần nâng cao chất lượng dịch vụ vận tải và tạo điều kiện thuận lợi cho việc di chuyển giữa các vùng miền. Với sự phát triển của ngành đường sắt, ${station.name_station} không ngừng được nâng cấp, hiện đại hóa để đáp ứng nhu cầu ngày càng cao của hành khách.</p>
                                 </div>
                             </div>
 
