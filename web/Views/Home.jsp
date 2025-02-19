@@ -378,7 +378,7 @@
                                                         </div>
                                                         <span class="ml-2">99 đánh giá</span>
                                                     </div>
-                                                    <h4><a href="stationdetail">${station.name_station}</a></h4>
+                                                    <h4><a href="stationdetail?id=${station.id_station}">${station.name_station}</a></h4>
                                                 </div>
                                                 <div class="trend-last-main">
                                                     <p class="mb-0 trend-para">${station.description_station}</p>
