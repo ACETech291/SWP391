@@ -217,7 +217,7 @@
                 var b = a.contentDocument || a.contentWindow.document;
                 if (b) {
                     var d = b.createElement('script');
-                    d.innerHTML = "window.__CF$cv$params={r:'90d1e261284384ab',t:'MTczODc0Nzg1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='../../cdn-cgi/challenge-platform/h/g/scripts/jsd/8a57887573f2/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";
+                    d.innerHTML = "window.__CF$cv$params={r:'90d1e261284384ab',t:'MTczODc0Nzg1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='${pageContext.request.contextPath}/libs/cdn-cgi/challenge-platform/h/g/scripts/jsd/8a57887573f2/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";
                     b.getElementsByTagName('head')[0].appendChild(d)
                 }
             }

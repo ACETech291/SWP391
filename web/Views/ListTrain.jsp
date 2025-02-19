@@ -10,7 +10,7 @@
         <link href="${pageContext.request.contextPath}/libs/css/style.css" rel="stylesheet" type="text/css">
         <link href="${pageContext.request.contextPath}/libs/css/plugin.css" rel="stylesheet" type="text/css">
         <link href="${pageContext.request.contextPath}/libs/fonts/flaticon.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/font-awesome/5.11.2/css/all.min.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/fonts/line-icons.css" type="text/css">
     </head>
