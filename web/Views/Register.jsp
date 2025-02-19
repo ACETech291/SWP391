@@ -87,7 +87,7 @@
                                                     <div class="form-group">
                                                         <h8 class="white">
                                                             <label> Bằng cách nhấp vào nút 'Đăng ký', bạn xác nhận rằng bạn chấp nhận</label>  
-                                                            <a href="#" data-toggle="modal" data-target="#rule2" class="white">
+                                                            <a href="#" data-toggle="modal" data-target="#rule2" class="btn btn-block white">
                                                                 <label>
                                                                     <b class="white">Điều khoản sử dụng và Chính sách bảo mật.</b>
                                                                 </label>
@@ -111,7 +111,7 @@
                     <div class="footer text-center mt-8">
                         <div class="copyright-content">
                             <p class="mb-0 white">
-                                Bạn đã có tài khoản
+                                Bạn đã có tài khoản?
                                 <a href="login"><label><b class="white">Đăng nhập</b></label></a>
                             </p>
                         </div>

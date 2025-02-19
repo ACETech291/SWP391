@@ -92,7 +92,7 @@
                     <div class="form-navtab text-center">
                         <ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" href="#tour-1"><i class="fa fa-train"></i> Một chiều</a></li>
-                            <li><a data-toggle="tab" href="#tour-2"><i class="fa fa-train"></i> Khứ hồi</a></li>
+                            
                         </ul>
                     </div>    
 

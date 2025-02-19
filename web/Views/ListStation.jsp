@@ -62,10 +62,17 @@
                                                 <option value="3">Z->A</option>
                                             </select>
                                         </form> 
+                                        <div class="search-container" style="float: inline-end; margin-right: 30px">
+                                <form style="margin-left: 30px" action="search" method="post">
+                                    <input oninput="SearchByName(this)" value = "${nameSearch}" name="NameStation" style="width: 500px;height: 40px " type="text" placeholder="Tìm kiếm theo tên ga">
+                                    
+                                </form>
+                            </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            
+                            <div id="abc" class="row ">
                                 <c:forEach var="station" items="${listStation}" >
                                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                                         <div class="blog-full">
@@ -113,37 +120,51 @@
     <script src="${pageContext.request.contextPath}/libs/js/custom-date.js"></script>
     <script>
 
-        (function () {
-            function c() {
-                var b = a.contentDocument || a.contentWindow.document;
-                if (b) {
-                    var d = b.createElement('script');
-                    d.innerHTML = "window.__CF$cv$params={r:'90d1e217db2620fc',t:'MTczODc0Nzg0Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='${pageContext.request.contextPath}/libs/cdn-cgi/challenge-platform/h/g/scripts/jsd/8a57887573f2/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";
-                    b.getElementsByTagName('head')[0].appendChild(d)
-                }
-            }
-            if (document.body) {
-                var a = document.createElement('iframe');
-                a.height = 1;
-                a.width = 1;
-                a.style.position = 'absolute';
-                a.style.top = 0;
-                a.style.left = 0;
-                a.style.border = 'none';
-                a.style.visibility = 'hidden';
-                document.body.appendChild(a);
-                if ('loading' !== document.readyState)
-                    c();
-                else if (window.addEventListener)
-                    document.addEventListener('DOMContentLoaded', c);
-                else {
-                    var e = document.onreadystatechange || function () {};
-                    document.onreadystatechange = function (b) {
-                        e(b);
-                        'loading' !== document.readyState && (document.onreadystatechange = e, c())
-                    }
-                }
-            }
-        })();
+                                                (function () {
+                                                    function c() {
+                                                        var b = a.contentDocument || a.contentWindow.document;
+                                                        if (b) {
+                                                            var d = b.createElement('script');
+                                                            d.innerHTML = "window.__CF$cv$params={r:'90d1e217db2620fc',t:'MTczODc0Nzg0Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='${pageContext.request.contextPath}/libs/cdn-cgi/challenge-platform/h/g/scripts/jsd/8a57887573f2/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";
+                                                            b.getElementsByTagName('head')[0].appendChild(d)
+                                                        }
+                                                    }
+                                                    if (document.body) {
+                                                        var a = document.createElement('iframe');
+                                                        a.height = 1;
+                                                        a.width = 1;
+                                                        a.style.position = 'absolute';
+                                                        a.style.top = 0;
+                                                        a.style.left = 0;
+                                                        a.style.border = 'none';
+                                                        a.style.visibility = 'hidden';
+                                                        document.body.appendChild(a);
+                                                        if ('loading' !== document.readyState)
+                                                            c();
+                                                        else if (window.addEventListener)
+                                                            document.addEventListener('DOMContentLoaded', c);
+                                                        else {
+                                                            var e = document.onreadystatechange || function () {};
+                                                            document.onreadystatechange = function (b) {
+                                                                e(b);
+                                                                'loading' !== document.readyState && (document.onreadystatechange = e, c())
+                                                            }
+                                                        }
+                                                    }
+                                                })();
+                                                function SearchByName(param) {
+                                                    var txtSearch = param.value;
+                                                    $.ajax({
+                                                        url: "/SWP391/SearchByAjax",
+                                                        type: "post",
+                                                        data: {NameStation: txtSearch},
+                                                        success: function (data) {
+                                                            document.getElementById("abc").innerHTML = data;
+                                                        },
+                                                        error: function (xhr) {
+                                                            alert("An error occurred while searching. Please try again.");
+                                                        }
+                                                    });
+                                                }
     </script>
 </html>

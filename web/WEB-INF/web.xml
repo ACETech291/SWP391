@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
-
     <servlet>
         <servlet-name>home</servlet-name>
         <servlet-class>controller.home</servlet-class>
@@ -85,6 +84,10 @@
         <servlet-name>SortServlet</servlet-name>
         <servlet-class>controller.SortServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchByAjax</servlet-name>
+        <servlet-class>controller.SearchByAjax</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>home</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -168,5 +171,9 @@
     <servlet-mapping>
         <servlet-name>SortServlet</servlet-name>
         <url-pattern>/SortServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchByAjax</servlet-name>
+        <url-pattern>/SearchByAjax</url-pattern>
     </servlet-mapping>
 </web-app>
