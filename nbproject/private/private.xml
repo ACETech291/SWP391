@@ -8,6 +8,8 @@
             <file>file:/D:/SWPFinal/SWP391/web/Views/Profile.jsp</file>
             <file>file:/D:/SWPFinal/SWP391/src/java/dal/TripDAO.java</file>
             <file>file:/D:/SWPFinal/SWP391/src/java/model/Trip.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/dal/DatabaseInitializer.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/model/Customer.java</file>
         </group>
     </open-files>
 </project-private>

@@ -55,16 +55,18 @@
                                 <div class="click-menu d-flex align-items-center justify-content-between">
                                     <div class="change-list f-active mr-2"><a href="#"><i class="fa fa-bars"></i></a></div>
                                     <div class="sortby d-flex align-items-center justify-content-between ml-2">
-                                        <select class="niceSelect">
-                                            <option value="1">Sắp xếp theo</option>
-                                            <option value="2">A->Z</option>
-                                            <option value="3">Z->A</option>
-                                        </select> 
+                                        <form action="SortServlet" method="GET">
+                                            <select name="order" class="niceSelect" onchange="this.form.submit()">
+                                                <option value="1">Sắp xếp theo</option>
+                                                <option value="2">A->Z</option>
+                                                <option value="3">Z->A</option>
+                                            </select>
+                                        </form> 
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <c:forEach var="station" items="${listStation}">
+                                <c:forEach var="station" items="${listStation}" >
                                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                                         <div class="blog-full">
                                             <div class="blog-image">
@@ -110,6 +112,7 @@
     <script src="${pageContext.request.contextPath}/libs/js/custom-nav.js"></script>
     <script src="${pageContext.request.contextPath}/libs/js/custom-date.js"></script>
     <script>
+
         (function () {
             function c() {
                 var b = a.contentDocument || a.contentWindow.document;

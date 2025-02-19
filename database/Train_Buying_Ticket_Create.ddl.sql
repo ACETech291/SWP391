@@ -95,10 +95,22 @@ CREATE TABLE Station (
   id_station          int(11) NOT NULL AUTO_INCREMENT, 
   name_station        varchar(255) NOT NULL, 
   image_station       blob, 
-  description_station varchar(255), 
-  time_train_in_station 	 TIME,	
+  description_station varchar(255), 	
   PRIMARY KEY (id_station));
   
+CREATE TABLE Time_of_station  (
+	id_time_of_station INT(11) NOT NULL auto_increment,
+	time_train_in_station TIME,
+	PRIMARY KEY (id_time_of_station)
+);
+
+CREATE TABLE Time_station(
+	id_time_station INT(11) NOT NULL AUTO_INCREMENT,
+	id_station 		INT(11),
+	id_time_of_station INT(11),
+	PRIMARY KEY (id_time_station)
+);
+
 CREATE TABLE Status (
   id_status   int(11) NOT NULL AUTO_INCREMENT, 
   name_status varchar(255) NOT NULL, 
@@ -219,3 +231,6 @@ ALTER TABLE Token_forget_password ADD CONSTRAINT FKToken_forg905909 FOREIGN KEY 
 
 ALTER TABLE Date_trip ADD CONSTRAINT FKdate_trip45678 FOREIGN KEY (id_trip) REFERENCES Trip (id_trip);
 ALTER TABLE Date_trip ADD CONSTRAINT FKdate_trip45890 FOREIGN KEY (id_date_of_trip) REFERENCES Date_of_trip (id_date_of_trip);
+
+ALTER TABLE Time_station ADD CONSTRAINT FKtime_station56744 FOREIGN KEY (id_station) REFERENCES station (id_station);
+ALTER TABLE Time_station ADD CONSTRAINT FKtime_station56774 FOREIGN KEY (id_time_of_station) REFERENCES time_of_station (id_time_of_station);
