@@ -49,7 +49,7 @@
                                     <div class="dashboard-nav-inner">
                                         <ul>
                                             <li>
-                                                <a href="#"><i class="sl sl-icon-settings"></i> Dashboard</a>
+                                                <a href="dashboard"><i class="sl sl-icon-settings"></i> Bảng điều khiển</a>
                                             </li>
                                             <li class="active">
                                                 <a href="Profile"><i class="sl sl-icon-user"></i> Thông tin cá nhân</a>
