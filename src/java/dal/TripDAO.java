@@ -4,12 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import model.Trip;
 
 public class TripDAO {
+
     private Connection connect;
 
     public TripDAO() {
@@ -25,8 +28,7 @@ public class TripDAO {
     public List<Trip> getAllTrips() {
         List<Trip> listTrips = new ArrayList<>();
         String sql = "SELECT * FROM trip";
-        try (PreparedStatement ps = connect.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
+        try (PreparedStatement ps = connect.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 listTrips.add(new Trip(
                         rs.getInt(1), rs.getInt(2), rs.getInt(3),
@@ -65,7 +67,7 @@ public class TripDAO {
 
             while (rs.next()) {
                 trips.add(new Trip(rs.getString("name_train"),
-                        rs.getTimestamp("time_start_ticket"),  
+                        rs.getTimestamp("time_start_ticket"),
                         rs.getTimestamp("time_end_ticket"),
                         rs.getString("start_station"),
                         rs.getString("end_station"),
@@ -80,7 +82,11 @@ public class TripDAO {
 
     public static void main(String[] args) {
         TripDAO td = new TripDAO();
-        List<Trip> trips = td.getTripsByDate(new Date(2025-1900, 01, 14));
+        List<Trip> trips = td.getTripsByDate(
+                Date.from(LocalDate.of(2025, 1, 14)
+                        .atStartOfDay(ZoneId.systemDefault())
+                        .toInstant())
+        );
 
         System.out.println("Danh sách các chuyến đi trong ngày:");
         for (Trip trip : trips) {

@@ -705,3 +705,4 @@ UPDATE `station` SET `image_station` = '../SWP391/images/stations/longkhanh.jpg'
 UPDATE `station` SET `image_station` = '../SWP391/images/stations/bienhoa.jpg' WHERE `id_station` = 39;
 UPDATE `station` SET `image_station` = '../SWP391/images/stations/saigon.jpg' WHERE `id_station` = 38;
 
+INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Nguyễn Hữu Hiệp','hiepgacute1989@gmail.com','KOfLlsfqVZEOkuIN4BdPektNF9w=','0966755095',3,1); 
