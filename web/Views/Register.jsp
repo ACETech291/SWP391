@@ -28,8 +28,8 @@
                 <div class="container">
                     <div class="logo-tab mb-10 text-center">
                         <a href="home"><jsp:include page="includes/logo.jsp"></jsp:include></a>
-                    </div>
-                    <div>
+                        </div>
+                        <div>
                         <c:if test="${Success ne null}">
                             <h3 style="color: green; font-weight: bold; text-align: center">${Success}</h3>
                         </c:if>

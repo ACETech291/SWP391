@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -34,7 +35,7 @@
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="home">Trang chủ</a></li>
                                 <li class="breadcrumb-item" aria-current="page"><a href="listtrain">Tàu</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Tên tàu</li>
+                                <li class="breadcrumb-item active" aria-current="page">Tàu ${train.name_train}</li>
                             </ul>
                         </nav>
                     </div>
@@ -55,21 +56,7 @@
                                 <div class="single-full-title border-b mb-2 pb-2">
                                     <div class="single-title">
                                         <div class="d-flex align-items-center justify-content-between border-b pb-2 mb-2">
-                                            <h3 class="mb-0">Tên tàu</h3>
-                                            <div class="text-right d-flex">
-                                                <h4 class="font-weight-bold mb-0 mr-1"> 1.490.000đ</h4>
-                                                <span>/người</span>
-                                            </div>
-                                        </div>
-                                        <div class="rating-main d-sm-flex align-items-center">
-                                            <div class="rating mr-2">
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                            </div>
-                                            <span>(9,999 đánh giá)</span>
+                                            <h3 class="mb-0">Tàu ${train.name_train}</h3>
                                         </div>
                                     </div>
                                 </div>
@@ -77,132 +64,32 @@
                                 <div class="single-slider">
                                     <div class="slider-1 slider-store">
                                         <div class="detail-slider-item">
-                                            <img src="${pageContext.request.contextPath}/libs/images/trains/6.jpg" alt="image">
+                                            <c:choose>
+                                                <c:when test="${not empty train.image_train}">
+                                                    <img src="${pageContext.request.contextPath}/${train.image_train}" alt="image">
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <img src="${pageContext.request.contextPath}/libs/images/trains/6.jpg" alt="image">
+                                                </c:otherwise>
+                                            </c:choose>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="description-inner mb-2 mt-1">
-                                    <p>Nội dung</p>
+                                    <h1>Tàu Cao Tốc <strong>${train.name_train}</strong>: Cột Mốc Mới</h1>
+                                    <p>
+                                        Tàu cao tốc <strong>${train.name_train}</strong> của Nhật Bản, phát triển bởi Đường sắt Đông Nhật Bản, đánh dấu bước tiến vượt bậc trong công nghệ đường sắt. Với mũi tàu dạng viên đạn dài 22m và 10 toa, <strong>${train.name_train}</strong> giúp giảm sức cản không khí và mang đến trải nghiệm hành khách đẳng cấp.
+                                    </p>               
+                                    <p>
+                                        Trong thử nghiệm, tàu đạt tốc độ tối đa 382 km/h, gần đạt mức 400 km/h nhờ hệ thống phanh hiện đại.
+                                    </p>
+                                    <p>
+                                        Dự kiến sau 3 năm thử nghiệm, <strong>${train.name_train}</strong> sẽ đi vào hoạt động vào năm 2030, khẳng định vị thế của Nhật Bản trên thị trường đường sắt tốc độ cao.
+                                    </p>
+                                    <p>
+                                        <strong>${train.name_train}</strong> không chỉ là minh chứng cho công nghệ hiện đại mà còn thể hiện cam kết cải thiện trải nghiệm hành khách và bảo vệ môi trường.
+                                    </p>
                                 </div>
-                            </div>
-
-                            <!-- blog comment list -->
-                            <div class="single-comments single-box mb-4" id="single-comments">
-                                <h5 class="border-b pb-2 mb-2">Đánh giá</h5>
-                                <div class="comment-box">
-                                    <div class="comment-image">
-                                        <img src="${pageContext.request.contextPath}/libs/images/reviewer/1.jpg" alt="image">
-                                    </div>
-                                    <div class="comment-content">
-                                        <h5 class="mb-1">Mr.A</h5>
-                                        <p class="comment-date">February 13, 2025 at 00:00 am</p>
-                                        <div class="comment-rate">
-                                            <div class="rating mar-right-15">
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                            </div>
-                                        </div>    
-
-                                        <p class="comment">
-                                            Giá vé trên tàu này khá hợp lý so với tiện ích và dịch vụ đi kèm. 
-                                            Nếu so với các phương tiện khác, mức giá này phù hợp với chất lượng chỗ ngồi, không gian thoải mái và thời gian di chuyển. 
-                                        </p>
-                                        <div class="comment-like">
-                                            <div class="like-title">
-                                                <a href="#" class="nir-btn">Phản hồi</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="comment-box">
-                                    <div class="comment-image">
-                                        <img src="${pageContext.request.contextPath}/libs/images/reviewer/1.jpg" alt="image">
-                                    </div>
-                                    <div class="comment-content">
-                                        <h5 class="mb-1">Mr.A</h5>
-                                        <p class="comment-date">February 13, 2025 at 00:00 am</p>
-                                        <div class="comment-rate">
-                                            <div class="rating mar-right-15">
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                            </div>
-                                        </div>    
-
-                                        <p class="comment">
-                                            Giá vé trên tàu này khá hợp lý so với tiện ích và dịch vụ đi kèm. 
-                                            Nếu so với các phương tiện khác, mức giá này phù hợp với chất lượng chỗ ngồi, không gian thoải mái và thời gian di chuyển. 
-                                        </p>
-                                        <div class="comment-like">
-                                            <div class="like-title">
-                                                <a href="#" class="nir-btn">Phản hồi</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="comment-box">
-                                    <div class="comment-image">
-                                        <img src="${pageContext.request.contextPath}/libs/images/reviewer/1.jpg" alt="image">
-                                    </div>
-                                    <div class="comment-content">
-                                        <h5 class="mb-1">Mr.A</h5>
-                                        <p class="comment-date">February 13, 2025 at 00:00 am</p>
-                                        <div class="comment-rate">
-                                            <div class="rating mar-right-15">
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                            </div>
-                                        </div>    
-
-                                        <p class="comment">
-                                            Giá vé trên tàu này khá hợp lý so với tiện ích và dịch vụ đi kèm. 
-                                            Nếu so với các phương tiện khác, mức giá này phù hợp với chất lượng chỗ ngồi, không gian thoải mái và thời gian di chuyển. 
-                                        </p>
-                                        <div class="comment-like">
-                                            <div class="like-title">
-                                                <a href="#" class="nir-btn">Phản hồi</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- blog review -->
-                            <div class="single-add-review" id="single-add-review">
-                                <h4>Đánh giá của bạn</h4>
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="comment-rate">
-                                                <div class="rating mar-right-15">
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <textarea placeholder="Để lại bình luận của bạn tại đây (tối thiểu 250 kí tự)"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-btn">
-                                                <a href="#" class="nir-btn">Gửi</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
                             </div>
                         </div>
                     </div>
@@ -211,86 +98,30 @@
                         <div class="sidebar-sticky">
                             <div class="list-sidebar">
                                 <div class="sidebar-item">
-                                    <h3>Các đoàn tàu phổ biến</h3>
+                                    <h3>Các đoàn tàu cùng hãng</h3>
                                     <div class="about-slider">
-                                        <div class="trend-item mb-0">
-                                            <div class="trend-image">
-                                                <img src="${pageContext.request.contextPath}/libs/images/trains/5.jpg" alt="image">
-                                                <div class="trend-tags">
-                                                    <a href="#"><i class="flaticon-like"></i></a>
+                                        <c:forEach var="train1" items="${trains}">
+                                            <div class="trend-item mb-0">
+                                                <div class="trend-image">
+                                                    <c:choose>
+                                                        <c:when test="${not empty train1.image_train}">
+                                                            <img src="${pageContext.request.contextPath}/${train1.image_train}" alt="image">
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <img src="${pageContext.request.contextPath}/libs/images/trains/6.jpg" alt="image">
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </div>
+                                                <div class="trend-content-main  shadow-none">
+                                                    <div class="trend-last-main">
+                                                    </div>
+                                                    <div class="trend-content pb-0">
+                                                        <h4 class="bordernone pb-0 mb-1"><a href="#">Tàu ${train1.name_train}</a></h4>
+                                                        <a href="traindetail?id=${train1.id_train}">Xem chi tiết <i class="fa fa-angle-double-right"></i></a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="trend-content-main  shadow-none">
-                                                <div class="trend-last-main">
-                                                </div>
-                                                <div class="trend-content pb-0">
-                                                    <div class="rating">
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                    </div>
-                                                    <h4 class="bordernone pb-0 mb-1"><a href="#">Mã tàu</a></h4>
-                                                    <div class="trend-daily d-flex align-items-center mb-1 border-b pb-1">
-                                                        <strong>1.190.000đ</strong>
-                                                    </div>
-                                                    <a href="traindetail">Xem chi tiết <i class="fa fa-angle-double-right"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="trend-item mb-0">
-                                            <div class="trend-image">
-                                                <img src="${pageContext.request.contextPath}/libs/images/trains/6.jpg" alt="image">
-                                                <div class="trend-tags">
-                                                    <a href="#"><i class="flaticon-like"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="trend-content-main  shadow-none">
-                                                <div class="trend-last-main">
-                                                </div>
-                                                <div class="trend-content pb-0">
-                                                    <div class="rating">
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                    </div>
-                                                    <h4 class="bordernone pb-0 mb-1"><a href="#">Mã tàu</a></h4>
-                                                    <div class="trend-daily d-flex align-items-center mb-1 border-b pb-1">
-                                                        <strong>1.490.000đ</strong>
-                                                    </div>
-                                                    <a href="traindetail">Xem chi tiết <i class="fa fa-angle-double-right"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="trend-item mb-0">
-                                            <div class="trend-image">
-                                                <img src="${pageContext.request.contextPath}/libs/images/trains/7.jpg" alt="image">
-                                                <div class="trend-tags">
-                                                    <a href="#"><i class="flaticon-like"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="trend-content-main  shadow-none">
-                                                <div class="trend-last-main">
-                                                </div>
-                                                <div class="trend-content pb-0">
-                                                    <div class="rating">
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                    </div>
-                                                    <h4 class="bordernone pb-0 mb-1"><a href="#">Mã tàu</a></h4>
-                                                    <div class="trend-daily d-flex align-items-center mb-1 border-b pb-1">
-                                                        <strong>1.590.000đ</strong>
-                                                    </div>
-                                                    <a href="traindetail">Xem chi tiết <i class="fa fa-angle-double-right"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        </c:forEach>
                                     </div>
                                 </div>
                             </div>

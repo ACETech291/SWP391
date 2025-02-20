@@ -9,6 +9,7 @@ package model;
  * @author MinhHieuPham
  */
 public class Train {
+
     private int id_train;
     private String name_train;
     private String image_train;
@@ -72,7 +73,10 @@ public class Train {
     public void setId_status(int id_status) {
         this.id_status = id_status;
     }
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return "Train{" + "id_train=" + id_train + ", name_train=" + name_train + ", image_train=" + image_train + ", description_train=" + description_train + ", id_train_brand=" + id_train_brand + ", id_status=" + id_status + '}';
+    }
+
 }

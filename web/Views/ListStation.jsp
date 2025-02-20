@@ -66,24 +66,32 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <c:forEach var="station" items="${listStation}" >
-                                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                                        <div class="blog-full">
-                                            <div class="blog-image">
-                                                <a href="stationdetail?id=${station.id_station}">
-                                                    <div class="trend-image">
-                                                        <img src="${station.image_station}" alt="${station.name_station}">
+                                <c:choose>
+                                    <c:when test="${not empty listStation}">
+                                        <c:forEach var="station" items="${listStation}">
+                                            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                                                <div class="blog-full">
+                                                    <div class="blog-image">
+                                                        <a href="stationdetail?id=${station.id_station}">
+                                                            <div class="trend-image">
+                                                                <img src="${station.image_station}" alt="${station.name_station}">
+                                                            </div>
+                                                        </a>
+                                                    </div> 
+                                                    <div class="blog-content p-3">
+                                                        <h4><a href="stationdetail?id=${station.id_station}">${station.name_station}</a></h4>
+                                                        <p class="mb-2 pink"><i class="fa fa-map-marker mr-1"></i> ${station.name_station}, Việt Nam</p>
+                                                        <p class="mb-2 border-t pt-2">${station.description_station}</p> 
                                                     </div>
-                                                </a>
-                                            </div> 
-                                            <div class="blog-content p-3">
-                                                <h4><a href="stationdetail?id=${station.id_station}">${station.name_station}</a></h4>
-                                                <p class="mb-2 pink"><i class="fa fa-map-marker mr-1"></i> ${station.name_station}, Việt Nam</p>
-                                                <p class="mb-2 border-t pt-2">${station.description_station}</p> 
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </c:forEach>
+                                        </c:forEach>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <p class="text-center text-danger">Dữ liệu hiện không khả dụng. Vui lòng thử lại sau.</p>
+                                    </c:otherwise>
+                                </c:choose>
+
                             </div>
                         </div>
                     </div>
@@ -113,37 +121,37 @@
     <script src="${pageContext.request.contextPath}/libs/js/custom-date.js"></script>
     <script>
 
-        (function () {
-            function c() {
-                var b = a.contentDocument || a.contentWindow.document;
-                if (b) {
-                    var d = b.createElement('script');
-                    d.innerHTML = "window.__CF$cv$params={r:'90d1e217db2620fc',t:'MTczODc0Nzg0Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='${pageContext.request.contextPath}/libs/cdn-cgi/challenge-platform/h/g/scripts/jsd/8a57887573f2/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";
-                    b.getElementsByTagName('head')[0].appendChild(d)
-                }
-            }
-            if (document.body) {
-                var a = document.createElement('iframe');
-                a.height = 1;
-                a.width = 1;
-                a.style.position = 'absolute';
-                a.style.top = 0;
-                a.style.left = 0;
-                a.style.border = 'none';
-                a.style.visibility = 'hidden';
-                document.body.appendChild(a);
-                if ('loading' !== document.readyState)
-                    c();
-                else if (window.addEventListener)
-                    document.addEventListener('DOMContentLoaded', c);
-                else {
-                    var e = document.onreadystatechange || function () {};
-                    document.onreadystatechange = function (b) {
-                        e(b);
-                        'loading' !== document.readyState && (document.onreadystatechange = e, c())
-                    }
-                }
-            }
-        })();
+                                                (function () {
+                                                    function c() {
+                                                        var b = a.contentDocument || a.contentWindow.document;
+                                                        if (b) {
+                                                            var d = b.createElement('script');
+                                                            d.innerHTML = "window.__CF$cv$params={r:'90d1e217db2620fc',t:'MTczODc0Nzg0Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='${pageContext.request.contextPath}/libs/cdn-cgi/challenge-platform/h/g/scripts/jsd/8a57887573f2/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";
+                                                            b.getElementsByTagName('head')[0].appendChild(d)
+                                                        }
+                                                    }
+                                                    if (document.body) {
+                                                        var a = document.createElement('iframe');
+                                                        a.height = 1;
+                                                        a.width = 1;
+                                                        a.style.position = 'absolute';
+                                                        a.style.top = 0;
+                                                        a.style.left = 0;
+                                                        a.style.border = 'none';
+                                                        a.style.visibility = 'hidden';
+                                                        document.body.appendChild(a);
+                                                        if ('loading' !== document.readyState)
+                                                            c();
+                                                        else if (window.addEventListener)
+                                                            document.addEventListener('DOMContentLoaded', c);
+                                                        else {
+                                                            var e = document.onreadystatechange || function () {};
+                                                            document.onreadystatechange = function (b) {
+                                                                e(b);
+                                                                'loading' !== document.readyState && (document.onreadystatechange = e, c())
+                                                            }
+                                                        }
+                                                    }
+                                                })();
     </script>
 </html>

@@ -92,7 +92,6 @@
                     <div class="form-navtab text-center">
                         <ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" href="#tour-1"><i class="fa fa-train"></i> Một chiều</a></li>
-                            <li><a data-toggle="tab" href="#tour-2"><i class="fa fa-train"></i> Khứ hồi</a></li>
                         </ul>
                     </div>    
 
@@ -154,72 +153,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="tour-2" class="tab-pane">
-                            <div class="row d-flex align-items-center justify-content-between">
-                                <div class="col-lg">
-                                    <div class="form-group mb-0">
-                                        <label>Điểm đi</label>
-                                        <div class="input-box">
-                                            <i class="flaticon-placeholder"></i>
-                                            <select class="niceSelect">
-                                                <option value="1">Hà Nội</option>
-                                                <option value="2">Đà Nẵng</option>
-                                                <option value="3">TP.HCM</option>
-                                            </select>
-                                        </div>                            
-                                    </div>
-                                </div>
-                                <div class="col-lg">
-                                    <div class="form-group mb-0">
-                                        <label>Điểm đến</label>
-                                        <div class="input-box">
-                                            <i class="flaticon-placeholder"></i>
-                                            <select class="niceSelect">
-                                                <option value="1">Hà Nội</option>
-                                                <option value="2">Đà Nẵng</option>
-                                                <option value="3">TP.HCM</option>
-                                            </select>
-                                        </div>                            
-                                    </div>
-                                </div>
-                                <div class="col-lg">
-                                    <div class="form-group mb-0">
-                                        <label>Ngày đi</label>
-                                        <div class="input-box">
-                                            <i class="flaticon-calendar"></i>
-                                            <input id="date-range1" type="text" placeholder="yyyy-mm-dd">
-                                        </div>                            
-                                    </div>
-                                </div>
-                                <div class="col-lg">
-                                    <div class="form-group mb-0">
-                                        <label>Ngày về</label>
-                                        <div class="input-box">
-                                            <i class="flaticon-calendar"></i>
-                                            <input id="date-range2" type="text" placeholder="yyyy-mm-dd">
-                                        </div>                            
-                                    </div>
-                                </div>
-                                <div class="col-lg">
-                                    <div class="form-group mb-0">
-                                        <label>Hãng tàu</label>
-                                        <div class="input-box">
-                                            <i class="flaticon-add-user"></i>
-                                            <select class="niceSelect">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                            </select>
-                                        </div>                             
-                                    </div>
-                                </div>
-                                <div class="col-lg">
-                                    <div class="form-group mb-0 mt-3">
-                                        <a href="#" class="nir-btn w-100"><i class="fa fa-search mr-2"></i> Tìm kiếm</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -236,58 +169,35 @@
 
 
                 <div class="row team-slider">
-                    <div class="col-lg-4 slider-item">
-                        <div class="trend-item">
-                            <div class="trend-image">
-                                <img src="${pageContext.request.contextPath}/libs/images/trains/6.jpg" alt="image">
-                            </div>
-                            <div class="trend-content-main">
-                                <div class="trend-content">
-                                    <h6 class="font-weight-normal pink"><i class="fa fa-map-marker-alt"></i> Hãng A</h6>
-                                    <h4><a href="traindetail">Tên tàu</a></h4>
+                    <c:choose>
+                        <c:when test="${not empty trains}">
+                            <c:forEach var="train" items="${trains}">
+                                <div class="col-lg-4 slider-item">
+                                    <div class="trend-item">
+                                        <div class="trend-image">
+                                            <c:choose>
+                                                <c:when test="${not empty train.image_train}">
+                                                    <img src="${pageContext.request.contextPath}/${train.image_train}" alt="image">
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <img src="${pageContext.request.contextPath}/libs/images/trains/6.jpg" alt="image">
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </div>
+                                        <div class="trend-content-main">
+                                            <div class="trend-content">
+                                                <h6 class="font-weight-normal pink"><i class="fa fa-map-marker-alt"></i> Hãng tàu ${train.id_train_brand}</h6>
+                                                <h4><a href="traindetail?id=${train.id_train}">Tàu ${train.name_train}</a></h4>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 slider-item">
-                        <div class="trend-item">
-                            <div class="trend-image">
-                                <img src="${pageContext.request.contextPath}/libs/images/trains/6.jpg" alt="image">
-                            </div>
-                            <div class="trend-content-main">
-                                <div class="trend-content">
-                                    <h6 class="font-weight-normal pink"><i class="fa fa-map-marker-alt"></i> Hãng A</h6>
-                                    <h4><a href="traindetail">Tên tàu</a></h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 slider-item">
-                        <div class="trend-item">
-                            <div class="trend-image">
-                                <img src="${pageContext.request.contextPath}/libs/images/trains/6.jpg" alt="image">
-                            </div>
-                            <div class="trend-content-main">
-                                <div class="trend-content">
-                                    <h6 class="font-weight-normal pink"><i class="fa fa-map-marker-alt"></i> Hãng A</h6>
-                                    <h4><a href="traindetail">Tên tàu</a></h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 slider-item">
-                        <div class="trend-item">
-                            <div class="trend-image">
-                                <img src="${pageContext.request.contextPath}/libs/images/trains/6.jpg" alt="image">
-                            </div>
-                            <div class="trend-content-main">
-                                <div class="trend-content">
-                                    <h6 class="font-weight-normal pink"><i class="fa fa-map-marker-alt"></i> Hãng A</h6>
-                                    <h4><a href="traindetail">Tên tàu</a></h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <p class="text-center text-danger">Dữ liệu hiện không khả dụng. Vui lòng thử lại sau.</p>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
         </section>
