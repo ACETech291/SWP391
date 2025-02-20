@@ -91,7 +91,7 @@
                 <div class="form-content form-content1 w-100 transparent p-0 shadow-none position-relative">
                     <div class="form-navtab text-center">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#tour-1"><i class="fa fa-train"></i> Một chiều</a></li>
+                            <li class="active"><a data-toggle="tab" href="#tour-1"><i class="fa fa-train"></i> Một chiều</a></li>     
                         </ul>
                     </div>    
 

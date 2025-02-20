@@ -62,10 +62,16 @@
                                                 <option value="3">Z->A</option>
                                             </select>
                                         </form> 
+                                        <div class="search-container" style="float: inline-end; margin-right: 30px">
+                                <form style="margin-left: 30px" action="search" method="post">
+                                    <input oninput="SearchByName(this)" value = "${nameSearch}" name="NameStation" style="width: 500px;height: 40px " type="text" placeholder="Tìm kiếm theo tên ga">
+                                    
+                                </form>
+                            </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div id="abc" class="row">
                                 <c:choose>
                                     <c:when test="${not empty listStation}">
                                         <c:forEach var="station" items="${listStation}">
@@ -153,5 +159,19 @@
                                                         }
                                                     }
                                                 })();
+                                                function SearchByName(param) {
+                                                    var txtSearch = param.value;
+                                                    $.ajax({
+                                                        url: "/SWP391/SearchByAjax",
+                                                        type: "post",
+                                                        data: {NameStation: txtSearch},
+                                                        success: function (data) {
+                                                            document.getElementById("abc").innerHTML = data;
+                                                        },
+                                                        error: function (xhr) {
+                                                            alert("An error occurred while searching. Please try again.");
+                                                        }
+                                                    });
+                                                }
     </script>
 </html>

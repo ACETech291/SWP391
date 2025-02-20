@@ -91,6 +91,29 @@ public class StationDAO extends HttpServlet {
         return null;
     }
 
+    public List<Station> searchStationByName(String name) {
+        String sql = "SELECT * FROM Station WHERE name_station LIKE ?";
+        List<Station> stations = new ArrayList<>();
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, "%" + name + "%");
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                stations.add(new Station(
+                        rs.getInt("id_station"),
+                        rs.getString("name_station"),
+                        rs.getString("image_station"),
+                        rs.getString("description_station")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return stations;
+    }
+
     public boolean updateStationImage(int stationId, String newImagePath) {
         String sql = "UPDATE Station SET image_station = ? WHERE id_station = ?";
 
@@ -150,6 +173,9 @@ public class StationDAO extends HttpServlet {
 
     public static void main(String[] args) {
         StationDAO sd = new StationDAO();
-        System.out.println(sd.getStationById(1).getName_station());
+        List<Station> list = sd.searchStationByName("h");
+        for (Station station : list) {
+            System.out.println(station.getName_station());
+        }
     }
 }
