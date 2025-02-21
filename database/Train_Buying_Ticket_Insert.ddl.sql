@@ -364,7 +364,7 @@ INSERT INTO Time_station (id_station, id_time_of_station) VALUES
 (10,28),(9,29),(8,30),(7,31),(6,32),(5,33),(4,34),(3,35),(2,36),
 (1,37);
 
-INSERT INTO Trip (id_station_start, id_station_end, id_train, price_trip) VALUES
+INSERT INTO Trip (id_time_station_start, id_time_station_end, id_train, price_trip) VALUES
 (1, 2, 1, NULL),(2, 3, 1, NULL),(3, 4, 1, NULL),(4, 5, 1, NULL),(5, 6, 1, NULL),(6, 7, 1, NULL),(7, 8, 1, NULL),(8, 9, 1, NULL),(9, 10, 1, NULL),
 (10, 11, 1, NULL),(11, 12, 1, NULL),(12, 13, 1, NULL),(13, 14, 1, NULL),(14, 15, 1, NULL),(15, 16, 1, NULL),(16, 17, 1, NULL),(17, 18, 1, NULL),(18, 19, 1, NULL),
 (19, 20, 1, NULL),(20, 21, 1, NULL),(21, 22, 1, NULL),(22, 23, 1, NULL),(23, 24, 1, NULL),(24, 25, 1, NULL),(25, 26, 1, NULL),(26, 27, 1, NULL),(27, 28, 1, NULL),
