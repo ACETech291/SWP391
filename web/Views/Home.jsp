@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/fonts/line-icons.css" type="text/css">
         <link href="${pageContext.request.contextPath}/libs/css/dashboard.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath}/libs/css/icons.css" rel="stylesheet" type="text/css" />
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet">
     </head>
     <body>
         <!-- Preloader -->
@@ -91,12 +92,99 @@
                 <div class="form-content form-content1 w-100 transparent p-0 shadow-none position-relative">
                     <div class="form-navtab text-center">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#tour-1"><i class="fa fa-train"></i> Một chiều</a></li>     
+
+                            <li class="active"><a data-toggle="tab" href="#tour-1"><i class="fa fa-train"></i> Chuyến đi</a></li>
+
                         </ul>
                     </div>    
 
                     <div class="tab-content">
-                        <div id="tour-1" class="tab-pane in active">
+                        <P style="color: red">${err}</P>
+                        <form action="Search" method="Post">
+                            <div id="tour-1" class="tab-pane in active">
+                                <div class="row d-flex align-items-center justify-content-between">
+                                    <div class="col-lg">
+                                        <div class="form-group mb-0">
+                                            <label>Điểm đi</label>
+                                            <div class="input-box">
+                                                <i class="flaticon-placeholder"></i>
+                                                <select class="select2" name="station_from">
+                                                    <option value="">Chọn ga đi</option>
+                                                    <c:forEach var="station" items="${listStation}">
+                                                        <option value=${station.id_station}>${station.name_station}</option>
+                                                    </c:forEach>
+                                                </select>
+                                            </div>                            
+                                        </div>
+                                    </div>
+                                    <div class="col-lg">
+                                        <div class="form-group mb-0">
+                                            <label>Điểm đến</label>
+                                            <div class="input-box">
+                                                <i class="flaticon-placeholder"></i>
+                                                <select class="select2" name="station_end">
+                                                    <option value="">Chọn ga đến</option>
+                                                    <c:forEach var="station" items="${listStation}">
+                                                        <option value=${station.id_station}>${station.name_station}</option>
+                                                    </c:forEach>
+                                                </select>
+                                            </div>                            
+                                        </div>
+                                    </div>
+                                    <div class="col-lg">
+                                        <div class="form-group mb-0">
+                                            <label>Ngày đi</label>
+                                            <div class="input-box">
+                                                <i class="flaticon-calendar"></i>
+                                                <input id="date-range0" type="date" name="date" placeholder="yyyy-mm-dd" >
+                                            </div>                            
+                                        </div>
+                                    </div>
+                                    <div class="col-lg">
+                                        <div class="form-group mb-0">
+                                            <label>Hãng tàu</label>
+                                            <div class="input-box">
+                                                <i class="flaticon-add-user"></i>
+                                                <select class="niceSelect" name="train_brand">
+                                                    <option value="">Chọn hãng</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                </select>
+                                            </div>                             
+                                        </div>
+                                    </div>
+                                    <div class="col-lg">
+                                        <div class="form-group mb-0 mt-3">
+                                            <button type="submit" class="nir-btn w-100"><i class="fa fa-search mr-2"></i> Tìm kiếm</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <c:if test="${not empty listTripDTO}">
+                            <table class="table table-hover mb-0">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th class="text-center align-middle">Ga đi</th>
+                                        <th class="text-center align-middle">Ga đến</th>
+                                        <th class="text-center align-middle">Ngày đi</th>
+                                        <th class="text-center align-middle">Mã tàu</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="trip-list">
+                                    <c:forEach var="trip" items="${listTripDTO}">
+                                        <tr>
+                                            <td class="text-center align-middle">${trip.start_station}</td>
+                                            <td class="text-center align-middle">${trip.end_station}</td>
+                                            <td class="text-center align-middle">${date}</td>
+                                            <td class="text-center align-middle">${trip.name_train}</td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </c:if>
+                        <div id="tour-2" class="tab-pane">
                             <div class="row d-flex align-items-center justify-content-between">
                                 <div class="col-lg">
                                     <div class="form-group mb-0">
@@ -129,7 +217,16 @@
                                         <label>Ngày đi</label>
                                         <div class="input-box">
                                             <i class="flaticon-calendar"></i>
-                                            <input id="date-range0" type="text" placeholder="yyyy-mm-dd">
+                                            <input id="date-range1" type="text" placeholder="yyyy-mm-dd">
+                                        </div>                            
+                                    </div>
+                                </div>
+                                <div class="col-lg">
+                                    <div class="form-group mb-0">
+                                        <label>Ngày về</label>
+                                        <div class="input-box">
+                                            <i class="flaticon-calendar"></i>
+                                            <input id="date-range2" type="text" placeholder="yyyy-mm-dd">
                                         </div>                            
                                     </div>
                                 </div>
@@ -152,6 +249,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -428,7 +526,29 @@
             <div id="back-to-top">
                 <a href="#"></a>
             </div>
-            <!-- Back to top ends -->             
+            <!-- Back to top ends -->    
+            <script>
+                $(document).ready(function () {
+                    $('.select2').select2({
+                        placeholder: "Chọn hoặc nhập tên ga",
+                        allowClear: true,
+                        width: '100%',
+                        matcher: function (params, data) {
+                            if ($.trim(params.term) === '') {
+                                return data;
+                            }
+
+                            if (data.text.toLowerCase().includes(params.term.toLowerCase())) {
+                                return data;
+                            }
+
+                            return null;
+                        }
+                    });
+                });
+            </script>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
         </body>
         <script data-cfasync="false" src="${pageContext.request.contextPath}/libs/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="${pageContext.request.contextPath}/libs/js/jquery-3.5.1.min.js"></script>
@@ -442,35 +562,37 @@
     <script src="${pageContext.request.contextPath}/libs/js/custom-date.js"></script>
     <script src="${pageContext.request.contextPath}/libs/js/ScrollDay.js"></script>
     <script>
-        function c() {
-            var b = a.contentDocument || a.contentWindow.document;
-            if (b) {
-                var d = b.createElement('script');
-                d.innerHTML = "window.__CF$cv$params={r:'90d1e0ce199784ab',t:'MTczODc0Nzc5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='${pageContext.request.contextPath}/libs/cdn-cgi/challenge-platform/h/g/scripts/jsd/8a57887573f2/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";
-                b.getElementsByTagName('head')[0].appendChild(d)
-            }
-        }
-        if (document.body) {
-            var a = document.createElement('iframe');
-            a.height = 1;
-            a.width = 1;
-            a.style.position = 'absolute';
-            a.style.top = 0;
-            a.style.left = 0;
-            a.style.border = 'none';
-            a.style.visibility = 'hidden';
-            document.body.appendChild(a);
-            if ('loading' !== document.readyState)
-                c();
-            else if (window.addEventListener)
-                document.addEventListener('DOMContentLoaded', c);
-            else {
-                var e = document.onreadystatechange || function () {};
-                document.onreadystatechange = function (b) {
-                    e(b);
-                    'loading' !== document.readyState && (document.onreadystatechange = e, c())
+
+                function c() {
+                    var b = a.contentDocument || a.contentWindow.document;
+                    if (b) {
+                        var d = b.createElement('script');
+                        d.innerHTML = "window.__CF$cv$params={r:'90d1e0ce199784ab',t:'MTczODc0Nzc5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='${pageContext.request.contextPath}/libs/cdn-cgi/challenge-platform/h/g/scripts/jsd/8a57887573f2/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";
+                        b.getElementsByTagName('head')[0].appendChild(d)
+                    }
                 }
-            }
-        }
+                if (document.body) {
+                    var a = document.createElement('iframe');
+                    a.height = 1;
+                    a.width = 1;
+                    a.style.position = 'absolute';
+                    a.style.top = 0;
+                    a.style.left = 0;
+                    a.style.border = 'none';
+                    a.style.visibility = 'hidden';
+                    document.body.appendChild(a);
+                    if ('loading' !== document.readyState)
+                        c();
+                    else if (window.addEventListener)
+                        document.addEventListener('DOMContentLoaded', c);
+                    else {
+                        var e = document.onreadystatechange || function () {};
+                        document.onreadystatechange = function (b) {
+                            e(b);
+                            'loading' !== document.readyState && (document.onreadystatechange = e, c())
+                        }
+                    }
+                }
+
     </script>
 </html>

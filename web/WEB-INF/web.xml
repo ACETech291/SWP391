@@ -89,6 +89,8 @@
         <servlet-class>controller.SearchByAjax</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>Search</servlet-name>
+        <servlet-class>controller.Search</servlet-class>
         <servlet-name>Manager</servlet-name>
         <servlet-class>controller.manager.Manager</servlet-class>
     </servlet>
@@ -185,11 +187,16 @@
         <url-pattern>/SearchByAjax</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+
+        <servlet-name>Search</servlet-name>
+        <url-pattern>/Search</url-pattern>
+
         <servlet-name>Manager</servlet-name>
         <url-pattern>/Manager</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddTrain</servlet-name>
         <url-pattern>/AddTrain</url-pattern>
+
     </servlet-mapping>
 </web-app>
