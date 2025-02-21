@@ -370,11 +370,11 @@ INSERT INTO Trip (id_station_start, id_station_end, id_train, price_trip) VALUES
 (19, 20, 1, NULL),(20, 21, 1, NULL),(21, 22, 1, NULL),(22, 23, 1, NULL),(23, 24, 1, NULL),(24, 25, 1, NULL),(25, 26, 1, NULL),(26, 27, 1, NULL),(27, 28, 1, NULL),
 (28, 29, 1, NULL),(29, 30, 1, NULL),(30, 31, 1, NULL),(31, 32, 1, NULL),(32, 33, 1, NULL),(33, 34, 1, NULL),(34, 35, 1, NULL),(35, 36, 1, NULL),(36, 37, 1, NULL),
 
-(37, 36, 1, NULL),(36, 35, 1, NULL),
-(35, 34, 1, NULL),(34, 33, 1, NULL),(33, 32, 1, NULL),(32, 31, 1, NULL),(31, 30, 1, NULL),(30, 29, 1, NULL),(29, 28, 1, NULL),(28, 27, 1, NULL),(27, 26, 1, NULL),
-(26, 25, 1, NULL),(25, 24, 1, NULL),(24, 23, 1, NULL),(23, 22, 1, NULL),(22, 21, 1, NULL),(21, 20, 1, NULL),(20, 19, 1, NULL),(19, 18, 1, NULL),(18, 17, 1, NULL),
-(17, 16, 1, NULL),(16, 15, 1, NULL),(15, 14, 1, NULL),(14, 13, 1, NULL),(13, 12, 1, NULL),(12, 11, 1, NULL),(11, 10, 1, NULL),(10, 9, 1, NULL),(9, 8, 1, NULL),
-(8, 7, 1, NULL),(7, 6, 1, NULL),(6, 5, 1, NULL),(5, 4, 1, NULL),(4, 3, 1, NULL),(3, 2, 1, NULL),(2, 1, 1, NULL);
+(38, 39, 1, NULL),(39, 40, 1, NULL),(40, 41, 1, NULL),(41, 42, 1, NULL),(42, 43, 1, NULL),(43, 44, 1, NULL),(44, 45, 1, NULL),(45, 46, 1, NULL),
+(46, 47, 1, NULL),(47, 48, 1, NULL),(48, 49, 1, NULL),(49, 50, 1, NULL),(50, 51, 1, NULL),(51, 52, 1, NULL),(52, 53, 1, NULL),(53, 54, 1, NULL),(54, 55, 1, NULL),
+(55, 56, 1, NULL),(56, 57, 1, NULL),(57, 58, 1, NULL),(58, 59, 1, NULL),(59, 60, 1, NULL),(60, 61, 1, NULL),(61, 62, 1, NULL),(62, 63, 1, NULL),(63, 64, 1, NULL),
+(64, 65, 1, NULL),(65, 66, 1, NULL),(66, 67, 1, NULL),(67, 68, 1, NULL),(68, 69, 1, NULL),(69, 70, 1, NULL),(70, 71, 1, NULL),(71, 72, 1, NULL),(72, 73, 1, NULL),
+(73, 74, 1, NULL);
 
 INSERT INTO Date_trip (id_trip,id_date_of_trip) VALUES
 (1,1),(2,1),(3,1),(4,1),(5,1),(6,1),(7,1),(8,1),(9,1),(10,1),

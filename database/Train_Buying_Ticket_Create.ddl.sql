@@ -175,8 +175,8 @@ CREATE TABLE Train_seat (
 CREATE TABLE Trip (
   id_trip                int(11) NOT NULL AUTO_INCREMENT, 
   price_trip	INT(11),
-  id_station_start int(11) NOT NULL, 
-  id_station_end   int(11) NOT NULL, 
+  id_time_station_start int(11) NOT NULL, 
+  id_time_station_end   int(11) NOT NULL, 
   id_train               int(11) NOT NULL,  
   PRIMARY KEY (id_trip));
   
@@ -223,8 +223,8 @@ ALTER TABLE Purchase_history ADD CONSTRAINT FKPurchase_h731114 FOREIGN KEY (id_p
 ALTER TABLE Purchase_detail_history ADD CONSTRAINT FKPurchase_d794887 FOREIGN KEY (id_purchase_history) REFERENCES Purchase_history (id_purchase_history);
 ALTER TABLE Purchase_detail_history ADD CONSTRAINT FKPurchase_d53355 FOREIGN KEY (id_ticket) REFERENCES Ticket (id_ticket);
 
-ALTER TABLE Trip ADD CONSTRAINT FKTrip894600 FOREIGN KEY (id_station_start) REFERENCES Station (id_station);
-ALTER TABLE Trip ADD CONSTRAINT FKTrip894609 FOREIGN KEY (id_station_end) REFERENCES Station (id_station);
+ALTER TABLE Trip ADD CONSTRAINT FKTrip894600 FOREIGN KEY (id_time_station_start) REFERENCES Time_station (id_time_station);
+ALTER TABLE Trip ADD CONSTRAINT FKTrip894609 FOREIGN KEY (id_time_station_end) REFERENCES Time_station (id_time_station);
 ALTER TABLE Trip ADD CONSTRAINT FKTrip442899 FOREIGN KEY (id_train) REFERENCES Train (id_train);
 
 ALTER TABLE Token_forget_password ADD CONSTRAINT FKToken_forg905909 FOREIGN KEY (id_user) REFERENCES Customer (id_customer);
