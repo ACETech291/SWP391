@@ -91,6 +91,8 @@
     <servlet>
         <servlet-name>Search</servlet-name>
         <servlet-class>controller.Search</servlet-class>
+    </servlet>   
+    <servlet>
         <servlet-name>Manager</servlet-name>
         <servlet-class>controller.manager.Manager</servlet-class>
     </servlet>
@@ -190,7 +192,8 @@
 
         <servlet-name>Search</servlet-name>
         <url-pattern>/Search</url-pattern>
-
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>Manager</servlet-name>
         <url-pattern>/Manager</url-pattern>
     </servlet-mapping>
