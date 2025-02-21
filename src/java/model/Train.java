@@ -8,7 +8,8 @@ package model;
  *
  * @author MinhHieuPham
  */
-public class Train {
+public class Train implements SQLInsert {
+
     private int id_train;
     private String name_train;
     private String image_train;
@@ -20,6 +21,13 @@ public class Train {
         this.id_train = id_train;
         this.name_train = name_train;
         this.image_train = image_train;
+        this.description_train = description_train;
+        this.id_train_brand = id_train_brand;
+        this.id_status = id_status;
+    }
+
+    public Train(String name_train, String description_train, int id_train_brand, int id_status) {
+        this.name_train = name_train;
         this.description_train = description_train;
         this.id_train_brand = id_train_brand;
         this.id_status = id_status;
@@ -72,7 +80,21 @@ public class Train {
     public void setId_status(int id_status) {
         this.id_status = id_status;
     }
-    
-    
-    
+
+    @Override
+    public String toSQLInsert() {
+        return String.format(
+                "INSERT INTO `Train` (name_train, image_train, description_train, id_train_brand, id_status) "
+                + "VALUES ('%s', %s, '%s', %d, %d);",
+                name_train,
+                (image_train != null) ? String.format("'%s'", image_train) : "NULL", // Xử lý ảnh (blob)
+                description_train,
+                id_train,
+                id_status
+        );
+    }
+    public String toString() {
+        return "Train{" + "id_train=" + id_train + ", name_train=" + name_train + ", image_train=" + image_train + ", description_train=" + description_train + ", id_train_brand=" + id_train_brand + ", id_status=" + id_status + '}';
+    }
+
 }

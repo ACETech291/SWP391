@@ -13,7 +13,7 @@ public class Dashboard extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        request.getRequestDispatcher("Views/Admin/Dashboard").forward(request, response);
+        request.getRequestDispatcher("Views/Admin/Dashboard.jsp").forward(request, response);
     }
 
     @Override
@@ -21,6 +21,6 @@ public class Dashboard extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        request.getRequestDispatcher("Views/Admin/Dashboard").forward(request, response);
+        request.getRequestDispatcher("Views/Admin/Dashboard.jsp").forward(request, response);
     }
 }

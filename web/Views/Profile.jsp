@@ -26,14 +26,11 @@
         <!-- Preloader Ends -->
 
         <!-- header starts -->
-         <jsp:include page="includes/header.jsp"></jsp:include>
-        <!-- header ends -->
+        <jsp:include page="includes/header.jsp"></jsp:include>
+            <!-- header ends -->
 
-        <!-- BreadCrumb Starts -->
-        <section
-            class="breadcrumb-main pb-2"
-            style="background-image: url(${pageContext.request.contextPath}/libs/images/bg/bg8.jpg)"
-            >
+            <!-- BreadCrumb Starts -->
+            <section class="breadcrumb-main pb-2" style="background-image: url(${pageContext.request.contextPath}/libs/images/bg/bg8.jpg)">
             <div class="dot-overlay"></div>
         </section>
         <!-- BreadCrumb Ends -->
@@ -174,16 +171,16 @@
         <jsp:include page="includes/footer.jsp"></jsp:include>
         <jsp:include page="includes/rule.jsp"></jsp:include>
         <jsp:include page="includes/support.jsp"></jsp:include>
-        <!-- footer ends -->
+            <!-- footer ends -->
 
-        <!-- Back to top start -->
-        <div id="back-to-top">
-            <a href="#"></a>
-        </div>
-        <!-- Back to top ends -->
-        
-    </body>
-    <script data-cfasync="false" src="${pageContext.request.contextPath}/libs/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+            <!-- Back to top start -->
+            <div id="back-to-top">
+                <a href="#"></a>
+            </div>
+            <!-- Back to top ends -->
+
+        </body>
+        <script data-cfasync="false" src="${pageContext.request.contextPath}/libs/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="${pageContext.request.contextPath}/libs/js/jquery-3.5.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/libs/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/libs/js/plugin.js"></script>

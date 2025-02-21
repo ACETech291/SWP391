@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -55,100 +56,58 @@
                                 <div class="click-menu d-flex align-items-center justify-content-between">
                                     <div class="change-list f-active mr-2"><a href="#"><i class="fa fa-bars"></i></a></div>
                                     <div class="sortby d-flex align-items-center justify-content-between ml-2">
-                                        <select class="niceSelect">
-                                            <option value="1" >Sắp xếp theo</option>
-                                            <option value="2">A->Z</option>
-                                            <option value="3">Z->A</option>
-                                        </select> 
+                                        <form action="SortServlet" method="POST">
+                                            <select name="order" class="niceSelect" onchange="this.form.submit()">
+                                                <option value="1">Sắp xếp theo</option>
+                                                <option value="2">A->Z</option>
+                                                <option value="3">Z->A</option>
+                                            </select>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="blog-full d-flex justify-content-around mb-4">
-                                <div class="row w-100">
-                                    <div class="col-lg-5 col-md-4 col-xs-12 blog-height">
-                                        <div class="blog-image">
-                                            <a href="traindetail" style="background-image: url(${pageContext.request.contextPath}/libs/images/trains/6.jpg);"></a>
-                                        </div> 
-                                    </div>
-                                    <div class="col-lg-7 col-md-8 col-xs-12">
-                                        <div class="trend-content-main">
-                                            <div class="trend-content pt-2 pb-2">
-                                                <h3 class="mb-2"><a href="traindetail">Mã tàu</a></h3>
-                                                <div class="rating border-b pb-1 mb-1">
-                                                    <p class="mb-0"><span class="pink">Hãng tàu</span></p>
+                            <c:choose>
+                                <c:when test="${not empty trains}">
+                                    <c:forEach var="train" items="${trains}">
+                                        <div class="blog-full d-flex justify-content-around mb-4">
+                                            <div class="row w-100">
+                                                <div class="col-lg-5 col-md-4 col-xs-12 blog-height">
+                                                    <div class="blog-image">
+                                                        <c:choose>
+                                                            <c:when test="${not empty train.image_train}">
+                                                                <a href="traindetail?id=${train.id_train}" style="background-image: url('${pageContext.request.contextPath}/${train.image_train}');"></a>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <a href="traindetail?id=${train.id_train}" style="background-image: url('${pageContext.request.contextPath}/libs/images/trains/6.jpg');"></a>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </div> 
                                                 </div>
-
-                                                <p>
-                                                    Nội dung
-                                                </p>
-                                                <div class="trend-Deal Start At d-flex align-items-center mb-2 border-b pb-2">
-                                                    <span>Giá trung bình: <strong class="pink">1.490.000đ</strong></span>
+                                                <div class="col-lg-7 col-md-8 col-xs-12">
+                                                    <div class="trend-content-main">
+                                                        <div class="trend-content pt-2 pb-2">
+                                                            <h3 class="mb-2"><a href="traindetail?id=${train.id_train}">${train.name_train}</a></h3>
+                                                            <div class="rating border-b pb-1 mb-1">
+                                                                <p class="mb-0"><span class="pink">Hãng tàu ${train.id_train_brand}</span></p>
+                                                            </div>
+                                                            <p>
+                                                                ${train.description_train}
+                                                            </p>
+                                                            <a href="traindetail?id=${train.id_train}" class="grey">Xem chi tiết <i class="fa fa-angle-double-right"></i></a>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <a href="traindetail" class="grey">Xem chi tiết <i class="fa fa-angle-double-right"></i></a>
                                             </div>
                                         </div>
+                                    </c:forEach>
+                                    <div class="text-center">
+                                        <a href="#" class="nir-btn">Xem thêm <i class="fa fa-long-arrow-alt-right"></i></a>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="blog-full d-flex justify-content-around mb-4">
-                                <div class="row w-100">
-                                    <div class="col-lg-5 col-md-4 col-xs-12 blog-height">
-                                        <div class="blog-image">
-                                            <a href="traindetail" style="background-image: url(${pageContext.request.contextPath}/libs/images/trains/6.jpg);"></a>
-                                        </div> 
-                                    </div>
-                                    <div class="col-lg-7 col-md-8 col-xs-12">
-                                        <div class="trend-content-main">
-                                            <div class="trend-content pt-2 pb-2">
-                                                <h3 class="mb-2"><a href="traindetail">Mã tàu</a></h3>
-                                                <div class="rating border-b pb-1 mb-1">
-                                                    <p class="mb-0"><span class="pink">Hãng tàu</span></p>
-                                                </div>
-
-                                                <p>
-                                                    Nội dung
-                                                </p>
-                                                <div class="trend-Deal Start At d-flex align-items-center mb-2 border-b pb-2">
-                                                    <span>Giá trung bình: <strong class="pink">1.490.000đ</strong></span>
-                                                </div>
-                                                <a href="traindetail" class="grey">Xem chi tiết <i class="fa fa-angle-double-right"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="blog-full d-flex justify-content-around mb-4">
-                                <div class="row w-100">
-                                    <div class="col-lg-5 col-md-4 col-xs-12 blog-height">
-                                        <div class="blog-image">
-                                            <a href="traindetail" style="background-image: url(${pageContext.request.contextPath}/libs/images/trains/6.jpg);"></a>
-                                        </div> 
-                                    </div>
-                                    <div class="col-lg-7 col-md-8 col-xs-12">
-                                        <div class="trend-content-main">
-                                            <div class="trend-content pt-2 pb-2">
-                                                <h3 class="mb-2"><a href="traindetail">Mã tàu</a></h3>
-                                                <div class="rating border-b pb-1 mb-1">
-                                                    <p class="mb-0"><span class="pink">Hãng tàu</span></p>
-                                                </div>
-
-                                                <p>
-                                                    Nội dung
-                                                </p>
-                                                <div class="trend-Deal Start At d-flex align-items-center mb-2 border-b pb-2">
-                                                    <span>Giá trung bình: <strong class="pink">1.490.000đ</strong></span>
-                                                </div>
-                                                <a href="traindetail" class="grey">Xem chi tiết <i class="fa fa-angle-double-right"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="text-center">
-                                <a href="#" class="nir-btn">Xem thêm <i class="fa fa-long-arrow-alt-right"></i></a>
-                            </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <p class="text-center text-danger">Dữ liệu hiện không khả dụng. Vui lòng thử lại sau.</p>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
 
@@ -158,11 +117,6 @@
                                 <li class="active mr-1">
                                     <div class="form-group mb-0">
                                         <a href="#tour-1" class="nir-btn w-100" data-toggle="tab"><i class="fa fa-train"></i> Một chiều</a>
-                                    </div>
-                                </li>
-                                <li class="mr-1">
-                                    <div class="form-group mb-0">
-                                        <a href="#tour-2" class="nir-btn w-100" data-toggle="tab"><i class="fa fa-train"></i> Khứ hồi</a>
                                     </div>
                                 </li>
                             </ul>
@@ -206,73 +160,6 @@
                                                     <div class="input-box">
                                                         <i class="flaticon-calendar"></i>
                                                         <input id="date-range0" type="text" placeholder="yyyy-mmm-dd">
-                                                    </div>                            
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-12">
-                                                <div class="form-group">
-                                                    <label class="white">Hãng tàu</label>
-                                                    <div class="input-box">
-                                                        <i class="flaticon-add-user"></i>
-                                                        <select class="niceSelect">
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                        </select>
-                                                    </div>                             
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <div class="form-group mb-0">
-                                                    <a href="#" class="nir-btn w-100"><i class="fa fa-search"></i> Tìm kiếm</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div id="tour-2" class="row tab-pane">
-                                            <div class="col-lg-12">
-                                                <div class="form-group">
-                                                    <label class="white">Điểm đi</label>
-                                                    <div class="input-box">
-                                                        <i class="flaticon-placeholder"></i>
-                                                        <select class="niceSelect">
-                                                            <option value="1">Hà Nội</option>
-                                                            <option value="2">Đà Nẵng</option>
-                                                            <option value="3">TP.HCM</option>
-                                                        </select>
-                                                    </div>                            
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <div class="form-group">
-                                                    <label class="white">Điểm đến</label>
-                                                    <div class="input-box">
-                                                        <i class="flaticon-placeholder"></i>
-                                                        <select class="niceSelect">
-                                                            <option value="1">Hà Nội</option>
-                                                            <option value="2">Đà Nẵng</option>
-                                                            <option value="3">TP.HCM</option>
-                                                        </select>
-                                                    </div>                            
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-12">
-                                                <div class="form-group">
-                                                    <label class="white">Ngày đi</label>
-                                                    <div class="input-box">
-                                                        <i class="flaticon-calendar"></i>
-                                                        <input id="date-range1" type="text" placeholder="yyyy-mmm-dd">
-                                                    </div>                            
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-12">
-                                                <div class="form-group">
-                                                    <label class="white">Ngày về</label>
-                                                    <div class="input-box">
-                                                        <i class="flaticon-calendar"></i>
-                                                        <input id="date-range2" type="text" placeholder="yyyy-mm-dd">
                                                     </div>                            
                                                 </div>
                                             </div>

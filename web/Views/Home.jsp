@@ -92,6 +92,7 @@
                 <div class="form-content form-content1 w-100 transparent p-0 shadow-none position-relative">
                     <div class="form-navtab text-center">
                         <ul class="nav nav-tabs">
+
                             <li class="active"><a data-toggle="tab" href="#tour-1"><i class="fa fa-train"></i> Chuyến đi</a></li>
 
                         </ul>
@@ -248,6 +249,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -265,58 +267,35 @@
 
 
                 <div class="row team-slider">
-                    <div class="col-lg-4 slider-item">
-                        <div class="trend-item">
-                            <div class="trend-image">
-                                <img src="${pageContext.request.contextPath}/libs/images/trains/6.jpg" alt="image">
-                            </div>
-                            <div class="trend-content-main">
-                                <div class="trend-content">
-                                    <h6 class="font-weight-normal pink"><i class="fa fa-map-marker-alt"></i> Hãng A</h6>
-                                    <h4><a href="traindetail">Tên tàu</a></h4>
+                    <c:choose>
+                        <c:when test="${not empty trains}">
+                            <c:forEach var="train" items="${trains}">
+                                <div class="col-lg-4 slider-item">
+                                    <div class="trend-item">
+                                        <div class="trend-image">
+                                            <c:choose>
+                                                <c:when test="${not empty train.image_train}">
+                                                    <img src="${pageContext.request.contextPath}/${train.image_train}" alt="image">
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <img src="${pageContext.request.contextPath}/libs/images/trains/6.jpg" alt="image">
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </div>
+                                        <div class="trend-content-main">
+                                            <div class="trend-content">
+                                                <h6 class="font-weight-normal pink"><i class="fa fa-map-marker-alt"></i> Hãng tàu ${train.id_train_brand}</h6>
+                                                <h4><a href="traindetail?id=${train.id_train}">Tàu ${train.name_train}</a></h4>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 slider-item">
-                        <div class="trend-item">
-                            <div class="trend-image">
-                                <img src="${pageContext.request.contextPath}/libs/images/trains/6.jpg" alt="image">
-                            </div>
-                            <div class="trend-content-main">
-                                <div class="trend-content">
-                                    <h6 class="font-weight-normal pink"><i class="fa fa-map-marker-alt"></i> Hãng A</h6>
-                                    <h4><a href="traindetail">Tên tàu</a></h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 slider-item">
-                        <div class="trend-item">
-                            <div class="trend-image">
-                                <img src="${pageContext.request.contextPath}/libs/images/trains/6.jpg" alt="image">
-                            </div>
-                            <div class="trend-content-main">
-                                <div class="trend-content">
-                                    <h6 class="font-weight-normal pink"><i class="fa fa-map-marker-alt"></i> Hãng A</h6>
-                                    <h4><a href="traindetail">Tên tàu</a></h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 slider-item">
-                        <div class="trend-item">
-                            <div class="trend-image">
-                                <img src="${pageContext.request.contextPath}/libs/images/trains/6.jpg" alt="image">
-                            </div>
-                            <div class="trend-content-main">
-                                <div class="trend-content">
-                                    <h6 class="font-weight-normal pink"><i class="fa fa-map-marker-alt"></i> Hãng A</h6>
-                                    <h4><a href="traindetail">Tên tàu</a></h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <p class="text-center text-danger">Dữ liệu hiện không khả dụng. Vui lòng thử lại sau.</p>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
         </section>

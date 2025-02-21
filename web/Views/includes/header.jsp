@@ -11,34 +11,34 @@
                         <a class="navbar-brand" href="home">
                             <jsp:include page="logo-white.jsp"></jsp:include>
                             <jsp:include page="logo.jsp"></jsp:include>
-                        </a>
-                    </div>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="navbar-collapse1 d-flex align-items-center" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav" id="responsive-menu">
-                            <li>
-                                <a href="home">Trang chủ</a>
-                            </li>
-                            <li>
-                                <a href="listtrain">Tàu</a>
-                            </li>
-                            <li>
-                                <a href="liststation">Nhà ga</a>
-                            </li>
-                            <li>
-                                <a href="advertising">Bản tin</a>
-                            </li>
-                            <li>
-                                <a href="#" data-toggle="modal" data-target="#termsModal">Chính Sách</a>
-                            </li>
-                            <li>
-                                <a href="#" data-toggle="modal" data-target="#guideModal">Hướng dẫn</a>
-                            </li>
+                            </a>
+                        </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="navbar-collapse1 d-flex align-items-center" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav" id="responsive-menu">
+                                <li>
+                                    <a href="home">Trang chủ</a>
+                                </li>
+                                <li>
+                                    <a href="listtrain">Tàu</a>
+                                </li>
+                                <li>
+                                    <a href="liststation">Nhà ga</a>
+                                </li>
+                                <li>
+                                    <a href="advertising">Bản tin</a>
+                                </li>
+                                <li>
+                                    <a href="#" data-toggle="modal" data-target="#termsModal">Chính Sách</a>
+                                </li>
+                                <li>
+                                    <a href="#" data-toggle="modal" data-target="#guideModal">Hướng dẫn</a>
+                                </li>
                         </ul>
                     </div><!-- /.navbar-collapse -->   
                     <c:if test="${sessionScope.account.role.id == null}">
                         <div class="register-login">
-                            <a href="register"><i class="icon-user mr-1"></i> Đăng kí</a>
+                            <a href="register"><i class="icon-user mr-1"></i> Đăng ký</a>
                             <a href="login"><i class="icon-login mr-1"></i> Đăng nhập</a>
                         </div>
                     </c:if>
