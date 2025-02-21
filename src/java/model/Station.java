@@ -8,7 +8,8 @@ package model;
  *
  * @author Nguyen Ba Hien
  */
-public class Station implements SQLUpdate{
+public class Station implements SQLUpdate {
+
     private int id_station;
     private String name_station;
     private String image_station;
@@ -26,12 +27,10 @@ public class Station implements SQLUpdate{
         this.image_station = image_station;
         this.description_station = description_station;
     }
-    
-    
 
     public Station() {
     }
-    
+
     public int getId_station() {
         return id_station;
     }
@@ -70,13 +69,11 @@ public class Station implements SQLUpdate{
     }
 
     @Override
-public String toSQLUpdate() {
-    return String.format("UPDATE `station` SET "
-            + "`image_station` = '%s'"
-            + "WHERE `id_station` = %d;",
-             image_station, id_station);
-}
-    
-    
-    
+    public String toSQLUpdate() {
+        return String.format("UPDATE `station` SET "
+                + "`image_station` = '%s'"
+                + "WHERE `id_station` = %d;",
+                image_station, id_station);
+    }
+
 }

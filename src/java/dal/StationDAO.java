@@ -142,8 +142,8 @@ public class StationDAO extends HttpServlet {
         }
         return listStations;
     }
-    
-    public List<Station> getAllStationSortAZ(){
+
+    public List<Station> getAllStationSortAZ() {
         List<Station> listStations = new ArrayList<Station>();
         String sql = "SELECT * FROM station ORDER BY name_station COLLATE utf8mb4_unicode_ci ASC";
         try {
@@ -156,8 +156,8 @@ public class StationDAO extends HttpServlet {
         }
         return listStations;
     }
-    
-    public List<Station> getAllStationSortZA(){
+
+    public List<Station> getAllStationSortZA() {
         List<Station> listStations = new ArrayList<Station>();
         String sql = "SELECT * FROM station ORDER BY name_station COLLATE utf8mb4_unicode_ci DESC";
         try {
