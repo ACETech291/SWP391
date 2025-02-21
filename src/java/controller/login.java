@@ -1,6 +1,7 @@
 package controller;
 
 import dal.CustomerDAO;
+import dal.ManagerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -10,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.Customer;
+import model.Manager;
 import until.Encoding;
 
 /**
@@ -56,11 +58,21 @@ public class login extends HttpServlet {
         response.addCookie(cookiePassword);
         response.addCookie(cookieRemember);
 
-        CustomerDAO dao = new CustomerDAO();
+        CustomerDAO cusDao = new CustomerDAO();
+        ManagerDAO manDao = new ManagerDAO();
         HttpSession session = request.getSession();
 
-        Customer acc = dao.getCustomer(email, password);
-        if (acc == null) {
+        Customer acc = cusDao.getCustomer(email, password);
+        Manager manAcc = manDao.getManagerByEmailAndPassword(email,password);
+
+        if (manAcc != null) {
+            session.setAttribute("manager", 2);
+            session.setAttribute("account", manAcc);
+            System.out.println("Acc " + manAcc);
+            request.getRequestDispatcher("Manager").forward(request, response);
+        }
+
+        if (acc == null && manAcc == null) {
             request.setAttribute(email, "email");
             request.setAttribute("err", "Tài khoản hoặc mật khẩu không chính xác! Xin vui lòng nhập lại.");
             request.getRequestDispatcher("Views/Login.jsp").forward(request, response);
@@ -75,7 +87,7 @@ public class login extends HttpServlet {
                 session.setAttribute("manager", 2);
                 session.setAttribute("account", acc);
                 System.out.println("Acc " + acc);
-                request.getRequestDispatcher("home").forward(request, response);
+                request.getRequestDispatcher("Manager").forward(request, response);
             }
             if (acc.getRole().getId() == 3) {
                 session.setAttribute("customer", 3);

@@ -10,14 +10,14 @@ package model;
  */
 public class Role {
     private int id;
-    private String roleName;
+    private String role_name;
 
     public Role() {
     }
 
-    public Role(int id, String roleName) {
+    public Role(int id, String role_name) {
         this.id = id;
-        this.roleName = roleName;
+        this.role_name = role_name;
     }
 
     public int getId() {
@@ -28,17 +28,19 @@ public class Role {
         this.id = id;
     }
 
-    public String getRoleName() {
-        return roleName;
+    public String getRole_name() {
+        return role_name;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
+    public void setRole_name(String role_name) {
+        this.role_name = role_name;
     }
 
     @Override
     public String toString() {
-        return "Role{" + "id=" + id + ", roleName=" + roleName + '}';
+        return "Role{" + "id=" + id + ", role_name=" + role_name + '}';
     }
+
+
     
 }

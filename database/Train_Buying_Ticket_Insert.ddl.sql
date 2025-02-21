@@ -7,8 +7,8 @@ INSERT INTO `role` (id_role, name_role)
 -- manager
 INSERT INTO Manager (username_manager, password_manager, email_manager, id_role, status_manager)
 	VALUES 
-	('manager1', '6NWFIsI1V5KNFeeazNcq35qxRUE=', 'manager1@example.com', 2, 1), 
-	('manager2', '6NWFIsI1V5KNFeeazNcq35qxRUE=', 'manager2@example.com', 2, 1);
+	('manager1', '6NWFIsI1V5KNFeeazNcq35qxRUE=', 'manager1@gmail.com', 2, 1), 
+	('manager2', '6NWFIsI1V5KNFeeazNcq35qxRUE=', 'manager2@gmail.com', 2, 1);
 
 -- admin
 INSERT INTO Admin (username_admin, password_admin, email_admin, id_role)
@@ -706,3 +706,4 @@ UPDATE `station` SET `image_station` = '../SWP391/images/stations/bienhoa.jpg' W
 UPDATE `station` SET `image_station` = '../SWP391/images/stations/saigon.jpg' WHERE `id_station` = 38;
 
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Nguyễn Hữu Hiệp','hiepgacute1989@gmail.com','KOfLlsfqVZEOkuIN4BdPektNF9w=','0966755095',3,1); 
+INSERT INTO `Train` (name_train, image_train, description_train, id_train_brand, id_status) VALUES ('21431432', NULL, '32432432', 0, 2);
