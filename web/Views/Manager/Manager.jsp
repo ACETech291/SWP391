@@ -147,7 +147,7 @@
             </div>
 
             <!-- Danh sách tàu -->
-            <div class="train-list">
+            <div class="train-list">    
                 <table>
                     <thead>
                         <tr>
@@ -175,21 +175,6 @@
                     form.style.display = "block"; // Hiển thị form
                 } else {
                     form.style.display = "none"; // Ẩn form
-                }
-            }
-
-            // Hàm sửa tàu
-            function editTrain(trainId) {
-                alert("Sửa tàu có ID: " + trainId);
-                // Có thể chuyển hướng đến trang sửa tàu với ID tương ứng
-                // window.location.href = "EditTrain.jsp?id=" + trainId;
-            }
-
-            // Hàm xóa tàu
-            function deleteTrain(trainId) {
-                if (confirm("Bạn có chắc chắn muốn xóa tàu này?")) {
-                    // Gửi yêu cầu xóa tàu đến servlet
-                    window.location.href = "DeleteTrainServlet?id=" + trainId;
                 }
             }
         </script>
