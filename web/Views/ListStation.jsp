@@ -71,26 +71,33 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div id="abc" class="row ">
-                                <c:forEach var="station" items="${listStation}" >
-                                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                                        <div class="blog-full">
-                                            <div class="blog-image">
-                                                <a href="stationdetail?id=${station.id_station}">
-                                                    <div class="trend-image">
-                                                        <img src="${station.image_station}" alt="${station.name_station}">
+                            <div id="abc" class="row">
+                                <c:choose>
+                                    <c:when test="${not empty listStation}">
+                                        <c:forEach var="station" items="${listStation}">
+                                            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                                                <div class="blog-full">
+                                                    <div class="blog-image">
+                                                        <a href="stationdetail?id=${station.id_station}">
+                                                            <div class="trend-image">
+                                                                <img src="${station.image_station}" alt="${station.name_station}">
+                                                            </div>
+                                                        </a>
+                                                    </div> 
+                                                    <div class="blog-content p-3">
+                                                        <h4><a href="stationdetail?id=${station.id_station}">${station.name_station}</a></h4>
+                                                        <p class="mb-2 pink"><i class="fa fa-map-marker mr-1"></i> ${station.name_station}, Việt Nam</p>
+                                                        <p class="mb-2 border-t pt-2">${station.description_station}</p> 
                                                     </div>
-                                                </a>
-                                            </div> 
-                                            <div class="blog-content p-3">
-                                                <h4><a href="stationdetail?id=${station.id_station}">${station.name_station}</a></h4>
-                                                <p class="mb-2 pink"><i class="fa fa-map-marker mr-1"></i> ${station.name_station}, Việt Nam</p>
-                                                <p class="mb-2 border-t pt-2">${station.description_station}</p> 
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </c:forEach>
+                                        </c:forEach>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <p class="text-center text-danger">Dữ liệu hiện không khả dụng. Vui lòng thử lại sau.</p>
+                                    </c:otherwise>
+                                </c:choose>
+
                             </div>
                         </div>
                     </div>

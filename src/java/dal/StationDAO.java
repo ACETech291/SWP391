@@ -138,7 +138,35 @@ public class StationDAO extends HttpServlet {
             while (rs.next()) {
                 listStations.add(new Station(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
+        }
+        return listStations;
+    }
+    
+    public List<Station> getAllStationSortAZ(){
+        List<Station> listStations = new ArrayList<Station>();
+        String sql = "SELECT * FROM station ORDER BY name_station COLLATE utf8mb4_unicode_ci ASC";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                listStations.add(new Station(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+            }
+        } catch (SQLException e) {
+        }
+        return listStations;
+    }
+    
+    public List<Station> getAllStationSortZA(){
+        List<Station> listStations = new ArrayList<Station>();
+        String sql = "SELECT * FROM station ORDER BY name_station COLLATE utf8mb4_unicode_ci DESC";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                listStations.add(new Station(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+            }
+        } catch (SQLException e) {
         }
         return listStations;
     }

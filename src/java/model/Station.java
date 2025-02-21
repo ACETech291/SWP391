@@ -4,8 +4,6 @@
  */
 package model;
 
-import com.mysql.cj.jdbc.Blob;
-
 /**
  *
  * @author Nguyen Ba Hien

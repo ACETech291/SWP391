@@ -93,4 +93,8 @@ public class Train implements SQLInsert {
                 id_status
         );
     }
+    public String toString() {
+        return "Train{" + "id_train=" + id_train + ", name_train=" + name_train + ", image_train=" + image_train + ", description_train=" + description_train + ", id_train_brand=" + id_train_brand + ", id_status=" + id_status + '}';
+    }
+
 }

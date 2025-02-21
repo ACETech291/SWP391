@@ -26,10 +26,10 @@
             <!-- header ends -->
 
             <!-- BreadCrumb Starts -->  
-            <div class="breadcrumb-main pb-0" style="background-image: url(${pageContext.request.contextPath}/libs/images/bg/bg8.jpg);">
+            <section class="breadcrumb-main pb-0" style="background-image: url(${pageContext.request.contextPath}/libs/images/bg/bg8.jpg);">
             <div class="breadcrumb-outer pt-10">
                 <div class="container">
-                    <div class="breadcrumb-content bread-content text-center pt-10">
+                    <div class="breadcrumb-content d-md-flex align-items-center pt-10">
                         <nav aria-label="breadcrumb">
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="home">Trang chủ</a></li>
@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="dot-overlay"></div>
-        </div>
+        </section>
         <!-- BreadCrumb Ends -->  
 
 
@@ -77,125 +77,6 @@
                                     <p>Với lịch sử phát triển lâu đời, <strong>${station.name_station}</strong> không chỉ là một trung tâm vận tải quan trọng mà còn là một phần của nền văn hóa và lịch sử địa phương. Nhà ga đã chứng kiến sự thay đổi và phát triển của ngành đường sắt, từ những đoàn tàu hơi nước đầu tiên đến các chuyến tàu hiện đại ngày nay.</p>
                                     <p>Hàng năm, nhà ga phục vụ hàng triệu lượt hành khách, góp phần nâng cao chất lượng dịch vụ vận tải và tạo điều kiện thuận lợi cho việc di chuyển giữa các vùng miền. Với sự phát triển của ngành đường sắt, ${station.name_station} không ngừng được nâng cấp, hiện đại hóa để đáp ứng nhu cầu ngày càng cao của hành khách.</p>
                                 </div>
-                            </div>
-
-                            <!-- blog comment list -->
-                            <div class="single-comments single-box mb-4" id="single-comments">
-                                <h5 class="border-b pb-2 mb-2">Đánh giá</h5>
-                                <div class="comment-box">
-                                    <div class="comment-image">
-                                        <img src="${pageContext.request.contextPath}/libs/images/reviewer/1.jpg" alt="image">
-                                    </div>
-                                    <div class="comment-content">
-                                        <h5 class="mb-1">Mr.A</h5>
-                                        <p class="comment-date">February 13, 2025 at 00:00 am</p>
-                                        <div class="comment-rate">
-                                            <div class="rating mar-right-15">
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                            </div>
-                                        </div>    
-
-                                        <p class="comment">
-                                            Dịch vụ bán vé tàu tại ga Hà Nội được đánh giá khá thuận tiện và chuyên nghiệp, đáp ứng nhu cầu của đông đảo hành khách. 
-                                            Quầy bán vé được bố trí khoa học, nhân viên nhiệt tình, hỗ trợ tư vấn rõ ràng về lịch trình, giá cả và các chính sách ưu đãi.
-                                        </p>
-                                        <div class="comment-like">
-                                            <div class="like-title">
-                                                <a href="#" class="nir-btn">Phản hồi</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="comment-box">
-                                    <div class="comment-image">
-                                        <img src="${pageContext.request.contextPath}/libs/images/reviewer/1.jpg" alt="image">
-                                    </div>
-                                    <div class="comment-content">
-                                        <h5 class="mb-1">Mr.A</h5>
-                                        <p class="comment-date">February 13, 2025 at 00:00 am</p>
-                                        <div class="comment-rate">
-                                            <div class="rating mar-right-15">
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                            </div>
-                                        </div>    
-
-                                        <p class="comment">
-                                            Dịch vụ bán vé tàu tại ga Hà Nội được đánh giá khá thuận tiện và chuyên nghiệp, đáp ứng nhu cầu của đông đảo hành khách. 
-                                            Quầy bán vé được bố trí khoa học, nhân viên nhiệt tình, hỗ trợ tư vấn rõ ràng về lịch trình, giá cả và các chính sách ưu đãi.
-                                        </p>
-                                        <div class="comment-like">
-                                            <div class="like-title">
-                                                <a href="#" class="nir-btn">Phản hồi</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="comment-box">
-                                    <div class="comment-image">
-                                        <img src="${pageContext.request.contextPath}/libs/images/reviewer/1.jpg" alt="image">
-                                    </div>
-                                    <div class="comment-content">
-                                        <h5 class="mb-1">Mr.A</h5>
-                                        <p class="comment-date">February 13, 2025 at 00:00 am</p>
-                                        <div class="comment-rate">
-                                            <div class="rating mar-right-15">
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                            </div>
-                                        </div>    
-
-                                        <p class="comment">
-                                            Dịch vụ bán vé tàu tại ga Hà Nội được đánh giá khá thuận tiện và chuyên nghiệp, đáp ứng nhu cầu của đông đảo hành khách. 
-                                            Quầy bán vé được bố trí khoa học, nhân viên nhiệt tình, hỗ trợ tư vấn rõ ràng về lịch trình, giá cả và các chính sách ưu đãi.
-                                        </p>
-                                        <div class="comment-like">
-                                            <div class="like-title">
-                                                <a href="#" class="nir-btn">Phản hồi</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- blog review -->
-                            <div class="single-add-review" id="single-add-review">
-                                <h4>Đánh giá của bạn</h4>
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="comment-rate">
-                                                <div class="rating mar-right-15">
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <textarea placeholder="Để lại bình luận của bạn tại đây (tối thiểu 250 kí tự)"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-btn">
-                                                <a href="#" class="nir-btn">Gửi</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
                             </div>
                         </div>
                     </div>

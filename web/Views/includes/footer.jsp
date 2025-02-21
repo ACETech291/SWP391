@@ -5,7 +5,7 @@
         <div class="container">
             <div class="copyright-inner d-md-flex align-items-center justify-content-between">
                 <div class="copyright-text">
-                    <p class="m-0 white">2025 Yatriiworld. All rights reserved.</p>
+                    <p class="m-0 white">2025 Fast Rail Ticket. All rights reserved.</p>
                 </div>
                 <div class="social-links">
                     <ul>  
