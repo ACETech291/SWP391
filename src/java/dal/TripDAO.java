@@ -158,9 +158,9 @@ public class TripDAO {
 
     public static void main(String[] args) {
         TripDAO td = new TripDAO();
-        for(int i = 10; i < 38;i++){
-            td.insertTrip(0, 8, i, 1);
-            System.out.println("INSERT INTO trip (price_trip, id_station_start, id_station_end, id_train) VALUES (0, 8, "+i+", 1)");
+        for(int i = 3; i < 38;i++){
+            td.insertTrip(0, 1, i, 1);
+            System.out.println("INSERT INTO trip (price_trip, id_station_start, id_station_end, id_train) VALUES (0, 1, "+i+", 1)");
         }
     }
 }
