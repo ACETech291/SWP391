@@ -88,6 +88,10 @@
         <servlet-name>SearchByAjax</servlet-name>
         <servlet-class>controller.SearchByAjax</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Search</servlet-name>
+        <servlet-class>controller.Search</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>home</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -175,5 +179,9 @@
     <servlet-mapping>
         <servlet-name>SearchByAjax</servlet-name>
         <url-pattern>/SearchByAjax</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Search</servlet-name>
+        <url-pattern>/Search</url-pattern>
     </servlet-mapping>
 </web-app>
