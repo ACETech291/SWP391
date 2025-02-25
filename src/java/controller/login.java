@@ -69,7 +69,8 @@ public class login extends HttpServlet {
             session.setAttribute("manager", 2);
             session.setAttribute("account", manAcc);
             System.out.println("Acc " + manAcc);
-            request.getRequestDispatcher("Manager").forward(request, response);
+            request.getRequestDispatcher("home").forward(request, response);
+            return;
         }
 
         if (acc == null && manAcc == null) {
@@ -87,7 +88,7 @@ public class login extends HttpServlet {
                 session.setAttribute("manager", 2);
                 session.setAttribute("account", acc);
                 System.out.println("Acc " + acc);
-                request.getRequestDispatcher("Manager").forward(request, response);
+                request.getRequestDispatcher("home").forward(request, response);
             }
             if (acc.getRole().getId() == 3) {
                 session.setAttribute("customer", 3);

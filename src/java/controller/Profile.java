@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.Manager;
 
 /**
  *
@@ -19,86 +20,36 @@ import jakarta.servlet.http.HttpSession;
  */
 public class Profile extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        Customer user = (Customer) session.getAttribute("account");
-        System.out.println(user.toString());
-//        String a = user.getUserName();
-//        String b = user.getEmail();
-//        String c = user.getPassword();
-//        String d = user.getPhoneNumber();
-//        request.setAttribute("name", a);
-//        request.setAttribute("email", b);
-//        request.setAttribute("password", c);
-//        request.setAttribute("phone", d);
-        String email = request.getParameter("email");
-        String name = request.getParameter("name");
-        String phone = request.getParameter("phone");
-        request.setAttribute("email", email);
-        request.setAttribute("name", name);
-        request.setAttribute("phone", phone);
-        request.getRequestDispatcher("Views/Profile.jsp").forward(request, response);
-
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        Customer user = (Customer) session.getAttribute("account");
-        String a = user.getUserName();
-        String b = user.getEmail();
-        String c = user.getPassword();
-        String d = user.getPhoneNumber();
-        request.setAttribute("name", a);
-        request.setAttribute("email", b);
-        request.setAttribute("password", c);
-        request.setAttribute("phone", d);
+
+        Object account = session.getAttribute("account");
+
+        if (account instanceof Customer) {
+            Customer user = (Customer) account;
+            request.setAttribute("name", user.getUserName());
+            request.setAttribute("email", user.getEmail());
+            request.setAttribute("phone", user.getPhoneNumber());
+            request.setAttribute("account", account);
+        } else if (account instanceof Manager) {
+            Manager manager = (Manager) account;
+            request.setAttribute("name", manager.getUsername_manager());
+            request.setAttribute("email", manager.getEmail_manager());
+            request.setAttribute("account", account);
+        }
 
         request.getRequestDispatcher("Views/Profile.jsp").forward(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
+        response.setContentType("text/html;charset=UTF-8");
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+        request.getRequestDispatcher("Views/Profile.jsp").forward(request, response);
+    }
 
 }

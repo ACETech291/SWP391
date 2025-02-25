@@ -34,6 +34,19 @@
                                 <li>
                                     <a href="#" data-toggle="modal" data-target="#guideModal">Hướng dẫn</a>
                                 </li>
+                                <li>
+                                <c:choose>
+                                    <c:when test="${sessionScope.account.role.id == 1}">
+                                        <a href="Manager">Quản lý Admin</a>
+                                    </c:when>
+                                    <c:when test="${sessionScope.account.role.id == 2}">
+                                        <a href="Manager">Quản lý</a>
+                                    </c:when>
+                                    <c:otherwise>
+
+                                    </c:otherwise>
+                                </c:choose>
+                            </li>
                         </ul>
                     </div><!-- /.navbar-collapse -->   
                     <c:if test="${sessionScope.account.role.id == null}">
@@ -47,8 +60,16 @@
                             <div class="register-login">
                                 <div class="dropdown">
                                     <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fa fa-user-circle"></i> ${sessionScope.account.userName}
+                                        <c:choose>
+                                            <c:when test="${sessionScope.account.role.id == 2}">
+                                                <i class="fa fa-user-circle"></i> ${sessionScope.account.username_manager}
+                                            </c:when>
+                                            <c:otherwise>
+                                                <i class="fa fa-user-circle"></i> ${sessionScope.account.userName}
+                                            </c:otherwise>
+                                        </c:choose>
                                     </button>
+
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="Profile"><i class="sl sl-icon-user"></i> Thông tin cá nhân</a>
                                         <a class="dropdown-item" href="Logout"><i class="sl sl-icon-power"></i> Đăng xuất</a>
