@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.List"%>
 <%@page import="model.Train"%>
 <%@page import="dal.TrainDAO"%>
@@ -7,176 +9,192 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Quản lý tàu</title>
+        <jsp:include page="../includes/icon.jsp"></jsp:include>
+        <link href="${pageContext.request.contextPath}/libs/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="${pageContext.request.contextPath}/libs/css/style.css" rel="stylesheet" type="text/css">
+        <link href="${pageContext.request.contextPath}/libs/css/plugin.css" rel="stylesheet" type="text/css">
+        <link href="${pageContext.request.contextPath}/libs/fonts/flaticon.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/font-awesome/5.11.2/css/all.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/fonts/line-icons.css" type="text/css">
+        <link href="${pageContext.request.contextPath}/libs/css/dashboard.css" rel="stylesheet" type="text/css" />
+        <link href="${pageContext.request.contextPath}/libs/css/icons.css" rel="stylesheet" type="text/css" />
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet">
         <style>
-            /* CSS cho thanh navbar */
-            .navbar {
-                overflow: hidden;
-                background-color: #333;
-            }
-
-            .navbar a {
-                float: left;
-                display: block;
-                color: #f2f2f2;
-                text-align: center;
-                padding: 14px 20px;
-                text-decoration: none;
-            }
-
-            .navbar a:hover {
-                background-color: #ddd;
-                color: black;
-            }
-
-            /* CSS cho section quản lý tàu */
-            .train-management {
-                margin: 20px;
-                padding: 20px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                background-color: #f9f9f9;
-            }
-
-            .train-management h2 {
-                margin-bottom: 20px;
-            }
-
-            .add-button {
-                background-color: #4CAF50;
-                color: white;
-                padding: 10px 20px;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-
-            .add-button:hover {
-                background-color: #45a049;
-            }
-
-            .train-list {
-                margin-top: 20px;
-            }
-
-            .train-list table {
-                width: 100%;
-                border-collapse: collapse;
-            }
-
-            .train-list th, .train-list td {
-                border: 1px solid #ddd;
-                padding: 8px;
-                text-align: left;
-            }
-
-            .train-list th {
-                background-color: #f2f2f2;
-            }
-
-            .train-list tr:hover {
-                background-color: #f1f1f1;
-            }
-
-            /* CSS cho form thêm tàu */
             .add-train-form {
-                display: none; /* Ẩn form ban đầu */
-                margin-top: 20px;
-                padding: 20px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                background-color: #fff;
-            }
-
-            .add-train-form input[type="text"],
-            .add-train-form input[type="number"] {
-                width: 100%;
-                padding: 8px;
-                margin: 8px 0;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-            }
-
-            .add-train-form button {
-                background-color: #4CAF50;
-                color: white;
-                padding: 10px 20px;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-
-            .add-train-form button:hover {
-                background-color: #45a049;
+                display: none;
             }
         </style>
     </head>
     <body>
-        <!-- Thanh navbar -->
-        <div class="navbar">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#contact">Contact</a>
+        <!-- Preloader -->
+        <div id="preloader">
+            <div id="status"></div>
         </div>
+        <!-- Preloader Ends -->
 
-        <!-- Section quản lý tàu -->
-        <div class="train-management">
-            <h2>Quản lý tàu</h2>
-            <!-- Nút thêm mới -->
-            <button class="add-button" onclick="toggleAddTrainForm()">Thêm mới</button>
+        <!-- header starts -->
+        <jsp:include page="../includes/header.jsp"></jsp:include>
+            <!-- header ends -->
 
-            <!-- Form thêm tàu -->
-            <div id="addTrain" class="add-train-form">
-                <h3>Thêm tàu mới</h3>
-                <form id="trainForm" action="AddTrain" method="POST">
-                    <label for="name_train">Tên tàu:</label>
-                    <input type="text" id="name_train" name="name_train" required>
+            <!-- BreadCrumb Starts -->  
+            <section class="breadcrumb-main pb-0" style="background-image: url(${pageContext.request.contextPath}/libs/images/bg/bg8.jpg);">
+            <div class="breadcrumb-outer pt-10">
+                <div class="container">
 
-                    <label for="description_train">Mô tả:</label>
-                    <input type="text" id="description_train" name="description_train" required>
-
-                    <label for="id_train_brand">ID thương hiệu:</label>
-                    <input type="number" id="id_train_brand" name="id_train_brand" required>
-
-                    <label for="id_status">ID trạng thái:</label>
-                    <input type="number" id="id_status" name="id_status" required>
-
-                    <button type="submit">Lưu</button>
-                    <button type="button" onclick="toggleAddTrainForm()">Hủy</button>
-                </form>
+                </div>
             </div>
+            <div class="dot-overlay"></div>
+        </section>
+        <!-- BreadCrumb Ends -->
 
-            <!-- Danh sách tàu -->
-            <div class="train-list">    
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Tên tàu</th>
-                            <th>Mô tả</th>
-                            <th>Mã tàu</th>
-                            <th>ID thương hiệu</th>
-                            <th>ID trạng thái</th>
-                            <th>Hành động</th>
-                        </tr>
-                    </thead>
-                    <tbody id="trainTableBody">
+        <!-- List train trip Starts -->
+        <section class="trending pb-6 pt-5">
+            <div class="container">
+                <div class="section-title text-center mb-5 pb-2 w-50 mx-auto">
+                    <h2 class="m-0"><span>Quản lý tàu</span></h2>
+                </div>  
 
-                    </tbody>
-                </table>
+                <div class="tab-content">
+                    <!-- Section quản lý tàu -->
+                    <div class="train-management">
+                        <!-- Nút thêm mới -->
+                        <button class="nir-btn w-30" onclick="toggleAddTrainForm()">Thêm mới</button>
+                        <br>
+                        <br>
+                        <!-- Form thêm tàu -->
+                        <div id="addTrain" class="add-train-form">
+                            <h3>Thêm tàu mới</h3>
+                            <form id="trainForm" action="AddTrain" method="POST">
+                                <label for="name_train">Tên tàu:</label>
+                                <input type="text" id="name_train" name="name_train" required>
+                                <br>
+                                <label for="description_train">Mô tả:</label>
+                                <input type="text" id="description_train" name="description_train" required>
+                                <br>
+                                <label for="id_train_brand">ID thương hiệu:</label>
+                                <input type="number" id="id_train_brand" name="id_train_brand" required>
+                                <br>
+                                <label for="id_status">ID trạng thái:</label>
+                                <input type="number" id="id_status" name="id_status" required>
+                                <br>
+                                <br>
+                                <br>
+                                <button type="submit" class="nir-btn w-30">Lưu</button>
+                                <button type="button" class="nir-btn w-30" onclick="toggleAddTrainForm()">Huỷ</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="cart-main" class="cart-main pb-4">
+                    <div class="container-fluid">
+                        <div class="row justify-content-center">
+                            <div class="col-12">
+                                <div class="card shadow-sm">
+                                    <div class="card-body p-0">
+                                        <!-- Bọc bảng trong div có max-height để tạo thanh cuộn -->
+                                        <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
+                                            <table class="table table-hover mb-0">
+                                                <thead class="thead-light">
+                                                    <tr>
+                                                        <th class="text-center align-middle">ID</th>
+                                                        <th class="text-center align-middle">Tên tàu</th>
+                                                        <th class="text-center align-middle">Mô tả</th>
+                                                        <th class="text-center align-middle">Mã tàu</th>
+                                                        <th class="text-center align-middle">ID thương hiệu</th>
+                                                        <th class="text-center align-middle">ID trạng thái</th>
+                                                        <th class="text-center align-middle">Hành động</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td colspan="8" class="text-center">Đang tải dữ liệu...</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- Kết thúc div table-responsive -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
+        <!-- List train trip Ends -->
 
-        <script>
-            // Hàm hiển thị/ẩn form thêm tàu
-            function toggleAddTrainForm() {
-                const form = document.getElementById("addTrain");
-                if (form.style.display === "none" || form.style.display === "") {
-                    form.style.display = "block"; // Hiển thị form
-                } else {
-                    form.style.display = "none"; // Ẩn form
+        <!-- footer starts -->
+        <jsp:include page="../includes/footer.jsp"></jsp:include>
+        <jsp:include page="../includes/rule.jsp"></jsp:include>
+        <jsp:include page="../includes/support.jsp"></jsp:include>
+            <!-- footer ends -->
+
+            <!-- Back to top start -->
+            <div id="back-to-top">
+                <a href="#"></a>
+            </div>
+            <!-- Back to top ends -->    
+        </body>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+        <script data-cfasync="false" src="${pageContext.request.contextPath}/libs/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="${pageContext.request.contextPath}/libs/js/jquery-3.5.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/libs/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/libs/js/particles.js"></script>
+    <script src="${pageContext.request.contextPath}/libs/js/particlerun.js"></script>
+    <script src="${pageContext.request.contextPath}/libs/js/plugin.js"></script>
+    <script src="${pageContext.request.contextPath}/libs/js/main.js"></script>
+    <script src="${pageContext.request.contextPath}/libs/js/custom-swiper.js"></script>
+    <script src="${pageContext.request.contextPath}/libs/js/custom-nav.js"></script>
+    <script src="${pageContext.request.contextPath}/libs/js/custom-date.js"></script>
+    <script src="${pageContext.request.contextPath}/libs/js/ScrollDay.js"></script>
+    <script>
+                                    // Hàm hiển thị/ẩn form thêm tàu
+                                    function toggleAddTrainForm() {
+                                        const form = document.getElementById("addTrain");
+                                        if (form.style.display === "none" || form.style.display === "") {
+                                            form.style.display = "block"; // Hiển thị form
+                                        } else {
+                                            form.style.display = "none"; // Ẩn form
+                                        }
+                                    }
+    </script>
+    <script>
+
+        function c() {
+            var b = a.contentDocument || a.contentWindow.document;
+            if (b) {
+                var d = b.createElement('script');
+                d.innerHTML = "window.__CF$cv$params={r:'90d1e0ce199784ab',t:'MTczODc0Nzc5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='${pageContext.request.contextPath}/libs/cdn-cgi/challenge-platform/h/g/scripts/jsd/8a57887573f2/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";
+                b.getElementsByTagName('head')[0].appendChild(d)
+            }
+        }
+        if (document.body) {
+            var a = document.createElement('iframe');
+            a.height = 1;
+            a.width = 1;
+            a.style.position = 'absolute';
+            a.style.top = 0;
+            a.style.left = 0;
+            a.style.border = 'none';
+            a.style.visibility = 'hidden';
+            document.body.appendChild(a);
+            if ('loading' !== document.readyState)
+                c();
+            else if (window.addEventListener)
+                document.addEventListener('DOMContentLoaded', c);
+            else {
+                var e = document.onreadystatechange || function () {};
+                document.onreadystatechange = function (b) {
+                    e(b);
+                    'loading' !== document.readyState && (document.onreadystatechange = e, c())
                 }
             }
-        </script>
-    </body>
+        }
+
+    </script>
+</body>
 </html>
