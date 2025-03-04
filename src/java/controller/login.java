@@ -1,7 +1,6 @@
 package controller;
 
-import dal.CustomerDAO;
-import dal.ManagerDAO;
+import dal.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -10,8 +9,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.Admin;
 import model.Customer;
 import model.Manager;
+import model.TrainBrand;
 import until.Encoding;
 
 /**
@@ -60,41 +61,34 @@ public class login extends HttpServlet {
 
         CustomerDAO cusDao = new CustomerDAO();
         ManagerDAO manDao = new ManagerDAO();
+        AdminDAO adminDAO = new AdminDAO();
+
         HttpSession session = request.getSession();
 
         Customer acc = cusDao.getCustomer(email, password);
-        Manager manAcc = manDao.getManagerByEmailAndPassword(email,password);
+        Manager manAcc = manDao.getManagerByEmailAndPassword(email, password);
+        Admin adminAcc = adminDAO.getAdmin(email, password);
 
-        if (manAcc != null) {
-            session.setAttribute("manager", 2);
-            session.setAttribute("account", manAcc);
-            System.out.println("Acc " + manAcc);
-            request.getRequestDispatcher("home").forward(request, response);
-            return;
-        }
-
-        if (acc == null && manAcc == null) {
+        if (acc == null && manAcc == null && adminAcc == null) {
             request.setAttribute(email, "email");
             request.setAttribute("err", "Tài khoản hoặc mật khẩu không chính xác! Xin vui lòng nhập lại.");
             request.getRequestDispatcher("Views/Login.jsp").forward(request, response);
         } else {
-            if (acc.getRole().getId() == 1) {
+            if (adminAcc != null) {
                 session.setAttribute("admin", 1);
-                session.setAttribute("account", acc);
-                System.out.println("Acc " + acc);
-                request.getRequestDispatcher("home").forward(request, response);
-            }
-            if (acc.getRole().getId() == 2) {
+                session.setAttribute("account", adminAcc);
+                System.out.println("Acc " + adminAcc);
+                response.sendRedirect("home");
+            } else if (manAcc != null) {
                 session.setAttribute("manager", 2);
-                session.setAttribute("account", acc);
-                System.out.println("Acc " + acc);
-                request.getRequestDispatcher("home").forward(request, response);
-            }
-            if (acc.getRole().getId() == 3) {
+                session.setAttribute("account", manAcc);
+                System.out.println("Acc " + manAcc);
+                response.sendRedirect("home");
+            } else {
                 session.setAttribute("customer", 3);
                 session.setAttribute("account", acc);
                 System.out.println("Acc " + acc);
-                request.getRequestDispatcher("home").forward(request, response);
+                response.sendRedirect("home");
             }
         }
     }

@@ -37,7 +37,7 @@
                                 <li>
                                 <c:choose>
                                     <c:when test="${sessionScope.account.role.id == 1}">
-                                        <a href="Manager">Quản lý Admin</a>
+                                        <a href="dashboard">Quản lý Admin</a>
                                     </c:when>
                                     <c:when test="${sessionScope.account.role.id == 2}">
                                         <a href="Manager">Quản lý</a>
@@ -61,6 +61,9 @@
                                 <div class="dropdown">
                                     <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <c:choose>
+                                            <c:when test="${sessionScope.account.role.id == 1}">
+                                                <i class="fa fa-user-circle"></i> ${sessionScope.account.username_admin}
+                                            </c:when>
                                             <c:when test="${sessionScope.account.role.id == 2}">
                                                 <i class="fa fa-user-circle"></i> ${sessionScope.account.username_manager}
                                             </c:when>
