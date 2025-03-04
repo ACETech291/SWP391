@@ -12,9 +12,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import dal.StationDAO;
 import dal.TrainDAO;
+import dal.TripDAO;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import model.Station;
 import model.Train;
+import model.TripDTO;
 
 /**
  *
@@ -28,13 +32,21 @@ public class home extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         StationDAO stationDAO = new StationDAO();
         TrainDAO trainDAO = new TrainDAO();
+        TripDAO tripDAO = new TripDAO();
 
         List<Train> trains = trainDAO.getAllTrains();
         List<Station> listStation = stationDAO.getAllStations();
-
+        
+        List<TripDTO> listTrips = tripDAO.getAllTripsAtThisDay();
+        request.setAttribute("listStation", listStation);
+        Date currentDate = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String formattedDate = sdf.format(currentDate);
+        
         request.setAttribute("listStation", listStation);
         request.setAttribute("trains", trains);
-
+        request.setAttribute("formattedDate", formattedDate);
+        request.setAttribute("listTrips", listTrips);
         request.getRequestDispatcher("Views/Home.jsp").forward(request, response);
     }
 
