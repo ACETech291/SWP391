@@ -100,6 +100,7 @@
 
                     <div class="tab-content">
                         <P style="color: red">${err}</P>
+                        <P style="color: red">${message}</P>
                         <form action="Search" method="Post">
                             <div id="tour-1" class="tab-pane in active">
                                 <div class="row d-flex align-items-center justify-content-between">
@@ -162,28 +163,48 @@
                                 </div>
                             </div>
                         </form>
-                        <c:if test="${not empty listTripDTO}">
-                            <table class="table table-hover mb-0">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th class="text-center align-middle">Ga đi</th>
-                                        <th class="text-center align-middle">Ga đến</th>
-                                        <th class="text-center align-middle">Ngày đi</th>
-                                        <th class="text-center align-middle">Mã tàu</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="trip-list">
-                                    <c:forEach var="trip" items="${listTripDTO}">
+                        <table class="table table-hover mb-0">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th class="text-center align-middle">Ga đi</th>
+                                    <th class="text-center align-middle">Giờ đi</th>
+                                    <th class="text-center align-middle">Ga đến</th>
+                                    <th class="text-center align-middle">Giờ đến</th>
+                                    <th class="text-center align-middle">Ngày đi</th>
+                                    <th class="text-center align-middle">Mã tàu</th>
+                                    <th class="text-center align-middle">Giá vé</th>
+                                    <th class="text-center align-middle"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="trip-list">
+                                <c:if test="${empty listTripDTO and empty message}">
+                                    <c:forEach var="trip" items="${listTrips}">
                                         <tr>
                                             <td class="text-center align-middle">${trip.start_station}</td>
+                                            <td class="text-center align-middle">${trip.start_time}</td>
                                             <td class="text-center align-middle">${trip.end_station}</td>
-                                            <td class="text-center align-middle">${date}</td>
+                                            <td class="text-center align-middle">${trip.end_time}</td>
+                                            <td class="text-center align-middle">${formattedDate}</td>
                                             <td class="text-center align-middle">${trip.name_train}</td>
+                                            <td class="text-center align-middle">${trip.price_trip}</td>
+                                            <td class="text-center align-middle"><a href="${pageContext.request.contextPath}/BookTicket?id_trip=${trip.id_trip}" class="btn btn-primary">Đặt vé ngay</a></td>
                                         </tr>
                                     </c:forEach>
-                                </tbody>
-                            </table>
-                        </c:if>
+                                </c:if>
+                                <c:forEach var="trip" items="${listTripDTO}">
+                                    <tr>
+                                        <td class="text-center align-middle">${trip.start_station}</td>
+                                        <td class="text-center align-middle">${trip.start_time}</td>
+                                        <td class="text-center align-middle">${trip.end_station}</td>
+                                        <td class="text-center align-middle">${trip.end_time}</td>
+                                        <td class="text-center align-middle">${empty date ? formattedDate : date}</td>
+                                        <td class="text-center align-middle">${trip.name_train}</td>
+                                        <td class="text-center align-middle">${trip.price_trip}</td>
+                                        <td class="text-center align-middle"><a href="${pageContext.request.contextPath}/BookTicket?id_trip=${trip.id_trip}" class="btn btn-primary">Đặt vé ngay</a></td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
                         <div id="tour-2" class="tab-pane">
                             <div class="row d-flex align-items-center justify-content-between">
                                 <div class="col-lg">
@@ -249,6 +270,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>

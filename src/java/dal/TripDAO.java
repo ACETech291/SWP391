@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
@@ -83,33 +84,84 @@ public class TripDAO {
         return trips;
     }
 
+    public List<TripDTO> getAllTripsAtThisDay() {
+        List<TripDTO> trips = new ArrayList<>();
+        StringBuilder sql = new StringBuilder("""
+    SELECT t.id_trip, 
+           s1.name_station AS start_station, 
+           s2.name_station AS end_station,
+           tr.name_train, 
+           tos1.time_train_in_station AS start_time, 
+           tos2.time_train_in_station AS end_time,
+           t.price_trip  -- Lấy thêm giá vé
+    FROM trip t
+    JOIN time_station ts1 ON t.id_time_station_start = ts1.id_time_station
+    JOIN time_station ts2 ON t.id_time_station_end = ts2.id_time_station
+    JOIN station s1 ON ts1.id_station = s1.id_station
+    JOIN station s2 ON ts2.id_station = s2.id_station
+    JOIN train tr ON t.id_train = tr.id_train
+    JOIN time_of_station tos1 ON ts1.id_time_of_station = tos1.id_time_of_station
+    JOIN time_of_station tos2 ON ts2.id_time_of_station = tos2.id_time_of_station
+    WHERE DATE(tos1.time_train_in_station) = CURDATE()  
+       OR DATE(tos2.time_train_in_station) = CURDATE(); 
+""");
+        PreparedStatement ps;
+        try {
+            ps = connect.prepareStatement(sql.toString());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                trips.add(new TripDTO(
+                        rs.getInt("id_trip"),
+                        rs.getString("start_station"),
+                        rs.getString("end_station"),
+                        rs.getString("name_train"),
+                        rs.getObject("start_time", LocalTime.class),
+                        rs.getObject("end_time", LocalTime.class),
+                        rs.getDouble("price_trip") // Lấy thêm giá vé
+                ));
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return trips;
+    }
+
     public List<TripDTO> searchTrips(String id_station_start, String id_station_end, String train_brand) {
         List<TripDTO> trips = new ArrayList<>();
         StringBuilder sql = new StringBuilder("""
-        SELECT t.id_trip, s1.name_station AS start_station, s2.name_station AS end_station,
-               tr.name_train
+    SELECT t.id_trip, 
+               s1.name_station AS start_station, 
+               s2.name_station AS end_station,
+               tr.name_train, 
+               tos1.time_train_in_station AS start_time, 
+               tos2.time_train_in_station AS end_time,
+               t.price_trip  -- Lấy thêm giá vé
         FROM trip t
-        JOIN station s1 ON t.id_station_start = s1.id_station
-        JOIN station s2 ON t.id_station_end = s2.id_station
+        JOIN time_station ts1 ON t.id_time_station_start = ts1.id_time_station
+        JOIN time_station ts2 ON t.id_time_station_end = ts2.id_time_station
+        JOIN station s1 ON ts1.id_station = s1.id_station
+        JOIN station s2 ON ts2.id_station = s2.id_station
         JOIN train tr ON t.id_train = tr.id_train
+        JOIN time_of_station tos1 ON ts1.id_time_of_station = tos1.id_time_of_station
+        JOIN time_of_station tos2 ON ts2.id_time_of_station = tos2.id_time_of_station
         WHERE 1 = 1
-    """);
+""");
 
         List<Object> params = new ArrayList<>();
 
-        // Nếu có id_station_start
+// Nếu có id_station_start
         if (id_station_start != null && !id_station_start.isEmpty()) {
-            sql.append(" AND t.id_station_start = ?");
+            sql.append(" AND ts1.id_station = ?");
             params.add(Integer.parseInt(id_station_start));
         }
 
-        // Nếu có id_station_end
+// Nếu có id_station_end
         if (id_station_end != null && !id_station_end.isEmpty()) {
-            sql.append(" AND t.id_station_end = ?");
+            sql.append(" AND ts2.id_station = ?");
             params.add(Integer.parseInt(id_station_end));
         }
 
-        // Nếu có train_brand
+// Nếu có train_brand
         if (train_brand != null && !train_brand.trim().isEmpty()) {
             sql.append(" AND tr.name_train LIKE ?");
             params.add("%" + train_brand + "%");
@@ -130,7 +182,10 @@ public class TripDAO {
                         rs.getInt("id_trip"),
                         rs.getString("start_station"),
                         rs.getString("end_station"),
-                        rs.getString("name_train") 
+                        rs.getString("name_train"),
+                        rs.getObject("start_time", LocalTime.class),
+                        rs.getObject("end_time", LocalTime.class),
+                        rs.getDouble("price_trip") // Lấy thêm giá vé
                 ));
             }
         } catch (Exception e) {
@@ -158,9 +213,10 @@ public class TripDAO {
 
     public static void main(String[] args) {
         TripDAO td = new TripDAO();
-        for(int i = 3; i < 38;i++){
-            td.insertTrip(0, 1, i, 1);
-            System.out.println("INSERT INTO trip (price_trip, id_station_start, id_station_end, id_train) VALUES (0, 1, "+i+", 1)");
+        List<TripDTO> list = td.searchTrips("", "", "");
+        for (TripDTO tripDTO : list) {
+            System.out.println(tripDTO);
         }
+        
     }
 }

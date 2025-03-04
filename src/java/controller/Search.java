@@ -5,6 +5,8 @@
 package controller;
 
 import dal.StationDAO;
+import dal.TrainDAO;
+import model.Train;
 import dal.TripDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,6 +14,9 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import model.Station;
 import model.TripDTO;
@@ -61,7 +66,7 @@ public class Search extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.getRequestDispatcher("home").forward(request, response);
-        
+
     }
 
     /**
@@ -77,10 +82,39 @@ public class Search extends HttpServlet {
             throws ServletException, IOException {
         StationDAO stationDAO = new StationDAO();
         TripDAO tripDAO = new TripDAO();
+        TrainDAO trainDAO = new TrainDAO();
+
+        List<Train> trains = trainDAO.getAllTrains();
+        request.setAttribute("trains", trains);
 
         String station_from = request.getParameter("station_from");
         String station_end = request.getParameter("station_end");
-        String date = request.getParameter("date");
+        String dateStr = request.getParameter("date");
+
+        if (dateStr != null && !dateStr.isEmpty()) {
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date inputDate = sdf.parse(dateStr);
+
+                // Lấy ngày hiện tại
+                Calendar calendar = Calendar.getInstance();
+                Date currentDate = calendar.getTime();
+
+                // Cộng thêm 30 ngày vào ngày hiện tại
+                calendar.add(Calendar.DAY_OF_MONTH, 30);
+                Date maxDate = calendar.getTime();
+
+                // So sánh inputDate với maxDate
+                if (inputDate.after(maxDate)) {
+                    request.setAttribute("message", "Không có chuyến đi trong khoảng thời gian này.");
+                } else {
+                    request.setAttribute("date", dateStr);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                request.setAttribute("message", "Ngày nhập vào không hợp lệ.");
+            }
+        } 
         String train_brand = request.getParameter("train_brand");
 
         if ((!station_from.isEmpty()) && (station_from.equalsIgnoreCase(station_end))) {
@@ -92,13 +126,15 @@ public class Search extends HttpServlet {
         }
 
         List<TripDTO> listTripDTO = tripDAO.searchTrips(station_from, station_end, train_brand);
-        for (TripDTO tripDTO : listTripDTO) {
-            System.out.println(tripDTO);
-            System.out.println(date);
-        }
+
+        Date currentDate = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String formattedDate = sdf.format(currentDate);
+        request.setAttribute("formattedDate", formattedDate);
         request.setAttribute("listTripDTO", listTripDTO);
-        request.setAttribute("date", date);
+
         List<Station> listStation = stationDAO.getAllStations();
+
         request.setAttribute("listStation", listStation);
         request.getRequestDispatcher("Views/Home.jsp").forward(request, response);
     }
