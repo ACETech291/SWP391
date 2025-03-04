@@ -5,12 +5,15 @@
 
 package controller.manager;
 
+import dal.StatusDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import model.Status;
 
 /**
  *
@@ -53,6 +56,15 @@ public class Manager extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+                StatusDAO sDAO = new StatusDAO();
+        List<Status> listS = sDAO.getStatusTrain();
+
+        request.setAttribute("statuses", listS);
+
+        System.out.println("Statuses được lấy từ database:");
+        for (Status status : listS) {
+            System.out.println(status.getId()+ " - " + status.getStatusName());
+        }
         request.getRequestDispatcher("Views/Manager/Manager.jsp").forward(request, response);
     } 
 

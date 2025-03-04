@@ -89,7 +89,7 @@ public class Train implements SQLInsert {
                 name_train,
                 (image_train != null) ? String.format("'%s'", image_train) : "NULL", // Xử lý ảnh (blob)
                 description_train,
-                id_train,
+                id_train_brand,
                 id_status
         );
     }

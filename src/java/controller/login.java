@@ -2,6 +2,7 @@ package controller;
 
 import dal.CustomerDAO;
 import dal.ManagerDAO;
+import dal.TrainBrandDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,6 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.Customer;
 import model.Manager;
+import model.TrainBrand;
 import until.Encoding;
 
 /**
@@ -68,6 +70,11 @@ public class login extends HttpServlet {
         if (manAcc != null) {
             session.setAttribute("manager", 2);
             session.setAttribute("account", manAcc);
+            
+            TrainBrandDAO trainBrandDAO = new TrainBrandDAO();
+            TrainBrand trainBrand = trainBrandDAO.getTrainBrandsByManager(manAcc.getId_manager());
+            
+            session.setAttribute("id_train_brand", trainBrand.getId_train_brand());
             System.out.println("Acc " + manAcc);
             request.getRequestDispatcher("home").forward(request, response);
             return;

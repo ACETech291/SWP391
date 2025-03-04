@@ -4,9 +4,12 @@
 <%@page import="java.util.List"%>
 <%@page import="model.Train"%>
 <%@page import="dal.TrainDAO"%>
+<%@page import="model.TrainBrand"%>
 <!DOCTYPE html>
 <html>
     <head>
+        
+        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Quản lý tàu</title>
         <jsp:include page="../includes/icon.jsp"></jsp:include>
@@ -59,7 +62,7 @@
                     <!-- Section quản lý tàu -->
                     <div class="train-management">
                         <!-- Nút thêm mới -->
-                        <button class="nir-btn w-30" onclick="toggleAddTrainForm()">Thêm mới</button>
+                        <button class="nir-btn w-30" onclick="toggleAddTrainForm()" >Thêm mới</button>
                         <br>
                         <br>
                         <!-- Form thêm tàu -->
@@ -72,13 +75,19 @@
                                 <label for="description_train">Mô tả:</label>
                                 <input type="text" id="description_train" name="description_train" required>
                                 <br>
-                                <label for="id_train_brand">ID thương hiệu:</label>
-                                <input type="number" id="id_train_brand" name="id_train_brand" required>
-                                <br>
-                                <label for="id_status">ID trạng thái:</label>
-                                <input type="number" id="id_status" name="id_status" required>
-                                <br>
-                                <br>
+                                <%
+                                            Integer id_train_brand = (Integer) session.getAttribute("id_train_brand");
+                                %>                                                                                          
+                                <input type="hidden" id="id_train_brand" name="id_train_brand" value="<%= id_train_brand %>" >
+
+                                <label for="id_status">Trạng thái:</label>
+                                <select id="id_status" name="id_status" required>
+                                    <option value="">Chọn trạng thái</option>
+                                    <c:forEach var="status" items="${statuses}">
+                                        <option value="${status.id}">${status.statusName}</option>
+                                    </c:forEach>
+                                </select>
+                                <br>    
                                 <br>
                                 <button type="submit" class="nir-btn w-30">Lưu</button>
                                 <button type="button" class="nir-btn w-30" onclick="toggleAddTrainForm()">Huỷ</button>
