@@ -70,7 +70,7 @@ public class login extends HttpServlet {
         Admin adminAcc = adminDAO.getAdmin(email, password);
 
         if (acc == null && manAcc == null && adminAcc == null) {
-            request.setAttribute(email, "email");
+            request.setAttribute("email", email);
             request.setAttribute("err", "Tài khoản hoặc mật khẩu không chính xác! Xin vui lòng nhập lại.");
             request.getRequestDispatcher("Views/Login.jsp").forward(request, response);
         } else {
@@ -82,8 +82,15 @@ public class login extends HttpServlet {
             } else if (manAcc != null) {
                 session.setAttribute("manager", 2);
                 session.setAttribute("account", manAcc);
-                System.out.println("Acc " + manAcc);
-                response.sendRedirect("home");
+
+                TrainBrandDAO dao = new TrainBrandDAO();
+                TrainBrand tb = dao.getTrainBrandsByManager(manAcc.getId_manager());
+
+                if (tb != null) {
+                    session.setAttribute("id_train_brand", tb.getId_train_brand());
+                }
+
+                response.sendRedirect("Manager");
             } else {
                 session.setAttribute("customer", 3);
                 session.setAttribute("account", acc);

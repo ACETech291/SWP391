@@ -8,8 +8,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
-        
+
+
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Quản lý tàu</title>
         <jsp:include page="../includes/icon.jsp"></jsp:include>
@@ -24,7 +24,7 @@
         <link href="${pageContext.request.contextPath}/libs/css/icons.css" rel="stylesheet" type="text/css" />
         <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet">
         <style>
-            .add-train-form {
+            .add-form {
                 display: none;
             }
         </style>
@@ -62,12 +62,13 @@
                     <!-- Section quản lý tàu -->
                     <div class="train-management">
                         <!-- Nút thêm mới -->
-                        <button class="nir-btn w-30" onclick="toggleAddTrainForm()" >Thêm mới</button>
+                        <button class="nir-btn w-30" onclick="toggleAddTrainForm()" >Thêm tàu mới</button>
+                        <button class="nir-btn w-30" onclick="toggleAddCarriageForm()" >Thêm khoang mới</button>
                         <br>
                         <br>
+
                         <!-- Form thêm tàu -->
-                        <div id="addTrain" class="add-train-form">
-                            <h3>Thêm tàu mới</h3>
+                        <div id="addTrain" class="add-form">
                             <form id="trainForm" action="AddTrain" method="POST">
                                 <label for="name_train">Tên tàu:</label>
                                 <input type="text" id="name_train" name="name_train" required>
@@ -83,7 +84,7 @@
                                 <label for="id_status">Trạng thái:</label>
                                 <select id="id_status" name="id_status" required>
                                     <option value="">Chọn trạng thái</option>
-                                    <c:forEach var="status" items="${statuses}">
+                                    <c:forEach var="status" items="${status_train}">
                                         <option value="${status.id}">${status.statusName}</option>
                                     </c:forEach>
                                 </select>
@@ -91,6 +92,54 @@
                                 <br>
                                 <button type="submit" class="nir-btn w-30">Lưu</button>
                                 <button type="button" class="nir-btn w-30" onclick="toggleAddTrainForm()">Huỷ</button>
+                            </form>
+                        </div>
+
+                        <!-- Form thêm khoang tàu -->
+                        <div id="addCarriage" class="add-form">
+                            <form id="carriageForm" action="AddCarriage" method="POST"> 
+                                <%
+                                    TrainDAO tDAO = new TrainDAO();
+                                    List<Train> trains = tDAO.getAllTrainsSameBrand(id_train_brand);
+                                    request.setAttribute("trains", trains);
+                                %>
+
+                                <!-- Chọn tàu -->
+                                <label for="id_train">Chọn tàu:</label>
+                                <select id="id_train" name="id_train" required>
+                                    <c:forEach var="train" items="${trains}">
+                                        <option value="${train.id_train}">${train.name_train}</option>
+                                    </c:forEach>
+                                </select>
+                                <br>
+
+                                <!-- Nhập tên khoang tàu -->
+                                <label for="name_train_carriage">Tên khoang tàu:</label>
+                                <input type="text" id="name_train_carriage" name="name_train_carriage" required>
+                                <br>
+
+                                <!-- Nhập mô tả -->
+                                <label for="description_train_carriage">Mô tả:</label>
+                                <textarea id="description_train_carriage" name="description_train_carriage" required></textarea>
+                                <br>
+
+                                <!-- Nhập số lượng ghế -->
+                                <label for="total_seat">Số lượng ghế:</label>
+                                <input type="number" id="total_seat" name="total_seat" min="1" required>
+                                <br>
+
+                                <!-- Chọn trạng thái -->
+                                <label for="id_status">Trạng thái:</label>
+                                <select id="id_status" name="id_status" required>
+                                    <option value="">Chọn trạng thái</option>
+                                    <c:forEach var="status" items="${status_carriage}">
+                                        <option value="${status.id}">${status.statusName}</option>
+                                    </c:forEach>
+                                </select>
+                                <br><br>
+
+                                <button type="submit" class="nir-btn w-30">Lưu</button>
+                                <button type="button" class="nir-btn w-30" onclick="toggleAddCarriageForm()">Huỷ</button>
                             </form>
                         </div>
                     </div>
@@ -107,20 +156,38 @@
                                             <table class="table table-hover mb-0">
                                                 <thead class="thead-light">
                                                     <tr>
-                                                        <th class="text-center align-middle">ID</th>
                                                         <th class="text-center align-middle">Tên tàu</th>
                                                         <th class="text-center align-middle">Mô tả</th>
-                                                        <th class="text-center align-middle">Mã tàu</th>
-                                                        <th class="text-center align-middle">ID thương hiệu</th>
-                                                        <th class="text-center align-middle">ID trạng thái</th>
+                                                        <th class="text-center align-middle">trạng thái</th>
                                                         <th class="text-center align-middle">Hành động</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    <% 
+                                                        List<Train> topTrains = (List<Train>) request.getAttribute("topTrains"); 
+                                                        if (topTrains != null && !topTrains.isEmpty()) {
+                                                            for (Train train : topTrains) {
+                                                    %>
                                                     <tr>
-                                                        <td colspan="8" class="text-center">Đang tải dữ liệu...</td>
+                                                        <td class="text-center align-middle"><%= train.getName_train() %></td>
+                                                        <td class="text-center align-middle"><%= train.getDescription_train() %></td>
+                                                        <td class="text-center align-middle"><%= train.getId_status() %></td>
+                                                        <td class="text-center align-middle">
+                                                            <!-- Nút hành động -->
+                                                            <a href="EditTrain?id=<%= train.getId_train() %>" class="btn btn-warning btn-sm">Sửa</a>
+                                                            <a href="DeleteTrain?id=<%= train.getId_train() %>" class="btn btn-danger btn-sm">Xóa</a>
+                                                        </td>
                                                     </tr>
+                                                    <% 
+                                                            }
+                                                        } else { 
+                                                    %>
+                                                    <tr>
+                                                        <td colspan="4" class="text-center">12345678900000</td>
+                                                    </tr>
+                                                    <% } %>
                                                 </tbody>
+
                                             </table>
                                         </div>
                                         <!-- Kết thúc div table-responsive -->
@@ -164,11 +231,11 @@
                                     // Hàm hiển thị/ẩn form thêm tàu
                                     function toggleAddTrainForm() {
                                         const form = document.getElementById("addTrain");
-                                        if (form.style.display === "none" || form.style.display === "") {
-                                            form.style.display = "block"; // Hiển thị form
-                                        } else {
-                                            form.style.display = "none"; // Ẩn form
-                                        }
+                                        form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
+                                    }
+                                    function toggleAddCarriageForm() {
+                                        const form = document.getElementById("addCarriage");
+                                        form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
                                     }
     </script>
     <script>
