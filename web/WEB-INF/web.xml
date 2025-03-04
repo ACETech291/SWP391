@@ -91,7 +91,7 @@
     <servlet>
         <servlet-name>Search</servlet-name>
         <servlet-class>controller.Search</servlet-class>
-    </servlet>   
+    </servlet>
     <servlet>
         <servlet-name>Manager</servlet-name>
         <servlet-class>controller.manager.Manager</servlet-class>
@@ -99,6 +99,10 @@
     <servlet>
         <servlet-name>AddTrain</servlet-name>
         <servlet-class>controller.manager.AddTrain</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProfileAdmin</servlet-name>
+        <servlet-class>controller.admin.ProfileAdmin</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>home</servlet-name>
@@ -189,7 +193,6 @@
         <url-pattern>/SearchByAjax</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-
         <servlet-name>Search</servlet-name>
         <url-pattern>/Search</url-pattern>
     </servlet-mapping>
@@ -200,6 +203,9 @@
     <servlet-mapping>
         <servlet-name>AddTrain</servlet-name>
         <url-pattern>/AddTrain</url-pattern>
-
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProfileAdmin</servlet-name>
+        <url-pattern>/profileadmin</url-pattern>
     </servlet-mapping>
 </web-app>
