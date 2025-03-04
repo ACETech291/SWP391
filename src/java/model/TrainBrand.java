@@ -9,9 +9,29 @@ package model;
  * @author dinhphu
  */
 public class TrainBrand {
+
+    private int id_train_brand;
     private Manager manager;
     private String name_train_brand;
     private String description_train_brand;
+
+    public TrainBrand(int id_train_brand, Manager manager, String name_train_brand, String description_train_brand) {
+        this.id_train_brand = id_train_brand;
+        this.manager = manager;
+        this.name_train_brand = name_train_brand;
+        this.description_train_brand = description_train_brand;
+    }
+
+    public TrainBrand() {
+    }
+
+    public int getId_train_brand() {
+        return id_train_brand;
+    }
+
+    public void setId_train_brand(int id_train_brand) {
+        this.id_train_brand = id_train_brand;
+    }
 
     public Manager getManager() {
         return manager;
@@ -37,14 +57,4 @@ public class TrainBrand {
         this.description_train_brand = description_train_brand;
     }
 
-    public TrainBrand() {
-    }
-
-    public TrainBrand(Manager manager, String name_train_brand, String description_train_brand) {
-        this.manager = manager;
-        this.name_train_brand = name_train_brand;
-        this.description_train_brand = description_train_brand;
-    }
-    
-    
 }
