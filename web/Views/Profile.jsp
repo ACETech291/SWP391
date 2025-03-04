@@ -75,6 +75,90 @@
                             </div>
                         </div>
                         <c:choose>
+                            <c:when test="${sessionScope.account.role.id == 1}">
+                                <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="dashboard-content">
+                                        <div class="dashboard-form mb-4">
+                                            <div class="row">
+                                                <!-- Profile -->
+                                                <div class="col-lg-6 col-md-6 col-xs-12 padding-right-30">
+                                                    <div class="dashboard-list">
+                                                        <h4 class="gray">Thông tin cá nhân</h4>
+                                                        <div class="dashboard-list-static">
+                                                            <!-- Avatar -->
+                                                            <div class="edit-profile-photo">
+                                                                <img src="${pageContext.request.contextPath}/libs/images/testimonial/img1.jpg" alt="" />
+                                                                <div class="change-photo-btn">
+                                                                    <div class="photoUpload">
+                                                                        <span><i class="fa fa-upload"></i> Thay đổi ảnh</span>
+                                                                        <input type="file" class="upload" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Details -->
+                                                <div class="col-lg-6 col-md-6 col-xs-12 padding-left-30">
+                                                    <div class="dashboard-list margin-top-0">
+                                                        <div class="dashboard-list-static">
+                                                            <!-- Change info -->
+                                                            <div class="my-profile">
+                                                                <div class="form-group">
+                                                                    <label>Tên của bạn</label>
+                                                                    <input value="${name}" type="text" />
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label>Địa chỉ Email</label>
+                                                                    <input value="${email}" type="email" readonly/>
+                                                                </div>
+
+                                                                <div class="form-btn">
+                                                                    <a href="#" class="nir-btn">Lưu thay đổi</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="dashboard-form mb-4">
+                                            <div class="dashboard-password">
+                                                <h4>Đổi mật khẩu</h4>
+                                                <form>
+                                                    <div class="row">
+                                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                                            <div class="form-group">
+                                                                <label>Mật khẩu hiện tại</label>
+                                                                <input type="password" placeholder="*********" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                                            <div class="form-group">
+                                                                <label>Mật khẩu mới</label>
+                                                                <input type="password" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                                            <div class="form-group">
+                                                                <label>Xác nhận mật khẩu mới</label>
+                                                                <input type="password" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-12">
+                                                            <div class="form-btn mar-top-15">
+                                                                <a href="#" class="nir-btn">Lưu thay đổi</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:when>
                             <c:when test="${sessionScope.account.role.id == 2}">
                                 <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                                     <div class="dashboard-content">

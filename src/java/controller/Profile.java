@@ -4,7 +4,7 @@
  */
 package controller;
 
-import model.Customer;
+import model.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,7 +12,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.Manager;
 
 /**
  *
@@ -28,20 +27,28 @@ public class Profile extends HttpServlet {
 
         Object account = session.getAttribute("account");
 
-        if (account instanceof Customer) {
-            Customer user = (Customer) account;
-            request.setAttribute("name", user.getUserName());
-            request.setAttribute("email", user.getEmail());
-            request.setAttribute("phone", user.getPhoneNumber());
+        if (account instanceof Admin) {
+            Admin admin = (Admin) account;
+            request.setAttribute("name", admin.getUsername_admin());
+            request.setAttribute("email", admin.getEmail_admin());
             request.setAttribute("account", account);
+            request.getRequestDispatcher("Views/Profile.jsp").forward(request, response);
         } else if (account instanceof Manager) {
             Manager manager = (Manager) account;
             request.setAttribute("name", manager.getUsername_manager());
             request.setAttribute("email", manager.getEmail_manager());
             request.setAttribute("account", account);
+            request.getRequestDispatcher("Views/Profile.jsp").forward(request, response);
+        } else if (account instanceof Customer) {
+            Customer user = (Customer) account;
+            request.setAttribute("name", user.getUserName());
+            request.setAttribute("email", user.getEmail());
+            request.setAttribute("phone", user.getPhoneNumber());
+            request.setAttribute("account", account);
+            request.getRequestDispatcher("Views/Profile.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("login");
         }
-
-        request.getRequestDispatcher("Views/Profile.jsp").forward(request, response);
     }
 
     @Override
