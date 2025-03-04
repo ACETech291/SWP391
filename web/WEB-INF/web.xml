@@ -120,6 +120,10 @@
         <servlet-name>BookTicket</servlet-name>
         <servlet-class>controller.BookTicket</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddCarriage</servlet-name>
+        <servlet-class>controller.manager.AddCarriage</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>home</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -223,5 +227,9 @@
     <servlet-mapping>
         <servlet-name>BookTicket</servlet-name>
         <url-pattern>/BookTicket</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddCarriage</servlet-name>
+        <url-pattern>/AddCarriage</url-pattern>
     </servlet-mapping>
 </web-app>

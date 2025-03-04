@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Train;
+import model.TrainBrand;
 
 /**
  *
@@ -114,6 +115,30 @@ public class TrainDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             throw e; // Ném ngoại lệ để xử lý ở lớp gọi
+        }
+    }
+
+    public List<Train> getTopTrains(int limit) {
+        List<Train> listTrains = new ArrayList<>();
+        String sql = "SELECT * FROM train ORDER BY id_train LIMIT ?";
+
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+            ps.setInt(1, limit);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                listTrains.add(new Train(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getInt(6)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listTrains;
+    }
+
+    public static void main(String[] args) {
+        TrainDAO dao = new TrainDAO();
+        List<Train> topTrains = dao.getTopTrains(10);
+        for (Train topTrain : topTrains) {
+            System.out.println(topTrain.getName_train() +" ");
         }
     }
 }

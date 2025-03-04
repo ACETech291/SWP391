@@ -35,17 +35,15 @@ public class AddTrain extends HttpServlet {
         String filePath = "D:\\SWPFinal\\SWP391\\database\\Train_Buying_Ticket_Insert.ddl.sql";
 
         try (FileWriter writer = new FileWriter(filePath, true); BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
-
             bufferedWriter.write(add);
             bufferedWriter.newLine();
-            System.out.println("Đã ghi thêm dòng vào file thành công!");
+            System.out.println("Đã ghi thêm Train vào file thành công! " + x.toString());
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -57,6 +55,7 @@ public class AddTrain extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.sendRedirect("Manager");
     }
 
     /**
@@ -75,17 +74,16 @@ public class AddTrain extends HttpServlet {
         int id_train_brand = Integer.parseInt(request.getParameter("id_train_brand"));
         int id_status = Integer.parseInt(request.getParameter("id_status"));
 
-        Train Train = new Train(name, des, id_train_brand, id_status);
-
+        Train train = new Train(name, des, id_train_brand, id_status);
         // Thêm tàu vào cơ sở dữ liệu
         TrainDAO trainDAO = new TrainDAO();
         try {
-            trainDAO.addTrain(Train);
+            trainDAO.addTrain(train);
         } catch (SQLException ex) {
             Logger.getLogger(AddTrain.class.getName()).log(Level.SEVERE, null, ex);
         }
-        insertDatabase(Train);
-        // Chuyển hướng về trang quản lý tàu
+        insertDatabase(train);
+       
         response.sendRedirect("Manager");
     }
 

@@ -3,13 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/SWPFinal/SWP391/web/Views/includes/header.jsp</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/dal/AdminDAO.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/model/Admin.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/dal/ManagerDAO.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/controller/Profile.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/controller/login.java</file>
-            <file>file:/D:/SWPFinal/SWP391/web/Views/Profile.jsp</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/dal/TrainDAO.java</file>
+            <file>file:/D:/SWPFinal/SWP391/web/Views/Manager/Manager.jsp</file>
         </group>
     </open-files>
 </project-private>
