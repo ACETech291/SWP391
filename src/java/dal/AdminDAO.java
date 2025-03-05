@@ -42,6 +42,44 @@ public class AdminDAO {
         return null;
     }
 
+    public int getSumManagerActive() {
+        int count = 0;
+        String sql = "SELECT COUNT(*) FROM manager m JOIN Role r ON m.id_role = r.id_role WHERE status_manager = 1";
+
+        try {
+            PreparedStatement connect = connection.prepareStatement(sql);
+            ResultSet result = connect.executeQuery();
+
+            while (result.next()) {
+                count = result.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return count;
+    }
+
+    public int getSumCustomerActive() {
+        int count = 0;
+        String sql = "SELECT COUNT(*) FROM customer c JOIN Role r ON c.id_role = r.id_role WHERE status_customer = 1";
+
+        try {
+            PreparedStatement connect = connection.prepareStatement(sql);
+            ResultSet result = connect.executeQuery();
+
+            while (result.next()) {
+                count = result.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return count;
+    }
+
     public static void main(String[] args) {
         AdminDAO adminDAO = new AdminDAO();
         Admin admin = adminDAO.getAdmin("admin1@example.com", "6NWFIsI1V5KNFeeazNcq35qxRUE=");

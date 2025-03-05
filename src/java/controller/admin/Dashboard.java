@@ -1,10 +1,16 @@
 package controller.admin;
 
+import dal.AdminDAO;
+import dal.ManagerDAO;
+import dal.TrainDAO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import model.Manager;
+import model.Train;
 
 public class Dashboard extends HttpServlet {
 
@@ -13,6 +19,21 @@ public class Dashboard extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        ManagerDAO managerDAO = new ManagerDAO();
+        TrainDAO trainDAO = new TrainDAO();
+        AdminDAO adminDAO = new AdminDAO();
+
+        List<Manager> managers = managerDAO.getManagerActive();
+        List<Train> trains = trainDAO.getAllTrains();
+        int sumManager = adminDAO.getSumManagerActive();
+        int sumCustomer = adminDAO.getSumCustomerActive();
+        int sumFinance = 0;
+
+        request.setAttribute("managers", managers);
+        request.setAttribute("trains", trains);
+        request.setAttribute("sumManager", sumManager);
+        request.setAttribute("sumCustomer", sumCustomer);
+        request.setAttribute("sumFinance", sumFinance);
         request.getRequestDispatcher("Views/Admin/Dashboard.jsp").forward(request, response);
     }
 

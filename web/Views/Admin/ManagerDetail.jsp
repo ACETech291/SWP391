@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en-US" dir="ltr">
 
@@ -10,7 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- ===============================================--><!--    Document Title--><!-- ===============================================-->
-        <title>Thống kê</title>
+        <title>Quản lý các hãng tàu</title>
         <jsp:include page="../includes/icon.jsp"></jsp:include>
             <!-- ===============================================--><!--    Stylesheets--><!-- ===============================================-->
             <link rel="preconnect" href="https://fonts.gstatic.com/">
@@ -34,58 +35,84 @@
                         <!-- Header-->
                     <jsp:include page="includes/header.jsp"></jsp:include>
 
-                        <!-- Profile -->
+                        <div class="row g-0">
+                            <div class="col-xxl-12 px-xxl-2">
+                                <div class="card h-100">
+                                    <div class="card-header bg-body-tertiary py-2">
+                                        <div class="row flex-between-center">
+                                            <div class="col-auto">
+                                                <h6 class="mb-0">Hãng tàu</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body h-100">
+                                        <div class="card mb-3">
+                                            <div class="card-header position-relative min-vh-25 mb-7">
+                                                <div class="bg-holder rounded-3 rounded-bottom-0" style="background-image:url(${pageContext.request.contextPath}/Views/Admin/assets/img/generic/4.jpg);"></div><!--/.bg-holder-->
+                                            <div class="avatar avatar-5xl avatar-profile shadow-sm img-thumbnail rounded-circle">
+                                                <div class="h-100 w-100 rounded-circle overflow-hidden position-relative"> 
+                                                    <c:choose>
+                                                        <c:when test="${empty manager.image_manager}">
+                                                            <img class="rounded-circle" src="${pageContext.request.contextPath}/images/avatar-manager.png" alt=""/>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <img class="rounded-circle" src="${manager.image_manager}" alt=""/>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-lg-8">
+                                                    <h4 class="mb-1"> ${manager.username_manager}<span data-bs-toggle="tooltip" data-bs-placement="right" title="Verified"><small class="fa fa-check-circle text-primary" data-fa-transform="shrink-4 down-2"></small></span></h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                        <div class="card mb-3">
-                            <div class="card-header position-relative min-vh-25 mb-7">
-                                <div class="bg-holder rounded-3 rounded-bottom-0" style="background-image:url(${pageContext.request.contextPath}/Views/Admin/assets/img/generic/4.jpg);"></div><!--/.bg-holder-->
-                            <div class="avatar avatar-5xl avatar-profile shadow-sm img-thumbnail rounded-circle">
-                                <div class="h-100 w-100 rounded-circle overflow-hidden position-relative"> <img src="${pageContext.request.contextPath}/Views/Admin/assets/img/team/2.jpg" width="200" alt="" data-dz-thumbnail="data-dz-thumbnail" /><input class="d-none" id="profile-image" type="file" /><label class="mb-0 overlay-icon d-flex flex-center" for="profile-image"><span class="bg-holder overlay overlay-0"></span><span class="z-1 text-white dark__text-white text-center fs-10"><span class="fas fa-camera"></span><span class="d-block">Update</span></span></label></div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    <h4 class="mb-1"> ${sessionScope.account.username_admin}<span data-bs-toggle="tooltip" data-bs-placement="right" title="Verified"><small class="fa fa-check-circle text-primary" data-fa-transform="shrink-4 down-2"></small></span></h4>
+                                    <div class="row g-0">
+                                        <div class="col-lg-8 pe-lg-2">
+                                            <div class="card mb-3">
+                                                <div class="card-header">
+                                                    <h5 class="mb-0">Thông tin cá nhân</h5>
+                                                </div>
+                                                <div class="card-body bg-body-tertiary">
+                                                    <form class="row g-3" action="managerdetail" method="POST">
+                                                        <input type="hidden" name="id" value="${manager.id_manager}" />
+                                                        <div class="col-lg-12"> <label class="form-label" for="first-name">Tên quản lý</label><input class="form-control" type="text" value="${manager.username_manager}" readonly/></div>
+                                                        <div class="col-lg-12"> <label class="form-label" for="email1">Địa chỉ Email</label><input class="form-control" type="text" value="${manager.email_manager}" readonly/></div>
+                                                            <c:choose>
+                                                                <c:when test="${manager.status == 1}">
+                                                                <div class="col-12 d-flex justify-content-end"><button class="btn btn-danger" type="submit" name="action" value="block">Block</button></div>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <div class="col-12 d-flex justify-content-end"><button class="btn btn-primary" type="submit" name="action" value="unblock">Active</button></div>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 ps-lg-2">
+                                            <div class="sticky-sidebar">
+                                                <div class="card mb-3">
+                                                    <div class="card-header">
+                                                        <h5 class="mb-0">Thông tin hãng tàu</h5>
+                                                    </div>
+                                                    <div class="card-body bg-body-tertiary">
+                                                        <img src="${trainBrand.image_train_brand}" width="200" alt="Hình ảnh hãng tàu" data-dz-thumbnail="data-dz-thumbnail" />
+                                                        <div class="mb-3"><label class="form-label">Tên hãng tàu</label><input class="form-control" type="text" value="${trainBrand.name_train_brand}" readonly/></div>
+                                                        <div class="mb-3"><label class="form-label">Giới thiệu</label><input class="form-control" type="text" value="${trainBrand.description_train_brand}" readonly/></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="row g-0">
-                        <div class="col-lg-8 pe-lg-2">
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    <h5 class="mb-0">Thông tin cá nhân</h5>
-                                </div>
-                                <div class="card-body bg-body-tertiary">
-                                    <form class="row g-3">
-                                        <div class="col-lg-12"> <label class="form-label" for="first-name">Tên của bạn</label><input class="form-control" id="first-name" type="text" value="${sessionScope.account.username_admin}" /></div>
-                                        <div class="col-lg-12"> <label class="form-label" for="email1">Địa chỉ Email</label><input class="form-control" id="email1" type="text" value="${sessionScope.account.email_admin}" readonly/></div>
-                                        <div class="col-12 d-flex justify-content-end"><button class="btn btn-primary" type="submit">Lưu thay đổi </button></div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 ps-lg-2">
-                            <div class="sticky-sidebar">
-                                <div class="card mb-3">
-                                    <div class="card-header">
-                                        <h5 class="mb-0">Đổi mật khẩu</h5>
-                                    </div>
-                                    <div class="card-body bg-body-tertiary">
-                                        <form>
-                                            <div class="mb-3"><label class="form-label" for="old-password">Mật khẩu cũ</label><input class="form-control" id="old-password" type="password" /></div>
-                                            <div class="mb-3"><label class="form-label" for="new-password">Mật khẩu mới</label><input class="form-control" id="new-password" type="password" /></div>
-                                            <div class="mb-3"><label class="form-label" for="confirm-password">Xác nhận mật khẩu</label><input class="form-control" id="confirm-password" type="password" /></div><button class="btn btn-primary d-block w-100" type="submit">Thay đổi mật khẩu </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Profile End -->
-
                 </div>
             </div>
         </main>

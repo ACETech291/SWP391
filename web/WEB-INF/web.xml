@@ -128,6 +128,22 @@
         <servlet-name>AddCarriage</servlet-name>
         <servlet-class>controller.manager.AddCarriage</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManagerList</servlet-name>
+        <servlet-class>controller.admin.ManagerList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerList</servlet-name>
+        <servlet-class>controller.admin.CustomerList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManagerDetail</servlet-name>
+        <servlet-class>controller.admin.ManagerDetail</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerDetail</servlet-name>
+        <servlet-class>controller.admin.CustomerDetail</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>home</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -239,5 +255,21 @@
     <servlet-mapping>
         <servlet-name>AddCarriage</servlet-name>
         <url-pattern>/AddCarriage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManagerList</servlet-name>
+        <url-pattern>/managerlist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerList</servlet-name>
+        <url-pattern>/customerlist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManagerDetail</servlet-name>
+        <url-pattern>/managerdetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerDetail</servlet-name>
+        <url-pattern>/customerdetail</url-pattern>
     </servlet-mapping>
 </web-app>

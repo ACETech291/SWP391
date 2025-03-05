@@ -87,7 +87,7 @@
                                                         <div class="dashboard-list-static">
                                                             <!-- Avatar -->
                                                             <div class="edit-profile-photo">
-                                                                <img src="${pageContext.request.contextPath}/libs/images/testimonial/img1.jpg" alt="" />
+                                                                <img src="${pageContext.request.contextPath}/Views/Admin/assets/img/team/2.jpg" alt="" />
                                                                 <div class="change-photo-btn">
                                                                     <div class="photoUpload">
                                                                         <span><i class="fa fa-upload"></i> Thay đổi ảnh</span>

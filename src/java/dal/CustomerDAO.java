@@ -200,6 +200,23 @@ public class CustomerDAO {
         return false;
     }
 
+    public boolean updateCustomer(Customer customer) {
+        String sql = "UPDATE customer SET name_customer = ?, phone_number_customer = ?, email_customer = ?, status_customer = ? WHERE id_customer = ?";
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+            ps.setString(1, customer.getUserName());
+            ps.setString(2, customer.getPhoneNumber());
+            ps.setString(3, customer.getEmail());
+            ps.setInt(4, customer.getStatus());
+            ps.setInt(5, customer.getId_customer());
+
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            System.out.println("Error updating customer: " + e.getMessage());
+        }
+        return false;
+    }
+
 //    public List<Customer> getListCustomer() {
 //        List<Customer> listCustomer = new ArrayList<>();
 //        String sql = "select *\n"

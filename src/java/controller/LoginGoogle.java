@@ -67,17 +67,17 @@ public class LoginGoogle extends HttpServlet {
             if (customerCheck.getRole().getId() == 1) {
                 session.setAttribute("admin", 1);
                 session.setAttribute("account", customerCheck);
-                request.getRequestDispatcher("home").forward(request, response);
+                response.sendRedirect("home");
             }
             if (customerCheck.getRole().getId() == 2) {
                 session.setAttribute("manager", 2);
                 session.setAttribute("account", customerCheck);
-                request.getRequestDispatcher("home").forward(request, response);
+                response.sendRedirect("home");
             }
             if (customerCheck.getRole().getId() == 3) {
                 session.setAttribute("customer", 3);
                 session.setAttribute("account", customerCheck);
-                request.getRequestDispatcher("home").forward(request, response);
+                response.sendRedirect("home");
             }
         }
     }
