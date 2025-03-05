@@ -5,7 +5,6 @@
 package controller.manager;
 
 import dal.StatusDAO;
-import dal.TrainCarriageDAO;
 import dal.TrainDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,18 +12,16 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import model.Status;
 import model.Train;
-import model.TrainBrand;
-import model.TrainCarriage;
 
 /**
  *
  * @author dinhphu
  */
-public class Manager extends HttpServlet {
+public class EditTrain extends HttpServlet {
+
 
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -44,11 +41,22 @@ public class Manager extends HttpServlet {
         List<Status> statusCarriage = sDAO.getStatusSeat();
         request.setAttribute("status_carriage", statusCarriage);
 
-        TrainDAO tDAO = new TrainDAO();
-        List<Train> topTrains = tDAO.getTopTrains(10);
-        request.setAttribute("topTrains", topTrains);
+        // Lấy ID tàu từ request
+        int id_train = Integer.parseInt(request.getParameter("id"));
 
-        request.getRequestDispatcher("Views/Manager/Manager.jsp").forward(request, response);
+        // Lấy thông tin tàu từ database
+        TrainDAO trainDAO = new TrainDAO();
+        Train train = trainDAO.getTrainById(id_train);
+
+        // Kiểm tra nếu tàu không tồn tại
+        if (train == null) {
+            response.sendRedirect("Manager?message=train_not_found");
+            return;
+        }
+
+        // Truyền dữ liệu sang trang JSP
+        request.setAttribute("train", train);
+        request.getRequestDispatcher("Views/Manager/EditTrain.jsp").forward(request, response);
     }
 
     /**
@@ -62,18 +70,17 @@ public class Manager extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        StatusDAO sDAO = new StatusDAO();
-        List<Status> statusTrain = sDAO.getStatusTrain();
-        request.setAttribute("status_train", statusTrain);
-
-        List<Status> statusCarriage = sDAO.getStatusSeat();
-        request.setAttribute("status_carriage", statusCarriage);
-
-        TrainDAO tDAO = new TrainDAO();
-        List<Train> topTrains = tDAO.getTopTrains(10);
-        request.setAttribute("topTrains", topTrains);
-
-        request.getRequestDispatcher("Views/Manager/Manager.jsp").forward(request, response);
+        int id_train = Integer.parseInt(request.getParameter("id_train"));
+        String name_train = request.getParameter("name_train");
+        String description_train = request.getParameter("description_train");
+        int id_status = Integer.parseInt(request.getParameter("id_status"));
+        
+        Train train = new Train(id_train,name_train, description_train, id_status);
+        
+        TrainDAO dao = new TrainDAO();
+        dao.updateTrain(train);
+       
+        response.sendRedirect("Manager");
     }
 
     /**

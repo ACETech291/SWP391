@@ -111,7 +111,7 @@ public class TrainDAO {
             stmt.setString(2, train.getDescription_train());
             stmt.setInt(3, train.getId_train_brand());
             stmt.setInt(4, train.getId_status());
-            stmt.executeUpdate(); // Thực thi câu lệnh SQL
+            stmt.execute(); // Thực thi câu lệnh SQL
         } catch (SQLException e) {
             e.printStackTrace();
             throw e; // Ném ngoại lệ để xử lý ở lớp gọi
@@ -134,11 +134,37 @@ public class TrainDAO {
         return listTrains;
     }
 
+    public void updateTrain(Train train) {
+        String sql = "UPDATE Train SET name_train = ?, description_train = ?, id_status = ? WHERE id_train = ?";
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+            ps.setString(1, train.getName_train());
+            ps.setString(2, train.getDescription_train());
+            ps.setInt(3, train.getId_status());
+            ps.setInt(4, train.getId_train());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace(); // Debug lỗi nếu có
+        }
+    }
+
+    public void deleteTrain(int id_train) {
+        String sql = "DELETE FROM Train WHERE id_train = ?";
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+
+            ps.setInt(1, id_train);
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         TrainDAO dao = new TrainDAO();
         List<Train> topTrains = dao.getTopTrains(10);
         for (Train topTrain : topTrains) {
-            System.out.println(topTrain.getName_train() +" ");
+            System.out.println(topTrain.getName_train() + " ");
         }
     }
 }

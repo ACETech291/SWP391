@@ -82,7 +82,7 @@ public class AddTrain extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(AddTrain.class.getName()).log(Level.SEVERE, null, ex);
         }
-        insertDatabase(train);
+        //insertDatabase(train);
        
         response.sendRedirect("Manager");
     }

@@ -5672,4 +5672,3 @@ INSERT INTO trip (price_trip, id_time_station_start, id_time_station_end, id_tra
 
 INSERT INTO `Train` (name_train, image_train, description_train, id_train_brand, id_status) VALUES ('Beta 3', NULL, '32678954754396547389567438956473892hngfvjkdlsg', 2, 4);
 
-
