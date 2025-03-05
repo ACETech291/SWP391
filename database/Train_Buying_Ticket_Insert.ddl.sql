@@ -430,10 +430,4 @@ INSERT INTO advertising (image_advertising, description_advertising, id_manager,
 VALUES ('../SWP391/images/NUITHANH.jpg', 'Núi Thành, Nơi cảm xúc dâng trào', 2, 
 'Núi Thành thuộc tỉnh Quảng Nam, là vùng đất giàu truyền thống lịch sử và cảnh đẹp thiên nhiên hoang sơ. Đây là điểm đến hấp dẫn với những bãi biển tuyệt đẹp như Tam Hải, những cánh đồng muối và các địa danh gắn liền với lịch sử hào hùng của dân tộc.');
 
-INSERT INTO Feedback (voting_feedback, content, id_customer, created_at) 
-VALUES 
-(5, 'Ứng dụng rất tốt, giao diện dễ sử dụng!', 303, null),
-(4, 'Thanh toán nhanh chóng, nhưng cần cải thiện bảo mật.', 304, null),
-(3, 'Ứng dụng ổn nhưng đôi khi bị lỗi kết nối.', 305, null),
-(5, 'Dịch vụ khách hàng rất tuyệt vời!', 306, null);
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Hiển Nguyễn Bá','hiennbhe181773@fpt.edu.vn','6NWFIsI1V5KNFeeazNcq35qxRUE=','0332671182',3,1); 
