@@ -11,6 +11,14 @@
             <file>file:/D:/SWPFinal/SWP391/web/Views/Profile.jsp</file>
             <file>file:/D:/SWPFinal/SWP391/web/Form-HTML/yatriiworld/404.html</file>
             <file>file:/D:/SWPFinal/SWP391/web/Views/404.jsp</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/LoginGoogle.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/login.java</file>
+            <file>file:/D:/SWPFinal/SWP391/web/Views/Manager/Manager.jsp</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/manager/Manager.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/dal/TrainSeatDAO.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/AdvertisingDetail.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/model/Advertising.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/Advertising.java</file>
         </group>
     </open-files>
 </project-private>

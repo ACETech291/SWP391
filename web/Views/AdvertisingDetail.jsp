@@ -148,11 +148,11 @@
                             <!-- blog review -->
                             <div class="single-add-review">
                                 <h4 class="">Bình luận</h4>
-                                <form action="CommentServlet" method="POST">
+                                <form action="Feedback" method="POST">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <textarea name="comment" placeholder="Để lại bình luận của bạn tại đây (tối thiểu 250 kí tự)" required minlength="250"></textarea>
+                                                <textarea name="comment" placeholder="Để lại bình luận của bạn tại đây (tối thiểu 250 kí tự)" required minlength="20"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
