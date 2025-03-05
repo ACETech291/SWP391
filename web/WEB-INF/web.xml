@@ -187,6 +187,12 @@
     <servlet>
         <servlet-name>CreateAccount</servlet-name>
         <servlet-class>controller.admin.CreateAccount</servlet-class>
+        <servlet-name>EditStation</servlet-name>
+        <servlet-class>controller.manager.EditStation</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteStation</servlet-name>
+        <servlet-class>controller.manager.DeleteStation</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>home</servlet-name>
@@ -360,9 +366,11 @@
         <servlet-name>CreateAccount</servlet-name>
         <url-pattern>/createaccount</url-pattern>
     </servlet-mapping>
-    
-    
-    
-    
-    
+        <servlet-name>EditStation</servlet-name>
+        <url-pattern>/EditStation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteStation</servlet-name>
+        <url-pattern>/DeleteStation</url-pattern>
+    </servlet-mapping>
 </web-app>
