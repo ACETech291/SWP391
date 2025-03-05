@@ -51,19 +51,14 @@
                     <div class="col-lg-12">
                         <div class="blog-single">
                             <div class="blog-imagelist mb-3">
-                                <img src="${advertising.image_advertising}" alt="image">
+                                <img src="${advertising.image_advertising}" alt="image" style="width: 100%; height: auto;"
                             </div>
                             <div class="row">
-                                <div class="col-lg-2 col-md-2">
-                                    <div class="date text-center bg-pink p-2">
-                                        
-                                    </div>
-                                </div>
                                 <div class="col-lg-10 col-md-10">
                                     <div class="blog-content mb-4 pt-0">
-                                        <h3 class="blog-title"><a href="#" class="yellow">${advertising.managerName}</a></h3>
+                                        <p class="blog-title"><a href="#" class="yellow">Tác giả: ${advertising.managerName}</a></p>
                                         <div class="para-content mb-2">
-                                            <span class="mr-2"><a href="#" class="pink"><i class="fa fa-user mr-1"></i> 05-03-2025</a></span>
+                                            <span class="mr-2"><a href="#" class="pink"><i class="fa fa-user mr-1"></i>Ngày đăng: 05-03-2025</a></span>
                                         </div>
                                         <p>${advertising.description_advertising}</p>
                                         <p>${advertising.content}</p>
@@ -153,16 +148,16 @@
                             <!-- blog review -->
                             <div class="single-add-review">
                                 <h4 class="">Bình luận</h4>
-                                <form>
+                                <form action="CommentServlet" method="POST">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <textarea placeholder="Để lại bình luận của bạn tại đây (tối thiểu 250 kí tự)"></textarea>
+                                                <textarea name="comment" placeholder="Để lại bình luận của bạn tại đây (tối thiểu 250 kí tự)" required minlength="250"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-btn">
-                                                <a href="#" class="nir-btn">Gửi</a>
+                                                <button type="submit" class="nir-btn">Gửi</button>
                                             </div>
                                         </div>
                                     </div>

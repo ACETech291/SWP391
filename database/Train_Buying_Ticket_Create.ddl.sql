@@ -17,6 +17,7 @@ CREATE TABLE Advertising (
   image_advertising       blob, 
   description_advertising varchar(255), 
   id_manager              int(11) NOT NULL, 
+  content                 LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (id_advertising), 
   INDEX (id_advertising));
   
@@ -35,7 +36,7 @@ CREATE TABLE Customer (
 CREATE TABLE Feedback (
   id_feedback     int(11) NOT NULL AUTO_INCREMENT, 
   voting_feedback int(11) NOT NULL, 
-  content         varchar(255), 
+  content                 LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   id_customer     int(11) NOT NULL, 
   PRIMARY KEY (id_feedback), 
   INDEX (id_feedback));
@@ -231,9 +232,6 @@ ALTER TABLE Token_forget_password ADD CONSTRAINT FKToken_forg905909 FOREIGN KEY 
 
 ALTER TABLE Date_trip ADD CONSTRAINT FKdate_trip45678 FOREIGN KEY (id_trip) REFERENCES Trip (id_trip);
 ALTER TABLE Date_trip ADD CONSTRAINT FKdate_trip45890 FOREIGN KEY (id_date_of_trip) REFERENCES Date_of_trip (id_date_of_trip);
-
-ALTER TABLE advertising 
-ADD COLUMN content LONGTEXT CHARACTER SET utf8mb4 COLLATE UTF8MB4_UNICODE_CI;
 
 ALTER TABLE Time_station ADD CONSTRAINT FKtime_station56744 FOREIGN KEY (id_station) REFERENCES station (id_station);
 ALTER TABLE Time_station ADD CONSTRAINT FKtime_station56774 FOREIGN KEY (id_time_of_station) REFERENCES time_of_station (id_time_of_station);
