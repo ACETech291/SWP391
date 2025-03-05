@@ -19,6 +19,11 @@
             <file>file:/D:/SWPFinal/SWP391/src/java/controller/AdvertisingDetail.java</file>
             <file>file:/D:/SWPFinal/SWP391/src/java/model/Advertising.java</file>
             <file>file:/D:/SWPFinal/SWP391/src/java/controller/Advertising.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/AccessDenyServlet.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/dal/TrainDAO.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/AdvertisingDetail.java</file>
+            <file>file:/D:/SWPFinal/SWP391/nbproject/build-impl.xml</file>
+            <file>file:/D:/SWPFinal/SWP391/web/WEB-INF/web.xml</file>
         </group>
     </open-files>
 </project-private>

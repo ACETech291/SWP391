@@ -112,6 +112,7 @@ public class TrainCarriageDAO {
         try (PreparedStatement ps = connect.prepareStatement(query)) {
             ps.setInt(1, id_train_carriage);
             ps.executeUpdate();
+            System.out.println("DELETE CARRIAGE");
         } catch (SQLException e) {
             e.printStackTrace();
         }

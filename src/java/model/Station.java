@@ -27,6 +27,12 @@ public class Station implements SQLUpdate {
         this.description_station = description_station;
     }
 
+    public Station(int id_station, String name_station, String description_station) {
+        this.id_station = id_station;
+        this.name_station = name_station;
+        this.description_station = description_station;
+    }
+
     public Station(String name_station, String image_station, String description_station) {
         this.name_station = name_station;
         this.image_station = image_station;

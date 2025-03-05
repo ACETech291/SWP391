@@ -7,9 +7,11 @@
 <%@page import="model.TrainCarriage"%>
 <%@page import="model.Status"%>
 <%@page import="model.TrainSeat"%>
+<%@page import="model.Station"%>
 <%@page import="dal.TrainCarriageDAO"%>
 <%@page import="dal.TrainSeatDAO"%>
 <%@page import="dal.TrainDAO"%>
+<%@page import="dal.StationDAO"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -35,6 +37,14 @@
         </style>
     </head>
     <body>
+        <%
+            Integer idTrainBrand = (Integer) session.getAttribute("id_train_brand");
+            if (idTrainBrand == null) {
+                response.sendRedirect("login"); // Thay "TrangKhac.jsp" bằng trang bạn muốn chuyển hướng
+                return;
+            }
+        %>
+
         <!-- header -->
         <%-- <editor-fold defaultstate="collapsed" desc="Tên ghi chú"> --%>
         <div class="header_menu" id="header_menu" style="background-color: grey">
@@ -323,8 +333,8 @@
                         </tbody>
 
                     </table>
-                    <br><br>
-                </div>
+                </div><br><br>
+
                 <!-- Kết thúc div table-responsive -->
 
                 <!-- Table Train Carriage -->
@@ -380,8 +390,7 @@
                             <% } %>
                         </tbody>
                     </table>
-                    <br><br>
-                </div>
+                </div><br><br>
 
                 <!-- Table Train Seat -->
                 <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
@@ -450,113 +459,168 @@
                             <% } %>
                         </tbody>
                     </table>
-                    <br><br>
+                </div><br><br>
+
+                <!-- Table Station -->
+                <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
+                    <table class="table table-hover mb-0">
+                        <thead class="thead-light">
+                            <tr>
+                                <th class="text-center align-middle">Tên nhà ga</th>
+                                <!-- comment 
+                                <th class="text-center align-middle">Hình ảnh</th>
+                                -->
+                                <th class="text-center align-middle">Mô tả</th>
+                                <th class="text-center align-middle">Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%
+                                StationDAO stationdao = new StationDAO();
+                                List<Station> stations = stationdao.getAllStations();
+
+                                if (stations != null && !stations.isEmpty()) {
+                                    for (Station station : stations) {
+                            %>
+                            <tr>
+                                <td class="text-center align-middle"><%= station.getName_station() %></td>
+                                <!-- comment 
+                                <td class="text-center align-middle">
+                                    <img src="<%= station.getImage_station() %>" alt="Hình ảnh nhà ga" style="width: 100px; height: auto;">
+                                </td>
+                                -->
+                                <td class="text-center align-middle"><%= station.getDescription_station() %></td>
+                                <td class="text-center align-middle">
+                                    <!-- Nút hành động -->
+                                    <a href="EditStation?id=<%= station.getId_station() %>" class="btn btn-warning btn-sm">Sửa</a>
+
+                                    <form id="deleteForm-<%= station.getId_station() %>" action="DeleteStation" method="POST" style="display: inline;">
+                                        <input type="hidden" name="id_station" value="<%= station.getId_station() %>">
+                                        <button type="button" class="btn btn-danger btn-sm" onclick="confirmDeleteStation(<%= station.getId_station() %>)">Xóa</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <%
+                                    }
+                                } else { 
+                            %>
+                            <tr>
+                                <td colspan="4" class="text-center">Không có nhà ga nào.</td>
+                            </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div><br><br>
+
+
+
+                </section>
+                <!-- List train trip Ends -->
+
+                <!-- footer ends -->
+
+                <!-- Back to top start -->
+                <div id="back-to-top">
+                    <a href="#"></a>
                 </div>
+                <!-- Back to top ends -->    
+                </body>
+
+                <!-- ẩn hiện form -->
+                <script>
+                    // Hàm hiển thị/ẩn form 
+                    function toggleAddTrainForm() {
+                        const form = document.getElementById("addTrain");
+                        form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
+                    }
+                    function toggleAddCarriageForm() {
+                        const form = document.getElementById("addCarriage");
+                        form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
+                    }
+                    function toggleAddSeatForm() {
+                        const form = document.getElementById("addSeat");
+                        form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
+                    }
+                    function toggleAddStationForm() {
+                        const form = document.getElementById("addStation");
+                        form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
+                    }
+                </script>
+
+                <script>
+                    function confirmDeleteTrain(id) {
+                        if (confirm("Bạn có chắc chắn muốn xóa tàu này không?")) {
+                            document.getElementById("deleteForm-" + id).submit();
+                        }
+                    }
+                    function confirmDeleteCarriage(id_train_carriage) {
+                        if (confirm("Bạn có chắc chắn muốn xóa khoang tàu này không?")) {
+                            document.getElementById('deleteForm-' + id_train_carriage).submit();
+                        }
+                    }
+                    function confirmDeleteSeat(id_train_seat) {
+                        if (confirm("Bạn có chắc chắn muốn xóa ghế tàu này không?")) {
+                            document.getElementById('deleteForm-' + id_train_seat).submit();
+                        }
+                    }
+                    function confirmDeleteStation(id_station) {
+                        if (confirm("Bạn có chắc chắn muốn xóa ga này không?")) {
+                            document.getElementById('deleteForm-' + id_station).submit();
+                        }
+                    }
+                </script>
+
+
+                <script>
+
+                    function c() {
+                        var b = a.contentDocument || a.contentWindow.document;
+                        if (b) {
+                            var d = b.createElement('script');
+                            d.innerHTML = "window.__CF$cv$params={r:'90d1e0ce199784ab',t:'MTczODc0Nzc5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='${pageContext.request.contextPath}/libs/cdn-cgi/challenge-platform/h/g/scripts/jsd/8a57887573f2/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";
+                            b.getElementsByTagName('head')[0].appendChild(d)
+                        }
+                    }
+                    if (document.body) {
+                        var a = document.createElement('iframe');
+                        a.height = 1;
+                        a.width = 1;
+                        a.style.position = 'absolute';
+                        a.style.top = 0;
+                        a.style.left = 0;
+                        a.style.border = 'none';
+                        a.style.visibility = 'hidden';
+                        document.body.appendChild(a);
+                        if ('loading' !== document.readyState)
+                            c();
+                        else if (window.addEventListener)
+                            document.addEventListener('DOMContentLoaded', c);
+                        else {
+                            var e = document.onreadystatechange || function () {};
+                            document.onreadystatechange = function (b) {
+                                e(b);
+                                'loading' !== document.readyState && (document.onreadystatechange = e, c())
+                            }
+                        }
+                    }
+
+                </script>
 
 
 
-        </section>
-        <!-- List train trip Ends -->
-
-        <!-- footer ends -->
-
-        <!-- Back to top start -->
-        <div id="back-to-top">
-            <a href="#"></a>
-        </div>
-        <!-- Back to top ends -->    
-    </body>
-
-    <!-- ẩn hiện form -->
-    <script>
-        // Hàm hiển thị/ẩn form 
-        function toggleAddTrainForm() {
-            const form = document.getElementById("addTrain");
-            form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
-        }
-        function toggleAddCarriageForm() {
-            const form = document.getElementById("addCarriage");
-            form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
-        }
-        function toggleAddSeatForm() {
-            const form = document.getElementById("addSeat");
-            form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
-        }
-        function toggleAddStationForm() {
-            const form = document.getElementById("addStation");
-            form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
-        }
-    </script>
-
-    <script>
-        function confirmDeleteTrain(id) {
-            if (confirm("Bạn có chắc chắn muốn xóa tàu này không?")) {
-                document.getElementById("deleteForm-" + id).submit();
-            }
-        }
-        function confirmDeleteCarriage(id_train_carriage) {
-            if (confirm("Bạn có chắc chắn muốn xóa khoang tàu này không?")) {
-                document.getElementById('deleteForm-' + id_train_carriage).submit();
-            }
-        }
-        function confirmDeleteSeat(id_train_seat) {
-            if (confirm("Bạn có chắc chắn muốn xóa ghế tàu này không?")) {
-                document.getElementById('deleteForm-' + id_train_seat).submit();
-            }
-        }
-    </script>
-
-
-    <script>
-
-        function c() {
-            var b = a.contentDocument || a.contentWindow.document;
-            if (b) {
-                var d = b.createElement('script');
-                d.innerHTML = "window.__CF$cv$params={r:'90d1e0ce199784ab',t:'MTczODc0Nzc5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='${pageContext.request.contextPath}/libs/cdn-cgi/challenge-platform/h/g/scripts/jsd/8a57887573f2/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";
-                b.getElementsByTagName('head')[0].appendChild(d)
-            }
-        }
-        if (document.body) {
-            var a = document.createElement('iframe');
-            a.height = 1;
-            a.width = 1;
-            a.style.position = 'absolute';
-            a.style.top = 0;
-            a.style.left = 0;
-            a.style.border = 'none';
-            a.style.visibility = 'hidden';
-            document.body.appendChild(a);
-            if ('loading' !== document.readyState)
-                c();
-            else if (window.addEventListener)
-                document.addEventListener('DOMContentLoaded', c);
-            else {
-                var e = document.onreadystatechange || function () {};
-                document.onreadystatechange = function (b) {
-                    e(b);
-                    'loading' !== document.readyState && (document.onreadystatechange = e, c())
-                }
-            }
-        }
-
-    </script>
-
-
-
-</script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
-<script data-cfasync="false" src="${pageContext.request.contextPath}/libs/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-<script src="${pageContext.request.contextPath}/libs/js/jquery-3.5.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/libs/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/libs/js/particles.js"></script>
-<script src="${pageContext.request.contextPath}/libs/js/particlerun.js"></script>
-<script src="${pageContext.request.contextPath}/libs/js/plugin.js"></script>
-<script src="${pageContext.request.contextPath}/libs/js/main.js"></script>
-<script src="${pageContext.request.contextPath}/libs/js/custom-swiper.js"></script>
-<script src="${pageContext.request.contextPath}/libs/js/custom-nav.js"></script>
-<script src="${pageContext.request.contextPath}/libs/js/custom-date.js"></script>
-<script src="${pageContext.request.contextPath}/libs/js/ScrollDay.js"></script>
-</body>
-</html>
+                </script>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+                <script data-cfasync="false" src="${pageContext.request.contextPath}/libs/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+                <script src="${pageContext.request.contextPath}/libs/js/jquery-3.5.1.min.js"></script>
+                <script src="${pageContext.request.contextPath}/libs/js/bootstrap.min.js"></script>
+                <script src="${pageContext.request.contextPath}/libs/js/particles.js"></script>
+                <script src="${pageContext.request.contextPath}/libs/js/particlerun.js"></script>
+                <script src="${pageContext.request.contextPath}/libs/js/plugin.js"></script>
+                <script src="${pageContext.request.contextPath}/libs/js/main.js"></script>
+                <script src="${pageContext.request.contextPath}/libs/js/custom-swiper.js"></script>
+                <script src="${pageContext.request.contextPath}/libs/js/custom-nav.js"></script>
+                <script src="${pageContext.request.contextPath}/libs/js/custom-date.js"></script>
+                <script src="${pageContext.request.contextPath}/libs/js/ScrollDay.js"></script>
+                </body>
+                </html>
