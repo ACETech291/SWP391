@@ -178,6 +178,7 @@ public class OtpService extends HttpServlet {
         EmailService.sendEmail2(newCustomer.getEmail(), "Verify email -" + System.currentTimeMillis(), otpCode);
         request.setAttribute("otpsend", "Gửi mã Opt thành công. Vui lòng kiểm tra hộp thư email của bạn");
         request.getRequestDispatcher("Views/VerifyEmail.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**

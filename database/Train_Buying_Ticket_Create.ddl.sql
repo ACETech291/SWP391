@@ -34,12 +34,14 @@ CREATE TABLE Customer (
   INDEX (id_customer));
   
 CREATE TABLE Feedback (
-  id_feedback     int(11) NOT NULL AUTO_INCREMENT, 
-  voting_feedback int(11) NOT NULL, 
-  content                 LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  id_customer     int(11) NOT NULL, 
+  id_feedback     INT(11) NOT NULL AUTO_INCREMENT, 
+  voting_feedback INT(11) NOT NULL, 
+  content         LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  id_customer     INT(11) NOT NULL, 
+  created_at      DATETIME DEFAULT CURRENT_TIMESTAMP, 
   PRIMARY KEY (id_feedback), 
-  INDEX (id_feedback));
+  INDEX (id_feedback)
+);
   
 CREATE TABLE Manager (
   id_manager       int(11) NOT NULL AUTO_INCREMENT, 
