@@ -4,6 +4,7 @@
  */
 package controller;
 
+import dal.AdvertisingDAO;
 import dal.StationDAO;
 import dal.TrainDAO;
 import model.Train;
@@ -68,6 +69,7 @@ public class Search extends HttpServlet {
         StationDAO stationDAO = new StationDAO();
         TripDAO tripDAO = new TripDAO();
         TrainDAO trainDAO = new TrainDAO();
+        AdvertisingDAO advertisingDAO = new AdvertisingDAO();
         HttpSession session = request.getSession();
         String dateStr = (String)session.getAttribute("dateStr");
         if(dateStr == null){
@@ -97,10 +99,12 @@ public class Search extends HttpServlet {
         request.setAttribute("listTripDTO", listTripDTO);
 
         List<Station> listStation = stationDAO.getAllStations();
+        List<model.Advertising> listAdvertisings = advertisingDAO.getAllAdvertising();
         request.setAttribute("date", dateStr);
         request.setAttribute("page", page);
         request.setAttribute("num", num);
         request.setAttribute("listStation", listStation);
+        request.setAttribute("listAdvertisings", listAdvertisings);
         request.getRequestDispatcher("Views/Home.jsp").forward(request, response);
     }
 
@@ -121,6 +125,7 @@ public class Search extends HttpServlet {
         HttpSession session = request.getSession();
         List<Train> trains = trainDAO.getAllTrains();
         request.setAttribute("trains", trains);
+        AdvertisingDAO advertisingDAO = new AdvertisingDAO();
 
         String station_from = request.getParameter("station_from");
         String station_end = request.getParameter("station_end");
@@ -189,10 +194,12 @@ public class Search extends HttpServlet {
         request.setAttribute("listTripDTO", listTripDTO);
 
         List<Station> listStation = stationDAO.getAllStations();
+        List<model.Advertising> listAdvertisings = advertisingDAO.getAllAdvertising();
         session.setAttribute("list1", list1);
         request.setAttribute("page", page);
         request.setAttribute("num", num);
         request.setAttribute("listStation", listStation);
+        request.setAttribute("listAdvertisings", listAdvertisings);
         request.getRequestDispatcher("Views/Home.jsp").forward(request, response);
     }
 
