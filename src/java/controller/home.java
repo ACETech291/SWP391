@@ -4,6 +4,7 @@
  */
 package controller;
 
+import dal.AdvertisingDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -19,6 +20,7 @@ import java.util.List;
 import model.Station;
 import model.Train;
 import model.TripDTO;
+import model.Advertising;
 
 /**
  *
@@ -33,20 +35,41 @@ public class home extends HttpServlet {
         StationDAO stationDAO = new StationDAO();
         TrainDAO trainDAO = new TrainDAO();
         TripDAO tripDAO = new TripDAO();
-
+        AdvertisingDAO advertisingDAO = new AdvertisingDAO();
+        
         List<Train> trains = trainDAO.getAllTrains();
         List<Station> listStation = stationDAO.getAllStations();
-        
-        List<TripDTO> listTrips = tripDAO.getAllTripsAtThisDay();
+        List<Advertising> listAdvertisings = advertisingDAO.getAllAdvertising();
+        for (Advertising listAdvertising : listAdvertisings) {
+            System.out.println(listAdvertising);
+        }
+        List<TripDTO> list1 = tripDAO.getAllTripsAtThisDay();
         request.setAttribute("listStation", listStation);
         Date currentDate = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         String formattedDate = sdf.format(currentDate);
+        int size = list1.size();
+        int page;
+        int numberPerPage = 10;
+        int num = (size%numberPerPage == 0?size/numberPerPage:size/numberPerPage+1);
+        String xPage = request.getParameter("page");
+        if(xPage == null){
+            page = 1;
+        }else{
+            page = Integer.parseInt(xPage);
+        }
+        int start = (page-1)*numberPerPage;
+        int end = Math.min(page*numberPerPage, size);
+        List<TripDTO> listTrips = tripDAO.getListByPage(list1, start, end);
+        
         
         request.setAttribute("listStation", listStation);
+        request.setAttribute("listAdvertisings", listAdvertisings);
         request.setAttribute("trains", trains);
         request.setAttribute("formattedDate", formattedDate);
         request.setAttribute("listTrips", listTrips);
+        request.setAttribute("page", page);
+        request.setAttribute("num", num);
         request.getRequestDispatcher("Views/Home.jsp").forward(request, response);
     }
 

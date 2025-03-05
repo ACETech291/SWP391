@@ -33,6 +33,13 @@ public class Train implements SQLInsert {
         this.id_status = id_status;
     }
 
+    public Train(int id_train, String name_train, String description_train, int id_status) {
+        this.id_train = id_train;
+        this.name_train = name_train;
+        this.description_train = description_train;
+        this.id_status = id_status;
+    }
+
     public int getId_train() {
         return id_train;
     }

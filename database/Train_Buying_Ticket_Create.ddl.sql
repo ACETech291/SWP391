@@ -17,6 +17,7 @@ CREATE TABLE Advertising (
   image_advertising       blob, 
   description_advertising varchar(255), 
   id_manager              int(11) NOT NULL, 
+  content                 LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (id_advertising), 
   INDEX (id_advertising));
   
@@ -35,7 +36,7 @@ CREATE TABLE Customer (
 CREATE TABLE Feedback (
   id_feedback     int(11) NOT NULL AUTO_INCREMENT, 
   voting_feedback int(11) NOT NULL, 
-  content         varchar(255), 
+  content                 LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   id_customer     int(11) NOT NULL, 
   PRIMARY KEY (id_feedback), 
   INDEX (id_feedback));

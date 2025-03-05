@@ -51,24 +51,18 @@
                     <div class="col-lg-12">
                         <div class="blog-single">
                             <div class="blog-imagelist mb-3">
-                                <img src="${pageContext.request.contextPath}/images/Advertising.png" alt="image">
+                                <img src="${advertising.image_advertising}" alt="image" style="width: 100%; height: auto;"
                             </div>
                             <div class="row">
-                                <div class="col-lg-2 col-md-2">
-                                    <div class="date text-center bg-pink p-2">
-                                        <h1 class="day mb-0 white">13</h1>
-                                        <div class="month white">Feb</div>
-                                    </div>
-                                </div>
                                 <div class="col-lg-10 col-md-10">
                                     <div class="blog-content mb-4 pt-0">
-                                        <h3 class="blog-title"><a href="#" class="yellow">Tiêu đề</a></h3>
+                                        <p class="blog-title"><a href="#" class="yellow">Tác giả: ${advertising.managerName}</a></p>
                                         <div class="para-content mb-2">
-                                            <span class="mr-2"><a href="#" class="pink"><i class="fa fa-user mr-1"></i> Tên hãng</a></span>
+                                            <span class="mr-2"><a href="#" class="pink"><i class="fa fa-user mr-1"></i>Ngày đăng: 05-03-2025</a></span>
                                         </div>
-                                        <p>Nội dung</p>
+                                        <p>${advertising.description_advertising}</p>
+                                        <p>${advertising.content}</p>
                                     </div>   
-
                                     <!-- blog share -->
                                     <div class="blog-share d-flex justify-content-between align-items-center mb-4 bg-lgrey border">
                                         <div class="blog-share-tag">
@@ -99,9 +93,7 @@
                                         <h4 class="mb-1 Soldman Kell">Mr.A</h4>
                                         <p class="comment-date">February 13, 2025 at 00:00 am</p>  
                                         <p class="comment">
-                                            Quảng cáo này thực sự gây ấn tượng mạnh với tôi từ cách tiếp cận sáng tạo đến thông điệp truyền tải rõ ràng. 
-                                            Hình ảnh và màu sắc được sử dụng rất bắt mắt, thu hút sự chú ý ngay từ cái nhìn đầu tiên. 
-                                            Thông điệp của quảng cáo rất phù hợp với đối tượng mục tiêu, giúp người xem dễ dàng liên tưởng đến sản phẩm và thương hiệu.
+                                            ${advertising.content}
                                         </p>
 
                                         <div class="comment-like">
@@ -156,16 +148,16 @@
                             <!-- blog review -->
                             <div class="single-add-review">
                                 <h4 class="">Bình luận</h4>
-                                <form>
+                                <form action="CommentServlet" method="POST">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <textarea placeholder="Để lại bình luận của bạn tại đây (tối thiểu 250 kí tự)"></textarea>
+                                                <textarea name="comment" placeholder="Để lại bình luận của bạn tại đây (tối thiểu 250 kí tự)" required minlength="250"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-btn">
-                                                <a href="#" class="nir-btn">Gửi</a>
+                                                <button type="submit" class="nir-btn">Gửi</button>
                                             </div>
                                         </div>
                                     </div>

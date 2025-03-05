@@ -5,6 +5,9 @@
         <group>
             <file>file:/D:/SWPFinal/SWP391/src/java/controller/LoginGoogle.java</file>
             <file>file:/D:/SWPFinal/SWP391/src/java/controller/login.java</file>
+            <file>file:/D:/SWPFinal/SWP391/web/Views/Manager/Manager.jsp</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/manager/Manager.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/dal/TrainSeatDAO.java</file>
         </group>
     </open-files>
 </project-private>

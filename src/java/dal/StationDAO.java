@@ -171,6 +171,17 @@ public class StationDAO extends HttpServlet {
         return listStations;
     }
 
+    public void addStation(Station station) {
+        String sql = "INSERT INTO Station (name_station, description_station) VALUES (?, ?)";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, station.getName_station());
+            ps.setString(2, station.getDescription_station());
+            ps.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         StationDAO sd = new StationDAO();
         List<Station> list = sd.searchStationByName("h");

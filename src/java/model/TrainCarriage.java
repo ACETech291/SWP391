@@ -17,6 +17,14 @@ public class TrainCarriage implements SQLInsert{
     private int id_status;
     private int total_seat;
 
+    public TrainCarriage(int id_train_carriage, String name_train_carriage, String description_train_carriage, int id_status, int total_seat) {
+        this.id_train_carriage = id_train_carriage;
+        this.name_train_carriage = name_train_carriage;
+        this.description_train_carriage = description_train_carriage;
+        this.id_status = id_status;
+        this.total_seat = total_seat;
+    }
+
     public TrainCarriage(int id_train_carriage, String name_train_carriage, String description_train_carriage, int id_train, int id_status, int total_seat) {
         this.id_train_carriage = id_train_carriage;
         this.name_train_carriage = name_train_carriage;

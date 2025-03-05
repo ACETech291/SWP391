@@ -193,6 +193,14 @@ public class TripDAO {
         }
         return trips;
     }
+    
+    public List<TripDTO> getListByPage(List<TripDTO> list, int start , int end){
+        ArrayList<TripDTO> arr = new ArrayList<>();
+        for(int i = start; i< end;i++){
+            arr.add(list.get(i));
+        }
+        return arr;
+    }
    
         public void insertTrip(int price_trip, int id_station_start, int id_station_end, int id_train) {
         String sql = "INSERT INTO trip (price_trip, id_station_start, id_station_end, id_train) VALUES (?, ?, ?, ?)";

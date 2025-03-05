@@ -14,6 +14,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -52,6 +53,7 @@ public class Search extends HttpServlet {
             out.println("</html>");
         }
     }
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -63,8 +65,43 @@ public class Search extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("home").forward(request, response);
+        StationDAO stationDAO = new StationDAO();
+        TripDAO tripDAO = new TripDAO();
+        TrainDAO trainDAO = new TrainDAO();
+        HttpSession session = request.getSession();
+        String dateStr = (String)session.getAttribute("dateStr");
+        if(dateStr == null){
+            session.removeAttribute("dateStr");
+        }
 
+        List<TripDTO> list1 = (List<TripDTO>) session.getAttribute("list1");
+
+        int size = list1.size();
+        int page;
+        int numberPerPage = 10;
+        int num = (size % numberPerPage == 0 ? size / numberPerPage : size / numberPerPage + 1);
+        String xPage = request.getParameter("page");
+        if (xPage == null) {
+            page = 1;
+        } else {
+            page = Integer.parseInt(xPage);
+        }
+        int start = (page - 1) * numberPerPage;
+        int end = Math.min(page * numberPerPage, size);
+        List<TripDTO> listTripDTO = tripDAO.getListByPage(list1, start, end);
+
+        Date currentDate = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String formattedDate = sdf.format(currentDate);
+        request.setAttribute("formattedDate", formattedDate);
+        request.setAttribute("listTripDTO", listTripDTO);
+
+        List<Station> listStation = stationDAO.getAllStations();
+        request.setAttribute("date", dateStr);
+        request.setAttribute("page", page);
+        request.setAttribute("num", num);
+        request.setAttribute("listStation", listStation);
+        request.getRequestDispatcher("Views/Home.jsp").forward(request, response);
     }
 
     /**
@@ -81,7 +118,7 @@ public class Search extends HttpServlet {
         StationDAO stationDAO = new StationDAO();
         TripDAO tripDAO = new TripDAO();
         TrainDAO trainDAO = new TrainDAO();
-
+        HttpSession session = request.getSession();
         List<Train> trains = trainDAO.getAllTrains();
         request.setAttribute("trains", trains);
 
@@ -91,8 +128,13 @@ public class Search extends HttpServlet {
 
         if (dateStr != null && !dateStr.isEmpty()) {
             try {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                Date inputDate = sdf.parse(dateStr);
+                // Parse từ chuỗi dateStr với định dạng đầu vào "yyyy-MM-dd"
+                SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date inputDate = inputFormat.parse(dateStr);
+
+                // Chuyển đổi sang định dạng "dd-MM-yyyy"
+                SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
+                dateStr = outputFormat.format(inputDate);
 
                 // Lấy ngày hiện tại
                 Calendar calendar = Calendar.getInstance();
@@ -106,15 +148,16 @@ public class Search extends HttpServlet {
                 if (inputDate.after(maxDate)) {
                     request.setAttribute("message", "Không có chuyến đi trong khoảng thời gian này.");
                 } else {
-                    request.setAttribute("date", dateStr);
+                    session.setAttribute("dateStr", dateStr);
+                    request.setAttribute("date", dateStr); // Định dạng chuẩn dd-MM-yyyy
                 }
             } catch (Exception e) {
                 e.printStackTrace();
                 request.setAttribute("message", "Ngày nhập vào không hợp lệ.");
             }
-        } 
+        }
         String train_brand = request.getParameter("train_brand");
-
+        session.setAttribute("dateStr", dateStr);
         if ((!station_from.isEmpty()) && (station_from.equalsIgnoreCase(station_end))) {
             request.setAttribute("err", "Không thể có chuyến tàu nào cho 2 ga trùng nhau");
             List<Station> listStation = stationDAO.getAllStations();
@@ -123,7 +166,21 @@ public class Search extends HttpServlet {
             return;
         }
 
-        List<TripDTO> listTripDTO = tripDAO.searchTrips(station_from, station_end, train_brand);
+        List<TripDTO> list1 = tripDAO.searchTrips(station_from, station_end, train_brand);
+
+        int size = list1.size();
+        int page;
+        int numberPerPage = 10;
+        int num = (size % numberPerPage == 0 ? size / numberPerPage : size / numberPerPage + 1);
+        String xPage = request.getParameter("page");
+        if (xPage == null) {
+            page = 1;
+        } else {
+            page = Integer.parseInt(xPage);
+        }
+        int start = (page - 1) * numberPerPage;
+        int end = Math.min(page * numberPerPage, size);
+        List<TripDTO> listTripDTO = tripDAO.getListByPage(list1, start, end);
 
         Date currentDate = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -132,7 +189,9 @@ public class Search extends HttpServlet {
         request.setAttribute("listTripDTO", listTripDTO);
 
         List<Station> listStation = stationDAO.getAllStations();
-
+        session.setAttribute("list1", list1);
+        request.setAttribute("page", page);
+        request.setAttribute("num", num);
         request.setAttribute("listStation", listStation);
         request.getRequestDispatcher("Views/Home.jsp").forward(request, response);
     }

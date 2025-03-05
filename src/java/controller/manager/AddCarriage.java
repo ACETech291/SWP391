@@ -50,7 +50,7 @@ public class AddCarriage extends HttpServlet {
 
         carriageDAO.addTrainCarriage(carriage);
         
-        insertDatabase(carriage);
+        //insertDatabase(carriage);
         
         response.sendRedirect("Manager");
     }

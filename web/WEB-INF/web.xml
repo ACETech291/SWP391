@@ -144,6 +144,42 @@
         <servlet-name>CustomerDetail</servlet-name>
         <servlet-class>controller.admin.CustomerDetail</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetCarriage</servlet-name>
+        <servlet-class>controller.manager.GetCarriage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddSeat</servlet-name>
+        <servlet-class>controller.manager.AddSeat</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddStation</servlet-name>
+        <servlet-class>controller.manager.AddStation</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditTrain</servlet-name>
+        <servlet-class>controller.manager.EditTrain</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteTrain</servlet-name>
+        <servlet-class>controller.manager.DeleteTrain</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditCarriage</servlet-name>
+        <servlet-class>controller.manager.EditCarriage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteCarriage</servlet-name>
+        <servlet-class>controller.manager.DeleteCarriage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditTrainSeat</servlet-name>
+        <servlet-class>controller.manager.EditTrainSeat</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteTrainSeat</servlet-name>
+        <servlet-class>controller.manager.DeleteTrainSeat</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>home</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -271,5 +307,41 @@
     <servlet-mapping>
         <servlet-name>CustomerDetail</servlet-name>
         <url-pattern>/customerdetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetCarriage</servlet-name>
+        <url-pattern>/GetCarriage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddSeat</servlet-name>
+        <url-pattern>/AddSeat</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddStation</servlet-name>
+        <url-pattern>/AddStation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditTrain</servlet-name>
+        <url-pattern>/EditTrain</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteTrain</servlet-name>
+        <url-pattern>/DeleteTrain</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditCarriage</servlet-name>
+        <url-pattern>/EditCarriage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteCarriage</servlet-name>
+        <url-pattern>/DeleteCarriage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditTrainSeat</servlet-name>
+        <url-pattern>/EditTrainSeat</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteTrainSeat</servlet-name>
+        <url-pattern>/DeleteTrainSeat</url-pattern>
     </servlet-mapping>
 </web-app>
