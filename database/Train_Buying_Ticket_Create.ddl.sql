@@ -232,5 +232,8 @@ ALTER TABLE Token_forget_password ADD CONSTRAINT FKToken_forg905909 FOREIGN KEY 
 ALTER TABLE Date_trip ADD CONSTRAINT FKdate_trip45678 FOREIGN KEY (id_trip) REFERENCES Trip (id_trip);
 ALTER TABLE Date_trip ADD CONSTRAINT FKdate_trip45890 FOREIGN KEY (id_date_of_trip) REFERENCES Date_of_trip (id_date_of_trip);
 
+ALTER TABLE advertising 
+ADD COLUMN content LONGTEXT CHARACTER SET utf8mb4 COLLATE UTF8MB4_UNICODE_CI;
+
 ALTER TABLE Time_station ADD CONSTRAINT FKtime_station56744 FOREIGN KEY (id_station) REFERENCES station (id_station);
 ALTER TABLE Time_station ADD CONSTRAINT FKtime_station56774 FOREIGN KEY (id_time_of_station) REFERENCES time_of_station (id_time_of_station);

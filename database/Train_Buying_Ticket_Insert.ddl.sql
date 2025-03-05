@@ -5672,3 +5672,25 @@ INSERT INTO trip (price_trip, id_time_station_start, id_time_station_end, id_tra
 
 INSERT INTO `Train` (name_train, image_train, description_train, id_train_brand, id_status) VALUES ('Beta 3', NULL, '32678954754396547389567438956473892hngfvjkdlsg', 2, 4);
 
+<<<<<<< Updated upstream
+=======
+INSERT INTO advertising (image_advertising, description_advertising, id_manager, content) 
+VALUES ('../SWP391/images/HANOI.jpg', 'Hà Nội, thủ đô 1000 năm văn hiến', 1, 
+'Hà Nội là thủ đô ngàn năm văn hiến của Việt Nam, nổi tiếng với những di tích lịch sử như Hồ Gươm, Lăng Bác, Văn Miếu - Quốc Tử Giám và khu phố cổ. Thành phố mang vẻ đẹp cổ kính pha lẫn hiện đại, thu hút du khách bởi nét văn hóa đặc trưng và ẩm thực phong phú như phở, bún chả và bánh cuốn.');
+
+INSERT INTO advertising (image_advertising, description_advertising, id_manager, content) 
+VALUES ('../SWP391/images/NHATRANG.jpg', 'Nha Trang, hòa mình vào từng cơn sóng biển', 1, 
+'Nha Trang là thành phố biển xinh đẹp nổi tiếng với bãi cát trắng mịn, làn nước trong xanh và những hòn đảo tuyệt đẹp như Hòn Mun, Hòn Tằm. Đây là điểm đến lý tưởng cho những ai yêu thích biển và các hoạt động như lặn biển, chèo kayak và thưởng thức hải sản tươi ngon.');
+
+INSERT INTO advertising (image_advertising, description_advertising, id_manager, content) 
+VALUES ('../SWP391/images/SAIGON.jpg', 'Sài Gòn, nơi tình yêu bắt đầu', 2, 
+'Sài Gòn - Thành phố Hồ Chí Minh là trung tâm kinh tế sầm uất bậc nhất Việt Nam, nơi giao thoa của nhiều nền văn hóa. Thành phố mang đến nhịp sống năng động với các địa điểm nổi tiếng như Nhà thờ Đức Bà, Chợ Bến Thành và phố đi bộ Nguyễn Huệ. Nơi đây còn có nền ẩm thực đa dạng từ cơm tấm, hủ tiếu đến cà phê sữa đá.');
+
+INSERT INTO advertising (image_advertising, description_advertising, id_manager, content) 
+VALUES ('../SWP391/images/NUITHANH.jpg', 'Núi Thành, Nơi cảm xúc dâng trào', 2, 
+'Núi Thành thuộc tỉnh Quảng Nam, là vùng đất giàu truyền thống lịch sử và cảnh đẹp thiên nhiên hoang sơ. Đây là điểm đến hấp dẫn với những bãi biển tuyệt đẹp như Tam Hải, những cánh đồng muối và các địa danh gắn liền với lịch sử hào hùng của dân tộc.');
+
+
+
+
+>>>>>>> Stashed changes
