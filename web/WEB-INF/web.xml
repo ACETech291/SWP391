@@ -117,6 +117,10 @@
         <servlet-class>controller.manager.AddTrain</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ProfileAdmin</servlet-name>
+        <servlet-class>controller.admin.ProfileAdmin</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>BookTicket</servlet-name>
         <servlet-class>controller.BookTicket</servlet-class>
     </servlet>
@@ -223,6 +227,10 @@
     <servlet-mapping>
         <servlet-name>AddTrain</servlet-name>
         <url-pattern>/AddTrain</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProfileAdmin</servlet-name>
+        <url-pattern>/profileadmin</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>BookTicket</servlet-name>
