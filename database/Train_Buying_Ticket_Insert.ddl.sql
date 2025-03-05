@@ -437,8 +437,3 @@ VALUES
 (3, 'Ứng dụng ổn nhưng đôi khi bị lỗi kết nối.', 305, null),
 (5, 'Dịch vụ khách hàng rất tuyệt vời!', 306, null);
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Hiển Nguyễn Bá','hiennbhe181773@fpt.edu.vn','6NWFIsI1V5KNFeeazNcq35qxRUE=','0332671182',3,1); 
-INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Hiển Nguyễn Bá','hiennbhe181773@fpt.edu.vn','6NWFIsI1V5KNFeeazNcq35qxRUE=','0332671182',3,1); 
-INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Hiển Nguyễn Bá','hiennbhe181773@fpt.edu.vn','6NWFIsI1V5KNFeeazNcq35qxRUE=','0332671182',3,1); 
-INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Hiển Nguyễn Bá','hiennbhe181773@fpt.edu.vn','6NWFIsI1V5KNFeeazNcq35qxRUE=','0332671182',3,1); 
-INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Hiển Nguyễn Bá','hiennbhe181773@fpt.edu.vn','6NWFIsI1V5KNFeeazNcq35qxRUE=','0332671182',3,1); 
-INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Hiển Nguyễn Bá','hiennbhe181773@fpt.edu.vn','6NWFIsI1V5KNFeeazNcq35qxRUE=','0332671182',3,1); 
