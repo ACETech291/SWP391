@@ -48,7 +48,7 @@
                             <hr class="mb-0 navbar-vertical-divider" />
                         </div>
                     </div>
-                    <a class="nav-link" href="#" role="button">
+                    <a class="nav-link" href="createaccount" role="button">
                         <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-user-plus"></span></span><span class="nav-link-text ps-1">Tạo mới tài khoản</span></div>
                     </a>
                     <a class="nav-link" href="#" role="button">

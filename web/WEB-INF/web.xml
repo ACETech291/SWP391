@@ -180,6 +180,14 @@
         <servlet-name>DeleteTrainSeat</servlet-name>
         <servlet-class>controller.manager.DeleteTrainSeat</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AccessDenyServlet</servlet-name>
+        <servlet-class>controller.AccessDenyServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateAccount</servlet-name>
+        <servlet-class>controller.admin.CreateAccount</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>home</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -343,5 +351,13 @@
     <servlet-mapping>
         <servlet-name>DeleteTrainSeat</servlet-name>
         <url-pattern>/DeleteTrainSeat</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AccessDenyServlet</servlet-name>
+        <url-pattern>/404</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateAccount</servlet-name>
+        <url-pattern>/createaccount</url-pattern>
     </servlet-mapping>
 </web-app>

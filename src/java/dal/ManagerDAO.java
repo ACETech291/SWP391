@@ -152,6 +152,22 @@ public class ManagerDAO {
         return false;
     }
 
+    public boolean createManager(Manager manager) {
+        String sql = "INSERT INTO manager (username_manager, password_manager, email_manager, id_role, status_manager) VALUES (?, ?, ?, ?, ?)";
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+            ps.setString(1, manager.getUsername_manager());
+            ps.setString(2, manager.getPassword_manager());
+            ps.setString(3, manager.getEmail_manager());
+            ps.setInt(4, manager.getRole().getId());
+            ps.setInt(5, manager.getStatus());
+            int rows = ps.executeUpdate();
+            return rows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         ManagerDAO d = new ManagerDAO();
         //        Manager m = d.getManagerByEmailAndPassword("manager1@gmail.com", "6NWFIsI1V5KNFeeazNcq35qxRUE=");

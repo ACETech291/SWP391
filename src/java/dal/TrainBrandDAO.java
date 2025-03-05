@@ -17,9 +17,9 @@ import model.Manager;
  * @author dinhphu
  */
 public class TrainBrandDAO {
-    
+
     private Connection connect;
-    
+
     public TrainBrandDAO() {
         this.connect = DBConnect.MySQLConnect();
         if (this.connect == null) {
@@ -28,19 +28,19 @@ public class TrainBrandDAO {
             System.out.println("Database connected successfully!");
         }
     }
-    
+
     public TrainBrand getTrainBrandsByManager(int idManager) {
         String sql = "SELECT * FROM Train_brand WHERE id_manager = ?";
         TrainBrand tb = new TrainBrand();
         try (PreparedStatement ps = connect.prepareStatement(sql)) {
             ps.setInt(1, idManager);
             ResultSet rs = ps.executeQuery();
-            
+
             while (rs.next()) {
-                
+
                 Manager manager = new Manager();
                 manager.setId_manager(rs.getInt("id_manager"));
-                
+
                 tb.setId_train_brand(rs.getInt("id_train_brand"));
                 tb.setManager(manager);
                 tb.setName_train_brand(rs.getString("name_train_brand"));
@@ -51,6 +51,21 @@ public class TrainBrandDAO {
             e.printStackTrace();
         }
         return tb;
+    }
+
+    public boolean createTrainBrand(TrainBrand tb) {
+        String sql = "INSERT INTO Train_brand (id_manager, name_train_brand, image_train_brand, description_train_brand) VALUES (?, ?, ?, ?)";
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+            ps.setInt(1, tb.getManager().getId_manager());
+            ps.setString(2, tb.getName_train_brand());
+            ps.setString(3, tb.getImage_train_brand());
+            ps.setString(4, tb.getDescription_train_brand());
+            int rows = ps.executeUpdate();
+            return rows > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 //    public static void main(String[] args) {
