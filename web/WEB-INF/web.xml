@@ -129,6 +129,22 @@
         <servlet-class>controller.manager.AddCarriage</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ManagerList</servlet-name>
+        <servlet-class>controller.admin.ManagerList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerList</servlet-name>
+        <servlet-class>controller.admin.CustomerList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManagerDetail</servlet-name>
+        <servlet-class>controller.admin.ManagerDetail</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerDetail</servlet-name>
+        <servlet-class>controller.admin.CustomerDetail</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>GetCarriage</servlet-name>
         <servlet-class>controller.manager.GetCarriage</servlet-class>
     </servlet>
@@ -163,6 +179,14 @@
     <servlet>
         <servlet-name>DeleteTrainSeat</servlet-name>
         <servlet-class>controller.manager.DeleteTrainSeat</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AccessDenyServlet</servlet-name>
+        <servlet-class>controller.AccessDenyServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateAccount</servlet-name>
+        <servlet-class>controller.admin.CreateAccount</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>home</servlet-name>
@@ -277,6 +301,22 @@
         <url-pattern>/AddCarriage</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ManagerList</servlet-name>
+        <url-pattern>/managerlist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerList</servlet-name>
+        <url-pattern>/customerlist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManagerDetail</servlet-name>
+        <url-pattern>/managerdetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerDetail</servlet-name>
+        <url-pattern>/customerdetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>GetCarriage</servlet-name>
         <url-pattern>/GetCarriage</url-pattern>
     </servlet-mapping>
@@ -311,5 +351,13 @@
     <servlet-mapping>
         <servlet-name>DeleteTrainSeat</servlet-name>
         <url-pattern>/DeleteTrainSeat</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AccessDenyServlet</servlet-name>
+        <url-pattern>/404</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateAccount</servlet-name>
+        <url-pattern>/createaccount</url-pattern>
     </servlet-mapping>
 </web-app>
