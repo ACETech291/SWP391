@@ -181,12 +181,21 @@
         <servlet-class>controller.manager.DeleteTrainSeat</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< Updated upstream
         <servlet-name>AccessDenyServlet</servlet-name>
         <servlet-class>controller.AccessDenyServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CreateAccount</servlet-name>
         <servlet-class>controller.admin.CreateAccount</servlet-class>
+=======
+        <servlet-name>EditStation</servlet-name>
+        <servlet-class>controller.manager.EditStation</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteStation</servlet-name>
+        <servlet-class>controller.manager.DeleteStation</servlet-class>
+>>>>>>> Stashed changes
     </servlet>
     <servlet-mapping>
         <servlet-name>home</servlet-name>
@@ -353,11 +362,20 @@
         <url-pattern>/DeleteTrainSeat</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< Updated upstream
         <servlet-name>AccessDenyServlet</servlet-name>
         <url-pattern>/404</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CreateAccount</servlet-name>
         <url-pattern>/createaccount</url-pattern>
+=======
+        <servlet-name>EditStation</servlet-name>
+        <url-pattern>/EditStation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteStation</servlet-name>
+        <url-pattern>/DeleteStation</url-pattern>
+>>>>>>> Stashed changes
     </servlet-mapping>
 </web-app>

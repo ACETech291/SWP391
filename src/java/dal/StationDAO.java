@@ -48,7 +48,8 @@ public class StationDAO extends HttpServlet {
     private final Connection connection;
 
     public StationDAO() {
-        this.connection = DBConnect.MySQLConnect(); // Gán kết nối vào biến connect
+        this.connection = DBConnect.MySQLConnect();
+        System.out.println("STATION");// Gán kết nối vào biến connect
         if (this.connection == null) {
             System.err.println("Database connection failed!");
         }
@@ -182,11 +183,32 @@ public class StationDAO extends HttpServlet {
         }
     }
 
+    public void updateStation(Station station) {
+        String sql = "UPDATE Station SET name_station = ?, description_station = ? WHERE id_station = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, station.getName_station());
+            ps.setString(2, station.getDescription_station());
+            ps.setInt(3, station.getId_station());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteStation(int id_station) {
+        String sql = "DELETE FROM Station WHERE id_station = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, id_station);
+            System.out.println("DELETE STATION BY ID");
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         StationDAO sd = new StationDAO();
-        List<Station> list = sd.searchStationByName("h");
-        for (Station station : list) {
-            System.out.println(station.getName_station());
-        }
+        sd.deleteStation(1);
+        System.out.println("OKKK");
     }
 }
