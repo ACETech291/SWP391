@@ -40,10 +40,9 @@ public class home extends HttpServlet {
         List<Train> trains = trainDAO.getAllTrains();
         List<Station> listStation = stationDAO.getAllStations();
         List<Advertising> listAdvertisings = advertisingDAO.getAllAdvertising();
-        for (Advertising listAdvertising : listAdvertisings) {
-            System.out.println(listAdvertising);
-        }
+        
         List<TripDTO> list1 = tripDAO.getAllTripsAtThisDay();
+        
         request.setAttribute("listStation", listStation);
         Date currentDate = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");

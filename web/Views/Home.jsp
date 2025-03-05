@@ -237,7 +237,7 @@
                         <c:if test="${empty listTripDTO and empty message}">
                             <c:set var ="page" value="${requestScope.page}"/>
                             <div class="pagination">
-                                <c:forEach begin="${1}" end="${num}" var="i">
+                                <c:forEach begin="${1}" end="${5}" var="i">
                                     <a href="home?page=${i}" 
                                        class="btn ${i == page ? 'btn-primary' : 'btn-light'}">
                                         ${i}
@@ -248,7 +248,7 @@
                         <c:if test="${not empty listTripDTO and empty message}">
                             <c:set var ="page" value="${requestScope.page}"/>
                             <div class="pagination">
-                                <c:forEach begin="${1}" end="${num}" var="i">
+                                <c:forEach begin="${1}" end="${num > 5 ? 5 : num}" var="i">
                                     <a href="Search?page=${i}" 
                                        class="btn ${i == page ? 'btn-primary' : 'btn-light'}">
                                         ${i}
@@ -465,7 +465,11 @@
                     </div>
                 </div>
             </div>
-
+            <div class="justify-content-center text-center">
+                <a href="advertising" class="per-btn">
+                    <span  class="white">Xem thêm</span>
+                </a>
+            </div>
         </div>
     </section>
     <!-- News Ends -->

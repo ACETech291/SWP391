@@ -15,6 +15,7 @@ public class Manager {
     private String password_manager;
     private String email_manager;
     private Role role;
+    private String image_manager;
     private int status;
 
     public Manager() {
@@ -26,6 +27,16 @@ public class Manager {
         this.password_manager = password_manager;
         this.email_manager = email_manager;
         this.role = role;
+        this.status = status;
+    }
+
+    public Manager(int id_manager, String username_manager, String password_manager, String email_manager, Role role, String image_manager, int status) {
+        this.id_manager = id_manager;
+        this.username_manager = username_manager;
+        this.password_manager = password_manager;
+        this.email_manager = email_manager;
+        this.role = role;
+        this.image_manager = image_manager;
         this.status = status;
     }
 
@@ -49,8 +60,8 @@ public class Manager {
         return password_manager;
     }
 
-    public void setPassword_manager(String password_manage) {
-        this.password_manager = password_manage;
+    public void setPassword_manager(String password_manager) {
+        this.password_manager = password_manager;
     }
 
     public String getEmail_manager() {
@@ -69,6 +80,14 @@ public class Manager {
         this.role = role;
     }
 
+    public String getImage_manager() {
+        return image_manager;
+    }
+
+    public void setImage_manager(String image_manager) {
+        this.image_manager = image_manager;
+    }
+
     public int getStatus() {
         return status;
     }
@@ -79,7 +98,7 @@ public class Manager {
 
     @Override
     public String toString() {
-        return "Manager{" + "id_manager=" + id_manager + ", username_manager=" + username_manager + ", password_manager=" + password_manager + ", email_manager=" + email_manager + ", role=" + role + ", status=" + status + '}';
+        return "Manager{" + "id_manager=" + id_manager + ", username_manager=" + username_manager + ", password_manager=" + password_manager + ", email_manager=" + email_manager + ", role=" + role + ", image_manager=" + image_manager + ", status=" + status + '}';
     }
 
 }

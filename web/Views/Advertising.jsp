@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -48,136 +49,23 @@
             <div class="container">
                 <div class="blog-main">
                     <div class="row">    
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mansonry-item mb-2">
-                            <div class="blog-full text-center p-3">
-                                <img src="${pageContext.request.contextPath}/images/Advertising.png" alt="">
-                                <div class="blog-content pb-0">
-                                    <span class="h-date pink mb-1 font-weight-light d-block"> 13-2-2025</span>
-                                    <h3 class="mb-2"><a href="#" class="">Tiêu đề</a></h3>
-                                    <p class="date-cats mb-0 border-t pt-2 pb-2">
-                                        <a href="#" class=""><i class="fa fa-user"></i> Tên hãng</a>
-                                    </p> 
-                                    <p class="mb-2 border-t pt-2">Nội dung</p>  
-                                    <a href="advertisingdetail" class="grey font-weight-light">Chi tiết ở đây <i class="fa fa-long-arrow-alt-right"></i></a>
-                                </div>                        
+                        <c:forEach var="advertising" items="${listAdvertisings}" >
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mansonry-item mb-2">
+                                <div class="blog-full text-center p-3">
+                                    <img src="${advertising.image_advertising}" alt="">
+                                    <div class="blog-content pb-0">
+                                        <span class="h-date pink mb-1 font-weight-light d-block"> 5-3-2025</span>
+                                        <h3 class="mb-2"><a href="advertisingdetail?id=${advertising.id_advertising}" class="">${advertising.description_advertising}</a></h3>
+                                        <p class="date-cats mb-0 border-t pt-2 pb-2">
+                                            <a href="#" class=""><i class="fa fa-user"></i> ${advertising.managerName}</a>
+                                        </p> 
+                                        <p class="mb-2 border-t pt-2">${advertising.managerName}</p>  
+                                        <a href="advertisingdetail?id=${advertising.id_advertising}" class="grey font-weight-light">Chi tiết ở đây <i class="fa fa-long-arrow-alt-right"></i></a>
+                                    </div>                        
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mansonry-item mb-2">
-                            <div class="blog-full text-center p-3">
-                                <img src="${pageContext.request.contextPath}/images/Advertising.png" alt="">
-                                <div class="blog-content pb-0">
-                                    <span class="h-date pink mb-1 font-weight-light d-block"> 13-2-2025</span>
-                                    <h3 class="mb-2"><a href="#" class="">Tiêu đề</a></h3>
-                                    <p class="date-cats mb-0 border-t pt-2 pb-2">
-                                        <a href="#" class=""><i class="fa fa-user"></i> Tên hãng</a>
-                                    </p> 
-                                    <p class="mb-2 border-t pt-2">Nội dung</p>  
-                                    <a href="advertisingdetail" class="grey font-weight-light">Chi tiết ở đây <i class="fa fa-long-arrow-alt-right"></i></a>
-                                </div>                        
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mansonry-item mb-2">
-                            <div class="blog-full text-center p-3">
-                                <img src="${pageContext.request.contextPath}/images/Advertising.png" alt="">
-                                <div class="blog-content pb-0">
-                                    <span class="h-date pink mb-1 font-weight-light d-block"> 13-2-2025</span>
-                                    <h3 class="mb-2"><a href="advertisingdetail" class="">Tiêu đề</a></h3>
-                                    <p class="date-cats mb-0 border-t pt-2 pb-2">
-                                        <a href="#" class=""><i class="fa fa-user"></i> Tên hãng</a>
-                                    </p> 
-                                    <p class="mb-2 border-t pt-2">Nội dung</p>  
-                                    <a href="advertisingdetail" class="grey font-weight-light">Chi tiết ở đây <i class="fa fa-long-arrow-alt-right"></i></a>
-                                </div>                        
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mansonry-item mb-2">
-                            <div class="blog-full text-center p-3">
-                                <img src="${pageContext.request.contextPath}/images/Advertising.png" alt="">
-                                <div class="blog-content pb-0">
-                                    <span class="h-date pink mb-1 font-weight-light d-block"> 13-2-2025</span>
-                                    <h3 class="mb-2"><a href="advertisingdetail" class="">Tiêu đề</a></h3>
-                                    <p class="date-cats mb-0 border-t pt-2 pb-2">
-                                        <a href="#" class=""><i class="fa fa-user"></i> Tên hãng</a>
-                                    </p> 
-                                    <p class="mb-2 border-t pt-2">Nội dung</p>  
-                                    <a href="advertisingdetail" class="grey font-weight-light">Chi tiết ở đây <i class="fa fa-long-arrow-alt-right"></i></a>
-                                </div>                        
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mansonry-item mb-2">
-                            <div class="blog-full text-center p-3">
-                                <img src="${pageContext.request.contextPath}/images/Advertising.png" alt="">
-                                <div class="blog-content pb-0">
-                                    <span class="h-date pink mb-1 font-weight-light d-block"> 13-2-2025</span>
-                                    <h3 class="mb-2"><a href="advertisingdetail" class="">Tiêu đề</a></h3>
-                                    <p class="date-cats mb-0 border-t pt-2 pb-2">
-                                        <a href="#" class=""><i class="fa fa-user"></i> Tên hãng</a>
-                                    </p> 
-                                    <p class="mb-2 border-t pt-2">Nội dung</p>  
-                                    <a href="advertisingdetail" class="grey font-weight-light">Chi tiết ở đây <i class="fa fa-long-arrow-alt-right"></i></a>
-                                </div>                        
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mansonry-item mb-2">
-                            <div class="blog-full text-center p-3">
-                                <img src="${pageContext.request.contextPath}/images/Advertising.png" alt="">
-                                <div class="blog-content pb-0">
-                                    <span class="h-date pink mb-1 font-weight-light d-block"> 13-2-2025</span>
-                                    <h3 class="mb-2"><a href="advertisingdetail" class="">Tiêu đề</a></h3>
-                                    <p class="date-cats mb-0 border-t pt-2 pb-2">
-                                        <a href="#" class=""><i class="fa fa-user"></i> Tên hãng</a>
-                                    </p> 
-                                    <p class="mb-2 border-t pt-2">Nội dung</p>  
-                                    <a href="advertisingdetail" class="grey font-weight-light">Chi tiết ở đây <i class="fa fa-long-arrow-alt-right"></i></a>
-                                </div>                        
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mansonry-item mb-2">
-                            <div class="blog-full text-center p-3">
-                                <img src="${pageContext.request.contextPath}/images/Advertising.png" alt="">
-                                <div class="blog-content pb-0">
-                                    <span class="h-date pink mb-1 font-weight-light d-block"> 13-2-2025</span>
-                                    <h3 class="mb-2"><a href="advertisingdetail" class="">Tiêu đề</a></h3>
-                                    <p class="date-cats mb-0 border-t pt-2 pb-2">
-                                        <a href="#" class=""><i class="fa fa-user"></i> Tên hãng</a>
-                                    </p> 
-                                    <p class="mb-2 border-t pt-2">Nội dung</p>  
-                                    <a href="advertisingdetail" class="grey font-weight-light">Chi tiết ở đây <i class="fa fa-long-arrow-alt-right"></i></a>
-                                </div>                        
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mansonry-item mb-2">
-                            <div class="blog-full text-center p-3">
-                                <img src="${pageContext.request.contextPath}/images/Advertising.png" alt="">
-                                <div class="blog-content pb-0">
-                                    <span class="h-date pink mb-1 font-weight-light d-block"> 13-2-2025</span>
-                                    <h3 class="mb-2"><a href="advertisingdetail" class="">Tiêu đề</a></h3>
-                                    <p class="date-cats mb-0 border-t pt-2 pb-2">
-                                        <a href="#" class=""><i class="fa fa-user"></i> Tên hãng</a>
-                                    </p> 
-                                    <p class="mb-2 border-t pt-2">Nội dung</p>  
-                                    <a href="advertisingdetail" class="grey font-weight-light">Chi tiết ở đây <i class="fa fa-long-arrow-alt-right"></i></a>
-                                </div>                        
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mansonry-item mb-2">
-                            <div class="blog-full text-center p-3">
-                                <img src="${pageContext.request.contextPath}/images/Advertising.png" alt="">
-                                <div class="blog-content pb-0">
-                                    <span class="h-date pink mb-1 font-weight-light d-block"> 13-2-2025</span>
-                                    <h3 class="mb-2"><a href="advertisingdetail" class="">Tiêu đề</a></h3>
-                                    <p class="date-cats mb-0 border-t pt-2 pb-2">
-                                        <a href="#" class=""><i class="fa fa-user"></i> Tên hãng</a>
-                                    </p> 
-                                    <p class="mb-2 border-t pt-2">Nội dung</p>  
-                                    <a href="advertisingdetail" class="grey font-weight-light">Chi tiết ở đây <i class="fa fa-long-arrow-alt-right"></i></a>
-                                </div>                        
-                            </div>
-                        </div>
+                        </c:forEach>
                     </div>
-                </div>
-                <div class="blog-button text-center">
-                    <a href="#" class="nir-btn">Xem thêm</a>
                 </div>
             </div>
         </section>

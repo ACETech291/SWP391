@@ -1,13 +1,16 @@
 package controller.admin;
 
+import dal.ManagerDAO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.List;
+import model.Manager;
 
-public class ProfileAdmin extends HttpServlet {
+public class ManagerList extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -26,7 +29,13 @@ public class ProfileAdmin extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
 
-        request.getRequestDispatcher("Views/Admin/Profile.jsp").forward(request, response);
+        ManagerDAO managerDAO = new ManagerDAO();
+
+        List<Manager> managers = managerDAO.getAllManager();
+
+        request.setAttribute("managers", managers);
+
+        request.getRequestDispatcher("Views/Admin/ManagerList.jsp").forward(request, response);
     }
 
     @Override
@@ -46,7 +55,7 @@ public class ProfileAdmin extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
 
-        request.getRequestDispatcher("Views/Admin/Profile.jsp").forward(request, response);
+        request.getRequestDispatcher("Views/Admin/ManagerList.jsp").forward(request, response);
     }
 
 }

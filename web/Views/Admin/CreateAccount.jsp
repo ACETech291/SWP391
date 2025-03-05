@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en-US" dir="ltr">
 
@@ -10,7 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- ===============================================--><!--    Document Title--><!-- ===============================================-->
-        <title>Thống kê</title>
+        <title>Tạo tài khoản</title>
         <jsp:include page="../includes/icon.jsp"></jsp:include>
             <!-- ===============================================--><!--    Stylesheets--><!-- ===============================================-->
             <link rel="preconnect" href="https://fonts.gstatic.com/">
@@ -26,66 +27,87 @@
         <!-- ===============================================--><!--    Main Content--><!-- ===============================================-->
         <main class="main" id="top">
             <div class="container" data-layout="container">
-
-                <!-- Navbar-->
                 <jsp:include page="includes/navbar.jsp"></jsp:include>
-
                     <div class="content">
-                        <!-- Header-->
                     <jsp:include page="includes/header.jsp"></jsp:include>
+                    <c:if test="${not empty message}">
+                        <div class="alert alert-info">
+                            ${message}
+                        </div>
+                    </c:if>
 
-                        <!-- Profile -->
-
-                        <div class="card mb-3">
-                            <div class="card-header position-relative min-vh-25 mb-7">
-                                <div class="bg-holder rounded-3 rounded-bottom-0" style="background-image:url(${pageContext.request.contextPath}/Views/Admin/assets/img/generic/4.jpg);"></div><!--/.bg-holder-->
-                            <div class="avatar avatar-5xl avatar-profile shadow-sm img-thumbnail rounded-circle">
-                                <div class="h-100 w-100 rounded-circle overflow-hidden position-relative"> <img src="${pageContext.request.contextPath}/Views/Admin/assets/img/team/2.jpg" width="200" alt="" data-dz-thumbnail="data-dz-thumbnail" /><input class="d-none" id="profile-image" type="file" /><label class="mb-0 overlay-icon d-flex flex-center" for="profile-image"><span class="bg-holder overlay overlay-0"></span><span class="z-1 text-white dark__text-white text-center fs-10"><span class="fas fa-camera"></span><span class="d-block">Update</span></span></label></div>
-                            </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <!-- Sử dụng nav-tabs của Bootstrap để tách phần -->
+                            <ul class="nav nav-tabs card-header-tabs" id="accountTabs" role="tablist">
+                                <li class="nav-item">
+                                    <button class="nav-link active" id="manager-tab" data-bs-toggle="tab" data-bs-target="#manager" type="button" role="tab" aria-controls="manager" aria-selected="true">
+                                        Tạo tài khoản Manager
+                                    </button>
+                                </li>
+                                <li class="nav-item">
+                                    <button class="nav-link" id="admin-tab" data-bs-toggle="tab" data-bs-target="#customer" type="button" role="tab" aria-controls="admin" aria-selected="false">
+                                        Tạo tài khoản Customer
+                                    </button>
+                                </li>
+                            </ul>
                         </div>
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    <h4 class="mb-1"> ${sessionScope.account.username_admin}<span data-bs-toggle="tooltip" data-bs-placement="right" title="Verified"><small class="fa fa-check-circle text-primary" data-fa-transform="shrink-4 down-2"></small></span></h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                            <div class="tab-content" id="accountTabsContent">
 
-                    <div class="row g-0">
-                        <div class="col-lg-8 pe-lg-2">
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    <h5 class="mb-0">Thông tin cá nhân</h5>
-                                </div>
-                                <div class="card-body bg-body-tertiary">
-                                    <form class="row g-3">
-                                        <div class="col-lg-12"> <label class="form-label" for="first-name">Tên của bạn</label><input class="form-control" id="first-name" type="text" value="${sessionScope.account.username_admin}" /></div>
-                                        <div class="col-lg-12"> <label class="form-label" for="email1">Địa chỉ Email</label><input class="form-control" id="email1" type="text" value="${sessionScope.account.email_admin}" readonly/></div>
-                                        <div class="col-12 d-flex justify-content-end"><button class="btn btn-primary" type="submit">Lưu thay đổi </button></div>
+                                <!-- Phần tạo tài khoản cho Manager -->
+                                <div class="tab-pane fade show active" id="manager" role="tabpanel" aria-labelledby="manager-tab">
+                                    <form class="row g-3" method="post" action="createaccount">
+                                        <div class="col-lg-12">
+                                            <label class="form-label" for="manager-name">Họ và Tên</label>
+                                            <input class="form-control" id="manager-name" name="name" type="text" placeholder="" required/>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <label class="form-label" for="manager-email">Địa chỉ Email</label>
+                                            <input class="form-control" id="manager-email" name="email" type="email" placeholder="" required/>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <label class="form-label" for="manager-pass">Mật khẩu</label>
+                                            <input class="form-control" id="manager-pass" name="pass" type="text" placeholder="" required/>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <label class="form-label" for="manager-trainbrand">Tên hãng</label>
+                                            <input class="form-control" id="manager-trainbrand" name="trainbrand" type="text" placeholder="" required/>
+                                        </div>
+                                        <div class="col-12 d-flex justify-content-end">
+                                            <button class="btn btn-primary" type="submit">Tạo tài khoản</button>
+                                        </div>
                                     </form>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 ps-lg-2">
-                            <div class="sticky-sidebar">
-                                <div class="card mb-3">
-                                    <div class="card-header">
-                                        <h5 class="mb-0">Đổi mật khẩu</h5>
-                                    </div>
-                                    <div class="card-body bg-body-tertiary">
-                                        <form>
-                                            <div class="mb-3"><label class="form-label" for="old-password">Mật khẩu cũ</label><input class="form-control" id="old-password" type="password" /></div>
-                                            <div class="mb-3"><label class="form-label" for="new-password">Mật khẩu mới</label><input class="form-control" id="new-password" type="password" /></div>
-                                            <div class="mb-3"><label class="form-label" for="confirm-password">Xác nhận mật khẩu</label><input class="form-control" id="confirm-password" type="password" /></div><button class="btn btn-primary d-block w-100" type="submit">Thay đổi mật khẩu </button>
-                                        </form>
-                                    </div>
+
+                                <!-- Phần tạo tài khoản cho Customer -->
+                                <div class="tab-pane fade" id="customer" role="tabpanel" aria-labelledby="admin-tab">
+                                    <form class="row g-3" method="post" action="createaccount">
+                                        <div class="col-lg-12">
+                                            <label class="form-label" for="customer-name">Họ và Tên</label>
+                                            <input class="form-control" id="customer-name" name="name" type="text" placeholder="" required/>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <label class="form-label" for="customer-phone">Số điện thoại</label>
+                                            <input class="form-control" id="customer-phone" name="phone" type="text" placeholder="" required/>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <label class="form-label" for="customer-email">Địa chỉ Email</label>
+                                            <input class="form-control" id="customer-email" name="email" type="email" placeholder="" required/>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <label class="form-label" for="customer-pass">Mật khẩu</label>
+                                            <input class="form-control" id="customer-pass" name="pass" type="text" placeholder="" required/>
+                                        </div>
+                                        <div class="col-12 d-flex justify-content-end">
+                                            <button class="btn btn-primary" type="submit">Tạo tài khoản</button>
+                                        </div>
+                                    </form>
                                 </div>
+
                             </div>
                         </div>
                     </div>
-                    <!-- Profile End -->
-
                 </div>
             </div>
         </main>

@@ -1,6 +1,7 @@
 package controller;
 
 import dal.AdvertisingDAO;
+import dal.FeedbackDAO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -8,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Advertising;
 import java.util.List;
+import model.Feedback;
 /**
  *
  * @author hiepg
@@ -23,6 +25,9 @@ public class AdvertisingDetail extends HttpServlet {
         String id = request.getParameter("id");
         Advertising advertising = advertisingDAO.getAdvertisingById(id);
         request.setAttribute("advertising", advertising);
+        FeedbackDAO feedbackDAO = new FeedbackDAO();
+        List<Feedback> listFeedbacks = feedbackDAO.getAllFeedback();
+        request.setAttribute("listFeedbacks", listFeedbacks);
         request.getRequestDispatcher("Views/AdvertisingDetail.jsp").forward(request, response);
     }
 

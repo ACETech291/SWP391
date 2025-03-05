@@ -44,6 +44,7 @@ public class TrainBrandDAO {
                 tb.setId_train_brand(rs.getInt("id_train_brand"));
                 tb.setManager(manager);
                 tb.setName_train_brand(rs.getString("name_train_brand"));
+                tb.setImage_train_brand(rs.getString("image_train_brand"));
                 tb.setDescription_train_brand(rs.getString("description_train_brand"));
             }
         } catch (Exception e) {
@@ -51,7 +52,22 @@ public class TrainBrandDAO {
         }
         return tb;
     }
-    
+
+    public boolean createTrainBrand(TrainBrand tb) {
+        String sql = "INSERT INTO Train_brand (id_manager, name_train_brand, image_train_brand, description_train_brand) VALUES (?, ?, ?, ?)";
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+            ps.setInt(1, tb.getManager().getId_manager());
+            ps.setString(2, tb.getName_train_brand());
+            ps.setString(3, tb.getImage_train_brand());
+            ps.setString(4, tb.getDescription_train_brand());
+            int rows = ps.executeUpdate();
+            return rows > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 //    public static void main(String[] args) {
 //        TrainBrandDAO tb = new TrainBrandDAO();
 //        TrainBrand t = tb.getTrainBrandsByManager(1);

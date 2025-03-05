@@ -162,9 +162,13 @@ public class TrainDAO {
 
     public static void main(String[] args) {
         TrainDAO dao = new TrainDAO();
-        List<Train> topTrains = dao.getTopTrains(10);
+        List<Train> topTrains = dao.getAllTrains();
         for (Train topTrain : topTrains) {
             System.out.println(topTrain.getName_train() + " ");
+        }
+        
+        for (Train topTrain : topTrains) {
+            System.out.println(topTrain);
         }
     }
 }

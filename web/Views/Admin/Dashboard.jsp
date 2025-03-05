@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en-US" dir="ltr">
 
@@ -37,114 +38,80 @@
                         <!-- Dashboard -->
                         <div class="row g-3 mb-3">
                             <div class="col-md-6 col-xxl-4">
-                                <div class="card h-md-100 ecommerce-card-min-width">
-                                    <div class="card-header pb-0">
-                                        <h6 class="mb-0 mt-2 d-flex align-items-center">Weekly Sales<span class="ms-1 text-400" data-bs-toggle="tooltip" data-bs-placement="top" title="Calculated according to last week's sales"><span class="far fa-question-circle" data-fa-transform="shrink-1"></span></span></h6>
-                                    </div>
-                                    <div class="card-body d-flex flex-column justify-content-end">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="font-sans-serif lh-1 mb-1 fs-5">$47K</p><span class="badge badge-subtle-success rounded-pill fs-11">+3.5%</span>
-                                            </div>
-                                            <div class="col-auto ps-0">
-                                                <div class="echart-bar-weekly-sales h-100"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-xxl-4">
                                 <div class="card h-md-100">
                                     <div class="card-header pb-0">
-                                        <h6 class="mb-0 mt-2">Total Order</h6>
+                                        <h6 class="mb-0 mt-2">Tổng số hãng tàu</h6>
                                     </div>
                                     <div class="card-body d-flex flex-column justify-content-end">
                                         <div class="row justify-content-between">
                                             <div class="col-auto align-self-end">
-                                                <div class="fs-5 fw-normal font-sans-serif text-700 lh-1 mb-1">58.4K</div><span class="badge rounded-pill fs-11 bg-200 text-primary"><span class="fas fa-caret-up me-1"></span>13.6%</span>
-                                            </div>
-                                            <div class="col-auto ps-0 mt-n4">
-                                                <div class="echart-default-total-order" data-echarts='{"tooltip":{"trigger":"axis","formatter":"{b0} : {c0}"},"xAxis":{"data":["Week 4","Week 5","Week 6","Week 7"]},"series":[{"type":"line","data":[20,40,100,120],"smooth":true,"lineStyle":{"width":3}}],"grid":{"bottom":"2%","top":"2%","right":"0","left":"10px"}}' data-echart-responsive="true"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-xxl-4">
-                                <div class="card h-md-100">
-                                    <div class="card-body">
-                                        <div class="row h-100 justify-content-between g-0">
-                                            <div class="col-5 col-sm-6 col-xxl pe-2">
-                                                <h6 class="mt-1">Market Share</h6>
-                                                <div class="fs-11 mt-3">
-                                                    <div class="d-flex flex-between-center mb-1">
-                                                        <div class="d-flex align-items-center"><span class="dot bg-primary"></span><span class="fw-semi-bold">Samsung</span></div>
-                                                        <div class="d-xxl-none">33%</div>
-                                                    </div>
-                                                    <div class="d-flex flex-between-center mb-1">
-                                                        <div class="d-flex align-items-center"><span class="dot bg-info"></span><span class="fw-semi-bold">Huawei</span></div>
-                                                        <div class="d-xxl-none">29%</div>
-                                                    </div>
-                                                    <div class="d-flex flex-between-center mb-1">
-                                                        <div class="d-flex align-items-center"><span class="dot bg-300"></span><span class="fw-semi-bold">Apple</span></div>
-                                                        <div class="d-xxl-none">20%</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-auto position-relative">
-                                                <div class="echart-market-share"></div>
-                                                <div class="position-absolute top-50 start-50 translate-middle text-1100 fs-7">26M</div>
-                                            </div>
+                                                <div class="fs-5 fw-normal font-sans-serif text-700 lh-1 mb-1">${sumManager}</div><span class="badge rounded-pill fs-11 bg-200 text-primary"><span class="fas fa-caret-up me-1"></span>0%</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- End Dashboard -->
-
-                        <div class="row g-0">
-
-                            <!-- Active user -->
-                            <div class="col-md-6 col-xxl-4 pe-md-2 mb-3 mb-xxl-0">
-                                <div class="card">
-                                    <div class="card-header d-flex flex-between-center bg-body-tertiary py-2">
-                                        <h6 class="mb-0">Active Users</h6>
-                                    </div>
-
-                                <div class="card-body py-2">
-                                    <div class="d-flex align-items-center position-relative mb-3">
-                                        <div class="avatar avatar-2xl status-online">
-                                            <img class="rounded-circle" src="${pageContext.request.contextPath}/Views/Admin/assets/img/team/1.jpg" alt="" />
-                                        </div>
-                                        <div class="flex-1 ms-3">
-                                            <h6 class="mb-0 fw-semi-bold"><a class="stretched-link text-900" href="pages/user/profile.html">Customer1</a></h6>
+                        <div class="col-md-6 col-xxl-4">
+                            <div class="card h-md-100">
+                                <div class="card-header pb-0">
+                                    <h6 class="mb-0 mt-2">Tổng số người dùng trong hệ thống</h6>
+                                </div>
+                                <div class="card-body d-flex flex-column justify-content-end">
+                                    <div class="row justify-content-between">
+                                        <div class="col-auto align-self-end">
+                                            <div class="fs-5 fw-normal font-sans-serif text-700 lh-1 mb-1">${sumCustomer}</div><span class="badge rounded-pill fs-11 bg-200 text-primary"><span class="fas fa-caret-up me-1"></span>0%</span>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="card-body py-2">
-                                    <div class="d-flex align-items-center position-relative mb-3">
-                                        <div class="avatar avatar-2xl status-online">
-                                            <img class="rounded-circle" src="${pageContext.request.contextPath}/Views/Admin/assets/img/team/1.jpg" alt="" />
-                                        </div>
-                                        <div class="flex-1 ms-3">
-                                            <h6 class="mb-0 fw-semi-bold"><a class="stretched-link text-900" href="pages/user/profile.html">Customer1</a></h6>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xxl-4">
+                            <div class="card h-md-100">
+                                <div class="card-header pb-0">
+                                    <h6 class="mb-0 mt-2">Doanh thu tổng</h6>
+                                </div>
+                                <div class="card-body d-flex flex-column justify-content-end">
+                                    <div class="row justify-content-between">
+                                        <div class="col-auto align-self-end">
+                                            <div class="fs-5 fw-normal font-sans-serif text-700 lh-1 mb-1"><fmt:setLocale value="vi_VN" /><fmt:formatNumber value="${sumFinance}" type="currency" currencySymbol="₫" maxFractionDigits="0" /></div><span class="badge rounded-pill fs-11 bg-200 text-primary"><span class="fas fa-caret-up me-1"></span>0%</span>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Dashboard -->
 
-                                <div class="card-body py-2">
-                                    <div class="d-flex align-items-center position-relative mb-3">
-                                        <div class="avatar avatar-2xl status-online">
-                                            <img class="rounded-circle" src="${pageContext.request.contextPath}/Views/Admin/assets/img/team/1.jpg" alt="" />
-                                        </div>
-                                        <div class="flex-1 ms-3">
-                                            <h6 class="mb-0 fw-semi-bold"><a class="stretched-link text-900" href="pages/user/profile.html">Customer1</a></h6>
-                                        </div>
-                                    </div>
+                    <div class="row g-0">
+
+                        <!-- Active user -->
+                        <div class="col-md-6 col-xxl-4 pe-md-2 mb-3 mb-xxl-0">
+                            <div class="card">
+                                <div class="card-header d-flex flex-between-center bg-body-tertiary py-2">
+                                    <h6 class="mb-0">Các hãng đang hoạt động</h6>
                                 </div>
 
-                                <div class="card-footer bg-body-tertiary p-0"><a class="btn btn-sm btn-link d-block w-100 py-2" href="app/social/followers.html">All active users<span class="fas fa-chevron-right ms-1 fs-11"></span></a></div>
+                                <c:forEach items="${managers}" var="manager">
+                                    <div class="card-body py-2">
+                                        <div class="d-flex align-items-center position-relative mb-3">
+                                            <div class="avatar avatar-2xl status-online">
+                                                <c:choose>
+                                                    <c:when test="${empty manager.image_manager}">
+                                                        <img class="rounded-circle" src="${pageContext.request.contextPath}/images/avatar-manager.png" alt=""/>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <img class="rounded-circle" src="${manager.image_manager}" alt=""/>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </div>
+                                            <div class="flex-1 ms-3">
+                                                <h6 class="mb-0 fw-semi-bold"><a class="stretched-link text-900" href="managerdetail?id=${manager.id_manager}">${manager.username_manager}</a></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </c:forEach>
+
+                                <div class="card-footer bg-body-tertiary p-0"><a class="btn btn-sm btn-link d-block w-100 py-2" href="app/social/followers.html">Xem tất cả<span class="fas fa-chevron-right ms-1 fs-11"></span></a></div>
                             </div>
                         </div>
                         <!-- End Active user -->
@@ -154,12 +121,12 @@
                                 <div class="card-header bg-body-tertiary py-2">
                                     <div class="row flex-between-center">
                                         <div class="col-auto">
-                                            <h6 class="mb-0">Top Products</h6>
+                                            <h6 class="mb-0">Các đoàn tàu trong hệ thống</h6>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-body h-100">
-                                    <div id="tableExample3" data-list='{"valueNames":["name","email","age"],"page":5,"pagination":true}'>
+                                    <div id="tableExample3" data-list='{"valueNames":["id","name"],"page":5,"pagination":true}'>
                                         <div class="row justify-content-end g-0">
                                             <div class="col-auto col-sm-5 mb-3">
                                                 <form>
@@ -173,88 +140,19 @@
                                             <table class="table table-bordered table-striped fs-10 mb-0">
                                                 <thead class="bg-200">
                                                     <tr>
-                                                        <th class="text-900 sort" data-sort="name">Mã tàu</th>
-                                                        <th class="text-900 sort" data-sort="email">Tên tàu</th>
+                                                        <th class="text-900 sort" data-sort="id">Mã tàu</th>
+                                                        <th class="text-900 sort" data-sort="name">Tên tàu</th>
                                                         <th class="text-900 sort" >Hình ảnh</th>
-                                                         <th class="text-900 sort">Trạng thái</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody class="list">
-                                                    <tr>
-                                                        <td class="name">Anna</td>
-                                                        <td class="email">anna@example.com</td>
-                                                        <td class="age">18</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="name">Homer</td>
-                                                        <td class="email">homer@example.com</td>
-                                                        <td class="age">35</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="name">Oscar</td>
-                                                        <td class="email">oscar@example.com</td>
-                                                        <td class="age">52</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="name">Emily</td>
-                                                        <td class="email">emily@example.com</td>
-                                                        <td class="age">30</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="name">Jara</td>
-                                                        <td class="email">jara@example.com</td>
-                                                        <td class="age">25</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="name">Clark</td>
-                                                        <td class="email">clark@example.com</td>
-                                                        <td class="age">39</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="name">Jennifer</td>
-                                                        <td class="email">jennifer@example.com</td>
-                                                        <td class="age">52</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="name">Tony</td>
-                                                        <td class="email">tony@example.com</td>
-                                                        <td class="age">30</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="name">Tom</td>
-                                                        <td class="email">tom@example.com</td>
-                                                        <td class="age">25</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="name">Michael</td>
-                                                        <td class="email">michael@example.com</td>
-                                                        <td class="age">39</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="name">Antony</td>
-                                                        <td class="email">antony@example.com</td>
-                                                        <td class="age">39</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="name">Raymond</td>
-                                                        <td class="email">raymond@example.com</td>
-                                                        <td class="age">52</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="name">Marie</td>
-                                                        <td class="email">marie@example.com</td>
-                                                        <td class="age">30</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="name">Cohen</td>
-                                                        <td class="email">cohen@example.com</td>
-                                                        <td class="age">25</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="name">Rowen</td>
-                                                        <td class="email">rowen@example.com</td>
-                                                        <td class="age">39</td>
-                                                    </tr>
+                                                    <c:forEach items="${trains}" var="train">
+                                                        <tr>
+                                                            <td class="id">${train.id_train}</td>
+                                                            <td class="name">${train.name_train}</td>
+                                                            <td><img src="${train.image_train}" alt="Hình ảnh tàu" style="width: 20px; height: auto;"></td>
+                                                        </tr>
+                                                    </c:forEach>
                                                 </tbody>
                                             </table>
                                         </div>

@@ -80,6 +80,14 @@ public class login extends HttpServlet {
                 System.out.println("Acc " + adminAcc);
                 response.sendRedirect("home");
             } else if (manAcc != null) {
+
+                if (manAcc.getStatus() != 1) {
+                    request.setAttribute("email", email);
+                    request.setAttribute("err", "Tài khoản của bạn đã bị khóa, vui lòng liên hệ quản trị viên!");
+                    request.getRequestDispatcher("Views/Login.jsp").forward(request, response);
+                    return;
+                }
+
                 session.setAttribute("manager", 2);
                 session.setAttribute("account", manAcc);
 
@@ -92,6 +100,14 @@ public class login extends HttpServlet {
 
                 response.sendRedirect("Manager");
             } else {
+
+                if (acc.getStatus() != 1) {
+                    request.setAttribute("email", email);
+                    request.setAttribute("err", "Tài khoản của bạn đã bị khóa, vui lòng liên hệ quản trị viên!");
+                    request.getRequestDispatcher("Views/Login.jsp").forward(request, response);
+                    return;
+                }
+
                 session.setAttribute("customer", 3);
                 session.setAttribute("account", acc);
                 System.out.println("Acc " + acc);
