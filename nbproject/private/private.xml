@@ -3,27 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/SWPFinal/SWP391/src/java/dal/CustomerDAO.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/dal/ManagerDAO.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/controller/admin/CreateAccount.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/dal/TrainBrandDAO.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/controller/login.java</file>
-            <file>file:/D:/SWPFinal/SWP391/web/Views/Profile.jsp</file>
-            <file>file:/D:/SWPFinal/SWP391/web/Form-HTML/yatriiworld/404.html</file>
-            <file>file:/D:/SWPFinal/SWP391/web/Views/404.jsp</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/controller/LoginGoogle.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/controller/login.java</file>
-            <file>file:/D:/SWPFinal/SWP391/web/Views/Manager/Manager.jsp</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/controller/manager/Manager.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/dal/TrainSeatDAO.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/controller/AdvertisingDetail.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/model/Advertising.java</file>
             <file>file:/D:/SWPFinal/SWP391/src/java/controller/Advertising.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/controller/AccessDenyServlet.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/dal/TrainDAO.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/controller/AdvertisingDetail.java</file>
-            <file>file:/D:/SWPFinal/SWP391/nbproject/build-impl.xml</file>
-            <file>file:/D:/SWPFinal/SWP391/web/WEB-INF/web.xml</file>
         </group>
     </open-files>
 </project-private>
