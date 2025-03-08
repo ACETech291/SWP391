@@ -301,17 +301,21 @@ public class TripDAO {
 
     public static void main(String[] args) {
         TripDAO td = new TripDAO();
-//        for(int i = 37; i >0;i--){
-//            for(int j = i-1 ; j >0;j--){
-//                td.insertTrip(0, i, j, 1);
-//                System.out.println("INSERT INTO trip (price_trip, id_time_station_start, id_time_station_end, id_train) VALUES (0, "+i+","+j+", 1);");
-//            }
-//        }
-        for (int j = 5; j < 29; j++) {
-            for (int i = 1; i < 1133; i++) {
-                System.out.println("INSERT INTO Date_trip (id_trip,id_date_of_trip) VALUES (" + i + "," + j + ");");
-
+        for(int i = 1; i <38;i++){
+            for(int j = i+1 ; j <38;j++){
+                System.out.println("(0, "+i+","+j+", 1),");
             }
         }
+        for(int i = 37; i >0;i--){
+            for(int j = i-1 ; j >0;j--){
+                System.out.println("(0, "+i+","+j+", 1),");
+            }
+        }
+//        for (int j = 1; j < 29; j++) {
+//            for (int i = 1; i < 1133; i++) {
+//                System.out.println("(" + i + "," + j + "),");
+//
+//            }
+//        }
     }
 }
