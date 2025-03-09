@@ -2,20 +2,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package controller.admin;
 
+import dal.AuthorizationDAO;
+import dal.RoleDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import model.Role;
 
 /**
  *
  * @author Nguyen Ba Hien
  */
-public class BookTicket extends HttpServlet {
+public class AddAuthorization extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,10 +38,10 @@ public class BookTicket extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet BookTicket</title>");
+            out.println("<title>Servlet AddAuthorization</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet BookTicket at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddAuthorization at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -55,7 +59,11 @@ public class BookTicket extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("Views/Home.jsp").forward(request, response);
+        RoleDAO roleDAO = new RoleDAO();
+        List<Role> roleList = roleDAO.getAllRoles();
+
+        request.setAttribute("roleList", roleList);
+        request.getRequestDispatcher("Views/Admin/AddAuthorization.jsp").forward(request, response);
     }
 
     /**
@@ -69,7 +77,27 @@ public class BookTicket extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        AuthorizationDAO authorizationDAO = new AuthorizationDAO();
+        int role_id = Integer.parseInt((String)request.getParameter("role_id"));
+        String url_authorization = (String) request.getParameter("url_authorization");
+        String feature_authorization = (String) request.getParameter("feature_authorization");
+        System.out.println(role_id +" "+url_authorization+" "+feature_authorization);
+        RoleDAO roleDAO = new RoleDAO();
+        List<Role> roleList = roleDAO.getAllRoles();
+        request.setAttribute("roleList", roleList);
+        if(!authorizationDAO.authorizationCheck(role_id, url_authorization)){
+            request.setAttribute("message", "Phân quyền đã được thành công");
+            authorizationDAO.addAuthorization(role_id, url_authorization, feature_authorization, 1);      
+            request.getRequestDispatcher("Views/Admin/AddAuthorization.jsp").forward(request, response);
+            return;
+        }else{
+            request.setAttribute("message", "Phân quyền đã tồn tại");
+            request.getRequestDispatcher("Views/Admin/AddAuthorization.jsp").forward(request, response);
+            return;
+        }
+
+        
+        
     }
 
     /**

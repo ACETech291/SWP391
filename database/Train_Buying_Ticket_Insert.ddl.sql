@@ -1,7 +1,7 @@
 USE SWP391;
 
 INSERT INTO `role` (id_role, name_role) 
-	VALUES (1, 'admin'),(2, 'manager'),(3, 'customer');
+	VALUES (1, 'admin'),(2, 'manager'),(3, 'customer'),(4,'guest');
 	
 -- manager
 INSERT INTO Manager (username_manager, password_manager, email_manager, id_role, status_manager)
@@ -33283,3 +33283,56 @@ VALUES ('../SWP391/images/NUITHANH.jpg', 'Núi Thành, Nơi cảm xúc dâng tr�
 'Núi Thành thuộc tỉnh Quảng Nam, là vùng đất giàu truyền thống lịch sử và cảnh đẹp thiên nhiên hoang sơ. Đây là điểm đến hấp dẫn với những bãi biển tuyệt đẹp như Tam Hải, những cánh đồng muối và các địa danh gắn liền với lịch sử hào hùng của dân tộc.');
 
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Hiển Nguyễn Bá','hiennbhe181773@fpt.edu.vn','6NWFIsI1V5KNFeeazNcq35qxRUE=','0332671182',3,1); 
+
+INSERT INTO authorization(role_id,URL_authorization,feature_authorization,status_authorization) VALUE
+(1,"/home","Trang chủ",1),(2,"/home","Trang chủ",1),(3,"/home","Trang chủ",1),(4,"/home","Trang chủ",1),
+(1,"/login","Trang đăng nhập",1),(2,"/login","Trang đăng nhập",1),(3,"/login","Trang đăng nhập",1),(4,"/login","Trang đăng nhập",1),
+(1,"/register","Trang đăng ký",1),(2,"/register","Trang đăng ký",1),(3,"/register","Trang đăng ký",1),(4,"/register","Trang đăng ký",1),
+(1,"/EmailController","Trang gửi email",1),(2,"/EmailController","Trang gửi email",1),(3,"/EmailController","Trang gửi email",1),(4,"/EmailController","Trang gửi email",1),
+(1,"/SendEmail","Trang gửi email",1),(2,"/SendEmail","Trang gửi email",1),(3,"/SendEmail","Trang gửi email",1),(4,"/SendEmail","Trang gửi email",1),
+(1,"/Logout","Đăng xuất",1),(2,"/Logout","Đăng xuất",1),(3,"/Logout","Đăng xuất",1),(4,"/Logout","Đăng xuất",1),
+(1,"/ResetPassword","Trang lấy lại mật khẩu",1),(2,"/ResetPassword","Trang lấy lại mật khẩu",1),(3,"/ResetPassword","Trang lấy lại mật khẩu",1),(4,"/ResetPassword","Trang lấy lại mật khẩu",1),
+(1,"/OtpService","Gửi otp",1),(2,"/OtpService","Gửi otp",1),(3,"/OtpService","Gửi otp",1),(4,"/OtpService","Gửi otp",1),
+(1,"/LoginGoogle","Đăng nhập bằng google",1),(2,"/LoginGoogle","Đăng nhập bằng google",1),(3,"/LoginGoogle","Đăng nhập bằng google",1),(4,"/LoginGoogle","Đăng nhập bằng google",1),
+(1,"/Profile","Xem hồ sơ",1),(2,"/Profile","Xem hồ sơ",1),(3,"/Profile","Xem hồ sơ",1),(4,"/Profile","Xem hồ sơ",1),
+(1,"/ChangeInformation","Thay đổi thông tin cá nhân",1),(2,"/ChangeInformation","Thay đổi thông tin cá nhân",1),(3,"/ChangeInformation","Thay đổi thông tin cá nhân",1),
+(1,"/ChangePassword","Thay đổi mật khẩu",1),(2,"/ChangePassword","Thay đổi mật khẩu",1),(3,"/ChangePassword","Thay đổi mật khẩu",1),(4,"/ChangePassword","Thay đổi mật khẩu",1),
+(1,"/advertising","Trang danh sách bản tin",1),(2,"/advertising","Trang danh sách bản tin",1),(3,"/advertising","Trang danh sách bản tin",1),(4,"/advertising","Trang danh sách bản tin",1),
+(1,"/advertisingdetail","Trang bản tin chi tiết",1),(2,"/advertisingdetail","Trang bản tin chi tiết",1),(3,"/advertisingdetail","Trang bản tin chi tiết",1),(4,"/advertisingdetail","Trang bản tin chi tiết",1),
+(1,"/listtrain","Trang danh sách tàu",1),(2,"/listtrain","Trang danh sách tàu",1),(3,"/listtrain","Trang danh sách tàu",1),(4,"/listtrain","Trang danh sách tàu",1),
+(1,"/liststation","Trang danh sách các ga tàu",1),(2,"/liststation","Trang danh sách các ga tàu",1),(3,"/liststation","Trang danh sách các ga tàu",1),(4,"/liststation","Trang danh sách các ga tàu",1),
+(1,"/stationdetail","Trang ga tàu chi tiết",1),(2,"/stationdetail","Trang ga tàu chi tiết",1),(3,"/stationdetail","Trang ga tàu chi tiết",1),(4,"/stationdetail","Trang ga tàu chi tiết",1),
+(1,"/traindetail","Trang Chủ",1),(2,"/traindetail","Trang Chủ",1),(3,"/traindetail","Trang Chủ",1),(4,"/traindetail","Trang Chủ",1),
+(1,"/GetTripServlet","Trang Chủ",1),(2,"/GetTripServlet","Trang Chủ",1),(3,"/GetTripServlet","Trang Chủ",1),(4,"/GetTripServlet","Trang Chủ",1),
+(1,"/dashboard","Trang tổng quan của admin",1),
+(1,"/SortServlet","Trang Chủ",1),(2,"/SortServlet","Trang Chủ",1),(3,"/SortServlet","Trang Chủ",1),(4,"/SortServlet","Trang Chủ",1),
+(1,"/SearchByAjax","Trang danh sách ga tàu",1),(2,"/SearchByAjax","Trang danh sách ga tàu",1),(3,"/SearchByAjax","Trang danh sách ga tàu",1),(4,"/SearchByAjax","Trang danh sách ga tàu",1),
+(1,"/Search","Trang Chủ",1),(2,"/Search","Trang Chủ",1),(3,"/Search","Trang Chủ",1),(4,"/Search","Trang Chủ",1),
+(2,"/Manager","Trang tổng quan của manager",1),
+(2,"/AddTrain","Trang tổng quan của manager",1),
+(1,"/profileadmin","Trang Chủ",1),
+(1,"/BookTicket","Trang Chủ",1),(2,"/BookTicket","Trang Chủ",1),(3,"/BookTicket","Trang Chủ",1),
+(2,"/AddCarriage","Trang tổng quan của manager",1),
+(1,"/managerlist","Trang quản lý manager",1),
+(1,"/customerlist","Trang quản lý khách hàng",1),
+(1,"/managerdetail","Trang xem thông tin quản lí chi tiết",1),
+(1,"/customerdetail","Trang xem thông tin khách hàng chi tiết",1),
+(2,"/GetCarriage","Lấy thông tin ga tàu",1),
+(2,"/AddSeat","Thêm ghế",1),
+(2,"/AddStation","Tạo thêm nhà ga",1),
+(2,"/EditTrain","Chỉnh sửa tàu",1),
+(2,"/DeleteTrain","Xóa tàu",1),
+(2,"/EditCarriage","Chỉnh sửa ga tàu",1),
+(2,"/DeleteCarriage","Trang tổng quan của manager",1),
+(2,"/EditTrainSeat","Chỉnh sửa ghế tàu",1),
+(2,"/DeleteTrainSeat","Trang tổng quan của manager",1),
+(1,"/404","Trang không tồn tại",1),(2,"/404","Trang không tồn tại",1),(3,"/404","Trang không tồn tại",1),(4,"/404","Trang không tồn tại",1),
+(1,"/createaccount","Trang tạo tài khoản",1),
+(2,"/EditStation","Chỉnh sửa thông tin ga",1),
+(2,"/DeleteStation","Xóa nhà ga",1),
+(1,"/AuthorizationManagement","Trang danh sách phân quyền",1),
+(1,"/AddAuthorization","Trang thêm mới quyền",1),
+(1,"/DeleteAuthorization","Xóa quyền",1),
+(1,"/EditAuthorization","Trang chỉnh sửa quyền",1),
+(1,"/403","Trang không có quyền truy cập",1),(2,"/403","Trang không có quyền truy cập",1),(3,"/403","Trang không có quyền truy cập",1),(4,"/403","Trang không có quyền truy cập",1)
+;

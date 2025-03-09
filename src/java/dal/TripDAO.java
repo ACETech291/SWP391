@@ -300,17 +300,17 @@ public class TripDAO {
     }
 
     public static void main(String[] args) {
-        TripDAO td = new TripDAO();
-        for(int i = 1; i <38;i++){
-            for(int j = i+1 ; j <38;j++){
-                System.out.println("(0, "+i+","+j+", 1),");
-            }
-        }
-        for(int i = 37; i >0;i--){
-            for(int j = i-1 ; j >0;j--){
-                System.out.println("(0, "+i+","+j+", 1),");
-            }
-        }
+//        TripDAO td = new TripDAO();
+//        for(int i = 1; i <38;i++){
+//            for(int j = i+1 ; j <38;j++){
+//                System.out.println("(0, "+i+","+j+", 1),");
+//            }
+//        }
+//        for(int i = 37; i >0;i--){
+//            for(int j = i-1 ; j >0;j--){
+//                System.out.println("(0, "+i+","+j+", 1),");
+//            }
+//        }
 //        for (int j = 1; j < 29; j++) {
 //            for (int i = 1; i < 1133; i++) {
 //                System.out.println("(" + i + "," + j + "),");

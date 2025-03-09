@@ -194,7 +194,14 @@ CREATE TABLE Date_trip(
 	id_date_of_trip INT(11) NOT NULL,
 	PRIMARY KEY (id_date_trip)
 );
-  
+CREATE TABLE Authorization (
+  id_authorization       INT(11) NOT NULL AUTO_INCREMENT,
+  role_id                INT(11) NOT NULL,
+  url_authorization      VARCHAR(255) NOT NULL,
+  feature_authorization  VARCHAR(255) NOT NULL,
+  status_authorization   INT(11) NOT NULL,
+  PRIMARY KEY (id_authorization)
+);
 ALTER TABLE Admin ADD CONSTRAINT FKAdmin775394 FOREIGN KEY (id_role) REFERENCES Role (id_role);
 ALTER TABLE Manager ADD CONSTRAINT FKManager24576 FOREIGN KEY (id_role) REFERENCES Role (id_role);
 ALTER TABLE Customer ADD CONSTRAINT FKCustomer71540 FOREIGN KEY (id_role) REFERENCES Role (id_role);
