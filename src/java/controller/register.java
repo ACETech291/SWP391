@@ -80,7 +80,7 @@ public class register extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        System.out.println("a");
         request.getRequestDispatcher("Views/Register.jsp").forward(request, response);
 
     }
@@ -146,16 +146,17 @@ public class register extends HttpServlet {
             request.setAttribute("email", newCustomer.getEmail());
             String otpCode = otpService.generateOtp();
             session.setAttribute("otpCode", otpCode);
+            System.out.println("Gui lai lan 1");
             customer_id_fake += 1;
             OTP otp = new OTP(newCustomer.getEmail(), false, otpCode, otpService.expireDateTime());
+            EmailService.sendEmail2(newCustomer.getEmail(), "Verify email -" + System.currentTimeMillis(), otpCode);
             otpDAO.insertOtp(otp);
-            request.getRequestDispatcher("OtpService").forward(request, response);
-            return;
+            request.getRequestDispatcher("Views/VerifyEmail.jsp").forward(request, response);
         } else if (check == 3) {
             request.setAttribute("error1", "Email đã có người sử dụng!!!");
         }
         request.getRequestDispatcher("Views/Register.jsp").forward(request, response);
-        return;
+//        return;
     }
 
     /**

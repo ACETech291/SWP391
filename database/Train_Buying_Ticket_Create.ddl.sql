@@ -34,12 +34,14 @@ CREATE TABLE Customer (
   INDEX (id_customer));
   
 CREATE TABLE Feedback (
-  id_feedback     int(11) NOT NULL AUTO_INCREMENT, 
-  voting_feedback int(11) NOT NULL, 
-  content                 LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  id_customer     int(11) NOT NULL, 
+  id_feedback     INT(11) NOT NULL AUTO_INCREMENT, 
+  voting_feedback INT(11) NOT NULL, 
+  content         LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  id_customer     INT(11) NOT NULL, 
+  created_at      DATETIME DEFAULT CURRENT_TIMESTAMP, 
   PRIMARY KEY (id_feedback), 
-  INDEX (id_feedback));
+  INDEX (id_feedback)
+);
   
 CREATE TABLE Manager (
   id_manager       int(11) NOT NULL AUTO_INCREMENT, 
@@ -192,7 +194,14 @@ CREATE TABLE Date_trip(
 	id_date_of_trip INT(11) NOT NULL,
 	PRIMARY KEY (id_date_trip)
 );
-  
+CREATE TABLE Authorization (
+  id_authorization       INT(11) NOT NULL AUTO_INCREMENT,
+  role_id                INT(11) NOT NULL,
+  url_authorization      VARCHAR(255) NOT NULL,
+  feature_authorization  VARCHAR(255) NOT NULL,
+  status_authorization   INT(11) NOT NULL,
+  PRIMARY KEY (id_authorization)
+);
 ALTER TABLE Admin ADD CONSTRAINT FKAdmin775394 FOREIGN KEY (id_role) REFERENCES Role (id_role);
 ALTER TABLE Manager ADD CONSTRAINT FKManager24576 FOREIGN KEY (id_role) REFERENCES Role (id_role);
 ALTER TABLE Customer ADD CONSTRAINT FKCustomer71540 FOREIGN KEY (id_role) REFERENCES Role (id_role);

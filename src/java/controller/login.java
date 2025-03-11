@@ -65,11 +65,11 @@ public class login extends HttpServlet {
 
         HttpSession session = request.getSession();
 
-        Customer acc = cusDao.getCustomer(email, password);
+        Customer customerAcc = cusDao.getCustomer(email, password);
         Manager manAcc = manDao.getManagerByEmailAndPassword(email, password);
         Admin adminAcc = adminDAO.getAdmin(email, password);
 
-        if (acc == null && manAcc == null && adminAcc == null) {
+        if (customerAcc == null && manAcc == null && adminAcc == null) {
             request.setAttribute("email", email);
             request.setAttribute("err", "Tài khoản hoặc mật khẩu không chính xác! Xin vui lòng nhập lại.");
             request.getRequestDispatcher("Views/Login.jsp").forward(request, response);
@@ -77,20 +77,22 @@ public class login extends HttpServlet {
             if (adminAcc != null) {
                 session.setAttribute("admin", 1);
                 session.setAttribute("account", adminAcc);
+                session.setAttribute("role_id", adminAcc.getRole().getId());
                 System.out.println("Acc " + adminAcc);
-                response.sendRedirect("home");
+                response.sendRedirect("dashboard");
             } else if (manAcc != null) {
 
                 if (manAcc.getStatus() != 1) {
                     request.setAttribute("email", email);
                     request.setAttribute("err", "Tài khoản của bạn đã bị khóa, vui lòng liên hệ quản trị viên!");
+                    
                     request.getRequestDispatcher("Views/Login.jsp").forward(request, response);
                     return;
                 }
 
                 session.setAttribute("manager", 2);
                 session.setAttribute("account", manAcc);
-
+                session.setAttribute("role_id", manAcc.getRole().getId());
                 TrainBrandDAO dao = new TrainBrandDAO();
                 TrainBrand tb = dao.getTrainBrandsByManager(manAcc.getId_manager());
 
@@ -101,7 +103,7 @@ public class login extends HttpServlet {
                 response.sendRedirect("Manager");
             } else {
 
-                if (acc.getStatus() != 1) {
+                if (customerAcc.getStatus() != 1) {
                     request.setAttribute("email", email);
                     request.setAttribute("err", "Tài khoản của bạn đã bị khóa, vui lòng liên hệ quản trị viên!");
                     request.getRequestDispatcher("Views/Login.jsp").forward(request, response);
@@ -109,8 +111,9 @@ public class login extends HttpServlet {
                 }
 
                 session.setAttribute("customer", 3);
-                session.setAttribute("account", acc);
-                System.out.println("Acc " + acc);
+                session.setAttribute("account", customerAcc);
+                session.setAttribute("role_id", customerAcc.getRole().getId());
+                System.out.println("Acc " + customerAcc);
                 response.sendRedirect("home");
             }
         }

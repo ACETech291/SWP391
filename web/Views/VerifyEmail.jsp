@@ -48,7 +48,7 @@
                         <div class="row d-flex">
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade active in">
-                                    <form action="OtpService" method="GET">
+                                    <form action="OtpService" method="Get">
                                         <div class="row d-flex">
                                             <div class="col-lg-12">
                                                 <div class="form-group">
@@ -82,7 +82,7 @@
                             <p class="mb-0 white">
                                 Chưa nhận được mã xác thực
                             </p>
-                            <form action="OtpService" method="POST">
+                            <form action="OtpService" method="Post">
                                 <div class="col-lg">
                                     <div class="form-group mb-0 mt-2">
                                         <input type="hidden" name="resend" value="true">
