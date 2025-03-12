@@ -17,11 +17,23 @@ public class Advertising extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         AdvertisingDAO advertisingDAO = new AdvertisingDAO();
-        FeedbackDAO feedbackDAO = new FeedbackDAO();
-        //List<Feedback> listFeedbacks = feedbackDAO.getAllFeedback();
-        List<model.Advertising> listAdvertisings = advertisingDAO.getAllAdvertising();
+        List<model.Advertising> list1 = advertisingDAO.getAllAdvertising();
+        int size = list1.size();
+        int page;
+        int numberPerPage = 3;
+        int num = (size%numberPerPage == 0?size/numberPerPage:size/numberPerPage+1);
+        String xPage = request.getParameter("page");
+        if(xPage == null){
+            page = 1;
+        }else{
+            page = Integer.parseInt(xPage);
+        }
+        int start = (page-1)*numberPerPage;
+        int end = Math.min(page*numberPerPage, size);
+        List<model.Advertising> listAdvertisings = advertisingDAO.getListByPage(list1, start, end);
+        request.setAttribute("page", page);
+        request.setAttribute("num", num);
         request.setAttribute("listAdvertisings", listAdvertisings);
-        //request.setAttribute("listFeedbacks", listFeedbacks);
         request.getRequestDispatcher("Views/Advertising.jsp").forward(request, response);
     }
 

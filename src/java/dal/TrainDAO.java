@@ -159,6 +159,13 @@ public class TrainDAO {
             e.printStackTrace();
         }
     }
+    public List<Train> getListByPage(List<Train> list, int start, int end) {
+        ArrayList<Train> arr = new ArrayList<>();
+        for (int i = start; i < end; i++) {
+            arr.add(list.get(i));
+        }
+        return arr;
+    }
 
     public static void main(String[] args) {
         TrainDAO dao = new TrainDAO();

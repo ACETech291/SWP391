@@ -99,7 +99,13 @@ public class AdvertisingDAO {
             return false;
         }
     }
-
+    public List<Advertising> getListByPage(List<Advertising> list, int start, int end) {
+        ArrayList<Advertising> arr = new ArrayList<>();
+        for (int i = start; i < end; i++) {
+            arr.add(list.get(i));
+        }
+        return arr;
+    }
     public static void main(String[] args) {
         AdvertisingDAO ad = new AdvertisingDAO();
         Advertising a = ad.getAdvertisingById("1");

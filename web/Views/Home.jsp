@@ -108,26 +108,26 @@
                         </div>
                     </div>
                     <!-- Add Arrows -->
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                </div>
+                    <div class="swiper-button-next" ></div>
+                    <div  class="swiper-button-prev" id="search-results"></div>
+                </div>                                
             </div>
-        </section>
+        </section >
         <!-- banner ends -->
-
+        
         <!-- form starts -->
-        <div class="form-main">
+        <div class="form-main"  >
             <div class="container">
                 <div class="form-content form-content1 w-100 transparent p-0 shadow-none position-relative">
                     <div class="form-navtab text-center">
                         <ul class="nav nav-tabs">
 
-                            <li class="active"><a data-toggle="tab" href="#tour-1"><i class="fa fa-train"></i> Chuyến đi</a></li>
+                            <li  class="active"><a data-toggle="tab" href="#tour-1"><i class="fa fa-train"></i> Chuyến đi</a></li>
 
                         </ul>
                     </div>    
 
-                    <div class="tab-content">
+                    <div class="tab-content" >
                         <P style="color: red">${err}</P>
                         <P style="color: red">${message}</P>
                         <form action="Search" method="Post">
@@ -192,7 +192,7 @@
                                 </div>
                             </div>
                         </form>
-                        <table class="table table-hover mb-0">
+                        <table class="table table-hover mb-0" >
                             <thead class="thead-light">
                                 <tr>
                                     <th class="text-center align-middle">Ga đi</th>
@@ -554,6 +554,12 @@
                     }
                 }
             }
-
+            window.onload = function () {
+                // Kiểm tra nếu URL có tham số tìm kiếm (tức là người dùng đã nhấn Search)
+                if (window.location.href.includes("Search")) {
+                    // Cuộn xuống phần kết quả
+                    document.getElementById("search-results").scrollIntoView({behavior: 'smooth'});
+                }
+            };
 </script>
 </html>

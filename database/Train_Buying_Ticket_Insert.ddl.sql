@@ -33556,12 +33556,8 @@ INSERT INTO authorization(role_id,URL_authorization,feature_authorization,status
 (1,"/AddAuthorization","Trang thêm mới quyền",1),
 (1,"/DeleteAuthorization","Xóa quyền",1),
 (1,"/EditAuthorization","Trang chỉnh sửa quyền",1),
+(3,"/Feedback","Đưa ra nhận xét",1),
 (1,"/403","Trang không có quyền truy cập",1),(2,"/403","Trang không có quyền truy cập",1),(3,"/403","Trang không có quyền truy cập",1),(4,"/403","Trang không có quyền truy cập",1)
 ;
 
-INSERT INTO Feedback (voting_feedback, content, id_customer, id_advertising, create_at) VALUES 
-(5, 'em là búp măng non em lớn lên trong mùa cách mạng', 365, 1, NOW()),
-(5, 'em là búp măng non em lớn lên trong mùa cách mạng', 366, 2, NOW()),
-(5, 'em là búp măng non em lớn lên trong mùa cách mạng', 367, 3, NOW()),
-(5, 'em là búp măng non em lớn lên trong mùa cách mạng', 368, 4, NOW())
-;
+

@@ -2,6 +2,39 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    <style>
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pagination a {
+            margin: 5px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            border: 1px solid #007bff;
+            color: #007bff;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .pagination a:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .pagination .btn-primary {
+            background-color: #007bff;
+            color: white;
+            border: 1px solid #0056b3;
+            font-weight: bold;
+            transform: scale(1.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+    </style>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -191,6 +224,32 @@
                 </div>
             </div>
         </section>
+        <div class="pagination">
+            <c:set var="page" value="${requestScope.page}" />
+            <c:forEach begin="1" end="${num > 10 ? 10 : num}" var="i">
+                <c:choose>
+                    <c:when test="${empty param.sort or param.sort == null}">
+                        <!-- Nếu sort bị null hoặc rỗng, dùng GET -->
+                        <a href="listtrain?page=${i}" 
+                           class="btn ${i == page ? 'btn-primary' : 'btn-light'}">
+                            ${i}
+                        </a>
+                    </c:when>
+                    <c:otherwise>
+                        <form action="SortServlet" method="post">
+                            <input type="hidden" name="order" value="${param.order}">
+                            <input type="hidden" name="sort" value="sort">
+                            <c:forEach begin="1" end="${num}" var="i">
+                                <input type="hidden" name="page" value="${i}">
+                                <button type="submit" class="btn ${i == page ? 'btn-primary' : 'btn-light'}">
+                                    ${i}
+                                </button>
+                            </c:forEach>
+                        </form>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+        </div>
         <!-- blog Ends -->  
 
         <!-- footer starts -->
@@ -216,37 +275,46 @@
     <script src="${pageContext.request.contextPath}/libs/js/custom-navscroll.js"></script>
     <script src="${pageContext.request.contextPath}/libs/js/custom-date.js"></script>
     <script>
-        (function () {
-            function c() {
-                var b = a.contentDocument || a.contentWindow.document;
-                if (b) {
-                    var d = b.createElement('script');
-                    d.innerHTML = "window.__CF$cv$params={r:'90d1e23ad85384ab',t:'MTczODc0Nzg0Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='${pageContext.request.contextPath}/libs/cdn-cgi/challenge-platform/h/g/scripts/jsd/8a57887573f2/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";
-                    b.getElementsByTagName('head')[0].appendChild(d)
-                }
-            }
-            if (document.body) {
-                var a = document.createElement('iframe');
-                a.height = 1;
-                a.width = 1;
-                a.style.position = 'absolute';
-                a.style.top = 0;
-                a.style.left = 0;
-                a.style.border = 'none';
-                a.style.visibility = 'hidden';
-                document.body.appendChild(a);
-                if ('loading' !== document.readyState)
-                    c();
-                else if (window.addEventListener)
-                    document.addEventListener('DOMContentLoaded', c);
-                else {
-                    var e = document.onreadystatechange || function () {};
-                    document.onreadystatechange = function (b) {
-                        e(b);
-                        'loading' !== document.readyState && (document.onreadystatechange = e, c())
-                    }
-                }
-            }
-        })();
-    </script>
+                                                (function () {
+                                                    function c() {
+                                                        var b = a.contentDocument || a.contentWindow.document;
+                                                        if (b) {
+                                                            var d = b.createElement('script');
+                                                            d.innerHTML = "window.__CF$cv$params={r:'90d1e23ad85384ab',t:'MTczODc0Nzg0Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='${pageContext.request.contextPath}/libs/cdn-cgi/challenge-platform/h/g/scripts/jsd/8a57887573f2/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";
+                                                            b.getElementsByTagName('head')[0].appendChild(d)
+                                                        }
+                                                    }
+                                                    if (document.body) {
+                                                        var a = document.createElement('iframe');
+                                                        a.height = 1;
+                                                        a.width = 1;
+                                                        a.style.position = 'absolute';
+                                                        a.style.top = 0;
+                                                        a.style.left = 0;
+                                                        a.style.border = 'none';
+                                                        a.style.visibility = 'hidden';
+                                                        document.body.appendChild(a);
+                                                        if ('loading' !== document.readyState)
+                                                            c();
+                                                        else if (window.addEventListener)
+                                                            document.addEventListener('DOMContentLoaded', c);
+                                                        else {
+                                                                var e = document.onreadystatechange || function () {};
+                                                            document.onreadystatechange = function (b) {
+                e(b);
+                                                                'loading' !== document.readyState && (document.onreadystatechange = e, c())
+                                                            }
+                                                        }
+                                                    }
+                                                })();
+                                                <script>
+                                function submitForm(page) {
+                                                        document.getElementById('form-page-' + page).submit();
+                                    }
+                                                
+                                    
+                                    
+                                        
+                                        </script>
+</script>
 </html>
