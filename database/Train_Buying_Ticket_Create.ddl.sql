@@ -144,7 +144,8 @@ CREATE TABLE Token_forget_password (
 CREATE TABLE Train (
   id_train          int(11) NOT NULL AUTO_INCREMENT, 
   name_train        varchar(255) NOT NULL, 
-  image_train       blob, 
+  image_train       BLOB, 
+  content                 LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   description_train varchar(255) NOT NULL, 
   id_train_brand    int(11) NOT NULL, 
   id_status         int(11) NOT NULL, 

@@ -95,79 +95,22 @@ public class SortServlet extends HttpServlet {
             throws ServletException, IOException {
         String order = request.getParameter("order");
         if (order.equalsIgnoreCase("2")) {
-            String sort = request.getParameter("sort");
             TrainDAO trainDAO = new TrainDAO();
-            List<Train> list1 = trainDAO.getAllTrainSortAZ();
-            int size = list1.size();
-            int page;
-            int numberPerPage = 3;
-            int num = (size % numberPerPage == 0 ? size / numberPerPage : size / numberPerPage + 1);
-            String xPage = request.getParameter("page");
-            if (xPage == null) {
-                page = 1;
-            } else {
-                page = Integer.parseInt(xPage);
-            }
-            int start = (page - 1) * numberPerPage;
-            int end = Math.min(page * numberPerPage, size);
-            List<Train> trains = trainDAO.getListByPage(list1, start, end);
+            List<Train> trains = trainDAO.getAllTrainSortAZ();
             request.setAttribute("trains", trains);
-            request.setAttribute("page", page);
-            request.setAttribute("num", num);
-            request.setAttribute("order", order);
-            request.setAttribute("sort", sort);
             request.getRequestDispatcher("Views/ListTrain.jsp").forward(request, response);
-            sort=null;
 
         } else if (order.equalsIgnoreCase("3")) {
             String sort = request.getParameter("sort");
             TrainDAO trainDAO = new TrainDAO();
-            List<Train> list1 = trainDAO.getAllTrainSortZA();
-            int size = list1.size();
-            int page;
-            int numberPerPage = 3;
-            int num = (size % numberPerPage == 0 ? size / numberPerPage : size / numberPerPage + 1);
-            String xPage = request.getParameter("page");
-            if (xPage == null) {
-                page = 1;
-            } else {
-                page = Integer.parseInt(xPage);
-            }
-            int start = (page - 1) * numberPerPage;
-            int end = Math.min(page * numberPerPage, size);
-            List<Train> trains = trainDAO.getListByPage(list1, start, end);
+            List<Train> trains = trainDAO.getAllTrainSortZA();
             request.setAttribute("trains", trains);
-            request.setAttribute("page", page);
-            request.setAttribute("num", num);
-            request.setAttribute("trains", trains);
-            request.setAttribute("order", order);
-            request.setAttribute("sort", sort);
             request.getRequestDispatcher("Views/ListTrain.jsp").forward(request, response);
-            sort=null;
         } else {
             String sort = request.getParameter("sort");
             TrainDAO trainDAO = new TrainDAO();
-            List<Train> list1 = trainDAO.getAllTrains();
-            int size = list1.size();
-            int page;
-            int numberPerPage = 3;
-            int num = (size % numberPerPage == 0 ? size / numberPerPage : size / numberPerPage + 1);
-            String xPage = request.getParameter("page");
-            if (xPage == null) {
-                page = 1;
-            } else {
-                page = Integer.parseInt(xPage);
-            }
-            int start = (page - 1) * numberPerPage;
-            int end = Math.min(page * numberPerPage, size);
-            List<Train> trains = trainDAO.getListByPage(list1, start, end);
-            sort = null;
+            List<Train> trains = trainDAO.getAllTrains();
             request.setAttribute("trains", trains);
-            request.setAttribute("page", page);
-            request.setAttribute("num", num);
-            request.setAttribute("trains", trains);
-            request.setAttribute("order", order);
-            request.setAttribute("sort", sort);
             request.getRequestDispatcher("Views/ListTrain.jsp").forward(request, response);
         }
     }

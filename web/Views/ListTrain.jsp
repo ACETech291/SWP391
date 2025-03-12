@@ -224,32 +224,6 @@
                 </div>
             </div>
         </section>
-        <div class="pagination">
-            <c:set var="page" value="${requestScope.page}" />
-            <c:forEach begin="1" end="${num > 10 ? 10 : num}" var="i">
-                <c:choose>
-                    <c:when test="${empty param.sort or param.sort == null}">
-                        <!-- Nếu sort bị null hoặc rỗng, dùng GET -->
-                        <a href="listtrain?page=${i}" 
-                           class="btn ${i == page ? 'btn-primary' : 'btn-light'}">
-                            ${i}
-                        </a>
-                    </c:when>
-                    <c:otherwise>
-                        <form action="SortServlet" method="post">
-                            <input type="hidden" name="order" value="${param.order}">
-                            <input type="hidden" name="sort" value="sort">
-                            <c:forEach begin="1" end="${num}" var="i">
-                                <input type="hidden" name="page" value="${i}">
-                                <button type="submit" class="btn ${i == page ? 'btn-primary' : 'btn-light'}">
-                                    ${i}
-                                </button>
-                            </c:forEach>
-                        </form>
-                    </c:otherwise>
-                </c:choose>
-            </c:forEach>
-        </div>
         <!-- blog Ends -->  
 
         <!-- footer starts -->

@@ -30,10 +30,10 @@ INSERT INTO Status (name_status)
 	('Có sẵn'),	 		('Đã được đặt'),				('Bảo trì');	
 
 -- train Alpha
-INSERT INTO Train (name_train, description_train, id_train_brand, id_status, image_train) 
+INSERT INTO Train (name_train, description_train, id_train_brand, id_status, image_train,content) 
 	VALUES
-	('Alpha 1', ' ',1, 2, null),
-	('Alpha 2', ' ', 1, 2, null);
+	('Alpha 1', 'Sử dụng động cơ điện hoặc năng lượng tái tạo, tàu cao tốc Bắc - Nam ',1, 2, '../SWP391/images/trains/tau1.jpg','Hệ thống tàu cao tốc tích hợp với các phương tiện công cộng khác như xe buýt, tàu điện và taxi, giúp hành khách dễ dàng di chuyển đến các địa điểm khác trong thành phố một cách thuận tiện và nhanh chóng.'),
+	('Alpha 2', 'Hệ thống tàu cao tốc tích hợp với các phương tiện công cộng khác như xe buýt, tàu điện và taxi', 1, 2, '../SWP391/images/trains/tau2.jpg','Sử dụng động cơ điện hoặc năng lượng tái tạo, tàu cao tốc Bắc - Nam giúp giảm đáng kể khí thải và tiếng ồn, góp phần bảo vệ môi trường và phát triển giao thông bền vững.');
 
 -- train carriage Alpha 1 Phổ thông
 INSERT INTO Train_carriage (name_train_carriage, description_train_carriage, id_train, id_status, total_seat) 
@@ -87,11 +87,12 @@ VALUES
 		(7, 5,'1',600000),		(7, 5,'1',600000),		(7, 5,'1',600000),		(7, 5,'1',600000),		(7, 5,'1',600000),		(7, 5,'1',600000);
 
 -- train Beta
-INSERT INTO Train (name_train, description_train, id_train_brand, id_status, image_train) 
+INSERT INTO Train (name_train, description_train, id_train_brand, id_status, image_train, content) 
 	VALUES
-	('Beta 1', ' ',2, 2, null),
-	('Beta 2', ' ', 2, 2, null);
-	
+	('Beta 1', 'Tàu cao tốc Bắc - Nam được thiết kế để rút ngắn thời gian di chuyển giữa hai đầu đất nước, đạt tốc độ lên đến 350 km/h.',2, 2, '../SWP391/images/trains/tau3.jpg','Tàu cao tốc Bắc - Nam được thiết kế để rút ngắn thời gian di chuyển giữa hai đầu đất nước, đạt tốc độ lên đến 350 km/h. Với hệ thống đường ray hiện đại và công nghệ tiên tiến, tàu đảm bảo chuyến đi nhanh chóng và an toàn.'),
+	('Beta 2', 'Khoang hành khách được trang bị ghế ngồi êm ái, giường nằm cao cấp và không gian rộng rãi.', 2, 2, '../SWP391/images/trains/tau4.jpg','Khoang hành khách được trang bị ghế ngồi êm ái, giường nằm cao cấp và không gian rộng rãi. Các dịch vụ như Wi-Fi tốc độ cao, màn hình giải trí và suất ăn chất lượng giúp hành khách tận hưởng hành trình thoải mái.');
+INSERT INTO `Train` (name_train, image_train, description_train, id_train_brand, id_status,content) 
+VALUES ('Beta 3', '../SWP391/images/trains/tau5.jpg', 'Hệ thống kiểm soát tự động, phanh từ và cảm biến theo dõi liên tục giúp tàu duy trì hành trình ổn định ngay cả ở tốc độ cao.', 2, 4,'Hệ thống kiểm soát tự động, phanh từ và cảm biến theo dõi liên tục giúp tàu duy trì hành trình ổn định ngay cả ở tốc độ cao. Các biện pháp an toàn tiên tiến đảm bảo chuyến đi suôn sẻ trong mọi điều kiện thời tiết.');	
 INSERT INTO Date_of_trip (date_details) VALUES 
 ('2025-02-01'),('2025-02-02'),('2025-02-03'),('2025-02-04'),('2025-02-05'),('2025-02-06'),('2025-02-07'),('2025-02-08'),('2025-02-09'),('2025-02-10'),
 ('2025-02-11'),('2025-02-12'),('2025-02-13'),('2025-02-14'),('2025-02-15'),('2025-02-16'),('2025-02-17'),('2025-02-18'),('2025-02-19'),('2025-02-20'),
@@ -33486,7 +33487,7 @@ INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_
 
 
 
-INSERT INTO `Train` (name_train, image_train, description_train, id_train_brand, id_status) VALUES ('Beta 3', NULL, '32678954754396547389567438956473892hngfvjkdlsg', 2, 4);
+
 
 INSERT INTO advertising (image_advertising, description_advertising, id_manager, content) 
 VALUES ('../SWP391/images/HANOI.jpg', 'Hà Nội, thủ đô 1000 năm văn hiến', 1, 
