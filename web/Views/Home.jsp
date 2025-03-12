@@ -445,7 +445,7 @@
                                                         <i class="fa fa-user pink pr-1"></i> ${advertising.managerName} 
                                                     </a></li>
                                                 <li><a href="advertisingdetail" class="pr-3">
-                                                        <i class="fa fa-comment pink pr-1"></i> 99
+                                                        <i class="fa fa-comment pink pr-1"></i> ${advertising.create_at}
                                                     </a></li>
                                             </ul>
                                         </div>

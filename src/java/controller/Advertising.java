@@ -18,10 +18,10 @@ public class Advertising extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         AdvertisingDAO advertisingDAO = new AdvertisingDAO();
         FeedbackDAO feedbackDAO = new FeedbackDAO();
-        List<Feedback> listFeedbacks = feedbackDAO.getAllFeedback();
+        //List<Feedback> listFeedbacks = feedbackDAO.getAllFeedback();
         List<model.Advertising> listAdvertisings = advertisingDAO.getAllAdvertising();
         request.setAttribute("listAdvertisings", listAdvertisings);
-        request.setAttribute("listFeedbacks", listFeedbacks);
+        //request.setAttribute("listFeedbacks", listFeedbacks);
         request.getRequestDispatcher("Views/Advertising.jsp").forward(request, response);
     }
 

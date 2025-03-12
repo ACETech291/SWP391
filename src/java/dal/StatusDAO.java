@@ -23,7 +23,7 @@ public class StatusDAO {
     public StatusDAO() {
         this.connect = DBConnect.MySQLConnect();
         if (this.connect == null) {
-            System.err.println("Database connection failed!");
+            System.err.println("Database connection failed!7");
         } else {
             System.out.println("Database connected successfully!");
         }

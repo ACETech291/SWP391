@@ -24,7 +24,7 @@ public class TrainDAO {
     public TrainDAO() {
         this.connect = DBConnect.MySQLConnect(); // Gán kết nối vào biến connect
         if (this.connect == null) {
-            System.err.println("Database connection failed!");
+            System.err.println("Database connection failed!3");
         }
     }
 

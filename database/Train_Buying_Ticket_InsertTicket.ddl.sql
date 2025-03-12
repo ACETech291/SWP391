@@ -2019,3 +2019,10 @@ INSERT INTO Ticket (name_ticket, booking_time_ticket, id_date_trip, id_customer,
 ('Vé VIP A1 - 5', '2025-01-27 10:00:00', 469, 935, 205),
 ('Vé VIP A1 - 6', '2025-01-27 10:00:00', 469, 936, 206),
 ('Vé VIP A1 - 7', '2025-01-27 10:00:00', 469, 937, 207);
+
+INSERT INTO Feedback (voting_feedback, content, id_customer, id_advertising, create_at) VALUES 
+(5, 'em là búp măng non em lớn lên trong mùa cách mạng', 365, 1, NOW()),
+(5, 'em là búp măng non em lớn lên trong mùa cách mạng', 366, 2, NOW()),
+(5, 'em là búp măng non em lớn lên trong mùa cách mạng', 367, 3, NOW()),
+(5, 'em là búp măng non em lớn lên trong mùa cách mạng', 368, 4, NOW())
+;

@@ -1,8 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
+
+import java.sql.Timestamp;
 
 /**
  *
@@ -14,16 +12,18 @@ public class Advertising {
     private String description_advertising;
     private String content;
     private String managerName;
+    private Timestamp create_at;
 
     public Advertising() {
     }
 
-    public Advertising(int id_advertising, String image_advertising, String description_advertising, String content, String managerName) {
+    public Advertising(int id_advertising, String image_advertising, String description_advertising, String content, String managerName, Timestamp create_at) {
         this.id_advertising = id_advertising;
         this.image_advertising = image_advertising;
         this.description_advertising = description_advertising;
         this.content = content;
         this.managerName = managerName;
+        this.create_at = create_at;
     }
     
     public int getId_advertising() {
@@ -66,15 +66,23 @@ public class Advertising {
         this.managerName = managerName;
     }
 
-    @Override
-    public String toString() {
-        return "Advertising{" + "id_advertising=" + id_advertising + ", image_advertising=" + image_advertising + ", description_advertising=" + description_advertising + ", content=" + content + ", managerName=" + managerName + '}';
+    public Timestamp getCreate_at() {
+        return create_at;
     }
 
-    
+    public void setCreate_at(Timestamp create_at) {
+        this.create_at = create_at;
+    }
 
-    
-    
-    
-    
+    @Override
+    public String toString() {
+        return "Advertising{" + 
+                "id_advertising=" + id_advertising + 
+                ", image_advertising='" + image_advertising + '\'' +
+                ", description_advertising='" + description_advertising + '\'' +
+                ", content='" + content + '\'' +
+                ", managerName='" + managerName + '\'' +
+                ", create_at=" + create_at + 
+                '}';
+    }
 }

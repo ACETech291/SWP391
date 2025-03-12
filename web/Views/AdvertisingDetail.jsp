@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -58,7 +60,7 @@
                                     <div class="blog-content mb-4 pt-0">
                                         <p class="blog-title"><a href="#" class="yellow">Tác giả: ${advertising.managerName}</a></p>
                                         <div class="para-content mb-2">
-                                            <span class="mr-2"><a href="#" class="pink"><i class="fa fa-user mr-1"></i>Ngày đăng: 05-03-2025</a></span>
+                                            <span class="mr-2"><a href="#" class="pink"><i class="fa fa-user mr-1"></i>Thời điểm đăng bài: ${advertising.create_at}</a></span>
                                         </div>
                                         <p>${advertising.description_advertising}</p>
                                         <p>${advertising.content}</p>
@@ -85,15 +87,16 @@
                             <!-- blog comment list -->
                             <div class="single-comments single-box mb-4">
                                 <h4 class="mb-4">Bình luận</h4>
+                                <c:forEach var="feedback" items="${listFeedbacks}">
                                 <div class="comment-box">
                                     <div class="comment-image mt-2">
                                         <img src="${pageContext.request.contextPath}/libs/images/reviewer/1.jpg" alt="image">
                                     </div>
                                     <div class="comment-content">
-                                        <h4 class="mb-1 Soldman Kell">Mr.A</h4>
-                                        <p class="comment-date">February 13, 2025 at 00:00 am</p>  
+                                        <h4 class="mb-1 Soldman Kell">${feedback.name_customer}</h4>
+                                        <p class="comment-date">${feedback.create_at}</p>  
                                         <p class="comment">
-                                            ${advertising.content}
+                                            ${feedback.content}
                                         </p>
 
                                         <div class="comment-like">
@@ -102,47 +105,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="comment-box">
-                                    <div class="comment-image mt-2">
-                                        <img src="${pageContext.request.contextPath}/libs/images/reviewer/1.jpg" alt="image">
-                                    </div>
-                                    <div class="comment-content">
-                                        <h4 class="mb-1 Soldman Kell">Mr.A</h4>
-                                        <p class="comment-date">February 13, 2025 at 00:00 am</p>  
-                                        <p class="comment">
-                                            Quảng cáo này thực sự gây ấn tượng mạnh với tôi từ cách tiếp cận sáng tạo đến thông điệp truyền tải rõ ràng. 
-                                            Hình ảnh và màu sắc được sử dụng rất bắt mắt, thu hút sự chú ý ngay từ cái nhìn đầu tiên. 
-                                            Thông điệp của quảng cáo rất phù hợp với đối tượng mục tiêu, giúp người xem dễ dàng liên tưởng đến sản phẩm và thương hiệu.
-                                        </p>
-
-                                        <div class="comment-like">
-                                            <div class="like-title float-left">
-                                                <a href="#" class="nir-btn mr-2">Trả lời</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="comment-box">
-                                    <div class="comment-image mt-2">
-                                        <img src="${pageContext.request.contextPath}/libs/images/reviewer/1.jpg" alt="image">
-                                    </div>
-                                    <div class="comment-content">
-                                        <h4 class="mb-1 Soldman Kell">Mr.A</h4>
-                                        <p class="comment-date">February 13, 2025 at 00:00 am</p>  
-                                        <p class="comment">
-                                            Quảng cáo này thực sự gây ấn tượng mạnh với tôi từ cách tiếp cận sáng tạo đến thông điệp truyền tải rõ ràng. 
-                                            Hình ảnh và màu sắc được sử dụng rất bắt mắt, thu hút sự chú ý ngay từ cái nhìn đầu tiên. 
-                                            Thông điệp của quảng cáo rất phù hợp với đối tượng mục tiêu, giúp người xem dễ dàng liên tưởng đến sản phẩm và thương hiệu.
-                                        </p>
-
-                                        <div class="comment-like">
-                                            <div class="like-title float-left">
-                                                <a href="#" class="nir-btn mr-2">Trả lời</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </div>     
+                                </c:forEach>
                             </div>
 
                             <!-- blog review -->

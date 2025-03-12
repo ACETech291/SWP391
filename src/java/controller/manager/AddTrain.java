@@ -55,7 +55,18 @@ public class AddTrain extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.sendRedirect("Manager");
+        StatusDAO sDAO = new StatusDAO();
+        List<Status> statusTrain = sDAO.getStatusTrain();
+        request.setAttribute("status_train", statusTrain);
+
+        List<Status> statusCarriage = sDAO.getStatusSeat();
+        request.setAttribute("status_carriage", statusCarriage);
+
+        TrainDAO tDAO = new TrainDAO();
+        List<Train> topTrains = tDAO.getTopTrains(10);
+        request.setAttribute("topTrains", topTrains);
+
+        request.getRequestDispatcher("Views/Manager/Manager.jsp").forward(request, response);
     }
 
     /**

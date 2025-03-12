@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -72,10 +74,7 @@
                                 </div>
                                 <div class="description-inner mb-2">
                                     <h4>Giới thiệu về ${station.name_station}</h4>
-                                    <p><strong>${station.name_station}</strong> là một trong những nhà ga quan trọng trong hệ thống đường sắt Việt Nam, đóng vai trò kết nối giao thông giữa các tỉnh thành và khu vực lân cận. Nhà ga phục vụ hành khách và hàng hóa, góp phần thúc đẩy phát triển kinh tế và giao thông vận tải.</p>
-                                    <p>Tọa lạc tại <strong>${station.name_station}</strong>, ga có vị trí thuận lợi giúp hành khách dễ dàng tiếp cận các phương tiện giao thông khác như xe buýt, taxi và phương tiện cá nhân. Kiến trúc nhà ga kết hợp giữa nét truyền thống và hiện đại, mang lại không gian tiện nghi và thoải mái cho hành khách.</p>
-                                    <p>Với lịch sử phát triển lâu đời, <strong>${station.name_station}</strong> không chỉ là một trung tâm vận tải quan trọng mà còn là một phần của nền văn hóa và lịch sử địa phương. Nhà ga đã chứng kiến sự thay đổi và phát triển của ngành đường sắt, từ những đoàn tàu hơi nước đầu tiên đến các chuyến tàu hiện đại ngày nay.</p>
-                                    <p>Hàng năm, nhà ga phục vụ hàng triệu lượt hành khách, góp phần nâng cao chất lượng dịch vụ vận tải và tạo điều kiện thuận lợi cho việc di chuyển giữa các vùng miền. Với sự phát triển của ngành đường sắt, ${station.name_station} không ngừng được nâng cấp, hiện đại hóa để đáp ứng nhu cầu ngày càng cao của hành khách.</p>
+                                    <p><strong>${station.name_station}</strong> ${station.content}</p>
                                 </div>
                             </div>
                         </div>

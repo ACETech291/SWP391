@@ -12,7 +12,7 @@ public class AdminDAO {
         this.connection = DBConnect.MySQLConnect();
 
         if (this.connection == null) {
-            System.out.println("Database connection failed!");
+            System.out.println("Database connection failed!17");
         }
     }
 

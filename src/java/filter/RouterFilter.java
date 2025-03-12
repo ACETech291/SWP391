@@ -16,7 +16,6 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.apache.http.HttpRequest;
 
 /**
  *
@@ -107,11 +106,10 @@ public class RouterFilter implements Filter {
         doBeforeProcessing(request, response);
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-        String url = httpServletRequest.getRequestURI();;
-        if(url.endsWith(".jsp") && !url.contains("Error.jsp")){
+        String url = httpServletRequest.getRequestURI();
+        if(url.endsWith(".jsp")){
             httpServletResponse.sendRedirect("home");
         }
-        chain.doFilter(request, response);
         Throwable problem = null;
         try {
             chain.doFilter(request, response);

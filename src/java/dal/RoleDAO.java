@@ -22,7 +22,7 @@ public class RoleDAO {
         this.connection = DBConnect.MySQLConnect();
 
         if (this.connection == null) {
-            System.out.println("Database connection failed!");
+            System.out.println("Database connection failed!9");
         }
     }
         public List<Role> getAllRoles() {
