@@ -110,7 +110,7 @@ public class AuthorizationFilter implements Filter {
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
         String url = httpServletRequest.getRequestURI();
         AuthorizationDAO authorizationDAO = new AuthorizationDAO();
-        HttpSession session = httpServletRequest.getSession(false);
+        HttpSession session = httpServletRequest.getSession();
         int role_id = 0;
         
         if (session == null || session.getAttribute("role_id") == null) {
