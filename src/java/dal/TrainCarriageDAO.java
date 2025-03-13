@@ -21,7 +21,7 @@ public class TrainCarriageDAO {
     public TrainCarriageDAO() {
         this.connect = DBConnect.MySQLConnect();
         if (this.connect == null) {
-            System.err.println("Database connection failed!");
+            System.err.println("Database connection failed!4");
         } else {
             System.out.println("Database connected successfully!");
         }

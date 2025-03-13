@@ -51,17 +51,18 @@ public class StationDAO extends HttpServlet {
         this.connection = DBConnect.MySQLConnect();
         System.out.println("STATION");// Gán kết nối vào biến connect
         if (this.connection == null) {
-            System.err.println("Database connection failed!");
+            System.err.println("Database connection failed!8");
         }
     }
 
     public boolean insertStation(Station station) {
-        String sql = "INSERT INTO Station (name_station, image_station, description_station) VALUES ( ?, ?, ?)";
+        String sql = "INSERT INTO Station (name_station, image_station, description_station,content) VALUES ( ?, ?, ?,?)";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, station.getName_station());
             stmt.setString(2, station.getImage_station());  // Lưu đường dẫn ảnh dưới dạng chuỗi
             stmt.setString(3, station.getDescription_station());
+            stmt.setString(4, station.getContent());
 
             int rowsInserted = stmt.executeUpdate();
             return rowsInserted > 0;
@@ -83,7 +84,8 @@ public class StationDAO extends HttpServlet {
                         rs.getInt("id_station"),
                         rs.getString("name_station"),
                         rs.getString("image_station"),
-                        rs.getString("description_station")
+                        rs.getString("description_station"),
+                        rs.getString("content")
                 );
             }
         } catch (SQLException e) {
@@ -105,7 +107,8 @@ public class StationDAO extends HttpServlet {
                         rs.getInt("id_station"),
                         rs.getString("name_station"),
                         rs.getString("image_station"),
-                        rs.getString("description_station")
+                        rs.getString("description_station"),
+                        rs.getString("content")
                 ));
             }
         } catch (SQLException e) {
@@ -137,7 +140,7 @@ public class StationDAO extends HttpServlet {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                listStations.add(new Station(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+                listStations.add(new Station(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
             }
         } catch (SQLException e) {
         }
@@ -151,7 +154,7 @@ public class StationDAO extends HttpServlet {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                listStations.add(new Station(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+                listStations.add(new Station(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
             }
         } catch (SQLException e) {
         }
@@ -165,7 +168,7 @@ public class StationDAO extends HttpServlet {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                listStations.add(new Station(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+                listStations.add(new Station(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
             }
         } catch (SQLException e) {
         }

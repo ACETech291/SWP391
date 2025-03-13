@@ -30,10 +30,10 @@ INSERT INTO Status (name_status)
 	('Có sẵn'),	 		('Đã được đặt'),				('Bảo trì');	
 
 -- train Alpha
-INSERT INTO Train (name_train, description_train, id_train_brand, id_status, image_train) 
+INSERT INTO Train (name_train, description_train, id_train_brand, id_status, image_train,content) 
 	VALUES
-	('Alpha 1', ' ',1, 2, null),
-	('Alpha 2', ' ', 1, 2, null);
+	('Alpha 1', 'Sử dụng động cơ điện hoặc năng lượng tái tạo, tàu cao tốc Bắc - Nam ',1, 2, '../SWP391/images/trains/tau1.jpg','Hệ thống tàu cao tốc tích hợp với các phương tiện công cộng khác như xe buýt, tàu điện và taxi, giúp hành khách dễ dàng di chuyển đến các địa điểm khác trong thành phố một cách thuận tiện và nhanh chóng.'),
+	('Alpha 2', 'Hệ thống tàu cao tốc tích hợp với các phương tiện công cộng khác như xe buýt, tàu điện và taxi', 1, 2, '../SWP391/images/trains/tau2.jpg','Sử dụng động cơ điện hoặc năng lượng tái tạo, tàu cao tốc Bắc - Nam giúp giảm đáng kể khí thải và tiếng ồn, góp phần bảo vệ môi trường và phát triển giao thông bền vững.');
 
 -- train carriage Alpha 1 Phổ thông
 INSERT INTO Train_carriage (name_train_carriage, description_train_carriage, id_train, id_status, total_seat) 
@@ -87,54 +87,277 @@ VALUES
 		(7, 5,'1',600000),		(7, 5,'1',600000),		(7, 5,'1',600000),		(7, 5,'1',600000),		(7, 5,'1',600000),		(7, 5,'1',600000);
 
 -- train Beta
-INSERT INTO Train (name_train, description_train, id_train_brand, id_status, image_train) 
+INSERT INTO Train (name_train, description_train, id_train_brand, id_status, image_train, content) 
 	VALUES
-	('Beta 1', ' ',2, 2, null),
-	('Beta 2', ' ', 2, 2, null);
-	
+	('Beta 1', 'Tàu cao tốc Bắc - Nam được thiết kế để rút ngắn thời gian di chuyển giữa hai đầu đất nước, đạt tốc độ lên đến 350 km/h.',2, 2, '../SWP391/images/trains/tau3.jpg','Tàu cao tốc Bắc - Nam được thiết kế để rút ngắn thời gian di chuyển giữa hai đầu đất nước, đạt tốc độ lên đến 350 km/h. Với hệ thống đường ray hiện đại và công nghệ tiên tiến, tàu đảm bảo chuyến đi nhanh chóng và an toàn.'),
+	('Beta 2', 'Khoang hành khách được trang bị ghế ngồi êm ái, giường nằm cao cấp và không gian rộng rãi.', 2, 2, '../SWP391/images/trains/tau4.jpg','Khoang hành khách được trang bị ghế ngồi êm ái, giường nằm cao cấp và không gian rộng rãi. Các dịch vụ như Wi-Fi tốc độ cao, màn hình giải trí và suất ăn chất lượng giúp hành khách tận hưởng hành trình thoải mái.');
+INSERT INTO `Train` (name_train, image_train, description_train, id_train_brand, id_status,content) 
+VALUES ('Beta 3', '../SWP391/images/trains/tau5.jpg', 'Hệ thống kiểm soát tự động, phanh từ và cảm biến theo dõi liên tục giúp tàu duy trì hành trình ổn định ngay cả ở tốc độ cao.', 2, 4,'Hệ thống kiểm soát tự động, phanh từ và cảm biến theo dõi liên tục giúp tàu duy trì hành trình ổn định ngay cả ở tốc độ cao. Các biện pháp an toàn tiên tiến đảm bảo chuyến đi suôn sẻ trong mọi điều kiện thời tiết.');	
 INSERT INTO Date_of_trip (date_details) VALUES 
 ('2025-02-01'),('2025-02-02'),('2025-02-03'),('2025-02-04'),('2025-02-05'),('2025-02-06'),('2025-02-07'),('2025-02-08'),('2025-02-09'),('2025-02-10'),
 ('2025-02-11'),('2025-02-12'),('2025-02-13'),('2025-02-14'),('2025-02-15'),('2025-02-16'),('2025-02-17'),('2025-02-18'),('2025-02-19'),('2025-02-20'),
 ('2025-02-21'),('2025-02-22'),('2025-02-23'),('2025-02-24'),('2025-02-25'),('2025-02-26'),('2025-02-27'),('2025-02-28');
 
-INSERT INTO Station (name_station, image_station, description_station) VALUES
-('Hà Nội', NULL, 'Ga Hà Nội, trung tâm thủ đô, đầu mối giao thông quan trọng'),
-('Phủ Lý', NULL, 'Ga Phủ Lý, tỉnh Hà Nam, phục vụ khu vực Đồng bằng sông Hồng'),
-('Nam Định', NULL, 'Ga Nam Định, tỉnh Nam Định, trung tâm vùng Nam Đồng bằng sông Hồng'),
-('Ninh Bình', NULL, 'Ga Ninh Bình, tỉnh Ninh Bình, gần khu du lịch Tràng An'),
-('Bỉm Sơn', NULL, 'Ga Bỉm Sơn, tỉnh Thanh Hóa, phục vụ khu vực Bắc Trung Bộ'),
-('Thanh Hóa', NULL, 'Ga Thanh Hóa, tỉnh Thanh Hóa, trung tâm vùng Bắc Trung Bộ'),
-('Minh Khôi', NULL, 'Ga Minh Khôi, tỉnh Hải Dương, phục vụ khu vực Đồng bằng sông Hồng'),
-('Chợ Sy', NULL, 'Ga Chợ Sy, tỉnh Lạng Sơn, gần biên giới Trung Quốc'),
-('Vinh', NULL, 'Ga Vinh, tỉnh Nghệ An, trung tâm vùng Bắc Trung Bộ'),
-('Yên Trung', NULL, 'Ga Yên Trung, tỉnh Hải Dương, phục vụ khu vực Đồng bằng sông Hồng'),
-('Hương Phố', NULL, 'Ga Hương Phố, tỉnh Quảng Trị, phục vụ khu vực miền Trung'),
-('Đồng Lê', NULL, 'Ga Đồng Lê, tỉnh Quảng Bình, phục vụ khu vực miền Trung'),
-('Đồng Hới', NULL, 'Ga Đồng Hới, tỉnh Quảng Bình, gần di sản Phong Nha - Kẻ Bàng'),
-('Đông Hà', NULL, 'Ga Đông Hà, tỉnh Quảng Trị, phục vụ khu vực miền Trung'),
-('Huế', NULL, 'Ga Huế, thành phố Huế, tỉnh Thừa Thiên Huế, di sản văn hóa thế giới'),
-('Lăng Cô', NULL, 'Ga Lăng Cô, tỉnh Thừa Thiên Huế, gần đèo Hải Vân'),
-('Đà Nẵng', NULL, 'Ga Đà Nẵng, thành phố Đà Nẵng, trung tâm kinh tế miền Trung'),
-('Trà Kiệu', NULL, 'Ga Trà Kiệu, tỉnh Quảng Nam, phục vụ khu vực miền Trung'),
-('Phú Cang', NULL, 'Ga Phú Cang, tỉnh Thừa Thiên Huế, phục vụ khu vực miền Trung'),
-('Tam Kỳ', NULL, 'Ga Tam Kỳ, tỉnh Quảng Nam, phục vụ khu vực miền Trung'),
-('Núi Thành', NULL, 'Ga Núi Thành, tỉnh Quảng Nam, trên tuyến đường sắt Bắc - Nam'),
-('Quảng Ngãi', NULL, 'Ga Quảng Ngãi, tỉnh Quảng Ngãi, trên tuyến đường sắt Bắc - Nam'),
-('Đức Phổ', NULL, 'Ga Đức Phổ, tỉnh Quảng Ngãi, trên tuyến đường sắt Bắc - Nam'),
-('Bồng Sơn', NULL, 'Ga Bồng Sơn, tỉnh Bình Định, trên tuyến đường sắt Bắc - Nam'),
-('Quy Nhơn', NULL, 'Ga Quy Nhơn, tỉnh Bình Định, thành phố biển miền Trung'),
-('Tuy Hòa', NULL, 'Ga Tuy Hòa, tỉnh Phú Yên, thành phố biển miền Trung'),
-('Giã', NULL, 'Ga Giã, tỉnh Hải Dương, phục vụ khu vực Đồng bằng sông Hồng'),
-('Ninh Hòa', NULL, 'Ga Ninh Hòa, tỉnh Khánh Hòa, phục vụ khu vực Nam Trung Bộ'),
-('Nha Trang', NULL, 'Ga Nha Trang, tỉnh Khánh Hòa, thành phố biển nổi tiếng'),
-('Ngã Ba', NULL, 'Ga Ngã Ba, tỉnh Thanh Hóa, nút giao quan trọng miền Trung'),
-('Tháp Chàm', NULL, 'Ga Tháp Chàm, tỉnh Ninh Thuận, gần di tích Tháp Chàm'),
-('Sông Mao', NULL, 'Ga Sông Mao, tỉnh Bình Thuận, trên tuyến đường sắt Bắc - Nam'),
-('Ma Lâm', NULL, 'Ga Ma Lâm, tỉnh Bình Thuận, trên tuyến đường sắt Bắc - Nam'),
-('Bình Thuận', NULL, 'Ga Bình Thuận, tỉnh Bình Thuận, trên tuyến đường sắt Bắc - Nam'),
-('Long Khánh', NULL, 'Ga Long Khánh, tỉnh Đồng Nai, phục vụ khu vực Đông Nam Bộ'),
-('Biên Hòa', NULL, 'Ga Biên Hòa, tỉnh Đồng Nai, phục vụ khu vực Đông Nam Bộ'),
-('Sài Gòn', NULL, 'Ga Sài Gòn, thành phố Hồ Chí Minh, đầu mối giao thông phía Nam');
+INSERT INTO Station (name_station, image_station, description_station,content) VALUES
+('Hà Nội', NULL, 'Ga Hà Nội, trung tâm thủ đô, đầu mối giao thông quan trọng','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Phủ Lý', NULL, 'Ga Phủ Lý, tỉnh Hà Nam, phục vụ khu vực Đồng bằng sông Hồng','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Nam Định', NULL, 'Ga Nam Định, tỉnh Nam Định, trung tâm vùng Nam Đồng bằng sông Hồng','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Ninh Bình', NULL, 'Ga Ninh Bình, tỉnh Ninh Bình, gần khu du lịch Tràng An','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Bỉm Sơn', NULL, 'Ga Bỉm Sơn, tỉnh Thanh Hóa, phục vụ khu vực Bắc Trung Bộ','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Thanh Hóa', NULL, 'Ga Thanh Hóa, tỉnh Thanh Hóa, trung tâm vùng Bắc Trung Bộ','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Minh Khôi', NULL, 'Ga Minh Khôi, tỉnh Hải Dương, phục vụ khu vực Đồng bằng sông Hồng','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Chợ Sy', NULL, 'Ga Chợ Sy, tỉnh Lạng Sơn, gần biên giới Trung Quốc','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Vinh', NULL, 'Ga Vinh, tỉnh Nghệ An, trung tâm vùng Bắc Trung Bộ','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Yên Trung', NULL, 'Ga Yên Trung, tỉnh Hải Dương, phục vụ khu vực Đồng bằng sông Hồng','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Hương Phố', NULL, 'Ga Hương Phố, tỉnh Quảng Trị, phục vụ khu vực miền Trung','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Đồng Lê', NULL, 'Ga Đồng Lê, tỉnh Quảng Bình, phục vụ khu vực miền Trung','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Đồng Hới', NULL, 'Ga Đồng Hới, tỉnh Quảng Bình, gần di sản Phong Nha - Kẻ Bàng','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Đông Hà', NULL, 'Ga Đông Hà, tỉnh Quảng Trị, phục vụ khu vực miền Trung','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Huế', NULL, 'Ga Huế, thành phố Huế, tỉnh Thừa Thiên Huế, di sản văn hóa thế giới','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Lăng Cô', NULL, 'Ga Lăng Cô, tỉnh Thừa Thiên Huế, gần đèo Hải Vân','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Đà Nẵng', NULL, 'Ga Đà Nẵng, thành phố Đà Nẵng, trung tâm kinh tế miền Trung','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Trà Kiệu', NULL, 'Ga Trà Kiệu, tỉnh Quảng Nam, phục vụ khu vực miền Trung','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Phú Cang', NULL, 'Ga Phú Cang, tỉnh Thừa Thiên Huế, phục vụ khu vực miền Trung','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Tam Kỳ', NULL, 'Ga Tam Kỳ, tỉnh Quảng Nam, phục vụ khu vực miền Trung','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Núi Thành', NULL, 'Ga Núi Thành, tỉnh Quảng Nam, trên tuyến đường sắt Bắc - Nam','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Quảng Ngãi', NULL, 'Ga Quảng Ngãi, tỉnh Quảng Ngãi, trên tuyến đường sắt Bắc - Nam','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Đức Phổ', NULL, 'Ga Đức Phổ, tỉnh Quảng Ngãi, trên tuyến đường sắt Bắc - Nam','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Bồng Sơn', NULL, 'Ga Bồng Sơn, tỉnh Bình Định, trên tuyến đường sắt Bắc - Nam','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Quy Nhơn', NULL, 'Ga Quy Nhơn, tỉnh Bình Định, thành phố biển miền Trung','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Tuy Hòa', NULL, 'Ga Tuy Hòa, tỉnh Phú Yên, thành phố biển miền Trung','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Giã', NULL, 'Ga Giã, tỉnh Hải Dương, phục vụ khu vực Đồng bằng sông Hồng','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Ninh Hòa', NULL, 'Ga Ninh Hòa, tỉnh Khánh Hòa, phục vụ khu vực Nam Trung Bộ','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Nha Trang', NULL, 'Ga Nha Trang, tỉnh Khánh Hòa, thành phố biển nổi tiếng','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Ngã Ba', NULL, 'Ga Ngã Ba, tỉnh Thanh Hóa, nút giao quan trọng miền Trung','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Tháp Chàm', NULL, 'Ga Tháp Chàm, tỉnh Ninh Thuận, gần di tích Tháp Chàm','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Sông Mao', NULL, 'Ga Sông Mao, tỉnh Bình Thuận, trên tuyến đường sắt Bắc - Nam','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Ma Lâm', NULL, 'Ga Ma Lâm, tỉnh Bình Thuận, trên tuyến đường sắt Bắc - Nam','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Bình Thuận', NULL, 'Ga Bình Thuận, tỉnh Bình Thuận, trên tuyến đường sắt Bắc - Nam','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Long Khánh', NULL, 'Ga Long Khánh, tỉnh Đồng Nai, phục vụ khu vực Đông Nam Bộ','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Biên Hòa', NULL, 'Ga Biên Hòa, tỉnh Đồng Nai, phục vụ khu vực Đông Nam Bộ','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. '),
+('Sài Gòn', NULL, 'Ga Sài Gòn, thành phố Hồ Chí Minh, đầu mối giao thông phía Nam','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
+
+Với kiến trúc kết hợp giữa hiện đại và truyền thống, mỗi nhà ga mang một dấu ấn riêng, phản ánh nét đẹp văn hóa của từng vùng miền. Những băng ghế dài nơi sảnh chờ, quầy bán vé luôn tấp nập, và những đoàn tàu nằm im lặng chờ giờ lăn bánh – tất cả tạo nên một khung cảnh vừa nhộn nhịp vừa đầy hoài niệm.
+
+Nhà ga không chỉ là nơi kết nối các điểm đến, mà còn là chứng nhân của bao cuộc hội ngộ và chia ly. Đó có thể là niềm vui của những người thân gặp lại nhau sau bao ngày xa cách, hay ánh mắt lưu luyến của những người tạm biệt nhau trong phút giây bịn rịn. Mỗi chuyến tàu rời ga mang theo những ước mơ, hoài bão và cả những hành trình mới, để rồi khi quay trở lại, lại mang về những câu chuyện, kỷ niệm không thể nào quên.
+
+Dù bạn là một lữ khách lần đầu đến ga hay đã quá quen thuộc với nhịp sống nơi đây, nhà ga vẫn luôn chào đón bạn bằng những chuyến tàu nối dài những hành trình, mở ra những cánh cửa mới cho những trải nghiệm không ngừng tiếp nối. ');
 
 INSERT INTO Time_of_station (time_train_in_station) VALUES 
 ('04:30'), ('05:03'), ('05:30'), ('06:00'), ('06:37'), ('07:04'), ('07:31'), ('08:00'), ('08:34'), ('09:04'), 
@@ -33264,7 +33487,7 @@ INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_
 
 
 
-INSERT INTO `Train` (name_train, image_train, description_train, id_train_brand, id_status) VALUES ('Beta 3', NULL, '32678954754396547389567438956473892hngfvjkdlsg', 2, 4);
+
 
 INSERT INTO advertising (image_advertising, description_advertising, id_manager, content) 
 VALUES ('../SWP391/images/HANOI.jpg', 'Hà Nội, thủ đô 1000 năm văn hiến', 1, 
@@ -33334,5 +33557,8 @@ INSERT INTO authorization(role_id,URL_authorization,feature_authorization,status
 (1,"/AddAuthorization","Trang thêm mới quyền",1),
 (1,"/DeleteAuthorization","Xóa quyền",1),
 (1,"/EditAuthorization","Trang chỉnh sửa quyền",1),
+(3,"/Feedback","Đưa ra nhận xét",1),
 (1,"/403","Trang không có quyền truy cập",1),(2,"/403","Trang không có quyền truy cập",1),(3,"/403","Trang không có quyền truy cập",1),(4,"/403","Trang không có quyền truy cập",1)
 ;
+
+

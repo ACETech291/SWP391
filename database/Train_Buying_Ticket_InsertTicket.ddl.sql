@@ -2019,3 +2019,29 @@ INSERT INTO Ticket (name_ticket, booking_time_ticket, id_date_trip, id_customer,
 ('Vé VIP A1 - 5', '2025-01-27 10:00:00', 469, 935, 205),
 ('Vé VIP A1 - 6', '2025-01-27 10:00:00', 469, 936, 206),
 ('Vé VIP A1 - 7', '2025-01-27 10:00:00', 469, 937, 207);
+
+INSERT INTO Feedback (voting_feedback, content, id_customer, id_advertising, create_at) VALUES 
+(5, 'Chuyến này đỉnh thật sự rất mong sẽ được có cơ hội đi lại', 365, 1, NOW()),
+(5, 'Chuyến này đỉnh thật sự rất mong sẽ được có cơ hội đi lại', 366, 2, NOW()),
+(5, 'Chuyến này đỉnh thật sự rất mong sẽ được có cơ hội đi lại', 367, 3, NOW()),
+(5, 'Chuyến này đỉnh thật sự rất mong sẽ được có cơ hội đi lại', 368, 4, NOW())
+;
+
+INSERT INTO Feedback (voting_feedback, content, id_customer, id_advertising, create_at) VALUES 
+(5, 'Chuyến này đỉnh thật sự tôi khuyên mọi người nên đi nhé', 972, 1, NOW()),
+(5, 'Chuyến này đỉnh thật sự tôi khuyên mọi người nên đi nhé', 973, 2, NOW()),
+(5, 'Chuyến này đỉnh thật sự tôi khuyên mọi người nên đi nhé', 974, 3, NOW()),
+(5, 'Chuyến này đỉnh thật sự tôi khuyên mọi người nên đi nhé', 975, 4, NOW())
+;
+INSERT INTO Feedback (voting_feedback, content, id_customer, id_advertising, create_at) VALUES 
+(5, 'Chuyến này đẹp lắm mọi người ơi rất mong sẽ được có cơ hội đi lại', 976, 1, NOW()),
+(5, 'Thấy cũng bình thường mà sao mọi người khen quá vậy', 977, 2, NOW()),
+(5, 'Tạm ổn nha mọi người rất mong sẽ được có cơ hội đi lại', 978, 3, NOW()),
+(5, 'Dịch vụ phải nói là quá tuyệt vời rất mong sẽ được có cơ hội đi lại', 979, 4, NOW())
+;
+INSERT INTO Feedback (voting_feedback, content, id_customer, id_advertising, create_at) VALUES 
+(5, 'Đôi khi nhầm mội chuyến xe lại đưa chúng ta về nơi muốn đến', 932, 1, NOW()),
+(5, 'Đời người là những chuyến đi rất mong sẽ được có cơ hội đi lại', 933, 2, NOW()),
+(5, 'Đôi khi nhầm mội chuyến xe lại đưa chúng ta về nơi muốn đến ', 934, 3, NOW()),
+(5, 'Chuyến tàu nay đã cho tôi mội trải nghiệm tuyệt vời', 935, 4, NOW())
+;

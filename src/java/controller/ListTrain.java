@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import model.Train;
+import model.TripDTO;
 
 public class ListTrain extends HttpServlet {
 
@@ -17,8 +18,8 @@ public class ListTrain extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         TrainDAO trainDAO = new TrainDAO();
+        
         List<Train> trains = trainDAO.getAllTrains();
-
         request.setAttribute("trains", trains);
         request.getRequestDispatcher("Views/ListTrain.jsp").forward(request, response);
     }

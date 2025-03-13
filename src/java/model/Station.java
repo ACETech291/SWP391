@@ -14,6 +14,7 @@ public class Station implements SQLUpdate {
     private String name_station;
     private String image_station;
     private String description_station;
+    private String content;
 
     public Station(String name_station, String description_station) {
         this.name_station = name_station;
@@ -38,6 +39,16 @@ public class Station implements SQLUpdate {
         this.image_station = image_station;
         this.description_station = description_station;
     }
+
+    public Station(int id_station, String name_station, String image_station, String description_station, String content) {
+        this.id_station = id_station;
+        this.name_station = name_station;
+        this.image_station = image_station;
+        this.description_station = description_station;
+        this.content = content;
+    }
+    
+    
 
     public Station() {
     }
@@ -74,6 +85,14 @@ public class Station implements SQLUpdate {
         this.description_station = description_station;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+    
     @Override
     public String toString() {
         return "Station{" + "id_station=" + id_station + ", name_station=" + name_station + ", image_station=" + image_station + ", description_station=" + description_station + '}';

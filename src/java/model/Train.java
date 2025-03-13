@@ -13,6 +13,7 @@ public class Train implements SQLInsert {
     private int id_train;
     private String name_train;
     private String image_train;
+    private String content;
     private String description_train;
     private int id_train_brand;
     private int id_status;
@@ -40,6 +41,19 @@ public class Train implements SQLInsert {
         this.id_status = id_status;
     }
 
+    public Train(int id_train, String name_train, String image_train, String content, String description_train, int id_train_brand, int id_status) {
+        this.id_train = id_train;
+        this.name_train = name_train;
+        this.image_train = image_train;
+        this.content = content;
+        this.description_train = description_train;
+        this.id_train_brand = id_train_brand;
+        this.id_status = id_status;
+    }
+
+    
+    
+    
     public int getId_train() {
         return id_train;
     }
@@ -88,6 +102,15 @@ public class Train implements SQLInsert {
         this.id_status = id_status;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+    
+    
     @Override
     public String toSQLInsert() {
         return String.format(

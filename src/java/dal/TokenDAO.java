@@ -18,7 +18,7 @@ public class TokenDAO {
     public TokenDAO() {
         this.connect = DBConnect.MySQLConnect(); // Gán kết nối vào biến connect
         if (this.connect == null) {
-            System.err.println("Database connection failed!");
+            System.err.println("Database connection failed!6");
         }
     }
 

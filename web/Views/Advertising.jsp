@@ -2,6 +2,39 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    <style>
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pagination a {
+            margin: 5px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            border: 1px solid #007bff;
+            color: #007bff;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .pagination a:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .pagination .btn-primary {
+            background-color: #007bff;
+            color: white;
+            border: 1px solid #0056b3;
+            font-weight: bold;
+            transform: scale(1.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+    </style>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -69,6 +102,15 @@
                 </div>
             </div>
         </section>
+        <div class="pagination">
+            <c:set var ="page" value="${requestScope.page}"/>
+            <c:forEach begin="1" end="${num > 10 ? 10 : num}" var="i">
+                <a href="advertising?page=${i}" 
+                   class="btn ${i == page ? 'btn-primary' : 'btn-light'}">
+                    ${i}
+                </a>
+            </c:forEach>
+        </div>
         <!-- blog Ends -->
 
         <!-- footer starts -->

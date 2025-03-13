@@ -30,7 +30,7 @@ public class DBConnect {
         } catch (ClassNotFoundException e) {
             System.err.println("MySQL JDBC Driver not found!");
         } catch (SQLException e) {
-            System.err.println("Failed to connect to the database!abc");
+            System.err.println("Failed to connect to the database!");
         }
 
         return connection;

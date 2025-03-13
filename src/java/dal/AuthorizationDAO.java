@@ -18,20 +18,21 @@ import java.sql.SQLException;
  */
 public class AuthorizationDAO {
 
-    private Connection connection;
+    private Connection connect;
 
     public AuthorizationDAO() {
-        this.connection = DBConnect.MySQLConnect();
-
-        if (this.connection == null) {
-            System.out.println("Database connection failed!");
+        this.connect = DBConnect.MySQLConnect();
+        if (this.connect == null) {
+            System.err.println("Database connection failed!16");
+        } else {
+            System.out.println("Database connected successfully!");
         }
     }
 
     public Authorization getAuthorizationById(int id_authorization) {
         String query = "SELECT id_authorization, role_id, url_authorization, feature_authorization FROM Authorization WHERE id_authorization = ?";
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = connect.prepareStatement(query)) {
             preparedStatement.setInt(1, id_authorization);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
@@ -51,7 +52,7 @@ public class AuthorizationDAO {
 
     public boolean updateAuthorization(int id_authorization, int role_id, String url_authorization, String feature_authorization) {
         String query = "UPDATE Authorization SET role_id = ?, url_authorization = ?, feature_authorization = ?, status_authorization = 1 WHERE id_authorization = ?";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = connect.prepareStatement(query)) {
             preparedStatement.setInt(1, role_id);
             preparedStatement.setString(2, url_authorization);
             preparedStatement.setString(3, feature_authorization);
@@ -69,7 +70,7 @@ public class AuthorizationDAO {
         List<Authorization> authorizations = new ArrayList<>();
         String query = "SELECT id_authorization, role_id, url_authorization, feature_authorization FROM Authorization where status_authorization = 1";
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query); ResultSet resultSet = preparedStatement.executeQuery()) {
+        try (PreparedStatement preparedStatement = connect.prepareStatement(query); ResultSet resultSet = preparedStatement.executeQuery()) {
 
             while (resultSet.next()) {
                 Authorization authorization = new Authorization();
@@ -105,7 +106,7 @@ public class AuthorizationDAO {
         }
         String query = "SELECT COUNT(*) FROM Authorization WHERE role_id = ? AND url_authorization = ?";
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = connect.prepareStatement(query)) {
             preparedStatement.setInt(1, role_id);
             preparedStatement.setString(2, url_authorization);
 
@@ -131,7 +132,7 @@ public class AuthorizationDAO {
 
     public void addAuthorization(int role_id, String url_authorization, String feature_authorization, int status_authorization) {
         String query = "INSERT INTO Authorization (role_id, url_authorization, feature_authorization, status_authorization) VALUES (?, ?, ?, ?)";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = connect.prepareStatement(query)) {
             preparedStatement.setInt(1, role_id);
             preparedStatement.setString(2, url_authorization);
             preparedStatement.setString(3, feature_authorization);

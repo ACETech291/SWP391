@@ -8,6 +8,7 @@ package model;
  *
  * @author Nguyen Ba Hien
  */
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -16,7 +17,8 @@ public class Feedback {
     private int voting_feedback;
     private String content;
     private String name_customer;
-    private Date created_at;
+    private Timestamp create_at;
+    private int id_advertising;
 
     // Constructor mặc định
     public Feedback() {
@@ -24,13 +26,24 @@ public class Feedback {
 
     // Constructor có tham số
 
-    public Feedback(int id_feedback, int voting_feedback, String content, String name_customer, Date created_at) {
+    public Feedback(int id_feedback, int voting_feedback, String content, String name_customer, Timestamp create_at) {
         this.id_feedback = id_feedback;
         this.voting_feedback = voting_feedback;
         this.content = content;
         this.name_customer = name_customer;
-        this.created_at = created_at;
+        this.create_at = create_at;
     }
+
+    public Feedback(int id_feedback, int voting_feedback, String content, String name_customer, Timestamp create_at, int id_advertising) {
+        this.id_feedback = id_feedback;
+        this.voting_feedback = voting_feedback;
+        this.content = content;
+        this.name_customer = name_customer;
+        this.create_at = create_at;
+        this.id_advertising = id_advertising;
+    }
+    
+    
 
     public int getId_feedback() {
         return id_feedback;
@@ -64,18 +77,32 @@ public class Feedback {
         this.name_customer = name_customer;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Timestamp getCreate_at() {
+        return create_at;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreate_at(Timestamp create_at) {
+        this.create_at = create_at;
+    }
+
+    
+
+    public int getId_advertising() {
+        return id_advertising;
+    }
+
+    public void setId_advertising(int id_advertising) {
+        this.id_advertising = id_advertising;
     }
 
     @Override
     public String toString() {
-        return "Feedback{" + "id_feedback=" + id_feedback + ", voting_feedback=" + voting_feedback + ", content=" + content + ", id_customer=" + name_customer + ", created_at=" + created_at + '}';
+        return "Feedback{" + "id_feedback=" + id_feedback + ", voting_feedback=" + voting_feedback + ", content=" + content + ", name_customer=" + name_customer + ", create_at=" + create_at + ", id_advertising=" + id_advertising + '}';
     }
+    
+    
+
+    
     
 }
 

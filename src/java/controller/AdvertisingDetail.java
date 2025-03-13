@@ -26,7 +26,7 @@ public class AdvertisingDetail extends HttpServlet {
         Advertising advertising = advertisingDAO.getAdvertisingById(id);
         request.setAttribute("advertising", advertising);
         FeedbackDAO feedbackDAO = new FeedbackDAO();
-        List<Feedback> listFeedbacks = feedbackDAO.getAllFeedback();
+        List<Feedback> listFeedbacks = feedbackDAO.getAllFeedback(Integer.parseInt(id));
         request.setAttribute("listFeedbacks", listFeedbacks);
         request.getRequestDispatcher("Views/AdvertisingDetail.jsp").forward(request, response);
     }

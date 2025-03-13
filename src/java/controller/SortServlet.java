@@ -101,12 +101,13 @@ public class SortServlet extends HttpServlet {
             request.getRequestDispatcher("Views/ListTrain.jsp").forward(request, response);
 
         } else if (order.equalsIgnoreCase("3")) {
+            String sort = request.getParameter("sort");
             TrainDAO trainDAO = new TrainDAO();
             List<Train> trains = trainDAO.getAllTrainSortZA();
             request.setAttribute("trains", trains);
             request.getRequestDispatcher("Views/ListTrain.jsp").forward(request, response);
-
         } else {
+            String sort = request.getParameter("sort");
             TrainDAO trainDAO = new TrainDAO();
             List<Train> trains = trainDAO.getAllTrains();
             request.setAttribute("trains", trains);

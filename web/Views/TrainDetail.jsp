@@ -78,17 +78,8 @@
                                 <div class="description-inner mb-2 mt-1">
                                     <h1>Tàu Cao Tốc <strong>${train.name_train}</strong>: Cột Mốc Mới</h1>
                                     <p>
-                                        Tàu cao tốc <strong>${train.name_train}</strong> của Nhật Bản, phát triển bởi Đường sắt Đông Nhật Bản, đánh dấu bước tiến vượt bậc trong công nghệ đường sắt. Với mũi tàu dạng viên đạn dài 22m và 10 toa, <strong>${train.name_train}</strong> giúp giảm sức cản không khí và mang đến trải nghiệm hành khách đẳng cấp.
+                                       ${train.content}
                                     </p>               
-                                    <p>
-                                        Trong thử nghiệm, tàu đạt tốc độ tối đa 382 km/h, gần đạt mức 400 km/h nhờ hệ thống phanh hiện đại.
-                                    </p>
-                                    <p>
-                                        Dự kiến sau 3 năm thử nghiệm, <strong>${train.name_train}</strong> sẽ đi vào hoạt động vào năm 2030, khẳng định vị thế của Nhật Bản trên thị trường đường sắt tốc độ cao.
-                                    </p>
-                                    <p>
-                                        <strong>${train.name_train}</strong> không chỉ là minh chứng cho công nghệ hiện đại mà còn thể hiện cam kết cải thiện trải nghiệm hành khách và bảo vệ môi trường.
-                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -116,7 +107,7 @@
                                                     <div class="trend-last-main">
                                                     </div>
                                                     <div class="trend-content pb-0">
-                                                        <h4 class="bordernone pb-0 mb-1"><a href="#">Tàu ${train1.name_train}</a></h4>
+                                                        <h4 class="bordernone pb-0 mb-1"><a href="traindetail?id=${train1.id_train}">Tàu ${train1.name_train}</a></h4>
                                                         <a href="traindetail?id=${train1.id_train}">Xem chi tiết <i class="fa fa-angle-double-right"></i></a>
                                                     </div>
                                                 </div>

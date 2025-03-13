@@ -6,6 +6,11 @@
             <file>file:/D:/SWPFinal/SWP391/src/java/constant/Iconstant.java</file>
             <file>file:/D:/SWPFinal/SWP391/web/WEB-INF/web.xml</file>
             <file>file:/D:/SWPFinal/SWP391/web/Views/Login.jsp</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/filter/RouterFilter.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/dal/DatabaseInitializer.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/AdvertisingDetail.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/model/Advertising.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/Advertising.java</file>
         </group>
     </open-files>
 </project-private>

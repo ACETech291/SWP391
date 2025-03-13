@@ -18,6 +18,7 @@ CREATE TABLE Advertising (
   description_advertising varchar(255), 
   id_manager              int(11) NOT NULL, 
   content                 LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  create_at               TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id_advertising), 
   INDEX (id_advertising));
   
@@ -38,9 +39,10 @@ CREATE TABLE Feedback (
   voting_feedback INT(11) NOT NULL, 
   content         LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   id_customer     INT(11) NOT NULL, 
-  created_at      DATETIME DEFAULT CURRENT_TIMESTAMP, 
+  id_advertising  INT(11) NOT NULL, 
+  create_at               TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id_feedback), 
-  INDEX (id_feedback)
+  FOREIGN KEY (id_advertising) REFERENCES Advertising(id_advertising)
 );
   
 CREATE TABLE Manager (
@@ -97,8 +99,9 @@ CREATE TABLE Role (
 CREATE TABLE Station (
   id_station          int(11) NOT NULL AUTO_INCREMENT, 
   name_station        varchar(255) NOT NULL, 
-  image_station       blob, 
-  description_station varchar(255), 	
+  image_station       BLOB, 
+  description_station varchar(255), 
+  content                 LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,	
   PRIMARY KEY (id_station));
   
 CREATE TABLE Time_of_station  (
@@ -141,7 +144,8 @@ CREATE TABLE Token_forget_password (
 CREATE TABLE Train (
   id_train          int(11) NOT NULL AUTO_INCREMENT, 
   name_train        varchar(255) NOT NULL, 
-  image_train       blob, 
+  image_train       BLOB, 
+  content                 LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   description_train varchar(255) NOT NULL, 
   id_train_brand    int(11) NOT NULL, 
   id_status         int(11) NOT NULL, 

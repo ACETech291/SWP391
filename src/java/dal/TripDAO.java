@@ -20,7 +20,7 @@ public class TripDAO {
     public TripDAO() {
         this.connect = DBConnect.MySQLConnect();
         if (this.connect == null) {
-            System.err.println("Database connection failed!");
+            System.err.println("Database connection failed!1");
         } else {
             System.out.println("Database connected successfully!");
         }

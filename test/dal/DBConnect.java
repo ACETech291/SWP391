@@ -30,7 +30,7 @@ public class DBConnect {
         } catch (ClassNotFoundException e) {
             System.err.println("MySQL JDBC Driver not found!");
         } catch (SQLException e) {
-            System.err.println("Failed to connect to the database!abc");
+            System.err.println("Failed to connect to the database!");
         }
 
         return connection;
@@ -50,7 +50,7 @@ public class DBConnect {
             String line;
 
             while ((line = br.readLine()) != null) {
-                line = line.trim();System.out.println("X");
+                line = line.trim();
                 // Bỏ qua dòng trống và dòng comment
                 if (!line.isEmpty() && !line.startsWith("--")) {
                     sql.append(line);
@@ -63,12 +63,10 @@ public class DBConnect {
             }
 
             System.out.println("SQL script executed successfully!");
-        } catch (IOException io) {
+        } catch (IOException e) {
             System.err.println("Error reading SQL file.");
-            System.out.println(io);
-        } catch (SQLException sql) {
+        } catch (SQLException e) {
             System.err.println("Error executing SQL script.");
-            System.out.println(sql);
         } finally {
             try {
                 connection.close();
