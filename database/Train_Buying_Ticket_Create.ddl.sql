@@ -44,6 +44,8 @@ CREATE TABLE Feedback (
   PRIMARY KEY (id_feedback), 
   FOREIGN KEY (id_advertising) REFERENCES Advertising(id_advertising)
 );
+
+
   
 CREATE TABLE Manager (
   id_manager       int(11) NOT NULL AUTO_INCREMENT, 
@@ -156,7 +158,7 @@ CREATE TABLE Train_brand (
   id_manager              int(11) NOT NULL, 
   name_train_brand        varchar(255) NOT NULL, 
   image_train_brand       blob, 
-  description_train_brand varchar(255), 
+  description_train_brand LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci, 
   PRIMARY KEY (id_train_brand), 
   INDEX (id_train_brand));
   
@@ -205,6 +207,16 @@ CREATE TABLE Authorization (
   feature_authorization  VARCHAR(255) NOT NULL,
   status_authorization   INT(11) NOT NULL,
   PRIMARY KEY (id_authorization)
+);
+CREATE TABLE Comment (
+  id_comment     INT(11) NOT NULL AUTO_INCREMENT, 
+  voting_comment INT(11) NOT NULL, 
+  content         LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  id_customer     INT(11) NOT NULL, 
+  id_train_brand  INT(11) NOT NULL, 
+  create_at               TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id_comment), 
+  FOREIGN KEY (id_train_brand) REFERENCES train_brand(id_train_brand)
 );
 ALTER TABLE Admin ADD CONSTRAINT FKAdmin775394 FOREIGN KEY (id_role) REFERENCES Role (id_role);
 ALTER TABLE Manager ADD CONSTRAINT FKManager24576 FOREIGN KEY (id_role) REFERENCES Role (id_role);

@@ -35,17 +35,19 @@
                                     <a href="#" data-toggle="modal" data-target="#guideModal">Hướng dẫn</a>
                                 </li>
                                 <li>
-                                <c:choose>
-                                    <c:when test="${sessionScope.account.role.id == 1}">
-                                        <a href="dashboard">Quản lý Admin</a>
-                                    </c:when>
-                                    <c:when test="${sessionScope.account.role.id == 2}">
-                                        <a href="Manager">Quản lý</a>
-                                    </c:when>
-                                    <c:otherwise>
+                                    <a href="ListBrand">Thông tin hãng</a>
+                                </li>
+                            <c:choose>
+                                <c:when test="${sessionScope.account.role.id == 1}">
+                                    <a href="dashboard">Quản lý Admin</a>
+                                </c:when>
+                                <c:when test="${sessionScope.account.role.id == 2}">
+                                    <a href="Manager">Quản lý</a>
+                                </c:when>
+                                <c:otherwise>
 
-                                    </c:otherwise>
-                                </c:choose>
+                                </c:otherwise>
+                            </c:choose>
                             </li>
                         </ul>
                     </div><!-- /.navbar-collapse -->   

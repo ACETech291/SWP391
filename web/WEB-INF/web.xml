@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
-<!--        <filter>
+    <!--    <filter>
         <filter-name>LoginFilter</filter-name>
         <filter-class>filter.LoginFilter</filter-class>
     </filter>
@@ -229,6 +229,30 @@
         <servlet-name>Feedback</servlet-name>
         <servlet-class>controller.Feedback</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadStation</servlet-name>
+        <servlet-class>controller.LoadStation</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadTrain</servlet-name>
+        <servlet-class>controller.LoadTrain</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListBrand</servlet-name>
+        <servlet-class>controller.ListBrand</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BrandDetail</servlet-name>
+        <servlet-class>controller.BrandDetail</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadAdvertising</servlet-name>
+        <servlet-class>controller.LoadAdvertising</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Comment</servlet-name>
+        <servlet-class>controller.Comment</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>home</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -432,5 +456,29 @@
     <servlet-mapping>
         <servlet-name>Feedback</servlet-name>
         <url-pattern>/Feedback</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadStation</servlet-name>
+        <url-pattern>/LoadStation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadTrain</servlet-name>
+        <url-pattern>/LoadTrain</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListBrand</servlet-name>
+        <url-pattern>/ListBrand</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BrandDetail</servlet-name>
+        <url-pattern>/BrandDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadAdvertising</servlet-name>
+        <url-pattern>/LoadAdvertising</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Comment</servlet-name>
+        <url-pattern>/Comment</url-pattern>
     </servlet-mapping>
 </web-app>

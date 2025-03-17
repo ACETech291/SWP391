@@ -146,6 +146,21 @@ public class StationDAO extends HttpServlet {
         }
         return listStations;
     }
+    
+    public List<Station> getNext6Stations(int amount) {
+        List<Station> listStations = new ArrayList<Station>();
+        String sql = "SELECT * FROM station ORDER BY id_station LIMIT 6 OFFSET ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, amount);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                listStations.add(new Station(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+            }
+        } catch (SQLException e) {
+        }
+        return listStations;
+    }
 
     public List<Station> getAllStationSortAZ() {
         List<Station> listStations = new ArrayList<Station>();

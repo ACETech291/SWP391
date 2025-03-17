@@ -34,7 +34,7 @@ public class TrainDAO {
         }
         return listTrains;
     }
-
+    
     public Train getTrainById(int id) {
         String sql = "SELECT * FROM train WHERE id_train = ?";
         try (PreparedStatement ps = connect.prepareStatement(sql)) {
@@ -151,4 +151,26 @@ public class TrainDAO {
         }
         return listTrains;
     }
+        public List<Train> getNext4Stations(int amount) {
+        List<Train> listTrains = new ArrayList<>();
+        String sql = "SELECT * FROM Train ORDER BY id_train LIMIT 4 OFFSET ?";
+        try {
+            PreparedStatement ps = connect.prepareStatement(sql);
+            ps.setInt(1, amount);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                listTrains.add(new Train(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7)));
+            }
+        } catch (SQLException e) {
+        }
+        return listTrains;
+    }
+        public static void main(String[] args) {
+        TrainDAO trainDAO = new TrainDAO();
+        List<Train> lst = trainDAO.getNext4Stations(0);
+            for (Train train : lst) {
+                System.out.println(train);
+            }
+    }
+        
 }

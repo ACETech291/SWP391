@@ -6,6 +6,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 import java.util.List;
 import model.Station;
 
@@ -15,7 +16,7 @@ public class ListStation extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         StationDAO stationDAO = new StationDAO();
-        List<Station> listStation = stationDAO.getAllStations();
+        List<Station> listStation = stationDAO.getNext6Stations(0);  
         request.setAttribute("listStation", listStation);
         request.getRequestDispatcher("Views/ListStation.jsp").forward(request, response);
     }

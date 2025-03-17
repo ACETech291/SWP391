@@ -31,6 +31,7 @@
             color: white;
             font-weight: bold;
         }
+
     </style>
     <head>
         <meta charset="UTF-8">
@@ -62,50 +63,16 @@
             <!-- banner starts -->
             <section class="banner overflow-hidden">
                 <div class="slider">
-                    <div class="swiper-container">
+                    <div class="swiper-container">  
                         <div class="swiper-wrapper">
+                        <c:forEach var ="train" items="${trains}">
                             <div class="swiper-slide">
                                 <div class="slide-inner">
-                                    <div class="slide-image" style="background-image:url(${pageContext.request.contextPath}/libs/images/trains/4.jpg)"></div>
-                                <div class="swiper-content container">
-                                    <h4 class="blue">Tiêu đề</h4>
-                                    <h1 class="white mb-4">Nội dung</h1>
-                                    <a href="#" class="per-btn">
-                                        <span class="white">Tìm hiểu thêm</span>
-                                        <i class="fa fa-arrow-right white"></i>
-                                    </a>
-                                </div>
-                                <div class="overlay"></div>
-                            </div> 
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="slide-inner">
-                                <div class="slide-image" style="background-image:url(${pageContext.request.contextPath}/libs/images/trains/6.jpg)"></div>
-                                <div class="swiper-content container">
-                                    <h4 class="blue">Tiêu đề</h4>
-                                    <h1 class="white mb-4">Nội dung</h1>
-                                    <a href="#" class="per-btn">
-                                        <span class="white">Tìm hiểu thêm</span>
-                                        <i class="fa fa-arrow-right white"></i>
-                                    </a>
-                                </div>
-                                <div class="overlay"></div>
-                            </div> 
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="slide-inner">
-                                <div class="slide-image" style="background-image:url(${pageContext.request.contextPath}/libs/images/trains/7.jpg)"></div>
-                                <div class="swiper-content container">
-                                    <h4 class="blue">Tiêu đề</h4>
-                                    <h1 class="white mb-4">Nội dung</h1>
-                                    <a href="#" class="per-btn">
-                                        <span class="white">Tìm hiểu thêm</span>
-                                        <i class="fa fa-arrow-right white"></i>
-                                    </a>
-                                </div>
-                                <div class="overlay"></div>
-                            </div> 
-                        </div>
+                                    <div class="slide-image" style="background-image:url(${train.image_train})"></div>
+                                    <div class="overlay"></div>
+                                </div> 
+                            </div>
+                        </c:forEach>            
                     </div>
                     <!-- Add Arrows -->
                     <div class="swiper-button-next" ></div>
@@ -114,7 +81,7 @@
             </div>
         </section >
         <!-- banner ends -->
-        
+
         <!-- form starts -->
         <div class="form-main"  >
             <div class="container">
@@ -177,9 +144,9 @@
                                                 <i class="flaticon-add-user"></i>
                                                 <select class="niceSelect" name="train_brand">
                                                     <option value="">Chọn hãng</option>
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
+                                                    <c:forEach var="brand" items="${listBrand}">
+                                                        <option value="${brand.id_train_brand}">${brand.name_train_brand}</option>
+                                                    </c:forEach>
                                                 </select>
                                             </div>                             
                                         </div>
@@ -282,7 +249,9 @@
                                     <div class="trend-image">
                                         <c:choose>
                                             <c:when test="${not empty train.image_train}">
-                                                <img src="${pageContext.request.contextPath}/${train.image_train}" alt="image">
+                                                <a href="traindetail?id=${train.id_train}">
+                                                    <img src="${pageContext.request.contextPath}/${train.image_train}" alt="image">
+                                                </a>
                                             </c:when>
                                             <c:otherwise>
                                                 <img src="${pageContext.request.contextPath}/libs/images/trains/6.jpg" alt="image">

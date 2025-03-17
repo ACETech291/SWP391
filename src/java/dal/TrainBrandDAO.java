@@ -9,6 +9,7 @@ import model.TrainBrand;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Manager;
 
@@ -67,6 +68,99 @@ public class TrainBrandDAO {
         }
         return false;
     }
+
+    public List<TrainBrand> getAllTrainBrands() throws SQLException {
+        List<TrainBrand> trainBrands = new ArrayList<>();
+        String query = "SELECT * FROM train_brand";
+        try (PreparedStatement stmt = connect.prepareStatement(query); ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                TrainBrand trainBrand = new TrainBrand(
+                        rs.getInt("id_train_brand"),
+                        null, // You need to fetch the Manager separately if needed
+                        rs.getString("name_train_brand"),
+                        rs.getString("image_train_brand"),
+                        rs.getString("description_train_brand")
+                );
+                trainBrands.add(trainBrand);
+            }
+        }
+        return trainBrands;
+    }
+    
+    public List<TrainBrand> getAllTrainBrandsAZ() throws SQLException {
+        List<TrainBrand> trainBrands = new ArrayList<>();
+        String query = "SELECT * FROM train_brand order by name_train_brand COLLATE utf8mb4_unicode_ci ASC";
+        try (PreparedStatement stmt = connect.prepareStatement(query); ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                TrainBrand trainBrand = new TrainBrand(
+                        rs.getInt("id_train_brand"),
+                        null, // You need to fetch the Manager separately if needed
+                        rs.getString("name_train_brand"),
+                        rs.getString("image_train_brand"),
+                        rs.getString("description_train_brand")
+                );
+                trainBrands.add(trainBrand);
+            }
+        }
+        return trainBrands;
+    }
+    public List<TrainBrand> getAllTrainBrandsZA() throws SQLException {
+        List<TrainBrand> trainBrands = new ArrayList<>();
+        String query = "SELECT * FROM train_brand order by name_train_brand COLLATE utf8mb4_unicode_ci desc";
+        try (PreparedStatement stmt = connect.prepareStatement(query); ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                TrainBrand trainBrand = new TrainBrand(
+                        rs.getInt("id_train_brand"),
+                        null, // You need to fetch the Manager separately if needed
+                        rs.getString("name_train_brand"),
+                        rs.getString("image_train_brand"),
+                        rs.getString("description_train_brand")
+                );
+                trainBrands.add(trainBrand);
+            }
+        }
+        return trainBrands;
+    }
+
+    public TrainBrand getTrainBrandById(int id) throws SQLException {
+        String query = "SELECT * FROM train_brand WHERE id_train_brand = ?";
+        try (PreparedStatement stmt = connect.prepareStatement(query)) {
+            stmt.setInt(1, id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return new TrainBrand(
+                            rs.getInt("id_train_brand"),
+                            null, // Fetch Manager separately if needed
+                            rs.getString("name_train_brand"),
+                            rs.getString("image_train_brand"),
+                            rs.getString("description_train_brand")
+                    );
+                }
+            }
+        }
+        return null;
+    }
+
+    public boolean updateTrainBrand(TrainBrand trainBrand) throws SQLException {
+        String query = "UPDATE train_brand SET name_train_brand = ?, image_train_brand = ?, description_train_brand = ? WHERE id_train_brand = ?";
+        try (PreparedStatement stmt = connect.prepareStatement(query)) {
+            stmt.setString(1, trainBrand.getName_train_brand());
+            stmt.setString(2, trainBrand.getImage_train_brand());
+            stmt.setString(3, trainBrand.getDescription_train_brand());
+            stmt.setInt(4, trainBrand.getId_train_brand());
+            return stmt.executeUpdate() > 0;
+        }
+    }
+
+    public boolean deleteTrainBrand(int id) throws SQLException {
+        String query = "DELETE FROM train_brand WHERE id_train_brand = ?";
+        try (PreparedStatement stmt = connect.prepareStatement(query)) {
+            stmt.setInt(1, id);
+            return stmt.executeUpdate() > 0;
+        }
+    }
+
+
 
 //    public static void main(String[] args) {
 //        TrainBrandDAO tb = new TrainBrandDAO();

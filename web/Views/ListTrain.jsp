@@ -2,39 +2,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <style>
-        .pagination {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .pagination a {
-            margin: 5px;
-            padding: 10px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            border: 1px solid #007bff;
-            color: #007bff;
-            font-weight: bold;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .pagination a:hover {
-            background-color: #007bff;
-            color: white;
-        }
-
-        .pagination .btn-primary {
-            background-color: #007bff;
-            color: white;
-            border: 1px solid #0056b3;
-            font-weight: bold;
-            transform: scale(1.1);
-            transition: all 0.3s ease-in-out;
-        }
-
-    </style>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,7 +15,6 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/font-awesome/5.11.2/css/all.min.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/fonts/line-icons.css" type="text/css">
     </head>
-
     <body>
         <!-- Preloader -->
         <div id="preloader">
@@ -82,7 +48,7 @@
         <!-- blog starts -->
         <section class="blog destination-b pb-6">
             <div class="container">
-                <div class="row">
+                <div  id="abc" class="row">
                     <div class="col-lg-8 col-xs-12 mb-4">
                         <div class="trend-box">
                             <div class="list-results d-flex align-items-center justify-content-between">
@@ -102,13 +68,15 @@
                             <c:choose>
                                 <c:when test="${not empty trains}">
                                     <c:forEach var="train" items="${trains}">
-                                        <div class="blog-full d-flex justify-content-around mb-4">
+                                        <div class="train blog-full d-flex justify-content-around mb-4">
                                             <div class="row w-100">
                                                 <div class="col-lg-5 col-md-4 col-xs-12 blog-height">
                                                     <div class="blog-image">
                                                         <c:choose>
                                                             <c:when test="${not empty train.image_train}">
-                                                                <a href="traindetail?id=${train.id_train}" style="background-image: url('${pageContext.request.contextPath}/${train.image_train}');"></a>
+                                                                <a href="traindetail?id=${train.id_train}">
+                                                                    <img src="${pageContext.request.contextPath}/${train.image_train}" alt="image">
+                                                                </a>
                                                             </c:when>
                                                             <c:otherwise>
                                                                 <a href="traindetail?id=${train.id_train}" style="background-image: url('${pageContext.request.contextPath}/libs/images/trains/6.jpg');"></a>
@@ -133,9 +101,6 @@
                                             </div>
                                         </div>
                                     </c:forEach>
-                                    <div class="text-center">
-                                        <a href="#" class="nir-btn">Xem thêm <i class="fa fa-long-arrow-alt-right"></i></a>
-                                    </div>
                                 </c:when>
                                 <c:otherwise>
                                     <p class="text-center text-danger">Dữ liệu hiện không khả dụng. Vui lòng thử lại sau.</p>
@@ -143,87 +108,14 @@
                             </c:choose>
                         </div>
                     </div>
-
-                    <div class="col-lg-4 col-xs-12 mb-4">
-                        <div class="form-navtab text-center">
-                            <ul class="nav nav-tabs">
-                                <li class="active mr-1">
-                                    <div class="form-group mb-0">
-                                        <a href="#tour-1" class="nir-btn w-100" data-toggle="tab"><i class="fa fa-train"></i> Một chiều</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="sidebar-sticky">
-                            <div class="sidebar-item mb-4">
-                                <form class="form-content">
-                                    <h4 class="title white">Đặt vé</h4>
-                                    <div class="tab-content">
-                                        <div id="tour-1" class="row tab-pane in active">
-                                            <div class="col-lg-12">
-                                                <div class="form-group">
-                                                    <label class="white">Điểm đi</label>
-                                                    <div class="input-box">
-                                                        <i class="flaticon-placeholder"></i>
-                                                        <select class="niceSelect">
-                                                            <option value="1">Hà Nội</option>
-                                                            <option value="2">Đà Nẵng</option>
-                                                            <option value="3">TP.HCM</option>
-                                                        </select>
-                                                    </div>                            
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <div class="form-group">
-                                                    <label class="white">Điểm đến</label>
-                                                    <div class="input-box">
-                                                        <i class="flaticon-placeholder"></i>
-                                                        <select class="niceSelect">
-                                                            <option value="1">Hà Nội</option>
-                                                            <option value="2">Đà Nẵng</option>
-                                                            <option value="3">TP.HCM</option>
-                                                        </select>
-                                                    </div>                            
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-12">
-                                                <div class="form-group">
-                                                    <label class="white">Ngày đi</label>
-                                                    <div class="input-box">
-                                                        <i class="flaticon-calendar"></i>
-                                                        <input id="date-range0" type="text" placeholder="yyyy-mmm-dd">
-                                                    </div>                            
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-12">
-                                                <div class="form-group">
-                                                    <label class="white">Hãng tàu</label>
-                                                    <div class="input-box">
-                                                        <i class="flaticon-add-user"></i>
-                                                        <select class="niceSelect">
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                        </select>
-                                                    </div>                             
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <div class="form-group mb-0">
-                                                    <a href="#" class="nir-btn w-100"><i class="fa fa-search"></i> Tìm kiếm</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
+        <div class="text-center">
+            <button onclick="loadMore()" class="per-btn">
+                <span class="grey">Xem thêm</span>
+            </button>
+        </div>
         <!-- blog Ends -->  
 
         <!-- footer starts -->
@@ -249,46 +141,23 @@
     <script src="${pageContext.request.contextPath}/libs/js/custom-navscroll.js"></script>
     <script src="${pageContext.request.contextPath}/libs/js/custom-date.js"></script>
     <script>
-                                                (function () {
-                                                    function c() {
-                                                        var b = a.contentDocument || a.contentWindow.document;
-                                                        if (b) {
-                                                            var d = b.createElement('script');
-                                                            d.innerHTML = "window.__CF$cv$params={r:'90d1e23ad85384ab',t:'MTczODc0Nzg0Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='${pageContext.request.contextPath}/libs/cdn-cgi/challenge-platform/h/g/scripts/jsd/8a57887573f2/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";
-                                                            b.getElementsByTagName('head')[0].appendChild(d)
-                                                        }
-                                                    }
-                                                    if (document.body) {
-                                                        var a = document.createElement('iframe');
-                                                        a.height = 1;
-                                                        a.width = 1;
-                                                        a.style.position = 'absolute';
-                                                        a.style.top = 0;
-                                                        a.style.left = 0;
-                                                        a.style.border = 'none';
-                                                        a.style.visibility = 'hidden';
-                                                        document.body.appendChild(a);
-                                                        if ('loading' !== document.readyState)
-                                                            c();
-                                                        else if (window.addEventListener)
-                                                            document.addEventListener('DOMContentLoaded', c);
-                                                        else {
-                                                                var e = document.onreadystatechange || function () {};
-                                                            document.onreadystatechange = function (b) {
-                e(b);
-                                                                'loading' !== document.readyState && (document.onreadystatechange = e, c())
-                                                            }
-                                                        }
-                                                    }
-                                                })();
-                                                <script>
-                                function submitForm(page) {
-                                                        document.getElementById('form-page-' + page).submit();
-                                    }
-                                                
-                                    
-                                    
-                                        
-                                        </script>
-</script>
+
+                function loadMore() {
+                    var amount = document.getElementsByClassName("train").length;
+                    $.ajax({
+                        url: "/SWP391/LoadTrain",
+                        type: "get",
+                        data: {
+                            exists: amount},
+                        success: function (data) {
+                            var row = document.getElementById("abc");
+                            row.innerHTML += data;
+                        },
+                        error: function (xhr) {
+                            console.error("Error loading more data");
+                        }
+                    });
+                }
+
+    </script>
 </html>
