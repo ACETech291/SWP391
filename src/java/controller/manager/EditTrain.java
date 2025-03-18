@@ -80,7 +80,7 @@ public class EditTrain extends HttpServlet {
         TrainDAO dao = new TrainDAO();
         dao.updateTrain(train);
        
-        response.sendRedirect("Manager");
+        response.sendRedirect("trainmanagement");
     }
 
     /**

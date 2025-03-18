@@ -69,6 +69,6 @@ public class EditStation extends HttpServlet {
         StationDAO dao = new StationDAO();
         dao.updateStation(staion);
         
-        response.sendRedirect("Manager");
+        response.sendRedirect("staionmanagement");
     }
 }

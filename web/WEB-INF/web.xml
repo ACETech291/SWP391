@@ -24,7 +24,8 @@
     <filter-mapping>
         <filter-name>AuthorizationFilter</filter-name>
         <url-pattern>/*</url-pattern>
-    </filter-mapping>-->
+    </filter-mapping>
+    -->
     <servlet>
         <servlet-name>home</servlet-name>
         <servlet-class>controller.home</servlet-class>
@@ -253,6 +254,22 @@
         <servlet-name>Comment</servlet-name>
         <servlet-class>controller.Comment</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TrainManagement</servlet-name>
+        <servlet-class>controller.manager.TrainManagement</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CarriageManagement</servlet-name>
+        <servlet-class>controller.manager.CarriageManagement</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SeatManagement</servlet-name>
+        <servlet-class>controller.manager.SeatManagement</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>StationManagement</servlet-name>
+        <servlet-class>controller.manager.StationManagement</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>home</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -480,5 +497,21 @@
     <servlet-mapping>
         <servlet-name>Comment</servlet-name>
         <url-pattern>/Comment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TrainManagement</servlet-name>
+        <url-pattern>/trainmanagement</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CarriageManagement</servlet-name>
+        <url-pattern>/carriagemanagement</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SeatManagement</servlet-name>
+        <url-pattern>/seatmanagement</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StationManagement</servlet-name>
+        <url-pattern>/stationmanagement</url-pattern>
     </servlet-mapping>
 </web-app>

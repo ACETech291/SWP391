@@ -19,15 +19,6 @@ import model.TrainCarriage;
  * @author dinhphu
  */
 public class EditCarriage extends HttpServlet {
-
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -51,15 +42,6 @@ public class EditCarriage extends HttpServlet {
         request.setAttribute("trainCarriage", traincarriage);
         request.getRequestDispatcher("Views/Manager/EditCarriage.jsp").forward(request, response);
     }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -75,7 +57,7 @@ public class EditCarriage extends HttpServlet {
         TrainCarriageDAO dao = new TrainCarriageDAO();
         dao.updateTrainCarriage(traincarriage);
 
-        response.sendRedirect("Manager");
+        response.sendRedirect("carriagemanagement");
     }
 
     /**

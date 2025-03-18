@@ -51,6 +51,18 @@
     </head>
 
     <body>
+        <%
+            Integer idTrainBrand = (Integer) session.getAttribute("id_train_brand");
+            if (idTrainBrand == null) {
+                response.sendRedirect("login"); // Thay "TrangKhac.jsp" bằng trang bạn muốn chuyển hướng
+                return;
+            }
+            
+            Integer id_train_brand = (Integer) session.getAttribute("id_train_brand");
+            List<Status> statusCarriage = (List<Status>) request.getAttribute("status_carriage");
+            List<Status> statusTrain = (List<Status>) request.getAttribute("status_train");
+            
+        %>
         <!-- ===============================================--><!--    Main Content--><!-- ===============================================-->
         <main class="main" id="top">
             <div class="container" data-layout="container">
@@ -60,9 +72,94 @@
                         <!-- Header-->
                     <jsp:include page="lib/header.jsp"></jsp:include>
                         <!-- Content -->
+                        <div class="section-title text-center mb-5 pb-2 w-50 mx-auto">
+                            <h2 class="m-0"><span>Quản lý tàu</span></h2>
+                        </div> 
 
-                               
+                        <div>
+                            <button class="nir-btn w-30" onclick="toggleAddTrainForm()" >Thêm tàu</button>
+                            <br>
+                            <!-- Form thêm tàu -->
+                            <div id="addTrain" class="add-form">
+                                <h3>Thêm tàu mới</h3>
+                                <form id="trainForm" action="AddTrain" method="POST">
+                                    <label for="name_train">Tên tàu:</label>
+                                    <input type="text" id="name_train" name="name_train" required>
+                                    <br>
+                                    <label for="description_train">Mô tả:</label>
+                                    <input type="text" id="description_train" name="description_train" required>
+                                    <br>                                                                                       
+                                <input type="hidden" id="id_train_brand" name="id_train_brand" value="<%= id_train_brand %>" >
 
+                                <label for="id_status">Trạng thái:</label>
+                                <select id="id_status" name="id_status" required>
+                                    <option value="">Chọn trạng thái</option>
+                                    <c:forEach var="status" items="${status_train}">
+                                        <option value="${status.id}">${status.statusName}</option>
+                                    </c:forEach>
+                                </select>
+                                <br>    
+                                <br>
+                                <button type="submit" class="nir-btn w-30">Lưu</button>
+                                <button type="button" class="nir-btn w-30" onclick="toggleAddTrainForm()">Huỷ</button>
+                            </form>
+                        </div>
+                    </div>    
+                    <!-- Table Train -->
+                    <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
+                        <table class="table table-hover mb-0">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th class="text-center align-middle">Tên tàu</th>
+                                    <th class="text-center align-middle">Mô tả</th>
+                                    <th class="text-center align-middle">trạng thái</th>
+                                    <th class="text-center align-middle">Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% 
+                                    List<Train> topTrains = (List<Train>) request.getAttribute("topTrains"); 
+                                    if (topTrains != null && !topTrains.isEmpty()) {
+                                        for (Train train : topTrains) {
+                                %>
+                                <tr>
+                                    <td class="text-center align-middle"><%= train.getName_train() %></td>
+                                    <td class="text-center align-middle"><%= train.getDescription_train() %></td>
+                                    <td class="text-center align-middle">
+                                        <% 
+                                            String statusName = "Không xác định";
+                                            for (Status status : statusTrain) {
+                                                if (status.getId() == train.getId_status()) {
+                                                    statusName = status.getStatusName();
+                                                    break;
+                                                }
+                                            }
+                                        %>
+                                        <%= statusName %>
+                                    </td>
+                                    <td class="text-center align-middle">
+                                        <!-- Nút hành động -->
+                                        <a href="EditTrain?id=<%= train.getId_train() %>" class="btn btn-warning btn-sm">Sửa</a>
+
+                                        <form id="deleteForm-<%= train.getId_train() %>" action="DeleteTrain" method="POST" style="display: inline;">
+                                            <input type="hidden" name="id_train" value="<%= train.getId_train() %>">
+                                            <button type="button" class="btn btn-danger btn-sm" onclick="confirmDeleteTrain(<%= train.getId_train() %>)">Xóa</button>
+                                        </form>
+
+                                    </td>
+                                </tr>
+                                <% 
+                                        }
+                                    } else { 
+                                %>
+                                <tr>
+                                    <td colspan="4" class="text-center">12345678900000</td>
+                                </tr>
+                                <% } %>
+                            </tbody>
+
+                        </table>
+                    </div><br><br>                                    
                 </div>
             </div>
         </main>
@@ -74,6 +171,11 @@
             const form = document.getElementById("addTrain");
             form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
         }
+                    function confirmDeleteTrain(id) {
+                        if (confirm("Bạn có chắc chắn muốn xóa tàu này không?")) {
+                            document.getElementById("deleteForm-" + id).submit();
+                        }
+                    }        
     </script>
 
     <script src="${pageContext.request.contextPath}/Views/Admin/vendors/popper/popper.min.js"></script>
