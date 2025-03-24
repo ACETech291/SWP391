@@ -11,6 +11,9 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.List;
+import model.Authorization;
 
 /**
  *
@@ -80,10 +83,19 @@ public class DeleteAuthorization extends HttpServlet {
             if (success) {
                 request.setAttribute("message", "Cập nhật trạng thái thành công!");
             } else {
-                request.setAttribute("message", "Cập nhật trạng thái thất bại!");
+                request.setAttribute("errorMessage", "Cập nhật trạng thái thất bại!");
             }
         }
-        response.sendRedirect("AuthorizationManagement");
+        
+        HttpSession session = request.getSession();
+        List<Authorization> authorizationList = authorizationDAO.getAllAuthorizations();
+        String errorMessage = (String) session.getAttribute("hihi");
+        
+        request.setAttribute("errorMessage", errorMessage);
+        request.setAttribute("authorizationList", authorizationList);
+        request.getRequestDispatcher("Views/Admin/AuthorizationManagement.jsp").forward(request, response);
+        
+        
     }
 
     /**

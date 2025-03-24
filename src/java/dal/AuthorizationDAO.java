@@ -89,7 +89,7 @@ public class AuthorizationDAO {
     }
 
     public boolean deleteAuthorization(int id_authorization) {
-        String query = "UPDATE Authorization SET status_authorization = 0 WHERE id_authorization = ?";
+        String query = "DELETE FROM Authorization WHERE id_authorization = ?";
         try (Connection conn = DBConnect.MySQLConnect(); PreparedStatement ps = conn.prepareStatement(query)) {
             ps.setInt(1, id_authorization);
             int affectedRows = ps.executeUpdate();

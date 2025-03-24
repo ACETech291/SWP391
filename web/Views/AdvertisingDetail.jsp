@@ -139,9 +139,6 @@
                                                 <c:forEach begin="1" end="${feedback.voting_feedback}">
                                                     <i class="fa fa-star text-warning"></i>
                                                 </c:forEach>
-                                                <c:forEach begin="${feedback.voting_feedback + 1}" end="5">
-                                                    <i class="fa fa-star text-muted"></i>
-                                                </c:forEach>
                                             </p>
 
                                             <p class="comment">${feedback.content}</p>

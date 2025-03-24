@@ -191,9 +191,6 @@
                                     <c:forEach begin="1" end="${comment.voting_comment}">
                                         <i class="fa fa-star text-warning"></i>
                                     </c:forEach>
-                                    <c:forEach begin="${comment.voting_comment + 1}" end="5">
-                                        <i class="fa fa-star text-muted"></i>
-                                    </c:forEach>
                                 </p>
 
                                 <p class="comment">${comment.content}</p>
