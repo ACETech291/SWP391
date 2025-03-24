@@ -171,7 +171,7 @@
                                         <!-- Nhập nội dung bình luận -->
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <textarea name="comment" placeholder="Để lại bình luận của bạn tại đây (tối thiểu 20 kí tự)" required minlength="20"></textarea>
+                                                <textarea name="comment" placeholder="Để lại bình luận của bạn tại đây (tối thiểu 20 kí tự)" required minlength="20" maxlength="255"></textarea>
                                             </div>
                                         </div>
 

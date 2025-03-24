@@ -4,12 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 import model.Trip;
 import model.TripDTO;
@@ -320,7 +317,8 @@ public class TripDAO {
         }
         return name_train;
     }
-    public String getNameStationStart(int id_trip){
+
+    public String getNameStationStart(int id_trip) {
         String name_station_start = "";
         String sql = """
                      SELECT name_station 
@@ -341,7 +339,8 @@ public class TripDAO {
         }
         return name_station_start;
     }
-    public String getNameStationEnd(int id_trip){
+
+    public String getNameStationEnd(int id_trip) {
         String name_station_start = "";
         String sql = """
                      SELECT name_station 
@@ -362,6 +361,7 @@ public class TripDAO {
         }
         return name_station_start;
     }
+
     public String getNameTrainBrand(int id_trip) {
         String name_train_brand = "";
         String sql = """
@@ -382,8 +382,9 @@ public class TripDAO {
         }
         return name_train_brand;
     }
-    public List<Pair<Pair<Integer,Integer>,String> > getNameTrainCarriage(int id_trip){
-        List<Pair<Pair<Integer,Integer>,String> > res = new ArrayList<>();
+
+    public List<Pair<Pair<Integer, Integer>, String>> getNameTrainCarriage(int id_trip) {
+        List<Pair<Pair<Integer, Integer>, String>> res = new ArrayList<>();
         String sql = """
                      SELECT name_train_carriage,id_train_carriage,total_seat
                      FROM train_carriage, trip
@@ -397,7 +398,7 @@ public class TripDAO {
                     String name = rs.getString("name_train_carriage");
                     Integer id_train_carriage = rs.getInt("id_train_carriage");
                     Integer total_seat = rs.getInt("total_seat");
-                    res.add(Pair.of(Pair.of(id_train_carriage,total_seat),name));
+                    res.add(Pair.of(Pair.of(id_train_carriage, total_seat), name));
                 }
             }
         } catch (Exception e) {
@@ -405,6 +406,7 @@ public class TripDAO {
         }
         return res;
     }
+
     public static void main(String[] args) {
 //        TripDAO td = new TripDAO();
 //        List<Pair<Integer,String> > ans = td.getNameTrainCarriage(1);

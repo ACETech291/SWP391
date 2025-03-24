@@ -277,60 +277,6 @@
     </section>
     <!-- list train ends -->
 
-    <!-- List train trip Starts -->
-    <section class="trending pb-6 pt-5">
-        <div class="container">
-            <div class="section-title text-center mb-5 pb-2 w-50 mx-auto">
-                <h2 class="m-0">Danh sách <span>Các chuyến đi</span></h2>
-                <p class="mb-0">Danh sách các chuyến đi khả dụng</p>
-            </div>  
-
-            <!-- Thanh cuộn ngày -->
-            <div class="container-fluid mb-3">
-                <div id="date-scroll" class="d-flex overflow-auto bg-light border-bottom py-2 date-scroll"></div>
-            </div>
-            <!-- Kết thúc thanh cuộn ngày -->
-
-            <div id="cart-main" class="cart-main pb-4">
-                <div class="container-fluid">
-                    <div class="row justify-content-center">
-                        <div class="col-12">
-                            <div class="card shadow-sm">
-                                <div class="card-body p-0">
-                                    <!-- Bọc bảng trong div có max-height để tạo thanh cuộn -->
-                                    <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
-                                        <table class="table table-hover mb-0">
-                                            <thead class="thead-light">
-                                                <tr>
-                                                    <th class="text-center align-middle">Mã tàu</th>
-                                                    <th class="text-center align-middle">Hình ảnh</th>
-                                                    <th class="text-center align-middle">Khởi hành</th>
-                                                    <th class="text-center align-middle">Dự kiến đến</th>
-                                                    <th class="text-center align-middle">Điểm đi</th>
-                                                    <th class="text-center align-middle">Điểm đến</th>
-                                                    <th class="text-center align-middle">Giá vé</th>
-                                                    <th class="text-center align-middle"></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="trip-list">
-                                                <tr>
-                                                    <td colspan="8" class="text-center">Đang tải dữ liệu...</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!-- Kết thúc div table-responsive -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- List train trip Ends -->
-
     <!-- Station Starts -->
     <section class="trending destination pb-6 pt-9"  style="background-image: url(${pageContext.request.contextPath}/libs/images/bg/bg4.jpg);">
         <div class="container">

@@ -143,7 +143,7 @@
                         <nav aria-label="breadcrumb">
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="home">Trang chủ</a></li>
-                                <li class="breadcrumb-item" aria-current="page"><a href="advertising">Hãng tàu</a></li>
+                                <li class="breadcrumb-item" aria-current="page"><a href="ListBrand">Hãng tàu</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Chi tiết hãng tàu</li>
                             </ul>
                         </nav>
