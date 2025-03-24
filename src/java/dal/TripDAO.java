@@ -9,9 +9,11 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import model.Trip;
 import model.TripDTO;
+import org.apache.tomcat.jakartaee.commons.lang3.tuple.Pair;
 
 public class TripDAO {
 
@@ -299,23 +301,115 @@ public class TripDAO {
         }
     }
 
+    // GET NAME TRAIN BY TRIP ID
+    public String getNameTrainByTripID(int id_trip) {
+        String name_train = "";
+        String sql = """
+                     SELECT name_train FROM train, trip
+                     WHERE train.id_train = trip.id_train AND trip.id_trip = ? """;
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+            ps.setInt(1, id_trip);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    name_train = rs.getString("name_train");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return name_train;
+    }
+    public String getNameStationStart(int id_trip){
+        String name_station_start = "";
+        String sql = """
+                     SELECT name_station 
+                     FROM station s, trip t,time_station ts
+                     WHERE t.id_time_station_start = ts.id_time_station 
+                     AND ts.id_station = s.id_station
+                     AND t.id_trip = ? """;
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+            ps.setInt(1, id_trip);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    name_station_start = rs.getString("name_station");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return name_station_start;
+    }
+    public String getNameStationEnd(int id_trip){
+        String name_station_start = "";
+        String sql = """
+                     SELECT name_station 
+                     FROM station s, trip t,time_station ts
+                     WHERE t.id_time_station_end = ts.id_time_station 
+                     AND ts.id_station = s.id_station
+                     AND t.id_trip = ? """;
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+            ps.setInt(1, id_trip);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    name_station_start = rs.getString("name_station");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return name_station_start;
+    }
+    public String getNameTrainBrand(int id_trip) {
+        String name_train_brand = "";
+        String sql = """
+                     SELECT name_train_brand FROM train tn, trip tp, train_brand td
+                     WHERE tn.id_train = tp.id_train 
+                     AND tn.id_train_brand = td.id_train_brand
+                     AND tp.id_trip = ? """;
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+            ps.setInt(1, id_trip);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    name_train_brand = rs.getString("name_train_brand");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return name_train_brand;
+    }
+    public List<Pair<Pair<Integer,Integer>,String> > getNameTrainCarriage(int id_trip){
+        List<Pair<Pair<Integer,Integer>,String> > res = new ArrayList<>();
+        String sql = """
+                     SELECT name_train_carriage,id_train_carriage,total_seat
+                     FROM train_carriage, trip
+                     WHERE trip.id_train = train_carriage.id_train
+                     AND trip.id_trip = ? """;
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+            ps.setInt(1, id_trip);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    String name = rs.getString("name_train_carriage");
+                    Integer id_train_carriage = rs.getInt("id_train_carriage");
+                    Integer total_seat = rs.getInt("total_seat");
+                    res.add(Pair.of(Pair.of(id_train_carriage,total_seat),name));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
     public static void main(String[] args) {
 //        TripDAO td = new TripDAO();
-//        for(int i = 1; i <38;i++){
-//            for(int j = i+1 ; j <38;j++){
-//                System.out.println("(0, "+i+","+j+", 1),");
-//            }
-//        }
-//        for(int i = 37; i >0;i--){
-//            for(int j = i-1 ; j >0;j--){
-//                System.out.println("(0, "+i+","+j+", 1),");
-//            }
-//        }
-//        for (int j = 1; j < 29; j++) {
-//            for (int i = 1; i < 1133; i++) {
-//                System.out.println("(" + i + "," + j + "),");
-//
-//            }
+//        List<Pair<Integer,String> > ans = td.getNameTrainCarriage(1);
+//        for(int i = 0 ; i < ans.size(); ++i){
+//            System.out.println(ans.get(i).getLeft() + " " + ans.get(i).getRight());
 //        }
     }
 }

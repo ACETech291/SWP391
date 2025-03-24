@@ -5,6 +5,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import model.Train;
+import org.apache.tomcat.jakartaee.commons.lang3.tuple.Pair;
 
 /**
  *
@@ -127,7 +128,28 @@ public class TrainSeatDAO {
             e.printStackTrace();
         }
     }
-
+    public List<Pair<Integer,Integer> > getStatusByIdTrainCarriage(int id_train_carriage){
+        List<Pair<Integer,Integer> > ans = new ArrayList<>();
+        String sql = """
+                     SELECT id_status,price_seat
+                     FROM train_seat
+                     WHERE id_train_carriage = ?
+                     ORDER BY id_train_seat ASC
+                     """;
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+            ps.setInt(1, id_train_carriage);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    int val = rs.getInt("id_status");
+                    int price = rs.getInt("price_seat");
+                    ans.add(Pair.of(val,price));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ans;
+    }
     public static void main(String[] args) throws SQLException {
         TrainSeatDAO dao = new TrainSeatDAO();
         TrainSeat seat_by_car = dao.getTrainSeatById(1);
