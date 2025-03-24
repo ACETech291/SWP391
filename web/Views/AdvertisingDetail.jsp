@@ -119,21 +119,6 @@
                                         <p>${advertising.content}</p>
                                     </div>   
                                     <!-- blog share -->
-                                    <div class="blog-share d-flex justify-content-between align-items-center mb-4 bg-lgrey border">
-                                        <div class="blog-share-tag">
-                                            <ul class="inline">
-                                                <li><strong>Chia sẻ bài viêt</strong></li>    
-                                            </ul>
-                                        </div>
-                                        <div class="header-social">
-                                            <ul>
-                                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                                <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
 
@@ -189,7 +174,7 @@
                                         <!-- Nhập nội dung bình luận -->
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <textarea name="comment" placeholder="Để lại bình luận của bạn tại đây (tối thiểu 50 kí tự)" required minlength="50"></textarea>
+                                                <textarea name="comment" placeholder="Để lại bình luận của bạn tại đây (tối thiểu 20 kí tự)" required minlength="20"></textarea>
                                             </div>
                                         </div>
 

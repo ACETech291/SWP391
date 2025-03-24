@@ -40,7 +40,7 @@ public class DeleteTrain extends HttpServlet {
             TrainDAO trainDAO = new TrainDAO();
             trainDAO.deleteTrain(id_train);
 
-            response.sendRedirect("Manager");
+            response.sendRedirect("trainmanagement");
         } catch (Exception e) {
             response.sendRedirect("Manager?message=error");
         }

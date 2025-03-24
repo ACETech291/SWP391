@@ -17,8 +17,8 @@ INSERT INTO Admin (username_admin, password_admin, email_admin, id_role)
 -- train brand
 INSERT INTO Train_brand (id_manager, name_train_brand, description_train_brand,image_train_brand)
 	VALUES 
-	(1, 'Alpha', 'Train brand Alpha - High speed trains', null), 
-	(2, 'Beta', 'Train brand Beta - Luxury trains', null);      
+	(1, 'Alpha', 'Công ty Đường sắt Alpha là một hãng tàu tiên phong trong lĩnh vực vận tải hành khách. Với công nghệ tiên tiến và cam kết bảo vệ môi trường, Alpha Rail đã cách mạng hóa ngành đường sắt bằng việc cung cấp các chuyến tàu cao tốc mang lại sự thoải mái và an toàn cho hành khách. Công ty nổi tiếng với các đoàn tàu chạy bằng điện thân thiện với môi trường, giúp giảm lượng khí thải carbon trong khi vẫn đảm bảo hành trình mượt mà và đúng giờ. Alpha Rail hoạt động trên các tuyến đường lớn, kết nối các thành phố và khu vực, góp phần thúc đẩy phát triển kinh tế. Với mục tiêu nâng cao trải nghiệm khách hàng, công ty không ngừng cải thiện cơ sở hạ tầng và dịch vụ, trở thành cái tên hàng đầu trong lĩnh vực vận tải đường sắt hiện đại.', '../SWP391/images/brands/Hang1.jpg'), 
+	(2, 'Beta', 'Công ty Đường sắt Beta là một trong những hãng tàu hàng đầu, nổi bật với dịch vụ vận chuyển hành khách chất lượng cao và hệ thống hạ tầng hiện đại. Với sứ mệnh mang lại trải nghiệm di chuyển an toàn và tiện lợi, Beta Rail đã đầu tư vào công nghệ tàu điện tiên tiến và hệ thống điều khiển tự động thông minh. Hãng tàu này không chỉ nổi tiếng với tốc độ nhanh và độ chính xác cao, mà còn được đánh giá cao về dịch vụ chăm sóc khách hàng và không gian nội thất sang trọng. Beta Rail hiện đang mở rộng mạng lưới tuyến đường, kết nối các khu vực đô thị và vùng ngoại ô, góp phần thúc đẩy giao thông xanh và phát triển bền vững.', '../SWP391/images/brands/Hang2.jpg');      
 
 --	status
 INSERT INTO Status (name_status)
@@ -33560,6 +33560,7 @@ INSERT INTO authorization(role_id,URL_authorization,feature_authorization,status
 (1,"/DeleteAuthorization","Xóa quyền",1),
 (1,"/EditAuthorization","Trang chỉnh sửa quyền",1),
 (3,"/Feedback","Đưa ra nhận xét",1),
+(1,"/LoadStation","Load station",1),(2,"/LoadStation","Load station",1),(3,"/LoadStation","Load station",1),(4,"/LoadStation","Load station",1),
 (1,"/403","Trang không có quyền truy cập",1),(2,"/403","Trang không có quyền truy cập",1),(3,"/403","Trang không có quyền truy cập",1),(4,"/403","Trang không có quyền truy cập",1)
 ;
 

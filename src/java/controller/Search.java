@@ -6,6 +6,7 @@ package controller;
 
 import dal.AdvertisingDAO;
 import dal.StationDAO;
+import dal.TrainBrandDAO;
 import dal.TrainDAO;
 import model.Train;
 import dal.TripDAO;
@@ -16,11 +17,15 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Station;
+import model.TrainBrand;
 import model.TripDTO;
 
 /**
@@ -126,6 +131,13 @@ public class Search extends HttpServlet {
         List<Train> trains = trainDAO.getAllTrains();
         request.setAttribute("trains", trains);
         AdvertisingDAO advertisingDAO = new AdvertisingDAO();
+        TrainBrandDAO trainBrandDAO = new TrainBrandDAO();
+        List<TrainBrand> listBrand = null;
+        try {
+             listBrand = trainBrandDAO.getAllTrainBrands();
+        } catch (SQLException ex) {
+            Logger.getLogger(home.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         String station_from = request.getParameter("station_from");
         String station_end = request.getParameter("station_end");
@@ -195,6 +207,7 @@ public class Search extends HttpServlet {
 
         List<Station> listStation = stationDAO.getAllStations();
         List<model.Advertising> listAdvertisings = advertisingDAO.getAllAdvertising();
+        request.setAttribute("listBrand", listBrand);
         session.setAttribute("list1", list1);
         request.setAttribute("page", page);
         request.setAttribute("num", num);

@@ -4,24 +4,25 @@
  */
 package controller;
 
-import dal.StationDAO;
-import dal.TrainDAO;
+import dal.CommentDAO;
+import dal.TrainBrandDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.Comparator;
+import java.sql.SQLException;
 import java.util.List;
-import model.Station;
-import model.Train;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.TrainBrand;
 
 /**
  *
  * @author Nguyen Ba Hien
  */
-public class SortServlet extends HttpServlet {
+public class BrandDetail extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +41,10 @@ public class SortServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SortServlet</title>");
+            out.println("<title>Servlet BrandDetail</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SortServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet BrandDetail at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,28 +62,20 @@ public class SortServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String order = request.getParameter("order");
-        if (order.equalsIgnoreCase("2")) {
-            StationDAO stationDAO = new StationDAO();
-            List<Station> listStation = stationDAO.getAllStationSortAZ();
-            request.setAttribute("listStation", listStation);
-            request.setAttribute("order", order);
-            request.getRequestDispatcher("Views/ListStation.jsp").forward(request, response);
-
-        } else if (order.equalsIgnoreCase("3")) {
-            StationDAO stationDAO = new StationDAO();
-            List<Station> listStation = stationDAO.getAllStationSortZA();
-            request.setAttribute("listStation", listStation);
-            request.setAttribute("order", order);
-            request.getRequestDispatcher("Views/ListStation.jsp").forward(request, response);
-
-        } else {
-            StationDAO stationDAO = new StationDAO();
-            List<Station> listStation = stationDAO.getNext6Stations(0);
-            request.setAttribute("listStation", listStation);
-            request.setAttribute("order", order);
-            request.getRequestDispatcher("Views/ListStation.jsp").forward(request, response);
+        TrainBrandDAO trainBrandDAO = new TrainBrandDAO();
+        CommentDAO commentDAO = new CommentDAO();
+        
+        String id = request.getParameter("id"); 
+        try {
+            TrainBrand trainBrand = trainBrandDAO.getTrainBrandById(Integer.parseInt(id));
+            List<model.Comment> listComment = commentDAO.getAllComments(Integer.parseInt(id));
+            request.setAttribute("trainBrand",trainBrand);
+            request.setAttribute("listComment", listComment);
+            request.getRequestDispatcher("Views/BrandDetail.jsp").forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(BrandDetail.class.getName()).log(Level.SEVERE, null, ex);
         }
+        processRequest(request, response);
     }
 
     /**
@@ -96,26 +89,7 @@ public class SortServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String order = request.getParameter("order");
-        if (order.equalsIgnoreCase("2")) {
-            TrainDAO trainDAO = new TrainDAO();
-            List<Train> trains = trainDAO.getAllTrainSortAZ();
-            request.setAttribute("trains", trains);
-            request.getRequestDispatcher("Views/ListTrain.jsp").forward(request, response);
-
-        } else if (order.equalsIgnoreCase("3")) {
-            String sort = request.getParameter("sort");
-            TrainDAO trainDAO = new TrainDAO();
-            List<Train> trains = trainDAO.getAllTrainSortZA();
-            request.setAttribute("trains", trains);
-            request.getRequestDispatcher("Views/ListTrain.jsp").forward(request, response);
-        } else {
-            String sort = request.getParameter("sort");
-            TrainDAO trainDAO = new TrainDAO();
-            List<Train> trains = trainDAO.getNext4Stations(0);
-            request.setAttribute("trains", trains);
-            request.getRequestDispatcher("Views/ListTrain.jsp").forward(request, response);
-        }
+        processRequest(request, response);
     }
 
     /**

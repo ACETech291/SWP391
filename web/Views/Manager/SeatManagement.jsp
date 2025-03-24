@@ -51,6 +51,17 @@
     </head>
 
     <body>
+        <%
+            Integer idTrainBrand = (Integer) session.getAttribute("id_train_brand");
+            if (idTrainBrand == null) {
+                response.sendRedirect("login"); // Thay "TrangKhac.jsp" bằng trang bạn muốn chuyển hướng
+                return;
+            }
+            
+            Integer id_train_brand = (Integer) session.getAttribute("id_train_brand");
+            List<Status> statusCarriage = (List<Status>) request.getAttribute("status_carriage");
+            List<Status> statusTrain = (List<Status>) request.getAttribute("status_train");
+        %>
         <!-- ===============================================--><!--    Main Content--><!-- ===============================================-->
         <main class="main" id="top">
             <div class="container" data-layout="container">
@@ -60,8 +71,126 @@
                         <!-- Header-->
                     <jsp:include page="lib/header.jsp"></jsp:include>
                         <!-- Content -->
+                        <div class="section-title text-center mb-5 pb-2 w-50 mx-auto">
+                            <h2 class="m-0"><span>Quản lý tàu</span></h2>
+                        </div> 
 
-                               
+                        <div>
+                            <button class="nir-btn w-30" onclick="toggleAddSeatForm()" >Thêm ghế</button>
+                            <br>
+                                                    <!-- Form thêm ghế -->
+                        <div id="addSeat" class="add-form">
+                            <h3>Thêm ghế mới</h3>
+                            <form id="seatForm" action="AddSeat" method="POST">  
+                                <%
+                                    TrainCarriageDAO TC = new TrainCarriageDAO();
+                                    List<TrainCarriage> car_by_brand = TC.getCarriagesByTrainBrandId(id_train_brand);
+                                    request.setAttribute("car_by_brand", car_by_brand);
+                                %>
+                                <!-- Chọn khoang tàu -->
+                                <label for="id_train_carriage">Chọn khoang tàu:</label>
+                                <select id="id_train_carriage" name="id_train_carriage" required>
+                                    <c:forEach var="carr" items="${car_by_brand}">
+                                        <option value="${carr.id_train_carriage}">${carr.name_train_carriage}</option>
+                                    </c:forEach>
+                                </select>
+                                <br>
+
+                                <!-- code -->
+                                <label for="code_train_seat">Mã ghế:</label>
+                                <input type="text" id="code_train_seat" name="code_train_seat" required>
+                                <br>    
+
+                                <!-- price -->
+                                <label for="price_seat">Giá ghế:</label>
+                                <input type="number" id="price_seat" name="price_seat" min="1" required>
+                                <br>
+
+                                <!-- Chọn trạng thái -->
+                                <label for="id_status">Trạng thái:</label>
+                                <select id="id_status" name="id_status" required>
+                                    <option value="">Chọn trạng thái</option>
+                                    <c:forEach var="status" items="${status_carriage}">
+                                        <option value="${status.id}">${status.statusName}</option>
+                                    </c:forEach>
+                                </select>
+                                <br><br>
+
+                                <button type="submit" class="nir-btn w-30">Lưu</button>
+                                <button type="button" class="nir-btn w-30" onclick="toggleAddCarriageForm()">Huỷ</button>
+                            </form>
+                        </div>
+
+                    </div>    
+
+                <!-- Table Train Seat -->
+                <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
+                    <table class="table table-hover mb-0">
+                        <thead class="thead-light">
+                            <tr>
+                                <th class="text-center align-middle">Mã ghế</th>
+                                <th class="text-center align-middle">Giá vé</th>
+                                <th class="text-center align-middle">Khoang</th>
+                                <th class="text-center align-middle">Trạng thái</th>
+                                <th class="text-center align-middle">Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% 
+                                TrainSeatDAO dao = new TrainSeatDAO();
+                                List<TrainSeat> seat_by_brand = dao.getSeatsByTrainBrandId(id_train_brand);
+                                
+                                if (seat_by_brand != null && !seat_by_brand.isEmpty()) {
+                                    for (TrainSeat seat : seat_by_brand) {
+                            %>
+                            <tr>
+                                <td class="text-center align-middle"><%= seat.getCode_train_seat() %></td>
+                                <td class="text-center align-middle"><%= seat.getPrice_seat() %> VND</td>
+                                <td class="text-center align-middle">
+                                    <% 
+                                        String carriageName = "Không xác định";
+                                        for (TrainCarriage carriage : car_by_brand) {
+                                            if (carriage.getId_train_carriage() == seat.getId_train_carriage()) {
+                                                carriageName = carriage.getName_train_carriage();
+                                                break;
+                                            }
+                                        }
+                                    %>
+                                    <%= carriageName %>
+                                </td>
+                                <td class="text-center align-middle">
+                                    <% 
+                                        String statusName = "Không xác định";
+                                        for (Status status : statusCarriage) {
+                                            if (status.getId() == seat.getId_status()) {
+                                                statusName = status.getStatusName();
+                                                break;
+                                            }
+                                        }
+                                    %>
+                                    <%= statusName %>
+                                </td>
+                                <td class="text-center align-middle">
+                                    <!-- Nút hành động -->
+                                    <a href="EditTrainSeat?id=<%= seat.getId_train_seat() %>" class="btn btn-warning btn-sm">Sửa</a>
+
+                                    <form id="deleteForm-<%= seat.getId_train_seat() %>" action="DeleteTrainSeat" method="POST" style="display: inline;">
+                                        <input type="hidden" name="id_train_seat" value="<%= seat.getId_train_seat() %>">
+                                        <button type="button" class="btn btn-danger btn-sm" onclick="confirmDeleteSeat(<%= seat.getId_train_seat() %>)">Xóa</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <% 
+                                    }
+                                } else { 
+                            %>
+                            <tr>
+                                <td colspan="5" class="text-center">Không có ghế nào.</td>
+                            </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div><br><br>
 
                 </div>
             </div>
@@ -70,10 +199,15 @@
     </body>
 
     <script>
-        function toggleAddTrainForm() {
-            const form = document.getElementById("addTrain");
-            form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
-        }
+                    function toggleAddSeatForm() {
+                        const form = document.getElementById("addSeat");
+                        form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
+                    }
+                    function confirmDeleteSeat(id_train_seat) {
+                        if (confirm("Bạn có chắc chắn muốn xóa ghế tàu này không?")) {
+                            document.getElementById('deleteForm-' + id_train_seat).submit();
+                        }
+                    }    
     </script>
 
     <script src="${pageContext.request.contextPath}/Views/Admin/vendors/popper/popper.min.js"></script>

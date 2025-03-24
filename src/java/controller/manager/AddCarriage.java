@@ -52,7 +52,7 @@ public class AddCarriage extends HttpServlet {
         
         //insertDatabase(carriage);
         
-        response.sendRedirect("Manager");
+        response.sendRedirect("carriagemanagement");
     }
 
     @Override

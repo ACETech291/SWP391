@@ -19,7 +19,7 @@ public class ListTrain extends HttpServlet {
 
         TrainDAO trainDAO = new TrainDAO();
         
-        List<Train> trains = trainDAO.getAllTrains();
+        List<Train> trains = trainDAO.getNext4Stations(0);
         request.setAttribute("trains", trains);
         request.getRequestDispatcher("Views/ListTrain.jsp").forward(request, response);
     }

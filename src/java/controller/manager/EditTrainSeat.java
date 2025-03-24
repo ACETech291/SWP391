@@ -72,6 +72,6 @@ public class EditTrainSeat extends HttpServlet {
             Logger.getLogger(EditTrainSeat.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        response.sendRedirect("Manager");
+        response.sendRedirect("seatmanagement");
     }
 }

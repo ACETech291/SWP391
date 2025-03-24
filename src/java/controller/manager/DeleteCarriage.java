@@ -43,7 +43,7 @@ public class DeleteCarriage extends HttpServlet {
         TrainCarriageDAO dao = new TrainCarriageDAO();
         dao.deleteTrainCarriage(id_train_carriage);
         
-        response.sendRedirect("Manager");
+        response.sendRedirect("carriagemanagement");
     }
 
 }

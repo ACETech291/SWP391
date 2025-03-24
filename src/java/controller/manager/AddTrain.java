@@ -95,17 +95,6 @@ public class AddTrain extends HttpServlet {
         }
         //insertDatabase(train);
        
-        response.sendRedirect("Manager");
+        response.sendRedirect("trainmanagement");
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

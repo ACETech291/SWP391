@@ -127,7 +127,7 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Role ID</th>
+                    <th>Tên vai trò</th>
                     <th>Đường dẫn URL</th>
                     <th>Mô tả về đường dẫn</th>
                     <th>Hành động</th>
@@ -137,7 +137,14 @@
                 <c:forEach var="auth" items="${authorizationList}">
                     <tr>
                         <td>${auth.id_authorization}</td>
-                        <td>${auth.role_id}</td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${auth.role_id == 1}">Admin</c:when>
+                                <c:when test="${auth.role_id == 2}">Người quản lý</c:when>
+                                <c:when test="${auth.role_id == 3}">Khách hàng</c:when>
+                                <c:otherwise>Khách vãng lai</c:otherwise>
+                            </c:choose>
+                        </td>
                         <td>${auth.url_authorization}</td>
                         <td>${auth.feature_authorization}</td>
                         <td>

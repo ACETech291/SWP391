@@ -2045,3 +2045,10 @@ INSERT INTO Feedback (voting_feedback, content, id_customer, id_advertising, cre
 (5, 'Đôi khi nhầm mội chuyến xe lại đưa chúng ta về nơi muốn đến ', 934, 3, NOW()),
 (5, 'Chuyến tàu nay đã cho tôi mội trải nghiệm tuyệt vời', 935, 4, NOW())
 ;
+
+INSERT INTO Comment (voting_comment, content, id_customer, id_train_brand, create_at) VALUES 
+(5, 'Hãng này rất tuyệt vời', 932, 1, NOW()),
+(5, 'Dịch vụ của hãng rất tốt và chuyên nghiệp', 933, 2, NOW()),
+(5, 'Tôi chưa từng được trải nghiệm chuyến đi nào mà bên hãng tàu tuyệt vời đến vậy ', 934, 1, NOW()),
+(5, 'Nếu có cơ hội, chắc chắn tôi sẽ đi hãng tàu này', 935, 2, NOW())
+;
