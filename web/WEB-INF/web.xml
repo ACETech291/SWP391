@@ -231,44 +231,12 @@
         <servlet-class>controller.Feedback</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LoadStation</servlet-name>
-        <servlet-class>controller.LoadStation</servlet-class>
+        <servlet-name>ChooseSeat</servlet-name>
+        <servlet-class>controller.ChooseSeat</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LoadTrain</servlet-name>
-        <servlet-class>controller.LoadTrain</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ListBrand</servlet-name>
-        <servlet-class>controller.ListBrand</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>BrandDetail</servlet-name>
-        <servlet-class>controller.BrandDetail</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>LoadAdvertising</servlet-name>
-        <servlet-class>controller.LoadAdvertising</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Comment</servlet-name>
-        <servlet-class>controller.Comment</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>TrainManagement</servlet-name>
-        <servlet-class>controller.manager.TrainManagement</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CarriageManagement</servlet-name>
-        <servlet-class>controller.manager.CarriageManagement</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SeatManagement</servlet-name>
-        <servlet-class>controller.manager.SeatManagement</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>StationManagement</servlet-name>
-        <servlet-class>controller.manager.StationManagement</servlet-class>
+        <servlet-name>GetNumberOfSeats</servlet-name>
+        <servlet-class>controller.GetNumberOfSeats</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>home</servlet-name>
@@ -475,43 +443,11 @@
         <url-pattern>/Feedback</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>LoadStation</servlet-name>
-        <url-pattern>/LoadStation</url-pattern>
+        <servlet-name>ChooseSeat</servlet-name>
+        <url-pattern>/ChooseSeat</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>LoadTrain</servlet-name>
-        <url-pattern>/LoadTrain</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ListBrand</servlet-name>
-        <url-pattern>/ListBrand</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>BrandDetail</servlet-name>
-        <url-pattern>/BrandDetail</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>LoadAdvertising</servlet-name>
-        <url-pattern>/LoadAdvertising</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Comment</servlet-name>
-        <url-pattern>/Comment</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>TrainManagement</servlet-name>
-        <url-pattern>/trainmanagement</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CarriageManagement</servlet-name>
-        <url-pattern>/carriagemanagement</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SeatManagement</servlet-name>
-        <url-pattern>/seatmanagement</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>StationManagement</servlet-name>
-        <url-pattern>/stationmanagement</url-pattern>
+        <servlet-name>GetNumberOfSeats</servlet-name>
+        <url-pattern>/GetNumberOfSeats</url-pattern>
     </servlet-mapping>
 </web-app>

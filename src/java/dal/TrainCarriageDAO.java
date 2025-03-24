@@ -167,13 +167,9 @@ public class TrainCarriageDAO {
         }
         return null; // Trả về null nếu không tìm thấy
     }
-
     public static void main(String[] args) {
-        TrainCarriageDAO traincarriagedao = new TrainCarriageDAO();
-        List<TrainCarriage> car_by_brand = traincarriagedao.getCarriagesByTrainBrandId(1);
-
-        for (TrainCarriage trainCarriage : car_by_brand) {
-            System.out.println(trainCarriage.getName_train_carriage() + " - " + trainCarriage.getId_train());
-        }
+//        TrainCarriageDAO traincarriagedao = new TrainCarriageDAO();
+//        int ans = traincarriagedao.getTotalSeats("Carriage 1 - Alpha 1 (Phổ thông)", 1);
+//        System.out.println(ans);
     }
 }

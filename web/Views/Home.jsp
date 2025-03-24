@@ -183,7 +183,7 @@
                                             <td class="text-center align-middle">${formattedDate}</td>
                                             <td class="text-center align-middle">${trip.name_train}</td>
                                             <td class="text-center align-middle">${trip.price_trip}</td>
-                                            <td class="text-center align-middle"><a href="${pageContext.request.contextPath}/BookTicket?id_trip=${trip.id_trip}" class="btn btn-primary">Đặt vé ngay</a></td>
+                                            <td class="text-center align-middle"><a href="${pageContext.request.contextPath}/ChooseSeat?id_trip=${trip.id_trip}&date=${formattedDate}&start_time=${trip.start_time}" class="btn btn-primary">Đặt vé ngay</a></td>
                                         </tr>
                                     </c:forEach>  
                                 </c:if>
@@ -196,7 +196,7 @@
                                         <td class="text-center align-middle">${empty date ? formattedDate : date}</td>
                                         <td class="text-center align-middle">${trip.name_train}</td>
                                         <td class="text-center align-middle">${trip.price_trip}</td>
-                                        <td class="text-center align-middle"><a href="${pageContext.request.contextPath}/BookTicket?id_trip=${trip.id_trip}" class="btn btn-primary">Đặt vé ngay</a></td>
+                                        <td class="text-center align-middle"><a href="${pageContext.request.contextPath}/ChooseSeat?id_trip=${trip.id_trip}&date=${empty date ? formattedDate : date}&start_time=${trip.start_time}" class="btn btn-primary">Đặt vé ngay</a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
