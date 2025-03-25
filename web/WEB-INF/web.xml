@@ -274,6 +274,14 @@
         <servlet-name>UploadServlet</servlet-name>
         <servlet-class>controller.UploadServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChooseSeat</servlet-name>
+        <servlet-class>controller.ChooseSeat</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetNumberOfSeats</servlet-name>
+        <servlet-class>controller.GetNumberOfSeats</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>home</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -521,5 +529,13 @@
     <servlet-mapping>
         <servlet-name>UploadServlet</servlet-name>
         <url-pattern>/UploadServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChooseSeat</servlet-name>
+        <url-pattern>/ChooseSeat</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetNumberOfSeats</servlet-name>
+        <url-pattern>/GetNumberOfSeats</url-pattern>
     </servlet-mapping>
 </web-app>

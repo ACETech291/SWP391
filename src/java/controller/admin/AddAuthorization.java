@@ -91,7 +91,7 @@ public class AddAuthorization extends HttpServlet {
             request.getRequestDispatcher("Views/Admin/AddAuthorization.jsp").forward(request, response);
             return;
         }else{
-            request.setAttribute("message", "Phân quyền đã tồn tại");
+            request.setAttribute("error", "Phân quyền đã tồn tại");
             request.getRequestDispatcher("Views/Admin/AddAuthorization.jsp").forward(request, response);
             return;
         }
