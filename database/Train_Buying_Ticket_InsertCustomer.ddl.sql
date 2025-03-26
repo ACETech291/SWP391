@@ -134,8 +134,8 @@ INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Nguyen Ba Hien QP 982','hiennbhe181773@fpt.edu.vn','CPBMJIZF0tTKjMrBeRrS9rTiIaw=','0123456',3,1); 
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Tech ACE','acetech291@gmail.com','lEItluUMq4S0F5H3VsJuAoN+6Zc=','0123456',3,1); 
 INSERT INTO Feedback (voting_feedback, content, id_customer, id_advertising, create_at) VALUES 
-(5, 'em lÃ  bÃºp mÄƒng non em lá»›n lÃªn trong mÃ¹a cÃ¡ch máº¡ng', 365, 1, NOW()),
-(5, 'em lÃ  bÃºp mÄƒng non em lá»›n lÃªn trong mÃ¹a cÃ¡ch máº¡ng', 366, 2, NOW()),
-(5, 'em lÃ  bÃºp mÄƒng non em lá»›n lÃªn trong mÃ¹a cÃ¡ch máº¡ng', 367, 3, NOW()),
-(5, 'em lÃ  bÃºp mÄƒng non em lá»›n lÃªn trong mÃ¹a cÃ¡ch máº¡ng', 368, 4, NOW())
+(5, 'em lÃ  bÃºp mÄƒng non em lá»›n lÃªn trong mÃ¹a cÃ¡ch máº¡ng', 1, 1, NOW()),
+(5, 'em lÃ  bÃºp mÄƒng non em lá»›n lÃªn trong mÃ¹a cÃ¡ch máº¡ng', 2, 2, NOW()),
+(5, 'em lÃ  bÃºp mÄƒng non em lá»›n lÃªn trong mÃ¹a cÃ¡ch máº¡ng', 3, 3, NOW()),
+(5, 'em lÃ  bÃºp mÄƒng non em lá»›n lÃªn trong mÃ¹a cÃ¡ch máº¡ng', 4, 4, NOW())
 ;

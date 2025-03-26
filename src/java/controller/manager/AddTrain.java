@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controller.manager;
 
 import dal.StatusDAO;
@@ -44,14 +40,6 @@ public class AddTrain extends HttpServlet {
         }
     }
 
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -69,32 +57,66 @@ public class AddTrain extends HttpServlet {
         request.getRequestDispatcher("Views/Manager/Manager.jsp").forward(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String name = request.getParameter("name_train");
         String des = request.getParameter("description_train");
-        int id_train_brand = Integer.parseInt(request.getParameter("id_train_brand"));
-        int id_status = Integer.parseInt(request.getParameter("id_status"));
+        String idTrainBrandStr = request.getParameter("id_train_brand");
+        String idStatusStr = request.getParameter("id_status");
 
+        // Danh sách lỗi
+        StringBuilder errors = new StringBuilder();
+
+        // Kiểm tra tên tàu (Tên tàu: 1-50 ký tự, không chứa ký tự đặc biệt)
+        if (name == null || name.trim().isEmpty()) {
+            errors.append("Tên tàu không được để trống.<br>");
+        } else if (name.length() > 50) {
+            errors.append("Tên tàu không được vượt quá 50 ký tự.<br>");
+        } else if (!name.matches("^[a-zA-Z0-9\\s]+$")) {
+            errors.append("Tên tàu không được chứa ký tự đặc biệt.<br>");
+        }
+
+        // Kiểm tra mô tả (Mô tả: 1-255 ký tự, không chứa URL)
+        if (des == null || des.trim().isEmpty()) {
+            errors.append("Mô tả không được để trống.<br>");
+        } else if (des.length() > 255) {
+            errors.append("Mô tả không được vượt quá 255 ký tự.<br>");
+        } else if (des.matches(".*(http://|https://|www\\.).*")) {
+            errors.append("Mô tả không được chứa URL.<br>");
+        }
+
+        // Kiểm tra trạng thái (Phải chọn từ danh sách có sẵn)
+        int id_train_brand = 0;
+        int id_status = 0;
+        try {
+            id_train_brand = Integer.parseInt(idTrainBrandStr);
+            id_status = Integer.parseInt(idStatusStr);
+        } catch (NumberFormatException e) {
+            errors.append("Vui lòng chọn giá trị hợp lệ cho thương hiệu tàu và trạng thái.<br>");
+        }
+
+        // Nếu có lỗi, quay lại trang và hiển thị thông báo
+        if (errors.length() > 0) {
+            request.setAttribute("errorMessage", errors.toString());
+            doGet(request, response);
+            return;
+        }
+
+        // Nếu hợp lệ, thêm tàu vào DB
         Train train = new Train(name, des, id_train_brand, id_status);
-        // Thêm tàu vào cơ sở dữ liệu
         TrainDAO trainDAO = new TrainDAO();
+        boolean success = false;
+        
         try {
             trainDAO.addTrain(train);
         } catch (SQLException ex) {
             Logger.getLogger(AddTrain.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //insertDatabase(train);
-       
+
+        request.getSession().setAttribute("successMessage", "Thêm tàu thành công!");
         response.sendRedirect("trainmanagement");
     }
+
 }

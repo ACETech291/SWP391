@@ -46,6 +46,18 @@
             .add-form {
                 display: none;
             }
+            .alert-danger {
+                background-color: #f8d7da; /* Màu nền đỏ nhạt */
+                color: #721c24; /* Màu chữ đỏ đậm */
+                border: 1px solid #f5c6cb; /* Viền đỏ nhạt */
+                padding: 10px 15px;
+                border-radius: 5px;
+                font-size: 14px;
+                font-weight: bold;
+                width: 100%;
+                text-align: center;
+                margin-bottom: 10px;
+            }
         </style>
 
     </head>
@@ -63,6 +75,7 @@
             List<Status> statusTrain = (List<Status>) request.getAttribute("status_train");
             
         %>
+
         <!-- ===============================================--><!--    Main Content--><!-- ===============================================-->
         <main class="main" id="top">
             <div class="container" data-layout="container">
@@ -77,7 +90,7 @@
                         </div> 
 
                         <div>
-                            <button class="nir-btn w-30" onclick="toggleAddTrainForm()" >Thêm tàu</button>
+                            <button id="addTrainButton" class="nir-btn w-30" onclick="toggleAddTrainForm()" >Thêm tàu</button>
                             <br>
                             <!-- Form thêm tàu -->
                             <div id="addTrain" class="add-form">
@@ -89,7 +102,7 @@
                                     <label for="description_train">Mô tả:</label>
                                     <input type="text" id="description_train" name="description_train" required>
                                     <br>                                                                                       
-                                <input type="hidden" id="id_train_brand" name="id_train_brand" value="<%= id_train_brand %>" >
+                                    <input type="hidden" id="id_train_brand" name="id_train_brand" value="<%= id_train_brand %>" >
 
                                 <label for="id_status">Trạng thái:</label>
                                 <select id="id_status" name="id_status" required>
@@ -100,8 +113,8 @@
                                 </select>
                                 <br>    
                                 <br>
-                                <button type="submit" class="nir-btn w-30">Lưu</button>
-                                <button type="button" class="nir-btn w-30" onclick="toggleAddTrainForm()">Huỷ</button>
+                                <button id="SaveButton" type="submit" class="nir-btn w-30">Lưu</button>
+                                <button id="CancelButton" type="button" class="nir-btn w-30" onclick="toggleAddTrainForm()">Huỷ</button>
                             </form>
                         </div>
                     </div>    
@@ -171,11 +184,11 @@
             const form = document.getElementById("addTrain");
             form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
         }
-                    function confirmDeleteTrain(id) {
-                        if (confirm("Bạn có chắc chắn muốn xóa tàu này không?")) {
-                            document.getElementById("deleteForm-" + id).submit();
-                        }
-                    }        
+        function confirmDeleteTrain(id) {
+            if (confirm("Bạn có chắc chắn muốn xóa tàu này không?")) {
+                document.getElementById("deleteForm-" + id).submit();
+            }
+        }
     </script>
 
     <script src="${pageContext.request.contextPath}/Views/Admin/vendors/popper/popper.min.js"></script>
@@ -260,5 +273,45 @@
             userLinkRTL.setAttribute('disabled', true);
         }
     </script>
+
+    <!-- Hiển thị thông báo -->
+    <% if (session.getAttribute("successMessage") != null) { %>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let toast = document.createElement("div");
+            toast.id = "toastMessage";  // Thêm ID để dễ tìm bằng Selenium
+            toast.textContent = "<%= session.getAttribute("successMessage") %>";
+            toast.style.cssText = "position: fixed; top: 20px; right: 20px; background: #4CAF50; color: white; padding: 10px 20px; border-radius: 5px; z-index: 1000; transition: opacity 0.5s ease-in-out;";
+            document.body.appendChild(toast);
+            console.log("Toast hiển thị:", toast.textContent); // Kiểm tra hiển thị trong Console
+
+            setTimeout(() => {
+                toast.style.opacity = "0";
+                setTimeout(() => toast.remove(), 500);
+            }, 3000);
+        });
+    </script>
+    <% session.removeAttribute("successMessage"); %>
+    <% } %>
+
+
+    <% if (request.getAttribute("errorMessage") != null) { %>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let toast = document.createElement("div");
+            toast.id = "toastMessage";
+            toast.textContent = "<%= request.getAttribute("errorMessage") %>";
+            toast.style.cssText = "position: fixed; top: 20px; right: 20px; background: #f44336; color: white; padding: 10px 20px; border-radius: 5px; z-index: 1000; transition: opacity 0.5s ease-in-out;";
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.opacity = "0";
+                setTimeout(() => toast.remove(), 500);
+            }, 1000);
+        });
+    </script>
+    <% } %>
+
+
 
 </html>
