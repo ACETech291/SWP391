@@ -240,13 +240,19 @@
                                                         <h4 class="gray">Thông tin cá nhân</h4>
                                                         <div class="dashboard-list-static">
                                                             <!-- Avatar -->
+                                                            <% if (request.getAttribute("err2") != null) {%>
+                                                <p style="color: red;"><%= request.getAttribute("err1")%></p>
+                                                <% }%>
+                                                <% if (request.getAttribute("success2") != null) {%>
+                                                <p style="color: green;"><%= request.getAttribute("success1")%></p>
+                                                <% }%>
                                                             <form action="${pageContext.request.contextPath}/uploadAvatar" method="post" enctype="multipart/form-data">
                                                                 <div class="edit-profile-photo">
-                                                                    <img src="${img}" alt="Avatar customer" />
+                                                                    <img src="${pageContext.request.contextPath}/${img}" alt="Avatar customer" />
                                                                     <div class="change-photo-btn">
-                                                                        <div class="photoUpload">
-                                                                            <span><i class="fa fa-upload"></i> Thay đổi ảnh</span>
+                                                                        <div class="photoUpload">                                                                      
                                                                             <input type="file" name="avatar" class="upload" />
+                                                                            <span><i class="fa fa-upload"></i> Thay đổi ảnh</span>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -267,7 +273,7 @@
                                                             <form action="ChangeInformation" method="post">
                                                                 <div class="form-group">
                                                                     <label>Tên của bạn</label>
-                                                                    <input type="text" name="name" value="${account}" required />
+                                                                    <input type="text" name="name" value="${name}" required />
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Số điện thoại</label>

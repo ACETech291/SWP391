@@ -33508,7 +33508,7 @@ INSERT INTO advertising (image_advertising, description_advertising, id_manager,
 VALUES ('/images/advertising/NUITHANH.jpg', 'Núi Thành, Nơi cảm xúc dâng trào', 2, 
 'Núi Thành thuộc tỉnh Quảng Nam, là vùng đất giàu truyền thống lịch sử và cảnh đẹp thiên nhiên hoang sơ. Đây là điểm đến hấp dẫn với những bãi biển tuyệt đẹp như Tam Hải, những cánh đồng muối và các địa danh gắn liền với lịch sử hào hùng của dân tộc.');
 
-INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Hiển Nguyễn Bá','hiennbhe181773@fpt.edu.vn','6NWFIsI1V5KNFeeazNcq35qxRUE=','0332671182',3,1); 
+INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer,image_customer, id_role, status_customer) VALUES ('Hiển Nguyễn Bá','hiennbhe181773@fpt.edu.vn','6NWFIsI1V5KNFeeazNcq35qxRUE=','0332671182','/images/avatar/123.jpg',3,1); 
 
 INSERT INTO authorization(role_id,URL_authorization,feature_authorization,status_authorization) VALUE
 (1,"/home","Trang chủ",1),(2,"/home","Trang chủ",1),(3,"/home","Trang chủ",1),(4,"/home","Trang chủ",1),

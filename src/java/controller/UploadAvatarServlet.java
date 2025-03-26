@@ -37,7 +37,8 @@ public class UploadAvatarServlet extends HttpServlet {
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
         CustomerDAO customerDAO = new CustomerDAO();
         if (fileName == null || fileName.isEmpty()) {
-            response.sendRedirect("Views/Profile.jsp?error=NoFileSelected");
+            request.setAttribute("err2", "Tải ảnh lên thành công thất bại");
+            request.getRequestDispatcher("Views/Profile.jsp").forward(request, response);
             return;
         }
         System.out.println(fileName);
@@ -54,10 +55,10 @@ public class UploadAvatarServlet extends HttpServlet {
         Customer customer = (Customer) session.getAttribute("account");
         System.out.println(customer);
         System.out.println(customer.getId_customer());
-        customerDAO.updateAvatarPath(String.valueOf(customer.getEmail()), "../SWP391/images/avatar/" + fileName);
-
+        customerDAO.updateAvatarPath(String.valueOf(customer.getEmail()), "/images/avatar/" + fileName);
+        request.setAttribute("success2", "Tải ảnh lên thành công");
         // Chuyển hướng về trang profile
-        response.sendRedirect("Views/Profile.jsp?success=Uploaded");
+        request.getRequestDispatcher("Views/Profile.jsp").forward(request, response);
     }
 
 }
