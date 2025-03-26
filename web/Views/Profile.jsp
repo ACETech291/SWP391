@@ -237,18 +237,19 @@
                                                 <!-- Profile -->
                                                 <div class="col-lg-6 col-md-6 col-xs-12 padding-right-30">
                                                     <div class="dashboard-list">
+                                                                 <% if (request.getAttribute("err2") != null) {%>
+                                                <p style="color: red;"><%= request.getAttribute("err2")%></p>
+                                                <% }%>
+                                                <% if (request.getAttribute("success2") != null) {%>
+                                                <p style="color: green;"><%= request.getAttribute("success2")%></p>
+                                                <% }%>
                                                         <h4 class="gray">Thông tin cá nhân</h4>
                                                         <div class="dashboard-list-static">
                                                             <!-- Avatar -->
-                                                            <% if (request.getAttribute("err2") != null) {%>
-                                                <p style="color: red;"><%= request.getAttribute("err1")%></p>
-                                                <% }%>
-                                                <% if (request.getAttribute("success2") != null) {%>
-                                                <p style="color: green;"><%= request.getAttribute("success1")%></p>
-                                                <% }%>
+                                                   
                                                             <form action="${pageContext.request.contextPath}/uploadAvatar" method="post" enctype="multipart/form-data">
                                                                 <div class="edit-profile-photo">
-                                                                    <img src="${pageContext.request.contextPath}/${img}" alt="Avatar customer" />
+                                                                    <img src="${pageContext.request.contextPath}${account.image_url}" alt="Avatar customer" />
                                                                     <div class="change-photo-btn">
                                                                         <div class="photoUpload">                                                                      
                                                                             <input type="file" name="avatar" class="upload" />

@@ -86,8 +86,8 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
     HttpSession session = request.getSession();
     
     // Lấy thông tin khách hàng từ session
-    Customer cus = (Customer) session.getAttribute("account");
-    if (cus == null) {
+    Customer customer = (Customer) session.getAttribute("account");
+    if (customer == null) {
         response.sendRedirect("login.jsp"); // Nếu chưa đăng nhập, chuyển hướng
         return;
     }
@@ -95,21 +95,22 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
     // Lấy thông tin từ form
     String name = request.getParameter("name");
     String phone = request.getParameter("phone");
-    String email = cus.getEmail(); // Lấy email từ session vì form không có trường email
+    String email = customer.getEmail(); // Lấy email từ session vì form không có trường email
     
     // Cập nhật thông tin vào database
     customerDAO.updatePhone(email, phone);
     customerDAO.updateName(email, name);
 
     // Cập nhật đối tượng `cus`
-    cus.setUserName(name);
-    cus.setPhoneNumber(phone);
-    session.setAttribute("account", cus); // Cập nhật session với dữ liệu mới
+    customer.setUserName(name);
+    customer.setPhoneNumber(phone);
+    session.setAttribute("account", customer); // Cập nhật session với dữ liệu mới
 
     // Trả về dữ liệu mới lên form
     request.setAttribute("email", email);
     request.setAttribute("name", name);
     request.setAttribute("phone", phone);
+    request.setAttribute("img", customer.getImage_url());
     request.setAttribute("success", "Cập nhật thông tin thành công");
 
     // Chuyển hướng đến trang Profile

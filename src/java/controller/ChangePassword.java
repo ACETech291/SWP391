@@ -119,7 +119,10 @@ public class ChangePassword extends HttpServlet {
         // Cập nhật session
         customer.setPassword(newPasswordHashed);
         session.setAttribute("account", customer);
-
+            request.setAttribute("email", customer.getEmail());
+            request.setAttribute("name", customer.getUserName());
+            request.setAttribute("phone", customer.getPhoneNumber());
+            request.setAttribute("img", customer.getImage_url());
         request.setAttribute("success1", "Đổi mật khẩu thành công");
         request.getRequestDispatcher("Views/Profile.jsp").forward(request, response);
     }

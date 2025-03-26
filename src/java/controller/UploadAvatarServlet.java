@@ -25,41 +25,58 @@ import model.Customer;
  */
 @WebServlet("/uploadAvatar")
 @MultipartConfig(
-    fileSizeThreshold = 1024 * 1024 * 2, // 2MB
-    maxFileSize = 1024 * 1024 * 10,      // 10MB
-    maxRequestSize = 1024 * 1024 * 50    // 50MB
+        fileSizeThreshold = 1024 * 1024 * 2, // 2MB
+        maxFileSize = 1024 * 1024 * 10, // 10MB
+        maxRequestSize = 1024 * 1024 * 50 // 50MB
 )
 public class UploadAvatarServlet extends HttpServlet {
+
     private static final String UPLOAD_DIR = "images/avatar";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Part filePart = request.getPart("avatar");
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
         CustomerDAO customerDAO = new CustomerDAO();
+        HttpSession session = request.getSession();
         if (fileName == null || fileName.isEmpty()) {
-            request.setAttribute("err2", "Tải ảnh lên thành công thất bại");
+            Customer customer = (Customer) session.getAttribute("account");
+            session.setAttribute("account", customer);
+            request.setAttribute("err2", "Tải ảnh lên không thành công");
+            request.setAttribute("img", customer.getImage_url());
+            request.setAttribute("email", customer.getEmail());
+            request.setAttribute("name", customer.getUserName());
+            request.setAttribute("phone", customer.getPhoneNumber());
+            request.setAttribute("img", customer.getImage_url());
             request.getRequestDispatcher("Views/Profile.jsp").forward(request, response);
             return;
+        } else {
+            System.out.println(fileName);
+            // Lưu ảnh vào thư mục
+            String uploadPath = "D:\\SWPFinal\\SWP391\\web\\images\\avatar";
+            File uploadDir = new File(uploadPath);
+            if (!uploadDir.exists()) {
+                uploadDir.mkdirs();
+            }
+
+            String filePath = uploadPath + File.separator + fileName;
+            filePart.write(filePath);
+
+            // Lưu đường dẫn ảnh vào database (giả sử có userId)
+            Customer customer = (Customer) session.getAttribute("account");
+            customerDAO.updateAvatarPath(customer.getEmail(), "/images/avatar/" + fileName);
+
+            customer.setImage_url("/images/avatar/" + fileName);
+            session.setAttribute("account", customer);
+            customerDAO.updateAvatarPath(String.valueOf(customer.getEmail()), "/images/avatar/" + fileName);
+            request.setAttribute("success2", "Tải ảnh lên thành công");
+            request.setAttribute("img", customer.getImage_url());
+            request.setAttribute("email", customer.getEmail());
+            request.setAttribute("name", customer.getUserName());
+            request.setAttribute("phone", customer.getPhoneNumber());
+            request.setAttribute("img", customer.getImage_url());
+            // Chuyển hướng về trang profile
+            request.getRequestDispatcher("Views/Profile.jsp").forward(request, response);
         }
-        System.out.println(fileName);
-        // Lưu ảnh vào thư mục
-        String uploadPath = "D:\\SWPFinal\\SWP391\\web\\images\\avatar";
-        File uploadDir = new File(uploadPath);
-        if (!uploadDir.exists()) uploadDir.mkdirs();
-
-        String filePath = uploadPath + File.separator + fileName;
-        filePart.write(filePath);
-
-        // Lưu đường dẫn ảnh vào database (giả sử có userId)
-        HttpSession session = request.getSession();
-        Customer customer = (Customer) session.getAttribute("account");
-        System.out.println(customer);
-        System.out.println(customer.getId_customer());
-        customerDAO.updateAvatarPath(String.valueOf(customer.getEmail()), "/images/avatar/" + fileName);
-        request.setAttribute("success2", "Tải ảnh lên thành công");
-        // Chuyển hướng về trang profile
-        request.getRequestDispatcher("Views/Profile.jsp").forward(request, response);
     }
 
 }
-
