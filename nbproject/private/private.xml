@@ -3,16 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/SWPFinal/SWP391/src/java/controller/SearchByAjax.java</file>
-            <file>file:/D:/SWPFinal/SWP391/web/Views/Home.jsp</file>
-            <file>file:/D:/SWPFinal/SWP391/web/Views/Advertising.jsp</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/controller/StationDetail.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/controller/LoadAdvertising.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/controller/LoadStation.java</file>
-            <file>file:/D:/SWPFinal/SWP391/web/Views/AdvertisingDetail.jsp</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/controller/LoadTrain.java</file>
             <file>file:/D:/SWPFinal/SWP391/web/Views/ListStation.jsp</file>
             <file>file:/D:/SWPFinal/SWP391/web/Views/ListTrain.jsp</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/LoadStation.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/LoadAdvertising.java</file>
         </group>
     </open-files>
 </project-private>
