@@ -27,7 +27,7 @@ INSERT INTO Status (name_status)
 	('Trong hành trình'),		('Chờ'),	 		('Bảo trì'),		('Gặp sự cố'),		
 	
 	-- Trạng thái cho Train_carriage, Train_seat
-	('Có sẵn'),	 		('Đã được đặt'),				('Bảo trì');	
+	('Có sẵn'),	 		('Đã được đặt'),				('Bảo trì'),   ('disable');	
 
 -- train Alpha
 INSERT INTO Train (name_train, description_train, id_train_brand, id_status, image_train,content) 
