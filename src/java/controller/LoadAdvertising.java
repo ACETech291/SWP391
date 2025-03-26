@@ -33,6 +33,7 @@ public class LoadAdvertising extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            String contextPath = request.getContextPath();
             AdvertisingDAO advertisingDAO = new AdvertisingDAO();
             String xamount = request.getParameter("exists");
             int amount = Integer.parseInt(xamount);
@@ -42,7 +43,7 @@ public class LoadAdvertising extends HttpServlet {
             for (model.Advertising advertising : listAdvertisings) {
                 out.println("<div class=\"advertising col-lg-4 col-md-6 col-sm-12 col-xs-12 mansonry-item mb-2\">\n"
                         + "                                <div class=\"blog-full text-center p-3\">\n"
-                        + "                                    <img src=\""+advertising.getImage_advertising()+"\" alt=\"\">\n"
+                        + "                                    <img src=\""+contextPath+advertising.getImage_advertising()+"\" alt=\"\">\n"
                         + "                                    <div class=\"blog-content pb-0\">\n"
                         + "                                        <span class=\"h-date pink mb-1 font-weight-light d-block\"> 5-3-2025</span>\n"
                         + "                                        <h3 class=\"mb-2\"><a href=\"advertisingdetail?id="+advertising.getId_advertising()+"\" class=\"\">"+advertising.getDescription_advertising()+"</a></h3>\n"

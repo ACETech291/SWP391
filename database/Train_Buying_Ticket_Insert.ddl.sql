@@ -17,8 +17,8 @@ INSERT INTO Admin (username_admin, password_admin, email_admin, id_role)
 -- train brand
 INSERT INTO Train_brand (id_manager, name_train_brand, description_train_brand,image_train_brand)
 	VALUES 
-	(1, 'Alpha', 'Công ty Đường sắt Alpha là một hãng tàu tiên phong trong lĩnh vực vận tải hành khách. Với công nghệ tiên tiến và cam kết bảo vệ môi trường, Alpha Rail đã cách mạng hóa ngành đường sắt bằng việc cung cấp các chuyến tàu cao tốc mang lại sự thoải mái và an toàn cho hành khách. Công ty nổi tiếng với các đoàn tàu chạy bằng điện thân thiện với môi trường, giúp giảm lượng khí thải carbon trong khi vẫn đảm bảo hành trình mượt mà và đúng giờ. Alpha Rail hoạt động trên các tuyến đường lớn, kết nối các thành phố và khu vực, góp phần thúc đẩy phát triển kinh tế. Với mục tiêu nâng cao trải nghiệm khách hàng, công ty không ngừng cải thiện cơ sở hạ tầng và dịch vụ, trở thành cái tên hàng đầu trong lĩnh vực vận tải đường sắt hiện đại.', '../SWP391/images/brands/Hang1.jpg'), 
-	(2, 'Beta', 'Công ty Đường sắt Beta là một trong những hãng tàu hàng đầu, nổi bật với dịch vụ vận chuyển hành khách chất lượng cao và hệ thống hạ tầng hiện đại. Với sứ mệnh mang lại trải nghiệm di chuyển an toàn và tiện lợi, Beta Rail đã đầu tư vào công nghệ tàu điện tiên tiến và hệ thống điều khiển tự động thông minh. Hãng tàu này không chỉ nổi tiếng với tốc độ nhanh và độ chính xác cao, mà còn được đánh giá cao về dịch vụ chăm sóc khách hàng và không gian nội thất sang trọng. Beta Rail hiện đang mở rộng mạng lưới tuyến đường, kết nối các khu vực đô thị và vùng ngoại ô, góp phần thúc đẩy giao thông xanh và phát triển bền vững.', '../SWP391/images/brands/Hang2.jpg');      
+	(1, 'Alpha', 'Công ty Đường sắt Alpha là một hãng tàu tiên phong trong lĩnh vực vận tải hành khách. Với công nghệ tiên tiến và cam kết bảo vệ môi trường, Alpha Rail đã cách mạng hóa ngành đường sắt bằng việc cung cấp các chuyến tàu cao tốc mang lại sự thoải mái và an toàn cho hành khách. Công ty nổi tiếng với các đoàn tàu chạy bằng điện thân thiện với môi trường, giúp giảm lượng khí thải carbon trong khi vẫn đảm bảo hành trình mượt mà và đúng giờ. Alpha Rail hoạt động trên các tuyến đường lớn, kết nối các thành phố và khu vực, góp phần thúc đẩy phát triển kinh tế. Với mục tiêu nâng cao trải nghiệm khách hàng, công ty không ngừng cải thiện cơ sở hạ tầng và dịch vụ, trở thành cái tên hàng đầu trong lĩnh vực vận tải đường sắt hiện đại.', '/images/brands/Hang1.jpg'), 
+	(2, 'Beta', 'Công ty Đường sắt Beta là một trong những hãng tàu hàng đầu, nổi bật với dịch vụ vận chuyển hành khách chất lượng cao và hệ thống hạ tầng hiện đại. Với sứ mệnh mang lại trải nghiệm di chuyển an toàn và tiện lợi, Beta Rail đã đầu tư vào công nghệ tàu điện tiên tiến và hệ thống điều khiển tự động thông minh. Hãng tàu này không chỉ nổi tiếng với tốc độ nhanh và độ chính xác cao, mà còn được đánh giá cao về dịch vụ chăm sóc khách hàng và không gian nội thất sang trọng. Beta Rail hiện đang mở rộng mạng lưới tuyến đường, kết nối các khu vực đô thị và vùng ngoại ô, góp phần thúc đẩy giao thông xanh và phát triển bền vững.', '/images/brands/Hang2.jpg');      
 
 --	status
 INSERT INTO Status (name_status)
@@ -32,8 +32,8 @@ INSERT INTO Status (name_status)
 -- train Alpha
 INSERT INTO Train (name_train, description_train, id_train_brand, id_status, image_train,content) 
 	VALUES
-	('Alpha 1', 'Sử dụng động cơ điện hoặc năng lượng tái tạo, tàu cao tốc Bắc - Nam ',1, 2, '../SWP391/images/trains/tau1.jpg','Hệ thống tàu cao tốc tích hợp với các phương tiện công cộng khác như xe buýt, tàu điện và taxi, giúp hành khách dễ dàng di chuyển đến các địa điểm khác trong thành phố một cách thuận tiện và nhanh chóng.'),
-	('Alpha 2', 'Hệ thống tàu cao tốc tích hợp với các phương tiện công cộng khác như xe buýt, tàu điện và taxi', 1, 2, '../SWP391/images/trains/tau2.jpg','Sử dụng động cơ điện hoặc năng lượng tái tạo, tàu cao tốc Bắc - Nam giúp giảm đáng kể khí thải và tiếng ồn, góp phần bảo vệ môi trường và phát triển giao thông bền vững.');
+	('Alpha 1', 'Sử dụng động cơ điện hoặc năng lượng tái tạo, tàu cao tốc Bắc - Nam ',1, 2, '/images/trains/tau1.jpg','Hệ thống tàu cao tốc tích hợp với các phương tiện công cộng khác như xe buýt, tàu điện và taxi, giúp hành khách dễ dàng di chuyển đến các địa điểm khác trong thành phố một cách thuận tiện và nhanh chóng.'),
+	('Alpha 2', 'Hệ thống tàu cao tốc tích hợp với các phương tiện công cộng khác như xe buýt, tàu điện và taxi', 1, 2, '/images/trains/tau2.jpg','Sử dụng động cơ điện hoặc năng lượng tái tạo, tàu cao tốc Bắc - Nam giúp giảm đáng kể khí thải và tiếng ồn, góp phần bảo vệ môi trường và phát triển giao thông bền vững.');
 
 -- train carriage Alpha 1 Phổ thông
 INSERT INTO Train_carriage (name_train_carriage, description_train_carriage, id_train, id_status, total_seat) 
@@ -89,10 +89,10 @@ VALUES
 -- train Beta
 INSERT INTO Train (name_train, description_train, id_train_brand, id_status, image_train, content) 
 	VALUES
-	('Beta 1', 'Tàu cao tốc Bắc - Nam được thiết kế để rút ngắn thời gian di chuyển giữa hai đầu đất nước, đạt tốc độ lên đến 350 km/h.',2, 2, '../SWP391/images/trains/tau3.jpg','Tàu cao tốc Bắc - Nam được thiết kế để rút ngắn thời gian di chuyển giữa hai đầu đất nước, đạt tốc độ lên đến 350 km/h. Với hệ thống đường ray hiện đại và công nghệ tiên tiến, tàu đảm bảo chuyến đi nhanh chóng và an toàn.'),
-	('Beta 2', 'Khoang hành khách được trang bị ghế ngồi êm ái, giường nằm cao cấp và không gian rộng rãi.', 2, 2, '../SWP391/images/trains/tau4.jpg','Khoang hành khách được trang bị ghế ngồi êm ái, giường nằm cao cấp và không gian rộng rãi. Các dịch vụ như Wi-Fi tốc độ cao, màn hình giải trí và suất ăn chất lượng giúp hành khách tận hưởng hành trình thoải mái.');
+	('Beta 1', 'Tàu cao tốc Bắc - Nam được thiết kế để rút ngắn thời gian di chuyển giữa hai đầu đất nước, đạt tốc độ lên đến 350 km/h.',2, 2, '/images/trains/tau3.jpg','Tàu cao tốc Bắc - Nam được thiết kế để rút ngắn thời gian di chuyển giữa hai đầu đất nước, đạt tốc độ lên đến 350 km/h. Với hệ thống đường ray hiện đại và công nghệ tiên tiến, tàu đảm bảo chuyến đi nhanh chóng và an toàn.'),
+	('Beta 2', 'Khoang hành khách được trang bị ghế ngồi êm ái, giường nằm cao cấp và không gian rộng rãi.', 2, 2, '/images/trains/tau4.jpg','Khoang hành khách được trang bị ghế ngồi êm ái, giường nằm cao cấp và không gian rộng rãi. Các dịch vụ như Wi-Fi tốc độ cao, màn hình giải trí và suất ăn chất lượng giúp hành khách tận hưởng hành trình thoải mái.');
 INSERT INTO `Train` (name_train, image_train, description_train, id_train_brand, id_status,content) 
-VALUES ('Beta 3', '../SWP391/images/trains/tau5.jpg', 'Hệ thống kiểm soát tự động, phanh từ và cảm biến theo dõi liên tục giúp tàu duy trì hành trình ổn định ngay cả ở tốc độ cao.', 2, 4,'Hệ thống kiểm soát tự động, phanh từ và cảm biến theo dõi liên tục giúp tàu duy trì hành trình ổn định ngay cả ở tốc độ cao. Các biện pháp an toàn tiên tiến đảm bảo chuyến đi suôn sẻ trong mọi điều kiện thời tiết.');	
+VALUES ('Beta 3', '/images/trains/tau5.jpg', 'Hệ thống kiểm soát tự động, phanh từ và cảm biến theo dõi liên tục giúp tàu duy trì hành trình ổn định ngay cả ở tốc độ cao.', 2, 4,'Hệ thống kiểm soát tự động, phanh từ và cảm biến theo dõi liên tục giúp tàu duy trì hành trình ổn định ngay cả ở tốc độ cao. Các biện pháp an toàn tiên tiến đảm bảo chuyến đi suôn sẻ trong mọi điều kiện thời tiết.');	
 INSERT INTO Date_of_trip (date_details) VALUES 
 ('2025-02-01'),('2025-02-02'),('2025-02-03'),('2025-02-04'),('2025-02-05'),('2025-02-06'),('2025-02-07'),('2025-02-08'),('2025-02-09'),('2025-02-10'),
 ('2025-02-11'),('2025-02-12'),('2025-02-13'),('2025-02-14'),('2025-02-15'),('2025-02-16'),('2025-02-17'),('2025-02-18'),('2025-02-19'),('2025-02-20'),
@@ -33409,80 +33409,81 @@ INSERT INTO Date_trip (id_trip,id_date_of_trip) VALUES (1,1),
 
 
 
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/hanoi.jpg' WHERE `id_station` = 1;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/phuly.jpg' WHERE `id_station` = 2;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/namdinh.jpg' WHERE `id_station` = 3;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/ninhbinh.jpg' WHERE `id_station` = 4;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/bimson.jpg' WHERE `id_station` = 5;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/thanhhoa.jpg' WHERE `id_station` = 6;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/minhkhoi.jpg' WHERE `id_station` = 7;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/chosy.jpg' WHERE `id_station` = 8;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/vinh.jpg' WHERE `id_station` = 9;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/yentrung.jpg' WHERE `id_station` = 10;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/huongpho.jpg' WHERE `id_station` = 11;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/dongle.jpg' WHERE `id_station` = 12;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/donghoi.jpg' WHERE `id_station` = 13;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/dongha.jpg' WHERE `id_station` = 14;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/hue.jpg' WHERE `id_station` = 15;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/langco.jpg' WHERE `id_station` = 16;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/danang.jpg' WHERE `id_station` = 17;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/trakieu.jpg' WHERE `id_station` = 18;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/phucang.jpg' WHERE `id_station` = 19;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/tamky.jpg' WHERE `id_station` = 20;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/nuithanh.jpg' WHERE `id_station` = 21;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/quangngai.jpg' WHERE `id_station` = 22;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/ducpho.jpg' WHERE `id_station` = 23;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/bongson.jpg' WHERE `id_station` = 24;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/quynhon.jpg' WHERE `id_station` = 25;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/tuyhoa.jpg' WHERE `id_station` = 26;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/gia.jpg' WHERE `id_station` = 27;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/ninhhoa.jpg' WHERE `id_station` = 28;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/nhatrang.jpg' WHERE `id_station` = 29;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/ngaba.jpg' WHERE `id_station` = 30;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/thapcham.jpg' WHERE `id_station` = 31;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/songmao.jpg' WHERE `id_station` = 32;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/malam.jpg' WHERE `id_station` = 33;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/binhthuan.jpg' WHERE `id_station` = 34;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/longkhanh.jpg' WHERE `id_station` = 35;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/bienhoa.jpg' WHERE `id_station` = 36;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/saigon.jpg' WHERE `id_station` = 37;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/hanoi.jpg' WHERE `id_station` = 74;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/phuly.jpg' WHERE `id_station` = 73;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/namdinh.jpg' WHERE `id_station` = 72;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/ninhbinh.jpg' WHERE `id_station` = 71;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/bimson.jpg' WHERE `id_station` = 70;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/thanhhoa.jpg' WHERE `id_station` = 69;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/minhkhoi.jpg' WHERE `id_station` = 68;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/chosy.jpg' WHERE `id_station` = 67;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/vinh.jpg' WHERE `id_station` = 66;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/yentrung.jpg' WHERE `id_station` = 65;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/huongpho.jpg' WHERE `id_station` = 64;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/dongle.jpg' WHERE `id_station` = 63;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/donghoi.jpg' WHERE `id_station` = 62;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/dongha.jpg' WHERE `id_station` = 61;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/hue.jpg' WHERE `id_station` = 60;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/langco.jpg' WHERE `id_station` = 59;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/danang.jpg' WHERE `id_station` = 58;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/trakieu.jpg' WHERE `id_station` = 57;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/phucang.jpg' WHERE `id_station` = 56;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/tamky.jpg' WHERE `id_station` = 55;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/nuithanh.jpg' WHERE `id_station` = 54;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/quangngai.jpg' WHERE `id_station` = 53;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/ducpho.jpg' WHERE `id_station` = 52;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/bongson.jpg' WHERE `id_station` = 51;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/quynhon.jpg' WHERE `id_station` = 50;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/tuyhoa.jpg' WHERE `id_station` = 49;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/gia.jpg' WHERE `id_station` = 48;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/ninhhoa.jpg' WHERE `id_station` = 47;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/nhatrang.jpg' WHERE `id_station` = 46;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/ngaba.jpg' WHERE `id_station` = 45;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/thapcham.jpg' WHERE `id_station` = 44;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/songmao.jpg' WHERE `id_station` = 43;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/malam.jpg' WHERE `id_station` = 42;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/binhthuan.jpg' WHERE `id_station` = 41;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/longkhanh.jpg' WHERE `id_station` = 40;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/bienhoa.jpg' WHERE `id_station` = 39;
-UPDATE `station` SET `image_station` = '../SWP391/images/stations/saigon.jpg' WHERE `id_station` = 38;
+UPDATE `station` SET `image_station` = '/images/stations/hanoi.jpg' WHERE `id_station` = 1;
+UPDATE `station` SET `image_station` = '/images/stations/phuly.jpg' WHERE `id_station` = 2;
+UPDATE `station` SET `image_station` = '/images/stations/namdinh.jpg' WHERE `id_station` = 3;
+UPDATE `station` SET `image_station` = '/images/stations/ninhbinh.jpg' WHERE `id_station` = 4;
+UPDATE `station` SET `image_station` = '/images/stations/bimson.jpg' WHERE `id_station` = 5;
+UPDATE `station` SET `image_station` = '/images/stations/thanhhoa.jpg' WHERE `id_station` = 6;
+UPDATE `station` SET `image_station` = '/images/stations/minhkhoi.jpg' WHERE `id_station` = 7;
+UPDATE `station` SET `image_station` = '/images/stations/chosy.jpg' WHERE `id_station` = 8;
+UPDATE `station` SET `image_station` = '/images/stations/vinh.jpg' WHERE `id_station` = 9;
+UPDATE `station` SET `image_station` = '/images/stations/yentrung.jpg' WHERE `id_station` = 10;
+UPDATE `station` SET `image_station` = '/images/stations/huongpho.jpg' WHERE `id_station` = 11;
+UPDATE `station` SET `image_station` = '/images/stations/dongle.jpg' WHERE `id_station` = 12;
+UPDATE `station` SET `image_station` = '/images/stations/donghoi.jpg' WHERE `id_station` = 13;
+UPDATE `station` SET `image_station` = '/images/stations/dongha.jpg' WHERE `id_station` = 14;
+UPDATE `station` SET `image_station` = '/images/stations/hue.jpg' WHERE `id_station` = 15;
+UPDATE `station` SET `image_station` = '/images/stations/langco.jpg' WHERE `id_station` = 16;
+UPDATE `station` SET `image_station` = '/images/stations/danang.jpg' WHERE `id_station` = 17;
+UPDATE `station` SET `image_station` = '/images/stations/trakieu.jpg' WHERE `id_station` = 18;
+UPDATE `station` SET `image_station` = '/images/stations/phucang.jpg' WHERE `id_station` = 19;
+UPDATE `station` SET `image_station` = '/images/stations/tamky.jpg' WHERE `id_station` = 20;
+UPDATE `station` SET `image_station` = '/images/stations/nuithanh.jpg' WHERE `id_station` = 21;
+UPDATE `station` SET `image_station` = '/images/stations/quangngai.jpg' WHERE `id_station` = 22;
+UPDATE `station` SET `image_station` = '/images/stations/ducpho.jpg' WHERE `id_station` = 23;
+UPDATE `station` SET `image_station` = '/images/stations/bongson.jpg' WHERE `id_station` = 24;
+UPDATE `station` SET `image_station` = '/images/stations/quynhon.jpg' WHERE `id_station` = 25;
+UPDATE `station` SET `image_station` = '/images/stations/tuyhoa.jpg' WHERE `id_station` = 26;
+UPDATE `station` SET `image_station` = '/images/stations/gia.jpg' WHERE `id_station` = 27;
+UPDATE `station` SET `image_station` = '/images/stations/ninhhoa.jpg' WHERE `id_station` = 28;
+UPDATE `station` SET `image_station` = '/images/stations/nhatrang.jpg' WHERE `id_station` = 29;
+UPDATE `station` SET `image_station` = '/images/stations/ngaba.jpg' WHERE `id_station` = 30;
+UPDATE `station` SET `image_station` = '/images/stations/thapcham.jpg' WHERE `id_station` = 31;
+UPDATE `station` SET `image_station` = '/images/stations/songmao.jpg' WHERE `id_station` = 32;
+UPDATE `station` SET `image_station` = '/images/stations/malam.jpg' WHERE `id_station` = 33;
+UPDATE `station` SET `image_station` = '/images/stations/binhthuan.jpg' WHERE `id_station` = 34;
+UPDATE `station` SET `image_station` = '/images/stations/longkhanh.jpg' WHERE `id_station` = 35;
+UPDATE `station` SET `image_station` = '/images/stations/bienhoa.jpg' WHERE `id_station` = 36;
+UPDATE `station` SET `image_station` = '/images/stations/saigon.jpg' WHERE `id_station` = 37;
+UPDATE `station` SET `image_station` = '/images/stations/hanoi.jpg' WHERE `id_station` = 74;
+UPDATE `station` SET `image_station` = '/images/stations/phuly.jpg' WHERE `id_station` = 73;
+UPDATE `station` SET `image_station` = '/images/stations/namdinh.jpg' WHERE `id_station` = 72;
+UPDATE `station` SET `image_station` = '/images/stations/ninhbinh.jpg' WHERE `id_station` = 71;
+UPDATE `station` SET `image_station` = '/images/stations/bimson.jpg' WHERE `id_station` = 70;
+UPDATE `station` SET `image_station` = '/images/stations/thanhhoa.jpg' WHERE `id_station` = 69;
+UPDATE `station` SET `image_station` = '/images/stations/minhkhoi.jpg' WHERE `id_station` = 68;
+UPDATE `station` SET `image_station` = '/images/stations/chosy.jpg' WHERE `id_station` = 67;
+UPDATE `station` SET `image_station` = '/images/stations/vinh.jpg' WHERE `id_station` = 66;
+UPDATE `station` SET `image_station` = '/images/stations/yentrung.jpg' WHERE `id_station` = 65;
+UPDATE `station` SET `image_station` = '/images/stations/huongpho.jpg' WHERE `id_station` = 64;
+UPDATE `station` SET `image_station` = '/images/stations/dongle.jpg' WHERE `id_station` = 63;
+UPDATE `station` SET `image_station` = '/images/stations/donghoi.jpg' WHERE `id_station` = 62;
+UPDATE `station` SET `image_station` = '/images/stations/dongha.jpg' WHERE `id_station` = 61;
+UPDATE `station` SET `image_station` = '/images/stations/hue.jpg' WHERE `id_station` = 60;
+UPDATE `station` SET `image_station` = '/images/stations/langco.jpg' WHERE `id_station` = 59;
+UPDATE `station` SET `image_station` = '/images/stations/danang.jpg' WHERE `id_station` = 58;
+UPDATE `station` SET `image_station` = '/images/stations/trakieu.jpg' WHERE `id_station` = 57;
+UPDATE `station` SET `image_station` = '/images/stations/phucang.jpg' WHERE `id_station` = 56;
+UPDATE `station` SET `image_station` = '/images/stations/tamky.jpg' WHERE `id_station` = 55;
+UPDATE `station` SET `image_station` = '/images/stations/nuithanh.jpg' WHERE `id_station` = 54;
+UPDATE `station` SET `image_station` = '/images/stations/quangngai.jpg' WHERE `id_station` = 53;
+UPDATE `station` SET `image_station` = '/images/stations/ducpho.jpg' WHERE `id_station` = 52;
+UPDATE `station` SET `image_station` = '/images/stations/bongson.jpg' WHERE `id_station` = 51;
+UPDATE `station` SET `image_station` = '/images/stations/quynhon.jpg' WHERE `id_station` = 50;
+UPDATE `station` SET `image_station` = '/images/stations/tuyhoa.jpg' WHERE `id_station` = 49;
+UPDATE `station` SET `image_station` = '/images/stations/gia.jpg' WHERE `id_station` = 48;
+UPDATE `station` SET `image_station` = '/images/stations/ninhhoa.jpg' WHERE `id_station` = 47;
+UPDATE `station` SET `image_station` = '/images/stations/nhatrang.jpg' WHERE `id_station` = 46;
+UPDATE `station` SET `image_station` = '/images/stations/ngaba.jpg' WHERE `id_station` = 45;
+UPDATE `station` SET `image_station` = '/images/stations/thapcham.jpg' WHERE `id_station` = 44;
+UPDATE `station` SET `image_station` = '/images/stations/songmao.jpg' WHERE `id_station` = 43;
+UPDATE `station` SET `image_station` = '/images/stations/malam.jpg' WHERE `id_station` = 42;
+UPDATE `station` SET `image_station` = '/images/stations/binhthuan.jpg' WHERE `id_station` = 41;
+UPDATE `station` SET `image_station` = '/images/stations/longkhanh.jpg' WHERE `id_station` = 40;
+UPDATE `station` SET `image_station` = '/images/stations/bienhoa.jpg' WHERE `id_station` = 39;
+UPDATE `station` SET `image_station` = '/images/stations/saigon.jpg' WHERE `id_station` = 38;
+
 
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Nguyễn Hữu Hiệp','hiepgacute1989@gmail.com','KOfLlsfqVZEOkuIN4BdPektNF9w=','0966755095',3,1); 
 
@@ -33492,19 +33493,19 @@ INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_
 
 
 INSERT INTO advertising (image_advertising, description_advertising, id_manager, content) 
-VALUES ('../SWP391/images/HANOI.jpg', 'Hà Nội, thủ đô 1000 năm văn hiến', 1, 
+VALUES ('/images/advertising/HANOI.jpg', 'Hà Nội, thủ đô 1000 năm văn hiến', 1, 
 'Hà Nội là thủ đô ngàn năm văn hiến của Việt Nam, nổi tiếng với những di tích lịch sử như Hồ Gươm, Lăng Bác, Văn Miếu - Quốc Tử Giám và khu phố cổ. Thành phố mang vẻ đẹp cổ kính pha lẫn hiện đại, thu hút du khách bởi nét văn hóa đặc trưng và ẩm thực phong phú như phở, bún chả và bánh cuốn.');
 
 INSERT INTO advertising (image_advertising, description_advertising, id_manager, content) 
-VALUES ('../SWP391/images/NHATRANG.jpg', 'Nha Trang, hòa mình vào từng cơn sóng biển', 1, 
+VALUES ('/images/advertising/NHATRANG.jpg', 'Nha Trang, hòa mình vào từng cơn sóng biển', 1, 
 'Nha Trang là thành phố biển xinh đẹp nổi tiếng với bãi cát trắng mịn, làn nước trong xanh và những hòn đảo tuyệt đẹp như Hòn Mun, Hòn Tằm. Đây là điểm đến lý tưởng cho những ai yêu thích biển và các hoạt động như lặn biển, chèo kayak và thưởng thức hải sản tươi ngon.');
 
 INSERT INTO advertising (image_advertising, description_advertising, id_manager, content) 
-VALUES ('../SWP391/images/SAIGON.jpg', 'Sài Gòn, nơi tình yêu đôi bạn bắt đầu ', 2, 
+VALUES ('/images/advertising/SAIGON.jpg', 'Sài Gòn, nơi tình yêu đôi bạn bắt đầu ', 2, 
 'Sài Gòn - Thành phố Hồ Chí Minh là trung tâm kinh tế sầm uất bậc nhất Việt Nam, nơi giao thoa của nhiều nền văn hóa. Thành phố mang đến nhịp sống năng động với các địa điểm nổi tiếng như Nhà thờ Đức Bà, Chợ Bến Thành và phố đi bộ Nguyễn Huệ. Nơi đây còn có nền ẩm thực đa dạng từ cơm tấm, hủ tiếu đến cà phê sữa đá.');
 
 INSERT INTO advertising (image_advertising, description_advertising, id_manager, content) 
-VALUES ('../SWP391/images/NUITHANH.jpg', 'Núi Thành, Nơi cảm xúc dâng trào', 2, 
+VALUES ('/images/advertising/NUITHANH.jpg', 'Núi Thành, Nơi cảm xúc dâng trào', 2, 
 'Núi Thành thuộc tỉnh Quảng Nam, là vùng đất giàu truyền thống lịch sử và cảnh đẹp thiên nhiên hoang sơ. Đây là điểm đến hấp dẫn với những bãi biển tuyệt đẹp như Tam Hải, những cánh đồng muối và các địa danh gắn liền với lịch sử hào hùng của dân tộc.');
 
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Hiển Nguyễn Bá','hiennbhe181773@fpt.edu.vn','6NWFIsI1V5KNFeeazNcq35qxRUE=','0332671182',3,1); 

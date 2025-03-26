@@ -29,7 +29,7 @@ CREATE TABLE Customer (
   email_customer        varchar(255) NOT NULL, 
   password_customer     varchar(255) NOT NULL, 
   status_customer       bit(1) NOT NULL, 
-  image_customer        blob, 
+  image_customer        VARCHAR(255) NULL, 
   id_role               int(11) NOT NULL, 
   PRIMARY KEY (id_customer), 
   INDEX (id_customer));

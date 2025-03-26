@@ -68,7 +68,7 @@
                         <c:forEach var ="train" items="${trains}">
                             <div class="swiper-slide">
                                 <div class="slide-inner">
-                                    <div class="slide-image" style="background-image:url(${train.image_train})"></div>
+                                    <div class="slide-image" style="background-image:url(${pageContext.request.contextPath}/${train.image_train})"></div>
                                     <div class="overlay"></div>
                                 </div> 
                             </div>
@@ -293,7 +293,7 @@
                                     <div class="trend-item">
                                         <a href="stationdetail?id=${station.id_station}">
                                             <div class="trend-image">
-                                                <img src="${station.image_station}" alt="${station.name_station}">
+                                                <img src="${pageContext.request.contextPath}/${station.image_station}" alt="${station.name_station}">
                                             </div>
                                         </a>
                                         <div class="trend-content-main">
@@ -306,7 +306,7 @@
                                                         <span class="fa fa-star checked"></span>
                                                         <span class="fa fa-star checked"></span>
                                                     </div>
-                                                    <span class="ml-2">99 đánh giá</span>
+                                                    <span class="ml-2"></span>
                                                 </div>
                                                 <h4><a href="stationdetail?id=${station.id_station}">${station.name_station}</a></h4>
                                             </div>
@@ -352,16 +352,16 @@
                                 <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                                     <div class="news-item overflow-hidden">
                                         <div class="news-image">
-                                            <img src="${advertising.image_advertising}" alt="image">
+                                            <img src="${pageContext.request.contextPath}/${advertising.image_advertising}" alt="image">
                                         </div>
                                         <div class="news-list mt-2 border-b pb-2 mb-2">
                                             <ul>
-                                                <li><a href="advertisingdetail" class="pr-3">
+                                                <li><p class="pr-3">
                                                         <i class="fa fa-user pink pr-1"></i> ${advertising.managerName} 
-                                                    </a></li>
-                                                <li><a href="advertisingdetail" class="pr-3">
+                                                    </p></li>
+                                                <li><p  class="pr-3">
                                                         <i class="fa fa-comment pink pr-1"></i> ${advertising.create_at}
-                                                    </a></li>
+                                                    </p></li>
                                             </ul>
                                         </div>
                                         <div class="news-content mt-2">

@@ -161,7 +161,7 @@
                     <div class="col-lg-12">
                         <div class="blog-single">
                             <div class="blog-imagelist mb-3">
-                                <img src="${trainBrand.image_train_brand}" alt="image" style="width: 50%; height: auto; display: block; margin: auto;">
+                                <img src="${pageContext.request.contextPath}/${trainBrand.image_train_brand}" alt="image" style="width: 50%; height: auto; display: block; margin: auto;">
                             </div>
                             <div class="row">
                                 <div class="col-lg-10 col-md-10">

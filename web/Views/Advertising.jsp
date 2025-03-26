@@ -109,7 +109,7 @@
                         <c:forEach var="advertising" items="${listAdvertisings}" >
                             <div class="advertising col-lg-4 col-md-6 col-sm-12 col-xs-12 mansonry-item mb-2">
                                 <div class="blog-full text-center p-3">
-                                    <img src="${advertising.image_advertising}" alt="">
+                                    <img src="${pageContext.request.contextPath}/${advertising.image_advertising}" alt="">
                                     <div class="blog-content pb-0">
                                         <span class="h-date pink mb-1 font-weight-light d-block"> 5-3-2025</span>
                                         <h3 class="mb-2"><a href="advertisingdetail?id=${advertising.id_advertising}" class="">${advertising.description_advertising}</a></h3>

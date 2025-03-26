@@ -45,29 +45,8 @@
                                 <div class="dashboard-nav">
                                     <div class="dashboard-nav-inner">
                                         <ul>
-                                            <li>
-                                                <a href="dashboard"><i class="sl sl-icon-settings"></i> Bảng điều khiển</a>
-                                            </li>
                                             <li class="active">
                                                 <a href="Profile"><i class="sl sl-icon-user"></i> Thông tin cá nhân</a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><i class="sl sl-icon-envelope-open"></i> Messages</a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><i class="sl sl-icon-star"></i> Reviews</a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><i class="sl sl-icon-plus"></i> Add listing</a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><i class="sl sl-icon-layers"></i> Listing</a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><i class="fa fa-list-ul"></i>Booking History</a>
-                                            </li>
-                                            <li>
-                                                <a href="Logout"><i class="sl sl-icon-power"></i> Đăng xuất</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -86,15 +65,18 @@
                                                         <h4 class="gray">Thông tin cá nhân</h4>
                                                         <div class="dashboard-list-static">
                                                             <!-- Avatar -->
-                                                            <div class="edit-profile-photo">
-                                                                <img src="${pageContext.request.contextPath}/Views/Admin/assets/img/team/2.jpg" alt="" />
-                                                                <div class="change-photo-btn">
-                                                                    <div class="photoUpload">
-                                                                        <span><i class="fa fa-upload"></i> Thay đổi ảnh</span>
-                                                                        <input type="file" class="upload" />
+                                                            <form id="uploadForm" action="UploadServlet" method="post" enctype="multipart/form-data">
+                                                                <div class="edit-profile-photo">
+                                                                    <img src="${img}" 
+                                                                         alt="Profile Image" width="150" id="avatarPreview"/>
+                                                                    <div class="change-photo-btn">
+                                                                        <div class="photoUpload">
+                                                                            <span><i class="fa fa-upload"></i> Thay đổi ảnh</span>
+                                                                            <input type="file" name="profileImage" class="upload" id="fileInput" onchange="previewAndUpload();" />
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -171,7 +153,7 @@
                                                         <div class="dashboard-list-static">
                                                             <!-- Avatar -->
                                                             <div class="edit-profile-photo">
-                                                                <img src="${pageContext.request.contextPath}/libs/images/testimonial/img1.jpg" alt="" />
+                                                                <img src="${requestScope.image_url}" alt="Profile Image" />
                                                                 <div class="change-photo-btn">
                                                                     <div class="photoUpload">
                                                                         <span><i class="fa fa-upload"></i> Thay đổi ảnh</span>
@@ -258,15 +240,18 @@
                                                         <h4 class="gray">Thông tin cá nhân</h4>
                                                         <div class="dashboard-list-static">
                                                             <!-- Avatar -->
-                                                            <div class="edit-profile-photo">
-                                                                <img src="${pageContext.request.contextPath}/libs/images/testimonial/img1.jpg" alt="" />
-                                                                <div class="change-photo-btn">
-                                                                    <div class="photoUpload">
-                                                                        <span><i class="fa fa-upload"></i> Thay đổi ảnh</span>
-                                                                        <input type="file" class="upload" />
+                                                            <form action="${pageContext.request.contextPath}/uploadAvatar" method="post" enctype="multipart/form-data">
+                                                                <div class="edit-profile-photo">
+                                                                    <img src="${img}" alt="Avatar customer" />
+                                                                    <div class="change-photo-btn">
+                                                                        <div class="photoUpload">
+                                                                            <span><i class="fa fa-upload"></i> Thay đổi ảnh</span>
+                                                                            <input type="file" name="avatar" class="upload" />
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                                <button type="submit" class="btn btn-primary">Cập nhật ảnh</button>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -276,57 +261,60 @@
                                                     <div class="dashboard-list margin-top-0">
                                                         <div class="dashboard-list-static">
                                                             <!-- Change info -->
-                                                            <div class="my-profile">
+                                                            <% if (request.getAttribute("success") != null) {%>
+                                                            <p style="color: green;"><%= request.getAttribute("success")%></p>
+                                                            <% }%>
+                                                            <form action="ChangeInformation" method="post">
                                                                 <div class="form-group">
                                                                     <label>Tên của bạn</label>
-                                                                    <input value="${name}" type="text" />
+                                                                    <input type="text" name="name" value="${account}" required />
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Số điện thoại</label>
-                                                                    <input value="${phone}" type="number" />
+                                                                    <input type="number" name="phone" value="${phone}" required />
                                                                 </div>
-
                                                                 <div class="form-group">
                                                                     <label>Địa chỉ Email</label>
-                                                                    <input value="${email}" type="email" readonly/>
+                                                                    <input type="email" value="${email}" readonly />
                                                                 </div>
-
-                                                                <div class="form-btn">
-                                                                    <a href="#" class="nir-btn">Lưu thay đổi</a>
-                                                                </div>
-                                                            </div>
+                                                                <button type="submit" class="nir-btn">Lưu thay đổi</button>
+                                                            </form>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div>                                                       
                                             </div>
                                         </div>
                                         <div class="dashboard-form mb-4">
                                             <div class="dashboard-password">
+                                                <% if (request.getAttribute("err1") != null) {%>
+                                                <p style="color: red;"><%= request.getAttribute("err1")%></p>
+                                                <% }%>
+                                                <% if (request.getAttribute("success1") != null) {%>
+                                                <p style="color: green;"><%= request.getAttribute("success1")%></p>
+                                                <% }%>
                                                 <h4>Đổi mật khẩu</h4>
-                                                <form>
-                                                    <div class="row">
-                                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                                <form action="ChangePassword" method="post">
+                                                    <div class="row">                                                   
+                                                        <div class="col-lg-4">
                                                             <div class="form-group">
                                                                 <label>Mật khẩu hiện tại</label>
-                                                                <input type="password" placeholder="*********" />
+                                                                <input type="password" name="current_password" class="form-control" required />
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="col-lg-4">
                                                             <div class="form-group">
                                                                 <label>Mật khẩu mới</label>
-                                                                <input type="password" />
+                                                                <input type="password" name="password" class="form-control" required />
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="col-lg-4">
                                                             <div class="form-group">
                                                                 <label>Xác nhận mật khẩu mới</label>
-                                                                <input type="password" />
+                                                                <input type="password" name="confirm_password" class="form-control" required />
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-12">
-                                                            <div class="form-btn mar-top-15">
-                                                                <a href="#" class="nir-btn">Lưu thay đổi</a>
-                                                            </div>
+                                                            <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -366,39 +354,61 @@
     <script src="${pageContext.request.contextPath}/libs/js/dashboard-custom.js"></script>
 
     <script>
-        (function () {
-            function c() {
-                var b = a.contentDocument || a.contentWindow.document;
-                if (b) {
-                    var d = b.createElement("script");
-                    d.innerHTML =
-                            "window.__CF$cv$params={r:'90d1e2791f1b84ab',t:'MTczODc0Nzg1Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='${pageContext.request.contextPath}/libs/cdn-cgi/challenge-platform/h/g/scripts/jsd/8a57887573f2/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";
-                    b.getElementsByTagName("head")[0].appendChild(d);
-                }
-            }
-            if (document.body) {
-                var a = document.createElement("iframe");
-                a.height = 1;
-                a.width = 1;
-                a.style.position = "absolute";
-                a.style.top = 0;
-                a.style.left = 0;
-                a.style.border = "none";
-                a.style.visibility = "hidden";
-                document.body.appendChild(a);
-                if ("loading" !== document.readyState)
-                    c();
-                else if (window.addEventListener)
-                    document.addEventListener("DOMContentLoaded", c);
-                else {
-                    var e = document.onreadystatechange || function () {};
-                    document.onreadystatechange = function (b) {
-                        e(b);
-                        "loading" !== document.readyState &&
-                                ((document.onreadystatechange = e), c());
-                    };
-                }
-            }
-        })();
+                                                                                (function () {
+                                                                                    function c() {
+                                                                                        var b = a.contentDocument || a.contentWindow.document;
+                                                                                        if (b) {
+                                                                                            var d = b.createElement("script");
+                                                                                            d.innerHTML =
+                                                                                                    "window.__CF$cv$params={r:'90d1e2791f1b84ab',t:'MTczODc0Nzg1Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='${pageContext.request.contextPath}/libs/cdn-cgi/challenge-platform/h/g/scripts/jsd/8a57887573f2/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";
+                                                                                            b.getElementsByTagName("head")[0].appendChild(d);
+                                                                                        }
+                                                                                    }
+                                                                                    if (document.body) {
+                                                                                        var a = document.createElement("iframe");
+                                                                                        a.height = 1;
+                                                                                        a.width = 1;
+                                                                                        a.style.position = "absolute";
+                                                                                        a.style.top = 0;
+                                                                                        a.style.left = 0;
+                                                                                        a.style.border = "none";
+                                                                                        a.style.visibility = "hidden";
+                                                                                        document.body.appendChild(a);
+                                                                                        if ("loading" !== document.readyState)
+                                                                                            c();
+                                                                                        else if (window.addEventListener)
+                                                                                            document.addEventListener("DOMContentLoaded", c);
+                                                                                        else {
+                                                                                            var e = document.onreadystatechange || function () {};
+                                                                                            document.onreadystatechange = function (b) {
+                                                                                                e(b);
+                                                                                                "loading" !== document.readyState &&
+                                                                                                        ((document.onreadystatechange = e), c());
+                                                                                            };
+                                                                                        }
+                                                                                    }
+                                                                                })();
+                                                                                function previewAndUpload() {
+                                                                                    var input = document.getElementById("fileInput");
+                                                                                    var file = input.files[0];
+
+                                                                                    if (file) {
+                                                                                        var allowedTypes = ["image/jpeg", "image/png", "image/gif"];
+                                                                                        if (!allowedTypes.includes(file.type)) {
+                                                                                            alert("Chỉ chấp nhận các file ảnh (JPG, PNG, GIF)!");
+                                                                                            return;
+                                                                                        }
+
+                                                                                        // Xem trước ảnh
+                                                                                        var reader = new FileReader();
+                                                                                        reader.onload = function (e) {
+                                                                                            document.getElementById("avatarPreview").src = e.target.result;
+                                                                                        };
+                                                                                        reader.readAsDataURL(file);
+
+                                                                                        // Tự động submit form
+                                                                                        document.getElementById("uploadForm").submit();
+                                                                                    }
+                                                                                }
     </script>
 </html>

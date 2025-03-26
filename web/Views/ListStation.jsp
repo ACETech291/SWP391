@@ -94,7 +94,7 @@
                                                     <div class="blog-image">
                                                         <a href="stationdetail?id=${station.id_station}">
                                                             <div class="trend-image">
-                                                                <img src="${station.image_station}" alt="${station.name_station}">
+                                                                <img src="${pageContext.request.contextPath}/${station.image_station}" alt="${station.name_station}">
                                                             </div>
                                                         </a>
                                                     </div> 

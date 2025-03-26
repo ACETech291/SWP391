@@ -106,14 +106,14 @@
                     <div class="col-lg-12">
                         <div class="blog-single">
                             <div class="blog-imagelist mb-3">
-                                <img src="${advertising.image_advertising}" alt="image" style="width: 100%; height: auto;"
+                                <img src="${pageContext.request.contextPath}/${advertising.image_advertising}" alt="image" style="width: 100%; height: auto;"
                             </div>
                             <div class="row">
                                 <div class="col-lg-10 col-md-10">
                                     <div class="blog-content mb-4 pt-0">
-                                        <h4  class="blog-title"><a href="#" class="yellow" style=" color: grey">Tác giả: ${advertising.managerName}</a></h4>
+                                        <h4  class="blog-title"><p  class="yellow" style=" color: grey">Tác giả: ${advertising.managerName}</p></h4>
                                         <div class="para-content mb-2">
-                                            <span class="mr-2"><a href="#" class="pink"><i class="fa fa-user mr-1"></i>Thời điểm đăng bài: ${advertising.create_at}</a></span>
+                                            <span class="mr-2"><p  class="pink"><i class="fa fa-user mr-1"></i>Thời điểm đăng bài: ${advertising.create_at}</p></span>
                                         </div>
                                         <p>${advertising.description_advertising}</p>
                                         <p>${advertising.content}</p>

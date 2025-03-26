@@ -4,6 +4,7 @@
  */
 package controller;
 
+import dal.CustomerDAO;
 import model.*;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -44,6 +45,7 @@ public class Profile extends HttpServlet {
             request.setAttribute("name", user.getUserName());
             request.setAttribute("email", user.getEmail());
             request.setAttribute("phone", user.getPhoneNumber());
+            request.setAttribute("img", user.getImage_url());
             request.setAttribute("account", account);
             request.getRequestDispatcher("Views/Profile.jsp").forward(request, response);
         } else {

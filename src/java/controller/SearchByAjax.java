@@ -37,7 +37,7 @@ public class SearchByAjax extends HttpServlet {
 
         StationDAO stationDAO = new StationDAO();
         List<Station> list = stationDAO.searchStationByName(nameStation);
-
+        String contextPath = request.getContextPath();
         try (PrintWriter out = response.getWriter()) {
 
             for (Station o : list) {
@@ -46,7 +46,7 @@ public class SearchByAjax extends HttpServlet {
                         + "                                            <div class=\"blog-image\">\n"
                         + "                                                <a href=\"stationdetail?id=" + o.getId_station() + "\">\n"
                         + "                                                    <div class=\"trend-image\">\n"
-                        + "                                                        <img src=\"" + o.getImage_station() + "\" alt=\"" + o.getName_station() + "\">\n"
+                        + "                                                        <img src=\"" + contextPath+ o.getImage_station() + "\" alt=\"" + o.getName_station() + "\">\n"
                         + "                                                    </div>\n"
                         + "                                                </a>\n"
                         + "                                            </div> \n"

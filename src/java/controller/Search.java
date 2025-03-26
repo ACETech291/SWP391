@@ -207,6 +207,10 @@ public class Search extends HttpServlet {
 
         List<Station> listStation = stationDAO.getAllStations();
         List<model.Advertising> listAdvertisings = advertisingDAO.getAllAdvertising();
+        request.setAttribute("station_from", station_from);
+        request.setAttribute("station_end", station_end);
+        request.setAttribute("train_brand", train_brand);
+        request.setAttribute("listBrand", listBrand);
         request.setAttribute("listBrand", listBrand);
         session.setAttribute("list1", list1);
         request.setAttribute("page", page);

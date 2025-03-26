@@ -38,15 +38,18 @@ public class LoadStation extends HttpServlet {
             String xamount = request.getParameter("exists");
             int amount = Integer.parseInt(xamount);
             List<Station> listStation = stationDAO.getNext6Stations(amount);
+            System.out.println(listStation);
             response.setContentType("text/html;charset=UTF-8");
             response.setCharacterEncoding("UTF-8");
+            String contextPath = request.getContextPath();
+            System.out.println(contextPath);
             for (Station station : listStation) {
                 out.println("<div class=\"station col-lg-4 col-md-6 col-sm-12 mb-4\">\n"
                         + "                                                <div class=\"blog-full\">\n"
                         + "                                                    <div class=\"blog-image\">\n"
                         + "                                                        <a href=\"stationdetail?id=" + station.getId_station() + "\">\n"
                         + "                                                            <div class=\"trend-image\">\n"
-                        + "                                                                <img src=\"" + station.getImage_station() + "\" alt=\"" + station.getName_station() + "\">\n"
+                        + "                                                                <img src=\""+contextPath + station.getImage_station() + "\" alt=\"" + station.getName_station() + "\">\n"
                         + "                                                            </div>\n"
                         + "                                                        </a>\n"
                         + "                                                    </div> \n"

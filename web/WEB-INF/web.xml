@@ -20,6 +20,7 @@
         <filter-name>LoginFilter</filter-name>
         <url-pattern>/BookTicket</url-pattern>
         <url-pattern>/Feedback</url-pattern>
+        <url-pattern>/ChooseSeat</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>AuthorizationFilter</filter-name>
@@ -272,7 +273,7 @@
     </servlet>
     <servlet>
         <servlet-name>UploadServlet</servlet-name>
-        <servlet-class>controller.UploadServlet</servlet-class>
+        <servlet-class>controller.UploadAvatarServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ChooseSeat</servlet-name>
