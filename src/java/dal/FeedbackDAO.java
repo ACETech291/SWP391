@@ -117,4 +117,18 @@ public class FeedbackDAO {
             System.out.println(feedback);
         }
     }
+    
+    public boolean deleteFeedbackByAdvertisingId(int id_advertising) {
+    String sql = "DELETE FROM Feedback WHERE id_advertising = ?";
+    
+    try (PreparedStatement ps = connect.prepareStatement(sql)) {
+        ps.setInt(1, id_advertising);
+        
+        int rowsAffected = ps.executeUpdate();
+        return rowsAffected > 0; // Trả về true nếu có ít nhất một hàng bị xóa
+    } catch (Exception e) {
+        e.printStackTrace();
+        return false;
+    }
+}
 }

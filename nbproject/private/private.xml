@@ -3,9 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/SWPFinal/SWP391/web/Views/Manager/EditAdvertising.jsp</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/UploadAvatarServlet.java</file>
             <file>file:/D:/SWPFinal/SWP391/src/java/controller/SearchComment.java</file>
             <file>file:/D:/SWPFinal/SWP391/src/java/dal/CommentDAO.java</file>
+            <file>file:/D:/SWPFinal/SWP391/web/Views/Manager/AdvertisingManagement.jsp</file>
             <file>file:/D:/SWPFinal/SWP391/web/Views/BrandDetail.jsp</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/manager/EditAdvertising.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/dal/AdvertisingDAO.java</file>
             <file>file:/D:/SWPFinal/SWP391/src/java/controller/BrandDetail.java</file>
         </group>
     </open-files>
