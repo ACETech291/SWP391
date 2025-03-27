@@ -318,7 +318,7 @@
             </div>   
             <div class="justify-content-center text-center">
                 <a href="liststation" class="per-btn">
-                    <span class="white">Xem thêm</span>
+                    <span class="white">Xem danh sách</span>
                 </a>
             </div>
         </div>
@@ -375,7 +375,7 @@
             </div>
             <div class="justify-content-center text-center">
                 <a href="advertising" class="per-btn">
-                    <span  class="white">Xem thêm</span>
+                    <span  class="white">Xem danh sách</span>
                 </a>
             </div>
         </div>
