@@ -22,7 +22,7 @@ import model.TrainBrand;
  *
  * @author Nguyen Ba Hien
  */
-public class BrandDetail extends HttpServlet {
+public class SearchComment extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,10 +41,10 @@ public class BrandDetail extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet BrandDetail</title>");
+            out.println("<title>Servlet SearchComment</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet BrandDetail at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet SearchComment at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,39 +62,40 @@ public class BrandDetail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        TrainBrandDAO trainBrandDAO = new TrainBrandDAO();
+       TrainBrandDAO trainBrandDAO = new TrainBrandDAO();
+        String rate = request.getParameter("rating");
+        String id = request.getParameter("id_brand_voting");
         CommentDAO commentDAO = new CommentDAO();
-        
-        String id = request.getParameter("id"); 
+         List<model.Comment> listALLComment = commentDAO.getAllComments(Integer.parseInt(id));
+        List<model.Comment> listComment = commentDAO.getAllCommentsByVoting(Integer.parseInt(id), Integer.parseInt(rate));
+        TrainBrand trainBrand = null;
         try {
-            TrainBrand trainBrand = trainBrandDAO.getTrainBrandById(Integer.parseInt(id));
-            List<model.Comment> listAllComment = commentDAO.getAllComments(Integer.parseInt(id));
-            List<model.Comment> listComment = commentDAO.getAllCommentsByVoting(Integer.parseInt(id),5);
-            int rating=0;
-        for (model.Comment comment : listAllComment) {
+            trainBrand = trainBrandDAO.getTrainBrandById(Integer.parseInt(id));
+        } catch (SQLException ex) {
+            Logger.getLogger(SearchComment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int rating=0;
+        for (model.Comment comment : listALLComment) {
             rating+= comment.getVoting_comment();
         }
+        double result = Double.parseDouble(String.valueOf(rating));
+        result = result/listALLComment.size();
+        result = Math.round(result * 10.0) / 10.0;
         int vote1 = commentDAO.countCommentsByVoting(Integer.parseInt(id), 1);
         int vote2 = commentDAO.countCommentsByVoting(Integer.parseInt(id), 2);
         int vote3 = commentDAO.countCommentsByVoting(Integer.parseInt(id), 3);
         int vote4 = commentDAO.countCommentsByVoting(Integer.parseInt(id), 4);
         int vote5 = commentDAO.countCommentsByVoting(Integer.parseInt(id), 5);
-        double result = Double.parseDouble(String.valueOf(rating));
-        result = result/listAllComment.size();
-        result = Math.round(result * 10.0) / 10.0;
         request.setAttribute("vote1",vote1);
         request.setAttribute("vote2",vote2);
         request.setAttribute("vote3",vote3);
         request.setAttribute("vote4",vote4);
         request.setAttribute("vote5",vote5);
         request.setAttribute("result", result);
-            request.setAttribute("trainBrand",trainBrand);
-            request.setAttribute("listComment", listComment);
-            request.getRequestDispatcher("Views/BrandDetail.jsp").forward(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(BrandDetail.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        processRequest(request, response);
+        request.setAttribute("trainBrand",trainBrand);
+        request.setAttribute("listComment", listComment);
+        request.getRequestDispatcher("Views/BrandDetail.jsp").forward(request, response);
+        
     }
 
     /**

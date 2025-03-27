@@ -283,6 +283,14 @@
         <servlet-name>GetNumberOfSeats</servlet-name>
         <servlet-class>controller.GetNumberOfSeats</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchComment</servlet-name>
+        <servlet-class>controller.SearchComment</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchFeedback</servlet-name>
+        <servlet-class>controller.SearchFeedback</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>home</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -538,5 +546,13 @@
     <servlet-mapping>
         <servlet-name>GetNumberOfSeats</servlet-name>
         <url-pattern>/GetNumberOfSeats</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchComment</servlet-name>
+        <url-pattern>/SearchComment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchFeedback</servlet-name>
+        <url-pattern>/SearchFeedback</url-pattern>
     </servlet-mapping>
 </web-app>

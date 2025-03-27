@@ -47,6 +47,50 @@ public class CommentDAO {
         }
         return commentList;
     }
+    
+    public List<Comment> getAllCommentsByVoting(int id,int voting_comment) {
+        List<Comment> commentList = new ArrayList<>();
+        String query = "SELECT c.id_comment, c.voting_comment, c.content, cu.name_customer, c.create_at, c.id_train_brand " +
+                "FROM Comment c " +
+                "JOIN Customer cu ON c.id_customer = cu.id_customer WHERE id_train_brand = ? and voting_comment=?";
+
+        try (PreparedStatement ps = connect.prepareStatement(query)) {
+            ps.setInt(1, id);
+            ps.setInt(2,voting_comment);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Comment comment = new Comment();
+                comment.setId_comment(rs.getInt("id_comment"));
+                comment.setVoting_comment(rs.getInt("voting_comment"));
+                comment.setContent(rs.getString("content"));
+                comment.setName_customer(rs.getString("name_customer"));
+                comment.setCreate_at(rs.getTimestamp("create_at"));
+                comment.setId_train_brand(rs.getInt("id_train_brand"));
+                commentList.add(comment);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return commentList;
+    }
+    public int countCommentsByVoting(int id, int voting_comment) {
+    int count = 0;
+    String query = "SELECT COUNT(*) AS total FROM Comment WHERE id_train_brand = ? AND voting_comment = ?";
+
+    try (PreparedStatement ps = connect.prepareStatement(query)) {
+        ps.setInt(1, id);
+        ps.setInt(2, voting_comment);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            count = rs.getInt("total");
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return count;
+}
 
     public boolean insertComment(int voting_comment, String content, int id_customer, int id_train_brand) {
         String sql = "INSERT INTO Comment (voting_comment, content, id_customer, id_train_brand, create_at) VALUES (?, ?, ?, ?, NOW())";

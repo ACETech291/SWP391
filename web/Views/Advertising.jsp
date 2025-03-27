@@ -82,16 +82,18 @@
                     <div class="col-md-4">
                         <label for="sort">Sắp xếp theo:</label>
                         <select class="form-control" name="sort">
-                            <option value="newest">Mới nhất</option>
-                            <option value="oldest">Cũ nhất</option>
+                            <option value="newest" ${sort == 'newest' ? 'selected' : ''}>Mới nhất</option>
+                            <option value="oldest" ${sort == 'oldest' ? 'selected' : ''}>Cũ nhất</option>
                         </select>
                     </div>
                     <div class="col-md-4">
                         <label for="brand">Chọn hãng:</label>
                         <select class="form-control" name="brand">
-                            <option value="all">Tất cả</option>
-                            <c:forEach var="brand" items="${brandList}">
-                                <option value="${brand.name_train_brand}">${brand.name_train_brand}</option>
+                            <option value="all" ${brand == 'all' ? 'selected' : ''}>Tất cả</option>
+                            <c:forEach var="brandItem" items="${brandList}">
+                                <option value="${brandItem.name_train_brand}" ${brand == brandItem.name_train_brand ? 'selected' : ''}>
+                                    ${brandItem.name_train_brand}
+                                </option>
                             </c:forEach>
                         </select>
                     </div>
@@ -111,7 +113,7 @@
                                 <div class="blog-full text-center p-3">
                                     <img src="${pageContext.request.contextPath}/${advertising.image_advertising}" alt="">
                                     <div class="blog-content pb-0">
-                                        <span class="h-date pink mb-1 font-weight-light d-block"> 5-3-2025</span>
+                                        <span class="h-date pink mb-1 font-weight-light d-block">${advertising.create_at}</span>
                                         <h3 class="mb-2"><a href="advertisingdetail?id=${advertising.id_advertising}" class="">${advertising.description_advertising}</a></h3>
                                         <p class="date-cats mb-0 border-t pt-2 pb-2">
                                             <a href="#" class=""><i class="fa fa-user"></i> ${advertising.managerName}</a>
@@ -125,11 +127,13 @@
                 </div>
             </div>
         </section>
-        <div class="justify-content-center text-center">
-            <button onclick="loadMore()" class="per-btn">
-                <span class="grey">Xem thêm</span>
-            </button>
-        </div>
+        <c:if test="${sort == null}">
+            <div class="text-center">
+                <button onclick="loadMore()" class="per-btn">
+                    <span class="grey">Xem thêm</span>
+                </button>
+            </div>
+        </c:if>
         <!-- blog Ends -->
 
         <!-- footer starts -->
@@ -161,54 +165,54 @@
     <script src="${pageContext.request.contextPath}/libs/js/main.js"></script>
     <script src="${pageContext.request.contextPath}/libs/js/custom-nav.js"></script>
     <script>
-                                    (function () {
-                                        function c() {
-                                            var b = a.contentDocument || a.contentWindow.document;
-                                            if (b) {
-                                                var d = b.createElement('script');
-                                                d.innerHTML = "window.__CF$cv$params={r:'90d1e261284384ab',t:'MTczODc0Nzg1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='${pageContext.request.contextPath}/libs/cdn-cgi/challenge-platform/h/g/scripts/jsd/8a57887573f2/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";
-                                                b.getElementsByTagName('head')[0].appendChild(d)
-                                            }
-                                        }
-                                        if (document.body) {
-                                            var a = document.createElement('iframe');
-                                            a.height = 1;
-                                            a.width = 1;
-                                            a.style.position = 'absolute';
-                                            a.style.top = 0;
-                                            a.style.left = 0;
-                                            a.style.border = 'none';
-                                            a.style.visibility = 'hidden';
-                                            document.body.appendChild(a);
-                                            if ('loading' !== document.readyState)
-                                                c();
-                                            else if (window.addEventListener)
-                                                document.addEventListener('DOMContentLoaded', c);
-                                            else {
-                                                var e = document.onreadystatechange || function () {};
-                                                document.onreadystatechange = function (b) {
-                                                    e(b);
-                                                    'loading' !== document.readyState && (document.onreadystatechange = e, c())
-                                                }
-                                            }
-                                        }
-                                    })();
-                                    function loadMore() {
-                                        var amount = document.getElementsByClassName("advertising").length;
-                                        $.ajax({
-                                            url: "/SWP391/LoadAdvertising",
-                                            type: "get",
-                                            data: {
-                                                exists: amount
-                                            },
-                                            success: function (data) {
-                                                var row = document.getElementById("abc");
-                                                row.innerHTML += data;
-                                            },
-                                            error: function (xhr) {
-                                                console.error("Error loading more data");
-                                            }
-                                        });
-                                    }
+                (function () {
+                    function c() {
+                        var b = a.contentDocument || a.contentWindow.document;
+                        if (b) {
+                            var d = b.createElement('script');
+                            d.innerHTML = "window.__CF$cv$params={r:'90d1e261284384ab',t:'MTczODc0Nzg1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='${pageContext.request.contextPath}/libs/cdn-cgi/challenge-platform/h/g/scripts/jsd/8a57887573f2/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";
+                            b.getElementsByTagName('head')[0].appendChild(d)
+                        }
+                    }
+                    if (document.body) {
+                        var a = document.createElement('iframe');
+                        a.height = 1;
+                        a.width = 1;
+                        a.style.position = 'absolute';
+                        a.style.top = 0;
+                        a.style.left = 0;
+                        a.style.border = 'none';
+                        a.style.visibility = 'hidden';
+                        document.body.appendChild(a);
+                        if ('loading' !== document.readyState)
+                            c();
+                        else if (window.addEventListener)
+                            document.addEventListener('DOMContentLoaded', c);
+                        else {
+                            var e = document.onreadystatechange || function () {};
+                            document.onreadystatechange = function (b) {
+                                e(b);
+                                'loading' !== document.readyState && (document.onreadystatechange = e, c())
+                            }
+                        }
+                    }
+                })();
+                function loadMore() {
+                    var amount = document.getElementsByClassName("advertising").length;
+                    $.ajax({
+                        url: "/SWP391/LoadAdvertising",
+                        type: "get",
+                        data: {
+                            exists: amount
+                        },
+                        success: function (data) {
+                            var row = document.getElementById("abc");
+                            row.innerHTML += data;
+                        },
+                        error: function (xhr) {
+                            console.error("Error loading more data");
+                        }
+                    });
+                }
     </script>
 </html>

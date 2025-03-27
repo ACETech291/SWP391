@@ -5,6 +5,8 @@
 package controller;
 
 import dal.AdvertisingDAO;
+import dal.IntroductionDAO;
+import dal.PolicyDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -25,6 +27,8 @@ import model.Station;
 import model.Train;
 import model.TripDTO;
 import model.Advertising;
+import model.Introduction;
+import model.Policy;
 import model.TrainBrand;
 
 /**
@@ -42,6 +46,8 @@ public class home extends HttpServlet {
         TripDAO tripDAO = new TripDAO();
         AdvertisingDAO advertisingDAO = new AdvertisingDAO();
         TrainBrandDAO trainBrandDAO = new TrainBrandDAO();
+        PolicyDAO policyDAO = new PolicyDAO();
+        IntroductionDAO introductionDAO = new IntroductionDAO();
         
         List<Train> trains = trainDAO.getAllTrains();
         List<Station> listStation = stationDAO.getAllStations();
@@ -72,7 +78,10 @@ public class home extends HttpServlet {
         int start = (page-1)*numberPerPage;
         int end = Math.min(page*numberPerPage, size);
         List<TripDTO> listTrips = tripDAO.getListByPage(list1, start, end);
-        
+        System.out.println(policyDAO.getLastPolicy().getContent());
+        System.out.println(introductionDAO.getLastIntroduction().getContent());
+        request.setAttribute("policy",policyDAO.getLastPolicy().getContent());
+        request.setAttribute("introduction", introductionDAO.getLastIntroduction().getContent());
         request.setAttribute("listBrand", listBrand);
         request.setAttribute("listStation", listStation);
         request.setAttribute("listAdvertisings", listAdvertisings);

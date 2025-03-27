@@ -4,25 +4,21 @@
  */
 package controller;
 
-import dal.CommentDAO;
-import dal.TrainBrandDAO;
+import dal.AdvertisingDAO;
+import dal.FeedbackDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import model.TrainBrand;
 
 /**
  *
  * @author Nguyen Ba Hien
  */
-public class BrandDetail extends HttpServlet {
+public class SearchFeedback extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,10 +37,10 @@ public class BrandDetail extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet BrandDetail</title>");
+            out.println("<title>Servlet SearchFeedback</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet BrandDetail at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet SearchFeedback at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,39 +58,35 @@ public class BrandDetail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        TrainBrandDAO trainBrandDAO = new TrainBrandDAO();
-        CommentDAO commentDAO = new CommentDAO();
+        FeedbackDAO feedbackDAO = new FeedbackDAO();
+        AdvertisingDAO advertisingDAO = new AdvertisingDAO();
         
-        String id = request.getParameter("id"); 
-        try {
-            TrainBrand trainBrand = trainBrandDAO.getTrainBrandById(Integer.parseInt(id));
-            List<model.Comment> listAllComment = commentDAO.getAllComments(Integer.parseInt(id));
-            List<model.Comment> listComment = commentDAO.getAllCommentsByVoting(Integer.parseInt(id),5);
-            int rating=0;
-        for (model.Comment comment : listAllComment) {
-            rating+= comment.getVoting_comment();
+        String rate = request.getParameter("rating");
+        String id = request.getParameter("id_advertising_voting");
+        List<model.Feedback> listAllFeedback = feedbackDAO.getAllFeedback(Integer.parseInt(id));
+        List<model.Feedback> listFeedbacks = feedbackDAO.getAllFeedbackVoting(Integer.parseInt(id), Integer.parseInt(rate));
+        model.Advertising advertising = advertisingDAO.getAdvertisingById(id);
+        int rating=0;
+        for (model.Feedback feedback : listAllFeedback) {
+            rating += feedback.getVoting_feedback();
         }
-        int vote1 = commentDAO.countCommentsByVoting(Integer.parseInt(id), 1);
-        int vote2 = commentDAO.countCommentsByVoting(Integer.parseInt(id), 2);
-        int vote3 = commentDAO.countCommentsByVoting(Integer.parseInt(id), 3);
-        int vote4 = commentDAO.countCommentsByVoting(Integer.parseInt(id), 4);
-        int vote5 = commentDAO.countCommentsByVoting(Integer.parseInt(id), 5);
         double result = Double.parseDouble(String.valueOf(rating));
-        result = result/listAllComment.size();
+        result = result/listAllFeedback.size();
         result = Math.round(result * 10.0) / 10.0;
+        int vote1 = feedbackDAO.countFeedbackByVoting(Integer.parseInt(id), 1);
+        int vote2 = feedbackDAO.countFeedbackByVoting(Integer.parseInt(id), 2);
+        int vote3 = feedbackDAO.countFeedbackByVoting(Integer.parseInt(id), 3);
+        int vote4 = feedbackDAO.countFeedbackByVoting(Integer.parseInt(id), 4);
+        int vote5 = feedbackDAO.countFeedbackByVoting(Integer.parseInt(id), 5);
         request.setAttribute("vote1",vote1);
         request.setAttribute("vote2",vote2);
         request.setAttribute("vote3",vote3);
         request.setAttribute("vote4",vote4);
         request.setAttribute("vote5",vote5);
         request.setAttribute("result", result);
-            request.setAttribute("trainBrand",trainBrand);
-            request.setAttribute("listComment", listComment);
-            request.getRequestDispatcher("Views/BrandDetail.jsp").forward(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(BrandDetail.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        processRequest(request, response);
+        request.setAttribute("advertising", advertising);
+        request.setAttribute("listFeedbacks", listFeedbacks);
+        request.getRequestDispatcher("Views/AdvertisingDetail.jsp").forward(request, response);
     }
 
     /**

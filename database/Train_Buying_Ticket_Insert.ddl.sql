@@ -33508,7 +33508,7 @@ INSERT INTO advertising (image_advertising, description_advertising, id_manager,
 VALUES ('/images/advertising/NUITHANH.jpg', 'Núi Thành, Nơi cảm xúc dâng trào', 2, 
 'Núi Thành thuộc tỉnh Quảng Nam, là vùng đất giàu truyền thống lịch sử và cảnh đẹp thiên nhiên hoang sơ. Đây là điểm đến hấp dẫn với những bãi biển tuyệt đẹp như Tam Hải, những cánh đồng muối và các địa danh gắn liền với lịch sử hào hùng của dân tộc.');
 
-INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer,image_customer, id_role, status_customer) VALUES ('Hiển Nguyễn Bá','hiennbhe181773@fpt.edu.vn','6NWFIsI1V5KNFeeazNcq35qxRUE=','0332671182','/images/avatar/123.jpg',3,1); 
+INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer,image_customer, id_role, status_customer) VALUES ('Hiển Nguyễn Bá','hiennbhe181773@fpt.edu.vn','6NWFIsI1V5KNFeeazNcq35qxRUE=','0332671182',null,3,1); 
 
 INSERT INTO authorization(role_id,URL_authorization,feature_authorization,status_authorization) VALUE
 (1,"/home","Trang chủ",1),(2,"/home","Trang chủ",1),(3,"/home","Trang chủ",1),(4,"/home","Trang chủ",1),
@@ -33567,3 +33567,40 @@ INSERT INTO authorization(role_id,URL_authorization,feature_authorization,status
 
 
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('dasda','duyquy1511@gmail.com','LwwQbBAWkqpsESVxiB0LwFd7fDc=','0123456789',3,1); 
+
+
+INSERT INTO Policy (content, status_policy) VALUES ('<h6>1. Quy định đổi vé và hủy vé</h6>
+                <p><strong>Hủy vé:</strong> Hành khách có thể hủy vé trước giờ khởi hành ít nhất 24 giờ. Phí hủy vé: 10% - 30% giá vé.</p>
+                <p><strong>Đổi vé:</strong> Việc đổi vé phải thực hiện trước 12 giờ so với giờ tàu chạy.</p>
+
+                <h6>2. Nguyên tắc khi đi tàu</h6>
+                <p>- Hành khách phải có vé hợp lệ khi lên tàu.</p>
+                <p>- Không được hút thuốc, xả rác, hoặc gây mất trật tự trên tàu.</p>
+
+                <h6>3. Quy định hành lý</h6>
+                <p>- Mỗi hành khách được mang tối đa 20kg hành lý miễn phí.</p>
+                <p>- Hành lý có kích thước quá lớn hoặc hàng hóa nguy hiểm sẽ không được mang lên tàu.</p>
+
+                <h6>4. Trách nhiệm của hành khách</h6>
+                <p>- Hành khách cần đến ga trước giờ khởi hành ít nhất 30 phút.</p>
+                <p>- Tuân thủ hướng dẫn của nhân viên đường sắt.</p>
+
+                <h6>5. Liên hệ</h6>
+                <p>📞 Hotline: 0332671183</p>',1 );
+INSERT INTO Introduction (content, status_introduction) VALUES ('<h6> 1. Chọn hành trình</h6>
+                <p>- Truy cập trang web và chọn điểm đi, điểm đến, ngày đi</p>
+
+                <h6>2. Chọn chuyến tàu</h6>
+                <p>- Xem danh sách các chuyến tàu phù hợp và chọn vị trí theo ý muốn.</p>
+
+                <h6>3. Nhập thông tin hành khách</h6>
+                <p>- Điền thông tin cá nhân: Họ tên, số điện thoại, email.</p>
+
+                <h6>4. Thanh toán</h6>
+                <p>- Chọn phương thức thanh toán: Ví điện tử, thẻ ngân hàng hoặc tại quầy.</p>
+
+                <h6>5. Nhận vé</h6>
+                <p>- Sau khi thanh toán, bạn sẽ nhận được vé điện tử qua email hoặc SMS.</p>
+
+                <h6>6. Lên tàu</h6>
+                <p>- Đến ga trước giờ khởi hành ít nhất 30 phút, xuất trình vé điện tử để lên tàu.</p>', 1);

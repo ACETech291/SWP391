@@ -45,6 +45,53 @@ public class FeedbackDAO {
         }
         return feedbackList;
     }
+    
+    public List<Feedback> getAllFeedbackVoting(int id, int voting_feedback) {
+    List<Feedback> feedbackList = new ArrayList<>();
+    String query = "SELECT f.id_feedback, f.voting_feedback, f.content, c.name_customer, f.create_at, f.id_advertising "
+                 + "FROM Feedback f "
+                 + "JOIN Customer c ON f.id_customer = c.id_customer "
+                 + "WHERE f.id_advertising = ? AND f.voting_feedback = ?";
+
+    try (PreparedStatement ps = connect.prepareStatement(query)) {
+        ps.setInt(1, id);
+        ps.setInt(2, voting_feedback);
+        try (ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                Feedback feedback = new Feedback();
+                feedback.setId_feedback(rs.getInt("id_feedback"));
+                feedback.setVoting_feedback(rs.getInt("voting_feedback"));
+                feedback.setContent(rs.getString("content"));
+                feedback.setName_customer(rs.getString("name_customer"));
+                feedback.setCreate_at(rs.getTimestamp("create_at"));
+                feedback.setId_advertising(rs.getInt("id_advertising")); 
+
+                feedbackList.add(feedback);
+            }
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return feedbackList;
+}
+    
+    public int countFeedbackByVoting(int id, int voting_feedback) {
+    int count = 0;
+    String query = "SELECT COUNT(*) AS total FROM Feedback WHERE id_advertising = ? AND voting_feedback = ?";
+
+    try (PreparedStatement ps = connect.prepareStatement(query)) {
+        ps.setInt(1, id);
+        ps.setInt(2, voting_feedback);
+        try (ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                count = rs.getInt("total");
+            }
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return count;
+}
 
     public boolean insertFeedback(int voting_feedback, String content, int id_customer, int id_advertising) {
         String sql = "INSERT INTO Feedback (voting_feedback, content, id_customer, id_advertising, create_at) VALUES (?, ?, ?, ?, NOW())";

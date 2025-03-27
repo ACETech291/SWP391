@@ -5,6 +5,7 @@
 package controller;
 
 import dal.StationDAO;
+import dal.TrainBrandDAO;
 import dal.TrainDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,8 +13,11 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.SQLException;
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Station;
 import model.Train;
 
@@ -99,21 +103,45 @@ public class SortServlet extends HttpServlet {
         String order = request.getParameter("order");
         if (order.equalsIgnoreCase("2")) {
             TrainDAO trainDAO = new TrainDAO();
+            TrainBrandDAO trainBrandDAO = new TrainBrandDAO();
+            List<model.TrainBrand> brandList=null;
+            try {
+                brandList = trainBrandDAO.getAllTrainBrands();
+            } catch (SQLException ex) {
+                Logger.getLogger(SortServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
             List<Train> trains = trainDAO.getAllTrainSortAZ();
             request.setAttribute("trains", trains);
+            request.setAttribute("brandList", brandList);
             request.getRequestDispatcher("Views/ListTrain.jsp").forward(request, response);
 
         } else if (order.equalsIgnoreCase("3")) {
             String sort = request.getParameter("sort");
             TrainDAO trainDAO = new TrainDAO();
+            TrainBrandDAO trainBrandDAO = new TrainBrandDAO();
+            List<model.TrainBrand> brandList=null;
+            try {
+                brandList = trainBrandDAO.getAllTrainBrands();
+            } catch (SQLException ex) {
+                Logger.getLogger(SortServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
             List<Train> trains = trainDAO.getAllTrainSortZA();
             request.setAttribute("trains", trains);
+            request.setAttribute("brandList", brandList);
             request.getRequestDispatcher("Views/ListTrain.jsp").forward(request, response);
         } else {
             String sort = request.getParameter("sort");
             TrainDAO trainDAO = new TrainDAO();
+            TrainBrandDAO trainBrandDAO = new TrainBrandDAO();
+            List<model.TrainBrand> brandList=null;
+            try {
+                brandList = trainBrandDAO.getAllTrainBrands();
+            } catch (SQLException ex) {
+                Logger.getLogger(SortServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
             List<Train> trains = trainDAO.getNext4Stations(0);
             request.setAttribute("trains", trains);
+            request.setAttribute("brandList", brandList);
             request.getRequestDispatcher("Views/ListTrain.jsp").forward(request, response);
         }
     }

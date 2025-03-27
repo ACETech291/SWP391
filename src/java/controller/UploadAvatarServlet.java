@@ -66,7 +66,6 @@ public class UploadAvatarServlet extends HttpServlet {
             customerDAO.updateAvatarPath(customer.getEmail(), "/images/avatar/" + fileName);
 
             customer.setImage_url("/images/avatar/" + fileName);
-            session.setAttribute("account", customer);
             customerDAO.updateAvatarPath(String.valueOf(customer.getEmail()), "/images/avatar/" + fileName);
             request.setAttribute("success2", "Tải ảnh lên thành công");
             request.setAttribute("img", customer.getImage_url());

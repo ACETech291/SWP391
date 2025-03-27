@@ -260,7 +260,6 @@
                                     </div>
                                     <div class="trend-content-main">
                                         <div class="trend-content">
-                                            <h6 class="font-weight-normal pink"><i class="fa fa-map-marker-alt"></i> Hãng tàu ${train.id_train_brand}</h6>
                                             <h4><a href="traindetail?id=${train.id_train}">Tàu ${train.name_train}</a></h4>
                                         </div>
                                     </div>
@@ -299,13 +298,7 @@
                                         <div class="trend-content-main">
                                             <div class="trend-content">
                                                 <div class="rating-main d-flex align-items-center pb-1">
-                                                    <div class="rating">
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                    </div>
+                                                    
                                                     <span class="ml-2"></span>
                                                 </div>
                                                 <h4><a href="stationdetail?id=${station.id_station}">${station.name_station}</a></h4>

@@ -71,9 +71,9 @@
                                     <div class="sortby d-flex align-items-center justify-content-between ml-2">
                                         <form action="SortServlet" method="GET">
                                             <select name="order" class="niceSelect" onchange="this.form.submit()">
-                                                <option value="1">Sắp xếp theo</option>
-                                                <option value="2">A->Z</option>
-                                                <option value="3">Z->A</option>
+                                                <option ${param.order == '1' ? 'selected' : ''} value="1">Sắp xếp theo</option>
+                                                <option ${param.order == '2' ? 'selected' : ''} value="2">A->Z</option>
+                                                <option ${param.order == '3' ? 'selected' : ''} value="3">Z->A</option>
                                             </select>
                                         </form> 
                                         <div class="search-container" style="float: inline-end; margin-right: 30px">
@@ -114,9 +114,13 @@
 
                             </div>
                             <div class="justify-content-center text-center">
-                                <button onclick="loadMore()" class="per-btn">
-                                    <span class="grey">Xem thêm</span>
-                                </button>
+                                <c:if test="${order == null or order == '1'}">
+                                    <div class="text-center">
+                                        <button onclick="loadMore()" class="per-btn">
+                                            <span class="grey">Xem thêm</span>
+                                        </button>
+                                    </div>
+                                </c:if>
                             </div>
                         </div>
                     </div>
@@ -148,68 +152,68 @@
 
     <script>
 
-                                    (function () {
-                                        function c() {
-                                            var b = a.contentDocument || a.contentWindow.document;
-                                            if (b) {
-                                                var d = b.createElement('script');
-                                                d.innerHTML = "window.__CF$cv$params={r:'90d1e217db2620fc',t:'MTczODc0Nzg0Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='${pageContext.request.contextPath}/libs/cdn-cgi/challenge-platform/h/g/scripts/jsd/8a57887573f2/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";
-                                                b.getElementsByTagName('head')[0].appendChild(d)
-                                            }
-                                        }
-                                        if (document.body) {
-                                            var a = document.createElement('iframe');
-                                            a.height = 1;
-                                            a.width = 1;
-                                            a.style.position = 'absolute';
-                                            a.style.top = 0;
-                                            a.style.left = 0;
-                                            a.style.border = 'none';
-                                            a.style.visibility = 'hidden';
-                                            document.body.appendChild(a);
-                                            if ('loading' !== document.readyState)
-                                                c();
-                                            else if (window.addEventListener)
-                                                document.addEventListener('DOMContentLoaded', c);
-                                            else {
-                                                var e = document.onreadystatechange || function () {};
-                                                document.onreadystatechange = function (b) {
-                                                    e(b);
-                                                    'loading' !== document.readyState && (document.onreadystatechange = e, c())
-                                                }
-                                            }
-                                        }
-                                    })();
-                                    function SearchByName(param) {
-                                        var txtSearch = param.value;
-                                        $.ajax({
-                                            url: "/SWP391/SearchByAjax",
-                                            type: "post",
-                                            data: {NameStation: txtSearch},
-                                            success: function (data) {
-                                                document.getElementById("abc").innerHTML = data;
-                                            },
-                                            error: function (xhr) {
-                                                alert("An error occurred while searching. Please try again.");
-                                            }
-                                        });
-                                    }
-                                    function loadMore() {
-                                        var amount = document.getElementsByClassName("station").length;
-                                        $.ajax({
-                                            url: "/SWP391/LoadStation",
-                                            type: "get",
-                                            data: {
-                                                exists: amount
-                                            },
-                                            success: function (data) {
-                                                var row = document.getElementById("abc");
-                                                row.innerHTML += data;
-                                            },
-                                            error: function (xhr) {
-                                                console.error("Error loading more data");
-                                            }
-                                        });
-                                    }
+                    (function () {
+                        function c() {
+                            var b = a.contentDocument || a.contentWindow.document;
+                            if (b) {
+                                var d = b.createElement('script');
+                                d.innerHTML = "window.__CF$cv$params={r:'90d1e217db2620fc',t:'MTczODc0Nzg0Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='${pageContext.request.contextPath}/libs/cdn-cgi/challenge-platform/h/g/scripts/jsd/8a57887573f2/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";
+                                b.getElementsByTagName('head')[0].appendChild(d)
+                            }
+                        }
+                        if (document.body) {
+                            var a = document.createElement('iframe');
+                            a.height = 1;
+                            a.width = 1;
+                            a.style.position = 'absolute';
+                            a.style.top = 0;
+                            a.style.left = 0;
+                            a.style.border = 'none';
+                            a.style.visibility = 'hidden';
+                            document.body.appendChild(a);
+                            if ('loading' !== document.readyState)
+                                c();
+                            else if (window.addEventListener)
+                                document.addEventListener('DOMContentLoaded', c);
+                            else {
+                                var e = document.onreadystatechange || function () {};
+                                document.onreadystatechange = function (b) {
+                                    e(b);
+                                    'loading' !== document.readyState && (document.onreadystatechange = e, c())
+                                }
+                            }
+                        }
+                    })();
+                    function SearchByName(param) {
+                        var txtSearch = param.value;
+                        $.ajax({
+                            url: "/SWP391/SearchByAjax",
+                            type: "post",
+                            data: {NameStation: txtSearch},
+                            success: function (data) {
+                                document.getElementById("abc").innerHTML = data;
+                            },
+                            error: function (xhr) {
+                                alert("An error occurred while searching. Please try again.");
+                            }
+                        });
+                    }
+                    function loadMore() {
+                        var amount = document.getElementsByClassName("station").length;
+                        $.ajax({
+                            url: "/SWP391/LoadStation",
+                            type: "get",
+                            data: {
+                                exists: amount
+                            },
+                            success: function (data) {
+                                var row = document.getElementById("abc");
+                                row.innerHTML += data;
+                            },
+                            error: function (xhr) {
+                                console.error("Error loading more data");
+                            }
+                        });
+                    }
     </script>
 </html>
