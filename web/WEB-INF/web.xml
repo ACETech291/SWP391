@@ -315,6 +315,22 @@
         <servlet-name>EditBrand</servlet-name>
         <servlet-class>controller.manager.EditBrand</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PolicyList</servlet-name>
+        <servlet-class>controller.admin.PolicyList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditPolicy</servlet-name>
+        <servlet-class>controller.admin.EditPolicy</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>IntroductionList</servlet-name>
+        <servlet-class>controller.admin.IntroductionList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditIntroduction</servlet-name>
+        <servlet-class>controller.admin.EditIntroduction</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>home</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -602,5 +618,21 @@
     <servlet-mapping>
         <servlet-name>EditBrand</servlet-name>
         <url-pattern>/EditBrand</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PolicyList</servlet-name>
+        <url-pattern>/PolicyList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditPolicy</servlet-name>
+        <url-pattern>/EditPolicy</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IntroductionList</servlet-name>
+        <url-pattern>/IntroductionList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditIntroduction</servlet-name>
+        <url-pattern>/EditIntroduction</url-pattern>
     </servlet-mapping>
 </web-app>

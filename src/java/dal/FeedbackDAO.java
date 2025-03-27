@@ -3,6 +3,7 @@ package dal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -131,4 +132,30 @@ public class FeedbackDAO {
         return false;
     }
 }
+    public List<Feedback> getFeedbackByAdvertisingId(int idAdvertising) {
+        List<Feedback> feedbacks = new ArrayList<>();
+        String query = "SELECT * FROM feedback WHERE id_advertising = ? ORDER BY create_at DESC";
+        
+        try (
+             PreparedStatement ps = connect.prepareStatement(query)) {
+             
+            ps.setInt(1, idAdvertising);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Feedback feedback = new Feedback(
+                    rs.getInt("id_feedback"),
+                    rs.getInt("voting_feedback"),
+                    rs.getString("content"),
+                    rs.getString("name_customer"),
+                    rs.getTimestamp("create_at"),
+                    rs.getInt("id_advertising")
+                );
+                feedbacks.add(feedback);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return feedbacks;
+    }
 }
