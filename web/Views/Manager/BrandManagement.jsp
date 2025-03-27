@@ -72,109 +72,39 @@
                     <jsp:include page="lib/header.jsp"></jsp:include>
                         <!-- Content -->
                         <div class="section-title text-center mb-5 pb-2 w-50 mx-auto">
-                            <h2 class="m-0"><span>Quản lý bản tin</span></h2>
+                            <h2 class="m-0"><span>Quản lý thông tin hãng</span></h2>
                         </div> 
-                    <%
-                        String successDelete = request.getParameter("success");
-                        if ("deleted".equals(successDelete)) {
-                    %>
-                    <div style="color: green;">Xóa bản tin thành công!</div>
-                    <% }%>
-                    
-                    <div style="color: green;">${sucessAdded}</div>
-                    
-                    <%
+                                            <%
                         String successEdit = request.getParameter("success1");
                         if ("updated".equals(successEdit)) {
                     %>
-                    <div style="color: green;">Cập nhật bản tin thành công!</div>
+                    <div style="color: green;">Cập nhật thông tin hãng thành công!</div>
                     <% }%>
-
-                    <%
-                        String errorMessage = request.getParameter("error");
-                        if ("delete_failed".equals(errorMessage)) {
-                    %>
-                    <div style="color: red;">Xóa bản tin thất bại!</div>
-                    <% }%>
-                    <div>
-                        <button class="nir-btn w-30" onclick="toggleAddSeatForm()">Thêm bản tin</button>
-                        <br>
-
-                        <!-- Form thêm bản tin -->
-                        <div id="addSeat" class="add-form" style="display: none;">
-                            <h3>Thêm bản tin mới</h3>
-
-                            <!-- Form upload hình và thông tin -->
-                            <form id="seatForm" action="AddAdvertising" method="post" enctype="multipart/form-data">  
-
-                                <!-- Chọn hình ảnh -->
-                                <label for="image">Chọn hình ảnh:</label>
-                                <div class="edit-profile-photo">
-                                    <img src="" alt="Profile Image" width="150" id="avatarPreview"/>
-                                    <div class="change-photo-btn">
-                                        <div class="photoUpload">
-                                            <span><i class="fa fa-upload"></i> Thay đổi ảnh</span>
-                                            <input type="file" name="image" class="upload" id="fileInput" onchange="previewImage();" required />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <br>
-
-                                <!-- Nhập mô tả -->
-                                <label for="description">Mô tả ngắn gọn:</label>
-                                <input type="text" id="description" name="description" required>
-                                <br>    
-
-                                <!-- Nhập nội dung -->
-                                <label for="content">Nội dung:</label>
-                                <input type="text" id="content" name="content" required>
-                                <br>
-
-                                <br><br>
-                                <button type="submit" class="nir-btn w-30">Lưu</button>
-                                <button type="button" class="nir-btn w-30" onclick="toggleAddSeatForm()">Huỷ</button>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- Table Train Seat -->
                     <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
                         <table class="table table-hover mb-0">
                             <thead class="thead-light">
                                 <tr>
-                                    <th class="text-center align-middle">Ảnh bản tin</th>
-                                    <th class="text-center align-middle">Mô tả ngắn gọn:</th>
-                                    <th class="text-center align-middle">Nội dung:</th>
-                                    <th class="text-center align-middle">Thời gian tạo</th>
+                                    <th class="text-center align-middle">Ảnh logo của hãng</th>
+                                    <th class="text-center align-middle">Tên của hãng:</th>
+                                    <th class="text-center align-middle">Mô tả về hãng:</th>
                                     <th class="text-center align-middle">Hành động</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach var="ad" items="${listAdvertising}">
                                     <tr>
                                         <td class="text-center align-middle">
-                                            <img src="${pageContext.request.contextPath}/${ad.image_advertising}" alt="Ảnh quảng cáo" width="100" height="70">
+                                            <img src="${pageContext.request.contextPath}/${trainBrand.image_train_brand}" alt="Ảnh quảng cáo" width="100" height="70">
                                         </td>
-                                        <td class="text-center align-middle">${ad.description_advertising}</td>
-                                        <td class="text-center align-middle">${ad.content}</td>
+                                        <td class="text-center align-middle">${trainBrand.name_train_brand}</td>
+                                        <td class="text-center align-middle">${trainBrand.description_train_brand}</td>
                                         <td class="text-center align-middle">
-                                            <fmt:formatDate value="${ad.create_at}" pattern="dd/MM/yyyy HH:mm:ss"/>
-                                        </td>
-                                        <td class="text-center align-middle">
-                                            <!-- Nút hành động -->
-                                            <a href="EditAdvertising?id=${ad.id_advertising}" class="btn btn-warning btn-sm">Sửa</a>
-
-                                            <a href="DeleteAdvertising?id=${ad.id_advertising}" onclick="return confirm('Bạn có chắc chắn muốn xóa bản tin này?');">
-                                                <button>Delete</button>
-                                            </a>
+                                            <a href="EditBrand?id=${trainBrand.id_train_brand}" class="btn btn-warning btn-sm">Sửa</a>
                                         </td>
                                     </tr>
-                                </c:forEach>
                             </tbody>
                         </table>
                     </div>
                     <br><br>
-
                 </div>
             </div>
         </main>
@@ -264,30 +194,6 @@
             userLinkRTL.setAttribute('disabled', true);
         }
     </script>
-    <script>
-        function previewAndUpload() {
-            var input = document.getElementById("fileInput");
-            var file = input.files[0];
-
-            if (file) {
-                var allowedTypes = ["image/jpeg", "image/png", "image/gif"];
-                if (!allowedTypes.includes(file.type)) {
-                    alert("Chỉ chấp nhận các file ảnh (JPG, PNG, GIF)!");
-                    return;
-                }
-
-                // Xem trước ảnh
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    document.getElementById("avatarPreview").src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-
-                // Tự động submit form
-                document.getElementById("uploadForm").submit();
-            }
-        }
-    </script>
 
     <script>
         function toggleAddSeatForm() {
@@ -297,16 +203,4 @@
 
     </script>
     
-    <script>
-    var successMessage = "${sucessAdded}";
-
-    if (successMessage.trim() !== "" && !sessionStorage.getItem("reloaded")) {
-        setTimeout(function () {
-            sessionStorage.setItem("reloaded", "true"); // Đánh dấu đã reload
-            window.location.reload();
-        }, 5000);
-    } else {
-        sessionStorage.removeItem("reloaded"); // Xóa trạng thái khi load lại
-    }
-</script>
 </html>

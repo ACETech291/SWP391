@@ -307,6 +307,14 @@
         <servlet-name>DeleteAdvertising</servlet-name>
         <servlet-class>controller.manager.DeleteAdvertising</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BrandManagement</servlet-name>
+        <servlet-class>controller.manager.BrandManagement</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditBrand</servlet-name>
+        <servlet-class>controller.manager.EditBrand</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>home</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -586,5 +594,13 @@
     <servlet-mapping>
         <servlet-name>DeleteAdvertising</servlet-name>
         <url-pattern>/DeleteAdvertising</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BrandManagement</servlet-name>
+        <url-pattern>/BrandManagement</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditBrand</servlet-name>
+        <url-pattern>/EditBrand</url-pattern>
     </servlet-mapping>
 </web-app>

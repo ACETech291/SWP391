@@ -52,6 +52,10 @@
                     <a class="nav-link" href="AdvertisingManagement" role="button">
                         <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-home"></span></span><span class="nav-link-text ps-1">Quản lý bản tin</span></div>
                     </a>
+                    
+                    <a class="nav-link" href="BrandManagement" role="button">
+                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-home"></span></span><span class="nav-link-text ps-1">Quản lý thông tin hãng</span></div>
+                    </a>
                 </li>
 
                 <li class="nav-item"><!-- label-->
