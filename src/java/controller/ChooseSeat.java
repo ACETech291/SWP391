@@ -69,13 +69,14 @@ public class ChooseSeat extends HttpServlet {
         String start_time = request.getParameter("start_time");
         String time_date_start = date + " " + start_time;
         List<Pair<Pair<Integer,Integer>,String> > name_train_carriage = td.getNameTrainCarriage(id_trip);
-        
+        request.setAttribute("date", date);
         request.setAttribute("name_train_carriage", name_train_carriage);
         request.setAttribute("name_train", name_train);
         request.setAttribute("name_station_start", name_station_start);
         request.setAttribute("name_station_end", name_station_end);
         request.setAttribute("name_train_brand", name_train_brand);
         request.setAttribute("time_date_start", time_date_start);
+        request.setAttribute("id_trip", id_trip);
         request.getRequestDispatcher("Views/ChooseSeat.jsp").forward(request, response);
         
     }

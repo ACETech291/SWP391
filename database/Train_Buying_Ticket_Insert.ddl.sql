@@ -97,6 +97,14 @@ INSERT INTO Date_of_trip (date_details) VALUES
 ('2025-02-01'),('2025-02-02'),('2025-02-03'),('2025-02-04'),('2025-02-05'),('2025-02-06'),('2025-02-07'),('2025-02-08'),('2025-02-09'),('2025-02-10'),
 ('2025-02-11'),('2025-02-12'),('2025-02-13'),('2025-02-14'),('2025-02-15'),('2025-02-16'),('2025-02-17'),('2025-02-18'),('2025-02-19'),('2025-02-20'),
 ('2025-02-21'),('2025-02-22'),('2025-02-23'),('2025-02-24'),('2025-02-25'),('2025-02-26'),('2025-02-27'),('2025-02-28');
+INSERT INTO Date_of_trip (date_details) VALUES 
+('2025-03-01'),('2025-03-02'),('2025-03-03'),('2025-03-04'),('2025-03-05'),('2025-03-06'),('2025-03-07'),('2025-03-08'),('2025-03-09'),('2025-03-10'),
+('2025-03-11'),('2025-03-12'),('2025-03-13'),('2025-03-14'),('2025-03-15'),('2025-03-16'),('2025-03-17'),('2025-03-18'),('2025-03-19'),('2025-03-20'),
+('2025-03-21'),('2025-03-22'),('2025-03-23'),('2025-03-24'),('2025-03-25'),('2025-03-26'),('2025-03-27'),('2025-03-28'),('2025-03-29'),('2025-03-30'),('2025-03-31'),
+
+('2025-04-01'),('2025-04-02'),('2025-04-03'),('2025-04-04'),('2025-04-05'),('2025-04-06'),('2025-04-07'),('2025-04-08'),('2025-04-09'),('2025-04-10'),
+('2025-04-11'),('2025-04-12'),('2025-04-13'),('2025-04-14'),('2025-04-15'),('2025-04-16'),('2025-04-17'),('2025-04-18'),('2025-04-19'),('2025-04-20'),
+('2025-04-21'),('2025-04-22'),('2025-04-23'),('2025-04-24'),('2025-04-25'),('2025-04-26'),('2025-04-27'),('2025-04-28'),('2025-04-29'),('2025-04-30');
 
 INSERT INTO Station (name_station, image_station, description_station,content) VALUES
 ('Hà Nội', NULL, 'Ga Hà Nội, trung tâm thủ đô, đầu mối giao thông quan trọng','Nhà ga không chỉ là điểm khởi hành hay kết thúc của một chuyến đi, mà còn là nơi chất chứa những câu chuyện, cảm xúc và dòng chảy bất tận của cuộc sống. Khi bước chân vào nhà ga, bạn sẽ cảm nhận được bầu không khí đặc trưng: tiếng còi tàu vang vọng, những bước chân vội vã của hành khách, tiếng loa thông báo lịch trình tàu chạy và ánh mắt háo hức của những người chuẩn bị lên đường.
@@ -33521,6 +33529,7 @@ INSERT INTO authorization(role_id,URL_authorization,feature_authorization,status
 (1,"/OtpService","Gửi otp",1),(2,"/OtpService","Gửi otp",1),(3,"/OtpService","Gửi otp",1),(4,"/OtpService","Gửi otp",1),
 (1,"/LoginGoogle","Đăng nhập bằng google",1),(2,"/LoginGoogle","Đăng nhập bằng google",1),(3,"/LoginGoogle","Đăng nhập bằng google",1),(4,"/LoginGoogle","Đăng nhập bằng google",1),
 (1,"/Profile","Xem hồ sơ",1),(2,"/Profile","Xem hồ sơ",1),(3,"/Profile","Xem hồ sơ",1),(4,"/Profile","Xem hồ sơ",1),
+(1,"/uploadAvatar","Xem hồ sơ",1),(2,"/uploadAvatar","Xem hồ sơ",1),(3,"/uploadAvatar","Xem hồ sơ",1),(4,"/uploadAvatar","Xem hồ sơ",1),
 (1,"/ChangeInformation","Thay đổi thông tin cá nhân",1),(2,"/ChangeInformation","Thay đổi thông tin cá nhân",1),(3,"/ChangeInformation","Thay đổi thông tin cá nhân",1),
 (1,"/ChangePassword","Thay đổi mật khẩu",1),(2,"/ChangePassword","Thay đổi mật khẩu",1),(3,"/ChangePassword","Thay đổi mật khẩu",1),(4,"/ChangePassword","Thay đổi mật khẩu",1),
 (1,"/advertising","Trang danh sách bản tin",1),(2,"/advertising","Trang danh sách bản tin",1),(3,"/advertising","Trang danh sách bản tin",1),(4,"/advertising","Trang danh sách bản tin",1),
@@ -33535,6 +33544,8 @@ INSERT INTO authorization(role_id,URL_authorization,feature_authorization,status
 (1,"/SearchByAjax","Trang danh sách ga tàu",1),(2,"/SearchByAjax","Trang danh sách ga tàu",1),(3,"/SearchByAjax","Trang danh sách ga tàu",1),(4,"/SearchByAjax","Trang danh sách ga tàu",1),
 (1,"/Search","Trang Chủ",1),(2,"/Search","Trang Chủ",1),(3,"/Search","Trang Chủ",1),(4,"/Search","Trang Chủ",1),
 (2,"/Manager","Trang tổng quan của manager",1),
+(2,"/AdvertisingManagement","Trang tổng quan của manager",1),
+(2,"/BrandManagement","Trang tổng quan của manager",1),
 (2,"/AddTrain","Trang tổng quan của manager",1),
 (1,"/profileadmin","Trang Chủ",1),
 (1,"/BookTicket","Trang Chủ",1),(2,"/BookTicket","Trang Chủ",1),(3,"/BookTicket","Trang Chủ",1),
@@ -33552,6 +33563,12 @@ INSERT INTO authorization(role_id,URL_authorization,feature_authorization,status
 (2,"/DeleteCarriage","Trang tổng quan của manager",1),
 (2,"/EditTrainSeat","Chỉnh sửa ghế tàu",1),
 (2,"/DeleteTrainSeat","Trang tổng quan của manager",1),
+(2,"/AddAdvertising","Chỉnh sửa tàu",1),
+(2,"/AddBrand","Chỉnh sửa tàu",1),
+(2,"/EditAdvertising","Chỉnh sửa tàu",1),
+(2,"/EditBrand","Chỉnh sửa tàu",1),
+(2,"/DeleteAdvertising","Chỉnh sửa tàu",1),
+(2,"/DeleteBrand","Chỉnh sửa tàu",1),
 (1,"/404","Trang không tồn tại",1),(2,"/404","Trang không tồn tại",1),(3,"/404","Trang không tồn tại",1),(4,"/404","Trang không tồn tại",1),
 (1,"/createaccount","Trang tạo tài khoản",1),
 (2,"/EditStation","Chỉnh sửa thông tin ga",1),
@@ -33562,6 +33579,15 @@ INSERT INTO authorization(role_id,URL_authorization,feature_authorization,status
 (1,"/EditAuthorization","Trang chỉnh sửa quyền",1),
 (3,"/Feedback","Đưa ra nhận xét",1),
 (1,"/LoadStation","Load station",1),(2,"/LoadStation","Load station",1),(3,"/LoadStation","Load station",1),(4,"/LoadStation","Load station",1),
+(1,"/ListBrand","Trang danh sách hãng",1),(2,"/ListBrand","Trang danh sách hãng",1),(3,"/ListBrand","Trang danh sách hãng",1),(4,"/ListBrand","Trang danh sách hãng",1),
+(1,"/BrandDetail","Trang hãng chi tiết",1),(2,"/BrandDetail","Trang hãng chi tiết",1),(3,"/BrandDetail","Trang hãng chi tiết",1),(4,"/BrandDetail","Trang hãng chi tiết",1),
+(1,"/SearchComment","Danh sách comments",1),(2,"/SearchComment","Danh sách comments",1),(3,"/SearchComment","Danh sách comments",1),(4,"/SearchComment","Danh sách comments",1),
+(1,"/SearchFeedback","Danh sách comments",1),(2,"/SearchFeedback","Danh sách comments",1),(3,"/SearchFeedback","Danh sách comments",1),(4,"/SearchFeedback","Danh sách comments",1),
+(1,"/LoadAdvertising","Load bản tin",1),(2,"/LoadAdvertising","Load bản tin",1),(3,"/LoadAdvertising","Load bản tin",1),(4,"/LoadAdvertising","Load bản tin",1),
+(1,"/LoadStation","Load ga tàu",1),(2,"/LoadStation","Load ga tàu",1),(3,"/LoadStation","Load ga tàu",1),(4,"/LoadStation","Load ga tàu",1),
+(1,"/LoadTrain","Load tàu",1),(2,"/LoadTrain","Load tàu",1),(3,"/LoadTrain","Load tàu",1),(4,"/LoadTrain","Load tàu",1),
+(1,"/Feedback","Bình luận",1),(2,"/Feedback","Bình luận",1),(3,"/Feedback","Bình luận",1),
+(1,"/Comment","Bình luận",1),(2,"/Comment","Bình luận",1),(3,"/Comment","Bình luận",1),
 (1,"/403","Trang không có quyền truy cập",1),(2,"/403","Trang không có quyền truy cập",1),(3,"/403","Trang không có quyền truy cập",1),(4,"/403","Trang không có quyền truy cập",1)
 ;
 

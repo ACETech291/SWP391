@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controller.manager;
 
 import dal.StatusDAO;
@@ -78,19 +74,8 @@ public class EditTrain extends HttpServlet {
         Train train = new Train(id_train,name_train, description_train, id_status);
         
         TrainDAO dao = new TrainDAO();
-        dao.updateTrain(train);
+        dao.updateTrain1(train);
        
         response.sendRedirect("trainmanagement");
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

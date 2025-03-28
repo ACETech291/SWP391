@@ -39,6 +39,12 @@
                     <a class="nav-link" href="customerlist" role="button">
                         <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-users"></span></span><span class="nav-link-text ps-1">Người dùng</span></div>
                     </a>
+                    <a class="nav-link" href="PolicyList" role="button">
+                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-users"></span></span><span class="nav-link-text ps-1">Chính sách</span></div>
+                    </a>
+                                        <a class="nav-link" href="IntroductionList" role="button">
+                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-users"></span></span><span class="nav-link-text ps-1">Hướng dẫn đặt vé</span></div>
+                    </a>
                 </li>
 
                 <li class="nav-item"><!-- label-->

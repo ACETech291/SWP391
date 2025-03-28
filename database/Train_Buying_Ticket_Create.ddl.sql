@@ -41,6 +41,7 @@ CREATE TABLE Feedback (
   id_customer     INT(11) NOT NULL, 
   id_advertising  INT(11) NOT NULL, 
   create_at               TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  	feedback_status           BIT(1) NOT NULL DEFAULT b'0',
   PRIMARY KEY (id_feedback), 
   FOREIGN KEY (id_advertising) REFERENCES Advertising(id_advertising)
 );
@@ -146,6 +147,8 @@ CREATE TABLE Ticket (
   id_date_trip				 INT(11) NOT NULL,
   id_customer         int(11) NOT NULL, 
   id_train_seat       int(11) NOT NULL, 
+  total_bill 			 FLOAT8,
+  status ENUM('Processing', 'Completed', 'Failed') NOT NULL DEFAULT 'Processing',
   PRIMARY KEY (id_ticket), 
   INDEX (id_ticket));
   
@@ -202,6 +205,7 @@ CREATE TABLE Trip (
   id_time_station_start int(11) NOT NULL, 
   id_time_station_end   int(11) NOT NULL, 
   id_train               int(11) NOT NULL,  
+
   PRIMARY KEY (id_trip));
   
 CREATE TABLE Date_of_trip (
@@ -213,6 +217,7 @@ CREATE TABLE Date_trip(
 	id_date_trip INT(11) NOT NULL AUTO_INCREMENT,
 	id_trip INT(11) NOT NULL,
 	id_date_of_trip INT(11) NOT NULL,
+		trip_status           BIT(1) NOT NULL DEFAULT b'0',
 	PRIMARY KEY (id_date_trip)
 );
 CREATE TABLE Authorization (
@@ -230,6 +235,7 @@ CREATE TABLE Comment (
   id_customer     INT(11) NOT NULL, 
   id_train_brand  INT(11) NOT NULL, 
   create_at               TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  	comment_status           BIT(1) NOT NULL DEFAULT b'0',
   PRIMARY KEY (id_comment), 
   FOREIGN KEY (id_train_brand) REFERENCES train_brand(id_train_brand)
 );

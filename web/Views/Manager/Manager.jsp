@@ -1,6 +1,19 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.List"%>
+<%@page import="model.Train"%>
+<%@page import="model.TrainBrand"%>
+<%@page import="model.TrainCarriage"%>
+<%@page import="model.Status"%>
+<%@page import="model.TrainSeat"%>
+<%@page import="model.Station"%>
+<%@page import="model.Revenue"%>
+<%@page import="dal.TrainCarriageDAO"%>
+<%@page import="dal.TrainSeatDAO"%>
+<%@page import="dal.TrainDAO"%>
+<%@page import="dal.StationDAO"%>
+<%@page import="dal.RevenueDAO"%>
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en-US" dir="ltr">
 
@@ -308,20 +321,67 @@
                             </div>
                         </div>
                     </div>      
+                        <div class="section-title text-center mb-5 pb-2 w-50 mx-auto">
+                            <h2 class="m-0"><span>Dashbroad</span></h2>
+                        </div> 
+                        
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Biểu đồ doanh thu vé tàu</h5>
+                                <canvas id="revenueChart"></canvas>
+                            </div>
+                        </div>
+
+
+                    </div>
                 </div>
-            </div>
-        </main>
-        <!-- ===============================================--><!--    End of Main Content--><!-- ===============================================-->
-    </body>
+            </main>
+            <!-- ===============================================--><!--    End of Main Content--><!-- ===============================================-->
+        </body>
+
+        <!-- Thư viện Chart.js -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-        function toggleAddTrainForm() {
-            const form = document.getElementById("addTrain");
-            form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
-        }
+        let revenueData = [];
+        let dateLabels = [];
+        
+        <% 
+            List<Revenue> revenueList = (List<Revenue>) request.getAttribute("revenueList");
+            if (revenueList != null) {
+                for (Revenue r : revenueList) {
+        %>
+                    dateLabels.push("<%= r.getDate() %>");
+                    revenueData.push(<%= r.getRevenue() %>);
+        <% 
+                }
+            }
+        %>
+
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: dateLabels,
+                datasets: [{
+                    label: 'Doanh thu (VND)',
+                    data: revenueData,
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: { title: { display: true, text: "Ngày" } },
+                    y: { title: { display: true, text: "Doanh thu (VND)" } }
+                }
+            }
+        });
     </script>
 
-    <script src="${pageContext.request.contextPath}/Views/Admin/vendors/popper/popper.min.js"></script>
+        <script src="${pageContext.request.contextPath}/Views/Admin/vendors/popper/popper.min.js"></script>
     <script src="${pageContext.request.contextPath}/Views/Admin/vendors/bootstrap/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/Views/Admin/vendors/anchorjs/anchor.min.js"></script>
     <script src="${pageContext.request.contextPath}/Views/Admin/vendors/is/is.min.js"></script>
@@ -334,12 +394,12 @@
     <script src="${pageContext.request.contextPath}/Views/Admin/vendors/simplebar/simplebar.min.js"></script>
 
     <script>
-        var isFluid = JSON.parse(localStorage.getItem('isFluid'));
-        if (isFluid) {
-            var container = document.querySelector('[data-layout]');
-            container.classList.remove('container');
-            container.classList.add('container-fluid');
-        }
+            var isFluid = JSON.parse(localStorage.getItem('isFluid'));
+            if (isFluid) {
+                var container = document.querySelector('[data-layout]');
+                container.classList.remove('container');
+                container.classList.add('container-fluid');
+            }
     </script>
 
     <script>

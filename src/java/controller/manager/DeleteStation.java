@@ -42,7 +42,7 @@ public class DeleteStation extends HttpServlet {
         System.out.println("Delete Station");
         System.out.println(id_station+"=========");
         StationDAO dao = new StationDAO();
-        dao.deleteStation(id_station);
+        dao.ChangeToDisable(id_station);
         
         response.sendRedirect("stationmanagement");
     }

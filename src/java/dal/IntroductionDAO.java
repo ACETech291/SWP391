@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import model.Introduction;
@@ -116,4 +117,17 @@ public class IntroductionDAO {
     }
     return null; // Không tìm thấy bản ghi nào
 }
+    public boolean updateIntroduction(int id_introduction, String content, LocalDateTime create_at, int status_introduction) {
+        String query = "UPDATE Introduction SET content = ?, create_at = ?, status_introduction = ? WHERE id_introduction = ?";
+        try (PreparedStatement ps = connect.prepareStatement(query)) {
+            ps.setString(1, content);
+            ps.setTimestamp(2, Timestamp.valueOf(create_at));
+            ps.setInt(3, status_introduction);
+            ps.setInt(4, id_introduction);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

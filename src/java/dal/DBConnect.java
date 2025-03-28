@@ -43,37 +43,42 @@ public class DBConnect {
             return;
         }
 
-        try (BufferedReader br = new BufferedReader(
-                new InputStreamReader(new FileInputStream(filePath), "UTF-8")); Statement stmt = connection.createStatement()) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "UTF-8")); Statement stmt = connection.createStatement()) {
 
             StringBuilder sql = new StringBuilder();
             String line;
 
             while ((line = br.readLine()) != null) {
                 line = line.trim();
-                // Bỏ qua dòng trống và dòng comment
-                if (!line.isEmpty() && !line.startsWith("--")) {
-                    sql.append(line);
-                    // Khi gặp dấu chấm phẩy, thực thi câu lệnh SQL
-                    if (line.endsWith(";")) {
-                        stmt.execute(sql.toString());
-                        sql.setLength(0); // Reset StringBuilder để đọc câu lệnh tiếp theo
+                if (line.isEmpty() || line.startsWith("--")) {
+                    continue; // Bỏ qua dòng trống và comment
+                }
+                sql.append(line).append(" "); // Ghép câu SQL, thêm khoảng trắng tránh nối từ sai
+
+                if (line.endsWith(";")) { // Khi gặp dấu chấm phẩy, thực thi SQL
+                    String finalSQL = sql.toString().replace("\n", " ").replace("\r", " ").trim(); // Chuẩn hóa lệnh SQL
+                    try {
+                        stmt.executeUpdate(finalSQL);
+                        System.out.println("Executed: " + finalSQL);
+                    } catch (SQLException e) {
+                        System.err.println("SQL Execution Error: " + e.getMessage());
+                        System.err.println("Failed SQL: " + finalSQL);
                     }
+                    sql.setLength(0); // Reset StringBuilder để đọc câu tiếp theo
                 }
             }
 
             System.out.println("SQL script executed successfully!");
         } catch (IOException e) {
-            System.err.println("Error reading SQL file.");
+            System.err.println("Error reading SQL file: " + e.getMessage());
         } catch (SQLException e) {
-            System.err.println("Error executing SQL script.");
+            System.err.println("Error executing SQL script: " + e.getMessage());
         } finally {
             try {
                 connection.close();
             } catch (SQLException e) {
-                System.out.println(e);
+                System.err.println("Error closing connection: " + e.getMessage());
             }
         }
     }
-
 }

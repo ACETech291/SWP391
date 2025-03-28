@@ -12,6 +12,7 @@
 <%@page import="dal.TrainSeatDAO"%>
 <%@page import="dal.TrainDAO"%>
 <%@page import="dal.StationDAO"%>
+<%@page import="dal.StatusDAO"%>
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en-US" dir="ltr">
 
@@ -46,18 +47,6 @@
             .add-form {
                 display: none;
             }
-            .alert-danger {
-                background-color: #f8d7da; /* Màu nền đỏ nhạt */
-                color: #721c24; /* Màu chữ đỏ đậm */
-                border: 1px solid #f5c6cb; /* Viền đỏ nhạt */
-                padding: 10px 15px;
-                border-radius: 5px;
-                font-size: 14px;
-                font-weight: bold;
-                width: 100%;
-                text-align: center;
-                margin-bottom: 10px;
-            }
         </style>
 
     </head>
@@ -69,11 +58,13 @@
                 response.sendRedirect("login"); // Thay "TrangKhac.jsp" bằng trang bạn muốn chuyển hướng
                 return;
             }
+            Integer id_status = (Integer) session.getAttribute("id_status");
             
             Integer id_train_brand = (Integer) session.getAttribute("id_train_brand");
-            List<Status> statusCarriage = (List<Status>) request.getAttribute("status_carriage");
-            List<Status> statusTrain = (List<Status>) request.getAttribute("status_train");
             
+            StatusDAO sDAO = new StatusDAO();
+            List<Status> statusTrain = sDAO.getStatusTrainFull();
+            request.setAttribute("status_train", statusTrain);
         %>
 
         <!-- ===============================================--><!--    Main Content--><!-- ===============================================-->
@@ -117,6 +108,21 @@
                                 <button id="CancelButton" type="button" class="nir-btn w-30" onclick="toggleAddTrainForm()">Huỷ</button>
                             </form>
                         </div>
+
+                        <!-- Form filter -->
+                        <form id="filterForm" method="POST" action="trainmanagement">
+                            <input name="id_train_brand" type="hidden" value="<%=id_train_brand%>">
+                            <fieldset>
+                                <legend>Các trạng thái</legend>
+                                <%
+                                    for (Status status : statusTrain) {
+                                %>
+                                <label><input type="checkbox" name="id_status" value="<%=status.getId()%>" onchange="autoSubmit()"> <%=status.getStatusName()%></label><br>
+                                    <%
+                                        }
+                                    %>
+                            </fieldset>
+                        </form>
                     </div>    
                     <!-- Table Train -->
                     <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
@@ -131,9 +137,13 @@
                             </thead>
                             <tbody>
                                 <% 
-                                    List<Train> topTrains = (List<Train>) request.getAttribute("topTrains"); 
-                                    if (topTrains != null && !topTrains.isEmpty()) {
-                                        for (Train train : topTrains) {
+                                    TrainDAO dao = new TrainDAO();
+                                    List<Train> trainsbyfilter = (List<Train>) request.getAttribute("trainsbyfilter");
+                                    
+                                    if (trainsbyfilter == null) trainsbyfilter = dao.getTrainByFilter(id_train_brand, id_status);
+                                    
+                                    if (trainsbyfilter != null && !trainsbyfilter.isEmpty()) {
+                                        for (Train train : trainsbyfilter) {
                                 %>
                                 <tr>
                                     <td class="text-center align-middle"><%= train.getName_train() %></td>
@@ -166,7 +176,7 @@
                                     } else { 
                                 %>
                                 <tr>
-                                    <td colspan="4" class="text-center">12345678900000</td>
+                                    <td colspan="4" class="text-center">Không có tàu</td>
                                 </tr>
                                 <% } %>
                             </tbody>
@@ -188,6 +198,9 @@
             if (confirm("Bạn có chắc chắn muốn xóa tàu này không?")) {
                 document.getElementById("deleteForm-" + id).submit();
             }
+        }
+        function autoSubmit() {
+            document.getElementById("filterForm").submit();
         }
     </script>
 

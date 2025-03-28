@@ -174,12 +174,15 @@
     </head>
     <body>
         <%
+            Integer id_trip = (Integer) request.getAttribute("id_trip");
             String name_train = (String) request.getAttribute("name_train");
             String name_station_start = (String) request.getAttribute("name_station_start");
             String name_station_end = (String) request.getAttribute("name_station_end");
             String time_date_start = (String) request.getAttribute("time_date_start");
+            String date_start = (String) request.getAttribute("date");
             List<Pair<Pair<Integer, Integer>, String>> name_train_carriage = (List<Pair<Pair<Integer, Integer>, String>>) request.getAttribute("name_train_carriage");
         %>
+
         <div class="container">
             <h2>Chọn vị trí ngồi</h2>
             <div class="train-info">
@@ -217,70 +220,84 @@
                 <div class="seats" id="rightSeats"></div>
             </div>
             <p>Ghế đã chọn: <span id="selectedSeats">0</span></p>
-            <p>Tổng tiền: <span id="totalPrice">0</span> VNĐ</p>
-            <button type="button" onclick="confirmBooking()">Xác Nhận</button>
+            <p hidden="true">Tổng tiền: <span id="totalPrice">0</span> VNĐ</p>
+            <form id="bookingForm" action="ConfirmBooking" method="post">
+                <input type="hidden" id="bookingData" name="bookingData">
+                <button type="button" onclick="confirmBooking()">Xác Nhận</button>
+            </form>
         </div>
 
         <script>
-            let selectedSeats = [];
+            let id_trip = <%= id_trip%>;
+            let date_start = "<%= date_start%>";
+            let selectedSeatsByCoach = {}; // Lưu ghế theo từng khoang
             const seatPrice = 50000;
             let selectElement = document.getElementById("coachSelect");
-            let A = selectElement.options[selectElement.selectedIndex];
+            let totalSeatsSelected = 0; // Khai báo biến totalSeatsSelected
 
-            let idtrain = A.value;
-            let totalseat = A.getAttribute("data-name");
-            document.getElementById("coachSelect").addEventListener("change", function () {
+            function getCurrentCoachId() {
+                return selectElement.options[selectElement.selectedIndex].value;
+            }
+
+            document.getElementById("coachSelect").addEventListener("change", function (event) {
                 let selectedOption = event.target.options[event.target.selectedIndex];
                 let idTrain = selectedOption.value;
                 let totalSeat = selectedOption.getAttribute("data-name");
 
                 console.log("idTrain:", idTrain);
                 console.log("totalSeat:", totalSeat);
-//                console.log("idTrain:", idTrain, typeof idTrain);
-//                console.log("totalSeat:", totalSeat, typeof totalSeat);
-                let baseURL = window.location.origin + "/SWP391"
-                const url = new URL(baseURL + "/GetNumberOfSeats?")
-                const param = new URLSearchParams(url.search);
+
+                let baseURL = window.location.origin + "/SWP391";
+                const url = new URL(baseURL + "/GetNumberOfSeats");
+                const param = new URLSearchParams();
                 param.append("id", idTrain);
                 param.append("totalSeat", totalSeat);
+                param.append("id_trip", id_trip);
                 url.search = param.toString();
+
                 console.log("URL Fetch:", url.toString());
+
                 fetch(url.toString(), {method: 'GET'})
                         .then(response => response.json())
-                        .then(data => {
-                            createSeats(parseInt(totalSeat), data);
-                            
+                        .then(occupiedSeats => {
+                            console.log("Ghế đã được chọn:", occupiedSeats);
+                            createSeats(parseInt(totalSeat), occupiedSeats, idTrain);
                         })
-                        .catch(error => console.error('Lỗi:', error));
+                        .catch(error => console.error("Lỗi khi lấy dữ liệu ghế:", error));
             });
 
-            function createSeats(numberOfSeats, occupiedSeats) {
+            function createSeats(numberOfSeats, occupiedSeats, coachId) {
                 const leftSeats = document.getElementById("leftSeats");
                 const rightSeats = document.getElementById("rightSeats");
+
                 if (!leftSeats || !rightSeats) {
                     console.error("Không tìm thấy leftSeats hoặc rightSeats trong DOM");
-                    return;
-                }
-
-                if (!Number.isInteger(numberOfSeats) || numberOfSeats <= 0) {
-                    console.error("Số lượng ghế không hợp lệ:", numberOfSeats);
                     return;
                 }
 
                 leftSeats.innerHTML = "";
                 rightSeats.innerHTML = "";
 
-
+                if (!selectedSeatsByCoach[coachId]) {
+                    selectedSeatsByCoach[coachId] = [];
+                }
 
                 for (let i = 0; i < numberOfSeats; i++) {
+                    const seatNumber = i + 1;
                     const seat = document.createElement("div");
                     seat.classList.add("seat");
-                    seat.textContent = i + 1;
+                    seat.textContent = seatNumber;
 
-                    if (occupiedSeats[i].left !== 5) {
+                    // Kiểm tra nếu ghế đã được đặt
+                    if (occupiedSeats.includes(seatNumber)) {
                         seat.classList.add("occupied");
                     } else {
-                        seat.addEventListener("click", () => toggleSeat(i + 1));
+                        seat.addEventListener("click", () => toggleSeat(seatNumber, coachId));
+                    }
+
+                    // Kiểm tra nếu ghế đã được chọn trước đó
+                    if (selectedSeatsByCoach[coachId].includes(seatNumber)) {
+                        seat.classList.add("selected");
                     }
 
                     if (i % 2 === 0) {
@@ -289,50 +306,67 @@
                         rightSeats.appendChild(seat);
                     }
                 }
+
+                updateInfo();
             }
 
-            function toggleSeat(seatNumber) {
+            function toggleSeat(seatNumber, coachId) {
+                if (!selectedSeatsByCoach[coachId]) {
+                    selectedSeatsByCoach[coachId] = [];
+                }
+
                 const seatElements = document.querySelectorAll(".seat");
                 const seat = Array.from(seatElements).find(seat => Number(seat.textContent) === seatNumber);
 
-                if (!seat)
-                    return;
-
-                if (selectedSeats.includes(seatNumber)) {
-                    selectedSeats = selectedSeats.filter(num => num !== seatNumber);
-                } else {
-                    selectedSeats.push(seatNumber);
+                if (!seat || seat.classList.contains("occupied")) {
+                    return; // Không cho chọn ghế đã bị chiếm
                 }
 
-                seat.classList.toggle("selected");
+                if (selectedSeatsByCoach[coachId].includes(seatNumber)) {
+                    selectedSeatsByCoach[coachId] = selectedSeatsByCoach[coachId].filter(num => num !== seatNumber);
+                    seat.classList.remove("selected");
+                } else {
+                    selectedSeatsByCoach[coachId].push(seatNumber);
+                    seat.classList.add("selected");
+                }
+
                 updateInfo();
             }
 
             function updateInfo() {
                 const selectedSeatsEl = document.getElementById("selectedSeats");
                 const totalPriceEl = document.getElementById("totalPrice");
+
                 if (!selectedSeatsEl || !totalPriceEl) {
                     console.error("Không tìm thấy selectedSeats hoặc totalPrice trong DOM");
                     return;
                 }
 
-                selectedSeatsEl.textContent = selectedSeats.length;
-                totalPriceEl.textContent = selectedSeats.length * seatPrice;
+                totalSeatsSelected = Object.values(selectedSeatsByCoach).reduce((sum, seats) => sum + seats.length, 0);
+                selectedSeatsEl.textContent = totalSeatsSelected;
+                totalPriceEl.textContent = totalSeatsSelected * seatPrice;
             }
 
             function confirmBooking() {
-                if (selectedSeats.length === 0) {
+                if (totalSeatsSelected === 0) {
                     alert("Bạn chưa chọn ghế!");
-                } else {
-                    alert(`Bạn đã đặt ${selectedSeats.length} ghế với tổng tiền ${selectedSeats.length * seatPrice} VNĐ`);
-                    selectedSeats = [];
-                    updateInfo();
-                    document.querySelectorAll(".seat.selected").forEach(seat => seat.classList.remove("selected"));
+                    return;
                 }
-            }
-            window.onload = function () {
-                let selectElement = document.getElementById("coachSelect");
 
+                let dataToSend = {
+                    id_trip: id_trip,
+                    selectedSeats: selectedSeatsByCoach,
+                    date: date_start
+                };
+
+                console.log("Dữ liệu gửi đi:", JSON.stringify(dataToSend));
+
+                document.getElementById("bookingData").value = JSON.stringify(dataToSend);
+                document.getElementById("bookingForm").submit();
+            }
+
+// Khi tải trang, tự động tải ghế của khoang đầu tiên
+            window.onload = function () {
                 if (selectElement.options.length > 0) {
                     let firstOption = selectElement.options[selectElement.selectedIndex];
                     let idTrain = firstOption.value;
@@ -341,21 +375,25 @@
                     console.log("Lấy dữ liệu ban đầu với idTrain:", idTrain, "totalSeat:", totalSeat);
 
                     let baseURL = window.location.origin + "/SWP391";
-                    const url = new URL(baseURL + "/GetNumberOfSeats?");
-                    const param = new URLSearchParams(url.search);
+                    const url = new URL(baseURL + "/GetNumberOfSeats");
+                    const param = new URLSearchParams();
                     param.append("id", idTrain);
                     param.append("totalSeat", totalSeat);
+                    param.append("id_trip", id_trip);
                     url.search = param.toString();
+
                     console.log("URL Fetch:", url.toString());
 
                     fetch(url.toString(), {method: 'GET'})
                             .then(response => response.json())
-                            .then(data => {
-                                createSeats(parseInt(totalSeat), data);
+                            .then(occupiedSeats => {
+                                console.log("Ghế đã được chọn:", occupiedSeats);
+                                createSeats(parseInt(totalSeat), occupiedSeats, idTrain);
                             })
-                            .catch(error => console.error('Lỗi:', error));
+                            .catch(error => console.error("Lỗi khi lấy dữ liệu ghế:", error));
                 }
             };
+
         </script>
     </body>
 </html>

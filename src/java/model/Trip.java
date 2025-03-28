@@ -8,19 +8,48 @@ public class Trip implements SQLInsert {
     private int id_trip;
     private int id_station_start;
     private int id_station_end;
-    private Date time_start_ticket;
-    private Date time_end_ticket;
+    private String time_start_ticket;
+    private String time_end_ticket;
     private int id_train;
     private int ordered_seat;
     private String name_train;
     private String name_station_start;
     private String name_station_end;
     private String image_train;
+    private float price_trip;
+    private String date_trip;
+    private int trip_status;
+
+    public int getTrip_status() {
+        return trip_status;
+    }
+
+    public void setTrip_status(int trip_status) {
+        this.trip_status = trip_status;
+    }
+    
+    
+
+    public float getPrice_trip() {
+        return price_trip;
+    }
+
+    public String getDate_trip() {
+        return date_trip;
+    }
+
+    public void setDate_trip(String date_trip) {
+        this.date_trip = date_trip;
+    }
+
+    public void setPrice_trip(float price_trip) {
+        this.price_trip = price_trip;
+    }
 
     // Format ngày thành String khi trả về JSON
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    public Trip(String name_train,Date time_start_ticket, Date time_end_ticket, String name_station_start, String name_station_end, String image_train) {
+    public Trip(String name_train, String time_start_ticket, String time_end_ticket, String name_station_start, String name_station_end, String image_train) {
         this.name_train = name_train;
         this.time_start_ticket = time_start_ticket;
         this.time_end_ticket = time_end_ticket;
@@ -29,7 +58,7 @@ public class Trip implements SQLInsert {
         this.image_train = image_train;
     }
 
-    public Trip(int id_trip, int id_station_start, int id_station_end, Date time_start_ticket, Date time_end_ticket, int id_train, int ordered_seat) {
+    public Trip(int id_trip, int id_station_start, int id_station_end, String time_start_ticket, String time_end_ticket, int id_train, int ordered_seat) {
         this.id_trip = id_trip;
         this.id_station_start = id_station_start;
         this.id_station_end = id_station_end;
@@ -39,7 +68,10 @@ public class Trip implements SQLInsert {
         this.ordered_seat = ordered_seat;
     }
 
-    public Trip(int id_trip, int id_station_start, int id_station_end, Date time_start_ticket, Date time_end_ticket, int id_train, int ordered_seat, String name_train, String name_station_start, String name_station_end, String image_train) {
+    public Trip() {
+    }
+
+    public Trip(int id_trip, int id_station_start, int id_station_end, String time_start_ticket, String time_end_ticket, int id_train, int ordered_seat, String name_train, String name_station_start, String name_station_end, String image_train) {
         this.id_trip = id_trip;
         this.id_station_start = id_station_start;
         this.id_station_end = id_station_end;
@@ -53,7 +85,7 @@ public class Trip implements SQLInsert {
         this.image_train = image_train;
     }
 
-    public Trip(int id_trip, int id_station_start, int id_station_end, Date time_start_ticket, Date time_end_ticket, int id_train, int ordered_seat, String name_train, String name_station_start, String name_station_end) {
+    public Trip(int id_trip, int id_station_start, int id_station_end, String time_start_ticket, String time_end_ticket, int id_train, int ordered_seat, String name_train, String name_station_start, String name_station_end) {
         this.id_trip = id_trip;
         this.id_station_start = id_station_start;
         this.id_station_end = id_station_end;
@@ -80,11 +112,11 @@ public class Trip implements SQLInsert {
     }
 
     public String getTime_start_ticket() {
-        return DATE_FORMAT.format(time_start_ticket);
+        return time_start_ticket;
     }
 
     public String getTime_end_ticket() {
-        return DATE_FORMAT.format(time_end_ticket);
+        return time_end_ticket;
     }
 
     public int getId_train() {
@@ -123,11 +155,11 @@ public class Trip implements SQLInsert {
         this.id_station_end = id_station_end;
     }
 
-    public void setTime_start_ticket(Date time_start_ticket) {
+    public void setTime_start_ticket(String time_start_ticket) {
         this.time_start_ticket = time_start_ticket;
     }
 
-    public void setTime_end_ticket(Date time_end_ticket) {
+    public void setTime_end_ticket(String time_end_ticket) {
         this.time_end_ticket = time_end_ticket;
     }
 
