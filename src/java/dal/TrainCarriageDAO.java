@@ -21,7 +21,7 @@ public class TrainCarriageDAO {
     public TrainCarriageDAO() {
         this.connect = DBConnect.MySQLConnect();
         if (this.connect == null) {
-            System.err.println("Database connection failed!4");
+            System.err.println("Database connection failed!");
         } else {
             System.out.println("Database connected successfully!");
         }
@@ -166,6 +166,30 @@ public class TrainCarriageDAO {
             e.printStackTrace();
         }
         return null; // Trả về null nếu không tìm thấy
+    }
+    
+    
+    
+    // 0 la id_train_carriage, 1 la number_of_carriage(la khoang thu may)
+    public ArrayList<Integer> getNumberOfCarriage(int id_train_carriage){
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(id_train_carriage);
+        String query = "SELECT name_train_carriage FROM Train_carriage WHERE id_train_carriage = ?";
+        String res = null;
+        try (PreparedStatement ps = connect.prepareStatement(query)) {
+            ps.setInt(1, id_train_carriage);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    res = rs.getString("name_train_carriage");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        String[] token = res.split(" ");
+        int val = Integer.parseInt(token[1]);
+        list.add(val);
+        return list;
     }
     public static void main(String[] args) {
 //        TrainCarriageDAO traincarriagedao = new TrainCarriageDAO();

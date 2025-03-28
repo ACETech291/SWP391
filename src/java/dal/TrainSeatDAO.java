@@ -21,7 +21,28 @@ public class TrainSeatDAO {
             System.err.println("Database connection failed!2");
         }
     }
-
+    public List<TrainSeat> getAllTrainSeat(){
+        String sql = "select * from train_seat";
+        List<TrainSeat> seatList = new ArrayList<>();
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+            
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    TrainSeat seat = new TrainSeat();
+                    seat.setId_train_seat(rs.getInt("id_train_seat"));
+                    seat.setCode_train_seat(rs.getString("code_train_seat"));
+                    seat.setPrice_seat(rs.getInt("price_seat"));
+                    seat.setId_train_carriage(rs.getInt("id_train_carriage"));
+                    seat.setId_status(rs.getInt("id_status"));
+                    seatList.add(seat);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return seatList;
+        
+    }
     public void addTrainSeat(TrainSeat seat) throws SQLException {
         String sql = "INSERT INTO Train_seat (code_train_seat, price_seat, id_train_carriage, id_status) VALUES (?, ?, ?, ?)";
         try (PreparedStatement ps = connect.prepareStatement(sql)) {
@@ -150,9 +171,41 @@ public class TrainSeatDAO {
         }
         return ans;
     }
+    public double getTotalPrice(int id_train_carriage,List<Integer> seat){
+        List<TrainSeat> seatList = getAllTrainSeat();
+        double sum = 0;
+        for(int i = 0 ; i < seat.size(); ++i){
+            for(int j = 0 ; j < seatList.size(); ++j){
+                String[] token = seatList.get(j).getCode_train_seat().split(" - ");
+                //return seatList.get(j).getCode_train_seat();
+                if(seat.get(i) == Integer.valueOf(token[2]) && Integer.parseInt(token[1]) == id_train_carriage){
+                    sum += seatList.get(j).getPrice_seat();
+                    break;
+                }
+            }
+        }
+        return sum;
+    }
+    public int searchIdTrainSeatByCodeTrainSeat(String code_train_seat){
+        String sql = """
+                     select * from train_seat 
+                     where code_train_seat = ?
+                     """;
+        int val = -1;
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+            ps.setString(1, code_train_seat);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    val = rs.getInt("id_train_seat");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return val;
+    }
     public static void main(String[] args) throws SQLException {
         TrainSeatDAO dao = new TrainSeatDAO();
-        TrainSeat seat_by_car = dao.getTrainSeatById(1);
-        System.out.println(seat_by_car.getCode_train_seat() + " ====");
+        System.out.println(dao.searchIdTrainSeatByCodeTrainSeat("1 - 2 - 6"));
     }
 }

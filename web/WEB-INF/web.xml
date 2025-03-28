@@ -27,6 +27,22 @@
     </filter-mapping>
     -->
     <servlet>
+        <servlet-name>ajaxServlet</servlet-name>
+        <servlet-class>com.vnpay.common.ajaxServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ajaxServlet</servlet-name>
+        <url-pattern>/payment</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>VnpayReturn</servlet-name>
+        <servlet-class>com.vnpay.common.VnpayReturn</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VnpayReturn</servlet-name>
+        <url-pattern>/vnpayReturn</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>home</servlet-name>
         <servlet-class>controller.home</servlet-class>
     </servlet>
@@ -281,6 +297,10 @@
     <servlet>
         <servlet-name>GetNumberOfSeats</servlet-name>
         <servlet-class>controller.GetNumberOfSeats</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ConfirmBooking</servlet-name>
+        <servlet-class>controller.ConfirmBooking</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>home</servlet-name>
@@ -537,5 +557,9 @@
     <servlet-mapping>
         <servlet-name>GetNumberOfSeats</servlet-name>
         <url-pattern>/GetNumberOfSeats</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConfirmBooking</servlet-name>
+        <url-pattern>/ConfirmBooking</url-pattern>
     </servlet-mapping>
 </web-app>

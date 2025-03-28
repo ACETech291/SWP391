@@ -22,6 +22,7 @@ public class DatabaseInitializer implements ServletContextListener {
         DBConnect.executeSQLFile("D:\\SWPFinal\\SWP391\\database\\Train_Buying_Ticket_Insert.ddl.sql");
         DBConnect.executeSQLFile("D:\\SWPFinal\\SWP391\\database\\Train_Buying_Ticket_InsertCustomer.ddl.sql");
         DBConnect.executeSQLFile("D:\\SWPFinal\\SWP391\\database\\Train_Buying_Ticket_InsertTicket.ddl.sql");
+        DBConnect.executeSQLFile("D:\\SWPFinal\\SWP391\\database\\Important_train_seat.ddl.sql");
         System.out.println("Database initialized successfully!");
     }
 

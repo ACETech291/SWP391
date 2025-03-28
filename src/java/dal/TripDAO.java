@@ -407,11 +407,64 @@ public class TripDAO {
         return res;
     }
 
+    public ArrayList<String> getNameTrainAndBrand(int id_trip) {
+        ArrayList<String> res = new ArrayList<>();
+        String sql = " SELECT train.name_train, train_brand.name_train_brand\n"
+                + "FROM trip, train, train_brand\n"
+                + "WHERE trip.id_train = train.id_train\n"
+                + "AND train.id_train_brand = train_brand.id_train_brand\n"
+                + "AND trip.id_trip = ?";
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+            ps.setInt(1, id_trip);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    String name_train = rs.getString("name_train");
+                    String name_train_brand = rs.getString("name_train_brand");
+                    res.add(name_train);
+                    res.add(name_train_brand);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+    
+    public int getPriceTripFromTripID(int id_trip){
+        String sql = " Select * from trip where id_trip = ? ";
+        int res = 0;
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+            ps.setInt(1, id_trip);
+            
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    res = rs.getInt("price_trip");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+    public int getIdTrainByIdTrip(int id_trip){
+        String sql = " Select * from trip where id_trip = ? ";
+        int res = 0;
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+            ps.setInt(1, id_trip);
+            
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    res = rs.getInt("id_train");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
     public static void main(String[] args) {
-//        TripDAO td = new TripDAO();
-//        List<Pair<Integer,String> > ans = td.getNameTrainCarriage(1);
-//        for(int i = 0 ; i < ans.size(); ++i){
-//            System.out.println(ans.get(i).getLeft() + " " + ans.get(i).getRight());
-//        }
+        TripDAO td = new TripDAO();
+        System.out.println(td.getIdTrainByIdTrip(10));
     }
 }
