@@ -223,6 +223,16 @@ public class StationDAO extends HttpServlet {
             e.printStackTrace();
         }
     }
+    
+    public void ChangeToDisable(int id) {
+        String sql = "UPDATE Station SET status_station = 1 WHERE id_station = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }

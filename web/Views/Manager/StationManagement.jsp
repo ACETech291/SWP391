@@ -77,23 +77,23 @@
                         </div> 
 
                         <div>
-                            <button class="nir-btn w-30" onclick="toggleAddStationForm()" >Thêm ga tàu</button>
-                            <br>
+<!--                            <button class="nir-btn w-30" onclick="toggleAddStationForm()" >Thêm ga tàu</button>
+                            <br>-->
                             <!-- Form thêm ga tàu -->
-                        <div id="addStation" class="add-form">
+<!--                        <div id="addStation" class="add-form">
                             <h3>Thêm ga tàu mới</h3>
                             <form id="stationForm" action="AddStation" method="POST" >  
-                                <!-- Tên ga tàu -->
+                                 Tên ga tàu 
                                 <label for="name_station">Tên ga tàu:</label>
                                 <input type="text" id="name_station" name="name_station" required>
                                 <br>
 
-                                <!--                                 Ảnh ga tàu 
+                                                                 Ảnh ga tàu 
                                                                 <label for="image_station">Hình ảnh:</label>
                                                                 <input type="file" id="image_station" name="image_station" accept="image/*" required>
-                                                                <br>-->
+                                                                <br>
 
-                                <!-- Mô tả -->
+                                 Mô tả 
                                 <label for="description_station">Mô tả:</label>
                                 <textarea id="description_station" name="description_station" rows="4" required></textarea>
                                 <br>
@@ -101,7 +101,7 @@
                                 <button type="submit" class="nir-btn w-30">Lưu</button>
                                 <button type="button" class="nir-btn w-30" onclick="toggleAddStationForm()">Huỷ</button>
                             </form>
-                        </div>
+                        </div>-->
                     </div>    
                               <!-- Table Station -->
                 <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
@@ -113,7 +113,7 @@
                                 <th class="text-center align-middle">Hình ảnh</th>
                                 -->
                                 <th class="text-center align-middle">Mô tả</th>
-                                <th class="text-center align-middle">Hành động</th>
+<!--                                <th class="text-center align-middle">Hành động</th>-->
                             </tr>
                         </thead>
                         <tbody>
@@ -132,15 +132,15 @@
                                 </td>
                                 -->
                                 <td class="text-center align-middle"><%= station.getDescription_station() %></td>
-                                <td class="text-center align-middle">
-                                    <!-- Nút hành động -->
+<!--                                <td class="text-center align-middle">
+                                     Nút hành động 
                                     <a href="EditStation?id=<%= station.getId_station() %>" class="btn btn-warning btn-sm">Sửa</a>
 
                                     <form id="deleteForm-<%= station.getId_station() %>" action="DeleteStation" method="POST" style="display: inline;">
                                         <input type="hidden" name="id_station" value="<%= station.getId_station() %>">
                                         <button type="button" class="btn btn-danger btn-sm" onclick="confirmDeleteStation(<%= station.getId_station() %>)">Xóa</button>
                                     </form>
-                                </td>
+                                </td>-->
                             </tr>
                             <%
                                     }
@@ -254,9 +254,4 @@
         }
     </script>
 
-</html>
-
-    <body>
-        <h1>Hello World!</h1>
-    </body>
 </html>

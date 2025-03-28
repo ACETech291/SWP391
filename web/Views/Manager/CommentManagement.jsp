@@ -8,11 +8,14 @@
 <%@page import="model.Status"%>
 <%@page import="model.TrainSeat"%>
 <%@page import="model.Station"%>
+<%@page import="model.Comment"%>
 <%@page import="dal.TrainCarriageDAO"%>
 <%@page import="dal.TrainSeatDAO"%>
 <%@page import="dal.TrainDAO"%>
 <%@page import="dal.StationDAO"%>
-<%@page import="dal.StatusDAO"%>
+<%@page import="dal.CommentDAO"%>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en-US" dir="ltr">
 
@@ -53,20 +56,21 @@
 
     <body>
         <%
-            Integer idTrainBrand = (Integer) session.getAttribute("id_train_brand");
-            if (idTrainBrand == null) {
+            Integer id_train_brand = (Integer) session.getAttribute("id_train_brand");
+            if (id_train_brand == null) {
                 response.sendRedirect("login"); // Thay "TrangKhac.jsp" bằng trang bạn muốn chuyển hướng
                 return;
             }
-            Integer id_status = (Integer) session.getAttribute("id_status");
             
-            Integer id_train_brand = (Integer) session.getAttribute("id_train_brand");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            List<Status> statusCarriage = (List<Status>) request.getAttribute("status_carriage");
+            List<Status> statusTrain = (List<Status>) request.getAttribute("status_train");
+            String votingParam = request.getParameter("voting");
+            int voting = (votingParam != null && !votingParam.isEmpty()) ? Integer.parseInt(votingParam) : -1;
             
-            StatusDAO sDAO = new StatusDAO();
-            List<Status> statusTrain = sDAO.getStatusTrainFull();
-            request.setAttribute("status_train", statusTrain);
+            CommentDAO dao = new CommentDAO();
+            List<Comment> commentList = (voting > 0) ? dao.getAllCommentsByVoting(id_train_brand,voting) : dao.getCommentsByTrainBrandId(id_train_brand);
         %>
-
         <!-- ===============================================--><!--    Main Content--><!-- ===============================================-->
         <main class="main" id="top">
             <div class="container" data-layout="container">
@@ -77,112 +81,72 @@
                     <jsp:include page="lib/header.jsp"></jsp:include>
                         <!-- Content -->
                         <div class="section-title text-center mb-5 pb-2 w-50 mx-auto">
-                            <h2 class="m-0"><span>Quản lý tàu</span></h2>
+                            <h2 class="m-0"><span>Quản lý bình luận</span></h2>
                         </div> 
 
-                        <div>
-                            <button id="addTrainButton" class="nir-btn w-30" onclick="toggleAddTrainForm()" >Thêm tàu</button>
-                            <br>
-                            <!-- Form thêm tàu -->
-                            <div id="addTrain" class="add-form">
-                                <h3>Thêm tàu mới</h3>
-                                <form id="trainForm" action="AddTrain" method="POST">
-                                    <label for="name_train">Tên tàu:</label>
-                                    <input type="text" id="name_train" name="name_train" required>
-                                    <br>
-                                    <label for="description_train">Mô tả:</label>
-                                    <input type="text" id="description_train" name="description_train" required>
-                                    <br>                                                                                       
-                                    <input type="hidden" id="id_train_brand" name="id_train_brand" value="<%= id_train_brand %>" >
-
-                                <label for="id_status">Trạng thái:</label>
-                                <select id="id_status" name="id_status" required>
-                                    <option value="">Chọn trạng thái</option>
-                                    <c:forEach var="status" items="${status_train}">
-                                        <option value="${status.id}">${status.statusName}</option>
-                                    </c:forEach>
-                                </select>
-                                <br>    
-                                <br>
-                                <button id="SaveButton" type="submit" class="nir-btn w-30">Lưu</button>
-                                <button id="CancelButton" type="button" class="nir-btn w-30" onclick="toggleAddTrainForm()">Huỷ</button>
-                            </form>
-                        </div>
-
-                        <!-- Form filter -->
-                        <form id="filterForm" method="POST" action="trainmanagement">
-                            <input name="id_train_brand" type="hidden" value="<%=id_train_brand%>">
-                            <fieldset>
-                                <legend>Các trạng thái</legend>
-                                <%
-                                    for (Status status : statusTrain) {
-                                %>
-                                <label><input type="checkbox" name="id_status" value="<%=status.getId()%>" onchange="autoSubmit()"> <%=status.getStatusName()%></label><br>
-                                    <%
-                                        }
-                                    %>
-                            </fieldset>
+                        <form action="" method="GET" class="mb-3 d-flex align-items-center">
+                            <label for="voting" class="mr-2">Lọc theo đánh giá:</label>
+                            <select name="voting" id="voting" class="form-control w-auto">
+                                <option value="">Tất cả</option>
+                                <option value="5">⭐ 5 Sao</option>
+                                <option value="4">⭐ 4 Sao</option>
+                                <option value="3">⭐ 3 Sao</option>
+                                <option value="2">⭐ 2 Sao</option>
+                                <option value="1">⭐ 1 Sao</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary ml-2">Lọc</button>
                         </form>
-                    </div>    
-                    <!-- Table Train -->
-                    <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
-                        <table class="table table-hover mb-0">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th class="text-center align-middle">Tên tàu</th>
-                                    <th class="text-center align-middle">Mô tả</th>
-                                    <th class="text-center align-middle">trạng thái</th>
-                                    <th class="text-center align-middle">Hành động</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+
+
+                        <!-- Table comment -->
+                        <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
+                            <table class="table table-hover mb-0">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th class="text-center align-middle">Thời gian bình luận</th>
+                                        <th class="text-center align-middle">Đánh giá</th>
+                                        <th class="text-center align-middle">Nội dung</th>
+                                        <th class="text-center align-middle">Người dùng</th>
+                                        <th class="text-center align-middle">Trạng thái</th>
+                                        <th class="text-center align-middle">Hành động</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                 <% 
-                                    TrainDAO dao = new TrainDAO();
-                                    List<Train> trainsbyfilter = (List<Train>) request.getAttribute("trainsbyfilter");
-                                    
-                                    if (trainsbyfilter == null) trainsbyfilter = dao.getTrainByFilter(id_train_brand, id_status);
-                                    
-                                    if (trainsbyfilter != null && !trainsbyfilter.isEmpty()) {
-                                        for (Train train : trainsbyfilter) {
+                                
+                                    if (commentList != null && !commentList.isEmpty()) {
+                                        for (Comment com : commentList) {
                                 %>
                                 <tr>
-                                    <td class="text-center align-middle"><%= train.getName_train() %></td>
-                                    <td class="text-center align-middle"><%= train.getDescription_train() %></td>
+                                    <td class="text-center align-middle"><%= sdf.format(com.getCreate_at()) %></td>
+                                    <td class="text-center align-middle"><%= com.getVoting_comment() %></td>
+                                    <td class="text-center align-middle"><%= com.getContent() %></td>
+                                    <td class="text-center align-middle"><%= com.getName_customer() %></td>
                                     <td class="text-center align-middle">
-                                        <% 
-                                            String statusName = "Không xác định";
-                                            for (Status status : statusTrain) {
-                                                if (status.getId() == train.getId_status()) {
-                                                    statusName = status.getStatusName();
-                                                    break;
-                                                }
-                                            }
-                                        %>
-                                        <%= statusName %>
+                                        <%= com.getComment_status() ==  0 ? "Hoạt động" : "Không hoạt động" %>
                                     </td>
                                     <td class="text-center align-middle">
-                                        <!-- Nút hành động -->
-                                        <a href="EditTrain?id=<%= train.getId_train() %>" class="btn btn-warning btn-sm">Sửa</a>
-
-                                        <form id="deleteForm-<%= train.getId_train() %>" action="DeleteTrain" method="POST" style="display: inline;">
-                                            <input type="hidden" name="id_train" value="<%= train.getId_train() %>">
-                                            <button type="button" class="btn btn-danger btn-sm" onclick="confirmDeleteTrain(<%= train.getId_train() %>)">Xóa</button>
+                                        <a href="BrandDetail?id=${id_train_brand}" class="btn btn-warning btn-sm">Xem chi tiết </a>
+                                        
+                                        <form id="deleteForm-<%= com.getId_comment() %>" action="DeleteComment" method="POST" style="display: inline;">
+                                            <input type="hidden" name="id_comment" value="<%= com.getId_comment() %>">
+                                            <button type="button" class="btn btn-danger btn-sm" onclick="confirmDeleteTrain(<%= com.getId_comment() %>)">Xóa</button>
                                         </form>
-
                                     </td>
+                                    
                                 </tr>
                                 <% 
                                         }
                                     } else { 
                                 %>
                                 <tr>
-                                    <td colspan="4" class="text-center">Không có tàu</td>
+                                    <td colspan="5" class="text-center">Không có bình luận nào.</td>
                                 </tr>
                                 <% } %>
                             </tbody>
-
                         </table>
-                    </div><br><br>                                    
+                    </div><br><br>
+
                 </div>
             </div>
         </main>
@@ -190,12 +154,8 @@
     </body>
 
     <script>
-        function toggleAddTrainForm() {
-            const form = document.getElementById("addTrain");
-            form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
-        }
         function confirmDeleteTrain(id) {
-            if (confirm("Bạn có chắc chắn muốn xóa tàu này không?")) {
+            if (confirm("Bạn có chắc chắn muốn xóa bình luận này không?")) {
                 document.getElementById("deleteForm-" + id).submit();
             }
         }
@@ -286,45 +246,5 @@
             userLinkRTL.setAttribute('disabled', true);
         }
     </script>
-
-    <!-- Hiển thị thông báo -->
-    <% if (session.getAttribute("successMessage") != null) { %>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            let toast = document.createElement("div");
-            toast.id = "toastMessage";  // Thêm ID để dễ tìm bằng Selenium
-            toast.textContent = "<%= session.getAttribute("successMessage") %>";
-            toast.style.cssText = "position: fixed; top: 20px; right: 20px; background: #4CAF50; color: white; padding: 10px 20px; border-radius: 5px; z-index: 1000; transition: opacity 0.5s ease-in-out;";
-            document.body.appendChild(toast);
-            console.log("Toast hiển thị:", toast.textContent); // Kiểm tra hiển thị trong Console
-
-            setTimeout(() => {
-                toast.style.opacity = "0";
-                setTimeout(() => toast.remove(), 500);
-            }, 3000);
-        });
-    </script>
-    <% session.removeAttribute("successMessage"); %>
-    <% } %>
-
-
-    <% if (request.getAttribute("errorMessage") != null) { %>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            let toast = document.createElement("div");
-            toast.id = "toastMessage";
-            toast.textContent = "<%= request.getAttribute("errorMessage") %>";
-            toast.style.cssText = "position: fixed; top: 20px; right: 20px; background: #f44336; color: white; padding: 10px 20px; border-radius: 5px; z-index: 1000; transition: opacity 0.5s ease-in-out;";
-            document.body.appendChild(toast);
-
-            setTimeout(() => {
-                toast.style.opacity = "0";
-                setTimeout(() => toast.remove(), 500);
-            }, 1000);
-        });
-    </script>
-    <% } %>
-
-
 
 </html>

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
 /**
@@ -19,6 +15,7 @@ public class Feedback {
     private String name_customer;
     private Timestamp create_at;
     private int id_advertising;
+    private int feedback_status;
 
     // Constructor mặc định
     public Feedback() {
@@ -41,6 +38,14 @@ public class Feedback {
         this.name_customer = name_customer;
         this.create_at = create_at;
         this.id_advertising = id_advertising;
+    }
+
+    public int getFeedback_status() {
+        return feedback_status;
+    }
+
+    public void setFeedback_status(int feedback_status) {
+        this.feedback_status = feedback_status;
     }
     
     

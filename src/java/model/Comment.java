@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
 import java.sql.Timestamp;
@@ -17,6 +13,7 @@ public class Comment {
     private String name_customer;
     private Timestamp create_at;
     private int id_train_brand;
+    private int comment_status;
 
     public Comment() {
     }
@@ -39,6 +36,15 @@ public class Comment {
         this.id_train_brand = id_train_brand;
     }
 
+    public int getComment_status() {
+        return comment_status;
+    }
+
+    public void setComment_status(int comment_status) {
+        this.comment_status = comment_status;
+    }
+
+    
     public int getId_comment() {
         return id_comment;
     }

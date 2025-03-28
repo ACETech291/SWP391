@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dal;
 
 import java.sql.Connection;
@@ -48,6 +44,44 @@ public class StatusDAO {
         return statusList;
     }
 
+    public List<Status> getStatusTrainFull() {
+        List<Status> statusList = new ArrayList<>();
+        String sql = "SELECT * FROM Status WHERE id_status BETWEEN 1 AND 4 or id_status = 8";
+
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Status status = new Status();
+                status.setId(rs.getInt("id_status"));
+                status.setStatusName(rs.getString("name_status"));
+                statusList.add(status);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return statusList;
+    }
+
+    public List<Status> getStatusSeatFull() {
+        List<Status> statusList = new ArrayList<>();
+        String sql = "SELECT * FROM Status WHERE id_status BETWEEN 5 AND 7 OR id_status=8";
+
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Status status = new Status();
+                status.setId(rs.getInt("id_status"));
+                status.setStatusName(rs.getString("name_status"));
+                statusList.add(status);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return statusList;
+    }
+
     public List<Status> getStatusSeat() {
         List<Status> statusList = new ArrayList<>();
         String sql = "SELECT * FROM Status WHERE id_status BETWEEN 5 AND 7";
@@ -67,11 +101,11 @@ public class StatusDAO {
         return statusList;
     }
 
-//    public static void main(String[] args) {
-//        StatusDAO dao = new StatusDAO();
-//        List<Status> statuses = dao.getStatusTrain();
-//        for (Status statuse : statuses) {
-//            System.out.println(statuse.getId() + " - " + statuse.getStatusName());
-//        }
-//    }
+    public static void main(String[] args) {
+        StatusDAO sDAO = new StatusDAO();
+        List<Status> statuses = sDAO.getStatusTrainFull();
+        for (Status statuse : statuses) {
+            System.out.println(statuse.getId() + " - " + statuse.getStatusName());
+        }
+    }
 }

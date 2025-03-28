@@ -8,11 +8,13 @@
 <%@page import="model.Status"%>
 <%@page import="model.TrainSeat"%>
 <%@page import="model.Station"%>
+<%@page import="model.Trip"%>
 <%@page import="dal.TrainCarriageDAO"%>
 <%@page import="dal.TrainSeatDAO"%>
 <%@page import="dal.TrainDAO"%>
 <%@page import="dal.StationDAO"%>
 <%@page import="dal.StatusDAO"%>
+<%@page import="dal.TripDAO"%>
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en-US" dir="ltr">
 
@@ -59,12 +61,17 @@
                 return;
             }
             Integer id_status = (Integer) session.getAttribute("id_status");
-            
+           
             Integer id_train_brand = (Integer) session.getAttribute("id_train_brand");
+            List<Trip> ListTrip = (List<Trip>) session.getAttribute("ListTrip");
             
             StatusDAO sDAO = new StatusDAO();
             List<Status> statusTrain = sDAO.getStatusTrainFull();
             request.setAttribute("status_train", statusTrain);
+            
+            StationDAO stationDAO = new StationDAO();
+            List<Station> listStation = stationDAO.getAllStations();
+            request.setAttribute("listStation", listStation);
         %>
 
         <!-- ===============================================--><!--    Main Content--><!-- ===============================================-->
@@ -77,125 +84,76 @@
                     <jsp:include page="lib/header.jsp"></jsp:include>
                         <!-- Content -->
                         <div class="section-title text-center mb-5 pb-2 w-50 mx-auto">
-                            <h2 class="m-0"><span>Quản lý tàu</span></h2>
+                            <h2 class="m-0"><span>Quản lý chuyến đi</span></h2>
                         </div> 
 
-                        <div>
-                            <button id="addTrainButton" class="nir-btn w-30" onclick="toggleAddTrainForm()" >Thêm tàu</button>
-                            <br>
-                            <!-- Form thêm tàu -->
-                            <div id="addTrain" class="add-form">
-                                <h3>Thêm tàu mới</h3>
-                                <form id="trainForm" action="AddTrain" method="POST">
-                                    <label for="name_train">Tên tàu:</label>
-                                    <input type="text" id="name_train" name="name_train" required>
-                                    <br>
-                                    <label for="description_train">Mô tả:</label>
-                                    <input type="text" id="description_train" name="description_train" required>
-                                    <br>                                                                                       
-                                    <input type="hidden" id="id_train_brand" name="id_train_brand" value="<%= id_train_brand %>" >
 
-                                <label for="id_status">Trạng thái:</label>
-                                <select id="id_status" name="id_status" required>
-                                    <option value="">Chọn trạng thái</option>
-                                    <c:forEach var="status" items="${status_train}">
-                                        <option value="${status.id}">${status.statusName}</option>
-                                    </c:forEach>
-                                </select>
-                                <br>    
-                                <br>
-                                <button id="SaveButton" type="submit" class="nir-btn w-30">Lưu</button>
-                                <button id="CancelButton" type="button" class="nir-btn w-30" onclick="toggleAddTrainForm()">Huỷ</button>
-                            </form>
-                        </div>
-
-                        <!-- Form filter -->
-                        <form id="filterForm" method="POST" action="trainmanagement">
-                            <input name="id_train_brand" type="hidden" value="<%=id_train_brand%>">
-                            <fieldset>
-                                <legend>Các trạng thái</legend>
-                                <%
-                                    for (Status status : statusTrain) {
-                                %>
-                                <label><input type="checkbox" name="id_status" value="<%=status.getId()%>" onchange="autoSubmit()"> <%=status.getStatusName()%></label><br>
-                                    <%
-                                        }
-                                    %>
-                            </fieldset>
-                        </form>
-                    </div>    
-                    <!-- Table Train -->
+                    <%
+                                        //if(ListTrip == null) {
+                                            TripDAO tripdao = new TripDAO();
+                                            ListTrip = tripdao.ListAllTripTrandBrand(id_train_brand);
+                                        //}
+                    %>
                     <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
                         <table class="table table-hover mb-0">
                             <thead class="thead-light">
                                 <tr>
-                                    <th class="text-center align-middle">Tên tàu</th>
-                                    <th class="text-center align-middle">Mô tả</th>
-                                    <th class="text-center align-middle">trạng thái</th>
+                                    <th class="text-center align-middle">Ga đi</th>
+                                    <th class="text-center align-middle">Giờ đi</th>
+                                    <th class="text-center align-middle">Ga đến</th>
+                                    <th class="text-center align-middle">Giờ đến</th>
+                                    <th class="text-center align-middle">Ngày đi</th>
+                                    <th class="text-center align-middle">Mã tàu</th>
+                                    <th class="text-center align-middle">Giá vé</th>
+                                    <th class="text-center align-middle">Trạng thái</th>
                                     <th class="text-center align-middle">Hành động</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <% 
-                                    TrainDAO dao = new TrainDAO();
-                                    List<Train> trainsbyfilter = (List<Train>) request.getAttribute("trainsbyfilter");
-                                    
-                                    if (trainsbyfilter == null) trainsbyfilter = dao.getTrainByFilter(id_train_brand, id_status);
-                                    
-                                    if (trainsbyfilter != null && !trainsbyfilter.isEmpty()) {
-                                        for (Train train : trainsbyfilter) {
+                                <%
+
+                            for (Trip trip : ListTrip) {
                                 %>
                                 <tr>
-                                    <td class="text-center align-middle"><%= train.getName_train() %></td>
-                                    <td class="text-center align-middle"><%= train.getDescription_train() %></td>
+                                    <td class="text-center align-middle"><%= trip.getName_station_start() %></td>
+                                    <td class="text-center align-middle"><%= trip.getTime_start_ticket() %></td>
+                                    <td class="text-center align-middle"><%= trip.getName_station_end() %></td>
+                                    <td class="text-center align-middle"><%= trip.getTime_end_ticket() %></td>
+                                    <td class="text-center align-middle"><%= trip.getDate_trip() %></td>
+                                    <td class="text-center align-middle"><%= trip.getName_train() %></td>
+                                    <td class="text-center align-middle"><%= trip.getPrice_trip() %></td>
                                     <td class="text-center align-middle">
-                                        <% 
-                                            String statusName = "Không xác định";
-                                            for (Status status : statusTrain) {
-                                                if (status.getId() == train.getId_status()) {
-                                                    statusName = status.getStatusName();
-                                                    break;
-                                                }
-                                            }
-                                        %>
-                                        <%= statusName %>
+                                        <%= trip.getTrip_status() == 0 ? "Hoạt động" : "Không hoạt động" %>
                                     </td>
                                     <td class="text-center align-middle">
                                         <!-- Nút hành động -->
-                                        <a href="EditTrain?id=<%= train.getId_train() %>" class="btn btn-warning btn-sm">Sửa</a>
+                                        
 
-                                        <form id="deleteForm-<%= train.getId_train() %>" action="DeleteTrain" method="POST" style="display: inline;">
-                                            <input type="hidden" name="id_train" value="<%= train.getId_train() %>">
-                                            <button type="button" class="btn btn-danger btn-sm" onclick="confirmDeleteTrain(<%= train.getId_train() %>)">Xóa</button>
+                                        <form id="deleteForm-<%= trip.getId_trip() %>" action="DeleteTrip" method="POST" style="display: inline;">
+                                            <input type="hidden" name="id_trip" value="<%= trip.getId_trip() %>">
+                                            <button type="button" class="btn btn-danger btn-sm" onclick="confirmDeleteTrain(<%= trip.getId_trip() %>)">Xóa</button>
                                         </form>
 
-                                    </td>
+                                    </td>                                        
                                 </tr>
-                                <% 
+                                <%
                                         }
-                                    } else { 
                                 %>
-                                <tr>
-                                    <td colspan="4" class="text-center">Không có tàu</td>
-                                </tr>
-                                <% } %>
                             </tbody>
-
                         </table>
-                    </div><br><br>                                    
-                </div>
+                    </div><br><br>                                
+
+                </div>    
+
+
             </div>
         </main>
         <!-- ===============================================--><!--    End of Main Content--><!-- ===============================================-->
     </body>
 
     <script>
-        function toggleAddTrainForm() {
-            const form = document.getElementById("addTrain");
-            form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
-        }
         function confirmDeleteTrain(id) {
-            if (confirm("Bạn có chắc chắn muốn xóa tàu này không?")) {
+            if (confirm("Bạn có chắc chắn muốn xóa chuyến đi này không?")) {
                 document.getElementById("deleteForm-" + id).submit();
             }
         }
