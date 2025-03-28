@@ -27,8 +27,6 @@ public class Trip implements SQLInsert {
     public void setTrip_status(int trip_status) {
         this.trip_status = trip_status;
     }
-    
-    
 
     public float getPrice_trip() {
         return price_trip;

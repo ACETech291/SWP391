@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
  * @author Nguyen Ba Hien
  */
 public class OTP {
+
     private int id;
     private String email;
     private boolean isUsed;
@@ -26,9 +27,7 @@ public class OTP {
         this.code = code;
         this.expiryTime = expiryTime;
     }
-    
-    
-    
+
     public OTP(int id, String email, boolean isUsed, String code, LocalDateTime expiryTime) {
         this.id = id;
         this.email = email;
@@ -52,8 +51,6 @@ public class OTP {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    
 
     public boolean isIsUsed() {
         return isUsed;
@@ -83,8 +80,5 @@ public class OTP {
     public String toString() {
         return "OTP{" + "id=" + id + ", email=" + email + ", isUsed=" + isUsed + ", code=" + code + ", expiryTime=" + expiryTime + '}';
     }
-    
-    
-    
-    
+
 }

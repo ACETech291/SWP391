@@ -162,7 +162,7 @@
                                         <%
                                             int id_ad = adDAO.getAdvertisingByFeedbackId(fb.getId_feedback()).getId_advertising();
                                         %>
-                                        <a href="advertisingdetail?id=${id_ad}" class="btn btn-warning btn-sm">Xem chi tiết </a>
+                                        <a href="advertisingdetail?id=<%= fb.getId_feedback() %>" class="btn btn-warning btn-sm">Xem chi tiết </a>
 
                                     </td>
 

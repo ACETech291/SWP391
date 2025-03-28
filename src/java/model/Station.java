@@ -47,8 +47,6 @@ public class Station implements SQLUpdate {
         this.description_station = description_station;
         this.content = content;
     }
-    
-    
 
     public Station() {
     }
@@ -92,7 +90,7 @@ public class Station implements SQLUpdate {
     public void setContent(String content) {
         this.content = content;
     }
-    
+
     @Override
     public String toString() {
         return "Station{" + "id_station=" + id_station + ", name_station=" + name_station + ", image_station=" + image_station + ", description_station=" + description_station + '}';

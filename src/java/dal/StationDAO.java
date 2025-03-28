@@ -6,23 +6,16 @@ package dal;
 
 import jakarta.servlet.http.HttpServlet;
 import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
-import model.Customer;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import model.Role;
 import model.SQLUpdate;
 import model.Station;
-import model.Trip;
 
 /**
  *

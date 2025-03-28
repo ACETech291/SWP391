@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Feedback {
+
     private int id_feedback;
     private int voting_feedback;
     private String content;
@@ -22,7 +23,6 @@ public class Feedback {
     }
 
     // Constructor có tham số
-
     public Feedback(int id_feedback, int voting_feedback, String content, String name_customer, Timestamp create_at) {
         this.id_feedback = id_feedback;
         this.voting_feedback = voting_feedback;
@@ -47,8 +47,6 @@ public class Feedback {
     public void setFeedback_status(int feedback_status) {
         this.feedback_status = feedback_status;
     }
-    
-    
 
     public int getId_feedback() {
         return id_feedback;
@@ -90,8 +88,6 @@ public class Feedback {
         this.create_at = create_at;
     }
 
-    
-
     public int getId_advertising() {
         return id_advertising;
     }
@@ -104,10 +100,5 @@ public class Feedback {
     public String toString() {
         return "Feedback{" + "id_feedback=" + id_feedback + ", voting_feedback=" + voting_feedback + ", content=" + content + ", name_customer=" + name_customer + ", create_at=" + create_at + ", id_advertising=" + id_advertising + '}';
     }
-    
-    
 
-    
-    
 }
-

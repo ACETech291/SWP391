@@ -11,8 +11,9 @@ import java.sql.Timestamp;
  * @author Nguyen Ba Hien
  */
 public class Policy {
+
     private int id_policy;
-    private String content;    
+    private String content;
     private Timestamp create_at;
     private int status_policy;
 
@@ -25,8 +26,6 @@ public class Policy {
         this.create_at = create_at;
         this.status_policy = status_policy;
     }
-    
-    
 
     public int getId_policy() {
         return id_policy;
@@ -59,6 +58,5 @@ public class Policy {
     public void setStatus_policy(int status_policy) {
         this.status_policy = status_policy;
     }
-    
-    
+
 }

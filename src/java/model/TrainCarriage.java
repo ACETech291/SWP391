@@ -8,7 +8,7 @@ package model;
  *
  * @author dinhphu
  */
-public class TrainCarriage implements SQLInsert{
+public class TrainCarriage implements SQLInsert {
 
     private int id_train_carriage;
     private String name_train_carriage;
@@ -42,7 +42,6 @@ public class TrainCarriage implements SQLInsert{
         this.total_seat = total_seat;
     }
 
-    
     public TrainCarriage() {
     }
 

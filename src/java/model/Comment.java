@@ -7,6 +7,7 @@ import java.sql.Timestamp;
  * @author Nguyen Ba Hien
  */
 public class Comment {
+
     private int id_comment;
     private int voting_comment;
     private String content;
@@ -25,8 +26,7 @@ public class Comment {
         this.create_at = create_at;
         this.id_train_brand = id_train_brand;
     }
-    
-    
+
     public Comment(int id_comment, int voting_comment, String content, String name_customer, Timestamp create_at, int id_train_brand) {
         this.id_comment = id_comment;
         this.voting_comment = voting_comment;
@@ -44,7 +44,6 @@ public class Comment {
         this.comment_status = comment_status;
     }
 
-    
     public int getId_comment() {
         return id_comment;
     }
@@ -97,5 +96,5 @@ public class Comment {
     public String toString() {
         return "Comment{" + "id_comment=" + id_comment + ", voting_comment=" + voting_comment + ", content=" + content + ", name_customer=" + name_customer + ", create_at=" + create_at + ", id_train_brand=" + id_train_brand + '}';
     }
-    
+
 }

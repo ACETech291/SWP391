@@ -7,6 +7,7 @@ import java.util.Date;
  * @author dinhphu
  */
 public class Revenue {
+
     private Date date;
     private int quantity;
     private float revenue;
@@ -43,6 +44,4 @@ public class Revenue {
     public void setRevenue(float revenue) {
         this.revenue = revenue;
     }
-    
-    
 }

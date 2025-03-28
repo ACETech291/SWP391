@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
  * @author HP
  */
 public class TokenForgetPassword {
+
     private int id, userId;
     private boolean isUsed;
     private String token;
@@ -33,6 +34,7 @@ public class TokenForgetPassword {
         this.token = token;
         this.expiryTime = expiryTime;
     }
+
     public int getId() {
         return id;
     }

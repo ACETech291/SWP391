@@ -11,6 +11,7 @@ import java.time.LocalTime;
  * @author Nguyen Ba Hien
  */
 public class TripDTO {
+
     private int id_trip;
     private String start_station;
     private String end_station;
@@ -32,8 +33,6 @@ public class TripDTO {
         this.price_trip = price_trip;
     }
 
-    
-    
     public TripDTO(int id_trip, String start_station, String end_station, String name_train) {
         this.id_trip = id_trip;
         this.start_station = start_station;
@@ -71,8 +70,6 @@ public class TripDTO {
         this.price_trip = price_trip;
     }
 
-        
-    
     public int getId_trip() {
         return id_trip;
     }
@@ -109,12 +106,4 @@ public class TripDTO {
     public String toString() {
         return "TripDTO{" + "id_trip=" + id_trip + ", start_station=" + start_station + ", end_station=" + end_station + ", name_train=" + name_train + ", start_time=" + start_time + ", end_time=" + end_time + ", price_trip=" + price_trip + '}';
     }
-
-    
-
-    
-    
-    
-    
-    
 }

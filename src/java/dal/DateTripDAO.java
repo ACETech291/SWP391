@@ -13,6 +13,7 @@ import java.sql.ResultSet;
  * @author HieuPham
  */
 public class DateTripDAO {
+
     private Connection connect;
 
     public DateTripDAO() {
@@ -23,39 +24,42 @@ public class DateTripDAO {
             System.out.println("Database connected successfully!");
         }
     }
-    public void insertDateTrip(int id_trip,int id_date_of_trip) {
+
+    public void insertDateTrip(int id_trip, int id_date_of_trip) {
         String sql = """
                      INSERT INTO date_trip(id_trip,id_date_of_trip) VALUES(?,?)
                      """;
-        
-         try {
+
+        try {
             PreparedStatement ps = connect.prepareStatement(sql);
             ps.setInt(1, id_trip);
             ps.setInt(2, id_date_of_trip);
             int val = ps.executeUpdate();
-             System.out.println("SUCESS InsertDATETRIP");
+            System.out.println("SUCESS InsertDATETRIP");
         } catch (Exception e) {
         }
-        
+
     }
-    public int getIdDateTrip(int id_trip,int id_date_of_trip){
+
+    public int getIdDateTrip(int id_trip, int id_date_of_trip) {
         String sql = """
                      Select * from date_trip where id_trip = ? and id_date_of_trip = ?
                      """;
         int val = -1;
-         try {
+        try {
             PreparedStatement ps = connect.prepareStatement(sql);
             ps.setInt(1, id_trip);
             ps.setInt(2, id_date_of_trip);
             ResultSet rs = ps.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 val = rs.getInt("id_date_trip");
             }
-            
+
         } catch (Exception e) {
         }
         return val;
     }
+
     public static void main(String[] args) {
         DateTripDAO dtd = new DateTripDAO();
         dtd.insertDateTrip(2, 27);

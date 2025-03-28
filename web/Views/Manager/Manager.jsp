@@ -14,6 +14,7 @@
 <%@page import="dal.TrainDAO"%>
 <%@page import="dal.StationDAO"%>
 <%@page import="dal.RevenueDAO"%>
+
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en-US" dir="ltr">
 
@@ -63,41 +64,251 @@
                     <jsp:include page="lib/header.jsp"></jsp:include>
                         <!-- Content -->
 
-                        <div class="section-title text-center mb-5 pb-2 w-50 mx-auto">
-                            <h2 class="m-0"><span>Dashbroad</span></h2>
-                        </div> 
-                        
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Biểu đồ doanh thu vé tàu</h5>
-                                <canvas id="revenueChart"></canvas>
+                        <!-- Doanh thu và số lượng vé -->
+                        <div class="row g-3 mb-3">
+                            <!-- Doanh thu hàng tháng -->
+                            <div class="col-md-6 col-xxl-6">
+                                <div class="card h-md-100 ecommerce-card-min-width">
+                                    <div class="card-header pb-0">
+                                        <h6 class="mb-0 mt-2 d-flex align-items-center">Doanh thu trung bình</h6>
+                                    </div>
+                                    <div class="card-body d-flex flex-column justify-content-end">
+                                        <div class="row">
+                                            <div class="col">
+                                                <!-- Hiển thị doanh thu trung bình (averageRevenue) -->
+                                                <p class="font-sans-serif lh-1 mb-1 fs-5">
+                                                <fmt:formatNumber value="${averageRevenue}" type="currency" currencyCode="VND" />
+                                            </p>
+                                            <span class="badge rounded-pill fs-11 bg-200 text-primary">
+                                                <span class="fas fa-caret-up me-1"></span>0%
+                                            </span>
+                                        </div>
+                                        <div class="col-auto ps-0">
+                                            <!-- Biểu đồ doanh thu theo tháng, sử dụng dữ liệu JSON động -->
+                                            <div class="echart-default-total-order" 
+                                                 data-echarts='{
+                                                 "tooltip": {"trigger": "axis", "formatter": "{b0} : {c0}"},
+                                                 "xAxis": {"data": ["Tháng 1","Tháng 2","Tháng 3","Tháng 4","Tháng 5","Tháng 6","Tháng 7","Tháng 8","Tháng 9","Tháng 10","Tháng 11","Tháng 12"]},
+                                                 "series": [{
+                                                 "type": "line",
+                                                 "data": ${revenueJson},
+                                                 "smooth": true,
+                                                 "lineStyle": {"width": 3}
+                                                 }],
+                                                 "grid": {"bottom": "2%", "top": "2%", "right": "0", "left": "10px"}
+                                                 }' 
+                                                 data-echart-responsive="true">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
+                        <!-- Tổng số vé bán ra -->
+                        <div class="col-md-6 col-xxl-4">
+                            <div class="card h-md-100">
+                                <div class="card-header pb-0">
+                                    <h6 class="mb-0 mt-2">Tổng số vé bán ra</h6>
+                                </div>
+                                <div class="card-body d-flex flex-column justify-content-end">
+                                    <div class="row justify-content-between">
+                                        <div class="col-auto align-self-end">
+                                            <!-- Hiển thị tổng số vé bán ra của cả năm -->
+                                            <div class="fs-5 fw-normal font-sans-serif text-700 lh-1 mb-1">${totalTicketsYear}</div>
+                                            <span class="badge rounded-pill fs-11 bg-200 text-primary">
+                                                <span class="fas fa-caret-up me-1"></span>0%
+                                            </span>
+                                        </div>
+                                        <div class="col-auto ps-0 mt-n4">
+                                            <!-- Biểu đồ số vé bán ra theo tháng, sử dụng dữ liệu JSON động -->
+                                            <div class="echart-default-total-order" 
+                                                 data-echarts='{
+                                                 "tooltip": {"trigger": "axis", "formatter": "{b0} : {c0}"},
+                                                 "xAxis": {"data": ["Tháng 1","Tháng 2","Tháng 3","Tháng 4","Tháng 5","Tháng 6","Tháng 7","Tháng 8","Tháng 9","Tháng 10","Tháng 11","Tháng 12"]},
+                                                 "series": [{
+                                                 "type": "line",
+                                                 "data": ${ticketsJson},
+                                                 "smooth": true,
+                                                 "lineStyle": {"width": 3}
+                                                 }],
+                                                 "grid": {"bottom": "2%", "top": "2%", "right": "0", "left": "10px"}
+                                                 }' 
+                                                 data-echart-responsive="true">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
+                        <!-- Tỷ lệ huỷ vé -->
+                        <div class="col-md-6 col-xxl-2">
+                            <div class="card h-md-100">
+                                <div class="card-header pb-0">
+                                    <h6 class="mb-0 mt-2">Tỉ lệ huỷ vé</h6>
+                                </div>
+                                <div class="card-body d-flex flex-column justify-content-end">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p class="font-sans-serif lh-1 mb-1 fs-5">${cancellationRate}%</p>
+                                            <span class="badge rounded-pill fs-11 bg-200 text-primary"><span class="fas fa-caret-up me-1"></span>0%</span>
+                                        </div>
+                                        <div class="col-auto ps-0">
+                                            <div class="echart-pie-average-fill h-100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="row g-0 mb-3">
+                        <!-- Chuyến tàu đang hoạt động -->
+                        <div class="col-lg-7 pe-lg-2">
+                            <div class="card h-lg-100 overflow-hidden">
+                                <div class="card-header bg-body-tertiary">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h6 class="mb-0">Chuyến tàu đang hoạt động</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body p-0">
+                                    <div id="tableExample3" data-list='{"valueNames":["station_from","station_to","time_start", "time_end", "train_id", "price"],"page":10,"pagination":true}'>
+                                        <div class="row justify-content-end g-0">
+                                            <div class="col-auto col-sm-5 mb-3">
+                                                <form>
+                                                    <div class="input-group"><input class="form-control form-control-sm shadow-none search" type="search" placeholder="Search..." aria-label="search" />
+                                                        <div class="input-group-text bg-transparent"><span class="fa fa-search fs-10 text-600"></span></div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="table-responsive scrollbar">
+                                            <table class="table table-bordered table-striped fs-10 mb-0">
+                                                <thead class="bg-200">
+                                                    <tr>
+                                                        <th class="text-900 sort" data-sort="station_from">Ga đi</th>
+                                                        <th class="text-900 sort" data-sort="station_to">Ga đến</th>
+                                                        <th class="text-900 sort" data-sort="time_start">Giờ khởi hành</th>
+                                                        <th class="text-900 sort" data-sort="time_end">Giờ đến dự kiến</th>
+                                                        <th class="text-900 sort" data-sort="train_id">Mã tàu</th>
+                                                        <th class="text-900 sort" data-sort="price">Giá vé</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="list">
+                                                    <c:forEach var="trip" items="${trips}">
+                                                        <tr>
+                                                            <td class="station_from">${trip.start_station}</td>
+                                                            <td class="station_to">${trip.end_station}</td>
+                                                            <td class="time_start">${trip.start_time}</td>
+                                                            <td class="time_end">${trip.end_time}</td>
+                                                            <td class="train_id">${trip.name_train}</td>
+                                                            <td class="price"><fmt:formatNumber value="${trip.price_trip}" type="currency" currencyCode="VND"/></td>
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-3"><button class="btn btn-sm btn-falcon-default me-1" type="button" title="Previous" data-list-pagination="prev"><span class="fas fa-chevron-left"></span></button>
+                                            <ul class="pagination mb-0"></ul><button class="btn btn-sm btn-falcon-default ms-1" type="button" title="Next" data-list-pagination="next"><span class="fas fa-chevron-right"> </span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-5 ps-lg-2">
+                            <div class="card h-lg-100">
+                                <div class="card-header">
+                                    <div class="row flex-between-center">
+                                        <div class="col-auto">
+                                            <h6 class="mb-0">Danh sách nhân viên</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body p-0">
+                                    <div id="tableExample4" data-list='{"valueNames":["name","country","email","payment"]}'>
+                                        <div class="row justify-content-end justify-content-end gx-3 gy-0 px-3">
+                                            <div class="col-sm-auto"><select class="form-select form-select-sm mb-3" data-list-filter="payment">
+                                                    <option selected="" value="">Trạng thái hoạt động</option>
+                                                    <option value="Success">Hoạt động</option>
+                                                    <option value="Blocked">Ngừng hoạt động</option>
+                                                </select></div>
+                                        </div>
+                                        <div class="table-responsive scrollbar">
+                                            <table class="table table-sm table-striped fs-10 mb-0 overflow-hidden">
+                                                <thead class="bg-200">
+                                                    <tr>
+                                                        <th class="text-900 sort pe-1 align-middle white-space-nowrap" data-sort="name">Tên nhân viên</th>
+                                                        <th class="text-900 sort pe-1 align-middle white-space-nowrap" data-sort="email">Email</th>
+                                                        <th class="text-900 sort align-middle white-space-nowrap text-end pe-4" data-sort="payment">Trạng thái hoạt động</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="list" id="table-purchase-body">
+                                                    <c:forEach var="manager" items="${managers}">
+                                                        <tr class="btn-reveal-trigger">
+                                                            <th class="align-middle white-space-nowrap name">${manager.username_manager}</th>
+                                                            <td class="align-middle white-space-nowrap email">${manager.email_manager}</td>
+                                                            <td class="align-middle text-end fs-9 white-space-nowrap payment">
+                                                                <c:choose>
+                                                                    <c:when test="${manager.status == 1}">
+                                                                        <span class="badge badge rounded-pill badge-subtle-success">
+                                                                            Hoạt động
+                                                                            <span class="ms-1 fas fa-check" data-fa-transform="shrink-2"></span>
+                                                                        </span>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <span class="badge badge rounded-pill badge-subtle-secondary">
+                                                                            Ngừng hoạt động
+                                                                            <span class="ms-1 fas fa-ban" data-fa-transform="shrink-2"></span>
+                                                                        </span>
+                                                                    </c:otherwise>
+                                                                </c:choose>
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Biểu đồ doanh thu vé tàu</h5>
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                    </div>
+
+
                 </div>
-            </main>
-            <!-- ===============================================--><!--    End of Main Content--><!-- ===============================================-->
-        </body>
+            </div>
+        </main>
+        <!-- ===============================================--><!--    End of Main Content--><!-- ===============================================-->
+    </body>
 
-        <!-- Thư viện Chart.js -->
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <!-- Thư viện Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         let revenueData = [];
         let dateLabels = [];
-        
-        <% 
-            List<Revenue> revenueList = (List<Revenue>) request.getAttribute("revenueList");
-            if (revenueList != null) {
-                for (Revenue r : revenueList) {
+
+        <%
+        List<Revenue> revenueList = (List<Revenue>) request.getAttribute("revenueList");
+        if (revenueList != null) {
+            for (Revenue r : revenueList) {
         %>
-                    dateLabels.push("<%= r.getDate() %>");
-                    revenueData.push(<%= r.getRevenue() %>);
-        <% 
-                }
+        dateLabels.push("<%= r.getDate()%>");
+        revenueData.push(<%= r.getRevenue()%>);
+        <%
             }
+        }
         %>
 
         const ctx = document.getElementById('revenueChart').getContext('2d');
@@ -106,24 +317,24 @@
             data: {
                 labels: dateLabels,
                 datasets: [{
-                    label: 'Doanh thu (VND)',
-                    data: revenueData,
-                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                }]
+                        label: 'Doanh thu (VND)',
+                        data: revenueData,
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
             },
             options: {
                 responsive: true,
                 scales: {
-                    x: { title: { display: true, text: "Ngày" } },
-                    y: { title: { display: true, text: "Doanh thu (VND)" } }
+                    x: {title: {display: true, text: "Ngày"}},
+                    y: {title: {display: true, text: "Doanh thu (VND)"}}
                 }
             }
         });
     </script>
 
-        <script src="${pageContext.request.contextPath}/Views/Admin/vendors/popper/popper.min.js"></script>
+    <script src="${pageContext.request.contextPath}/Views/Admin/vendors/popper/popper.min.js"></script>
     <script src="${pageContext.request.contextPath}/Views/Admin/vendors/bootstrap/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/Views/Admin/vendors/anchorjs/anchor.min.js"></script>
     <script src="${pageContext.request.contextPath}/Views/Admin/vendors/is/is.min.js"></script>
