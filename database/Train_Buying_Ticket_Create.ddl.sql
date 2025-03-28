@@ -146,6 +146,8 @@ CREATE TABLE Ticket (
   id_date_trip				 INT(11) NOT NULL,
   id_customer         int(11) NOT NULL, 
   id_train_seat       int(11) NOT NULL, 
+  total_bill 			 FLOAT8,
+  status ENUM('Processing', 'Completed', 'Failed') NOT NULL DEFAULT 'Processing',
   PRIMARY KEY (id_ticket), 
   INDEX (id_ticket));
   
