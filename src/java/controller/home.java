@@ -78,8 +78,7 @@ public class home extends HttpServlet {
         int start = (page-1)*numberPerPage;
         int end = Math.min(page*numberPerPage, size);
         List<TripDTO> listTrips = tripDAO.getListByPage(list1, start, end);
-        System.out.println(policyDAO.getLastPolicy().getContent());
-        System.out.println(introductionDAO.getLastIntroduction().getContent());
+
         request.setAttribute("policy",policyDAO.getLastPolicy().getContent());
         request.setAttribute("introduction", introductionDAO.getLastIntroduction().getContent());
         request.setAttribute("listBrand", listBrand);
