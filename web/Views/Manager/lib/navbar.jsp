@@ -18,7 +18,7 @@
         <div class="navbar-vertical-content scrollbar">
             <ul class="navbar-nav flex-column mb-3" id="navbarVerticalNav">
                 <li class="nav-item">
-                    <a class="nav-link" href="dashboard">
+                    <a class="nav-link" href="Manager">
                         <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-chart-pie"></span></span><span class="nav-link-text ps-1">Thống kê</span></div>
                     </a>
                 </li>
@@ -56,17 +56,24 @@
                     <a class="nav-link" href="BrandManagement" role="button">
                         <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-home"></span></span><span class="nav-link-text ps-1">Quản lý thông tin hãng</span></div>
                     </a>
+                    
+                    <a class="nav-link" href="TripManagement" role="button">
+                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-home"></span></span><span class="nav-link-text ps-1">Quản lý chuyến đi</span></div>
+                    </a>
                 </li>
 
                 <li class="nav-item"><!-- label-->
                     <div class="row navbar-vertical-label-wrapper mt-3 mb-2">
-                        <div class="col-auto navbar-vertical-label">Bảo mật</div>
+                        <div class="col-auto navbar-vertical-label">Xem các thông tin</div>
                         <div class="col ps-0">
                             <hr class="mb-0 navbar-vertical-divider" />
                         </div>
                     </div>
-                    <a class="nav-link" href="createaccount" role="button">
-                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-user-plus"></span></span><span class="nav-link-text ps-1">Tạo mới tài khoản</span></div>
+                    <a class="nav-link" href="CommentManagement" role="button">
+                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-user-plus"></span></span><span class="nav-link-text ps-1">Xem bình luận</span></div>
+                    </a>
+                    <a class="nav-link" href="FeedbackManagement" role="button">
+                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-user-plus"></span></span><span class="nav-link-text ps-1">Xem đánh giá</span></div>
                     </a>
                     <a class="nav-link" href="AuthorizationManagement" role="button">
                         <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-user-shield"></span></span><span class="nav-link-text ps-1">Phân quyền</span></div>

@@ -3,8 +3,10 @@ package dal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,22 +28,21 @@ public class TripDAO {
     }
 
     // Lấy tất cả chuyến đi
-    public List<Trip> getAllTrips() {
-        List<Trip> listTrips = new ArrayList<>();
-        String sql = "SELECT * FROM trip";
-        try (PreparedStatement ps = connect.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) {
-                listTrips.add(new Trip(
-                        rs.getInt(1), rs.getInt(2), rs.getInt(3),
-                        rs.getTimestamp(4), rs.getTimestamp(5), rs.getInt(6), rs.getInt(7)
-                ));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return listTrips;
-    }
-
+//    public List<Trip> getAllTrips() {
+//        List<Trip> listTrips = new ArrayList<>();
+//        String sql = "SELECT * FROM trip";
+//        try (PreparedStatement ps = connect.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+//            while (rs.next()) {
+//                listTrips.add(new Trip(
+//                        rs.getInt(1), rs.getInt(2), rs.getInt(3),
+//                        rs.getTimestamp(4), rs.getTimestamp(5), rs.getInt(6), rs.getInt(7)
+//                ));
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return listTrips;
+//    }
     // Lấy danh sách chuyến đi theo ngày
     public List<Trip> getTripsByDate(Date date) {
         List<Trip> trips = new ArrayList<>();
@@ -68,8 +69,8 @@ public class TripDAO {
 
             while (rs.next()) {
                 trips.add(new Trip(rs.getString("name_train"),
-                        rs.getTimestamp("time_start_ticket"),
-                        rs.getTimestamp("time_end_ticket"),
+                        rs.getString("time_start_ticket"),
+                        rs.getString("time_end_ticket"),
                         rs.getString("start_station"),
                         rs.getString("end_station"),
                         rs.getString("image_train")
@@ -121,6 +122,79 @@ public class TripDAO {
             ex.printStackTrace();
         }
         return trips;
+    }
+
+    public List<Trip> ListAllTripTrandBrand(int id_train_brand) {
+        String sql = """
+                    SELECT 
+                        dt.id_date_trip,
+                        t.name_train,
+                        d.date_details AS trip_date,
+                        tos_start.time_train_in_station AS time_start,
+                        tos_end.time_train_in_station AS time_end,
+                        s_start.name_station AS station_from,
+                        s_end.name_station AS station_to,
+                        tr.price_trip,
+                        dt.trip_status
+                    FROM Date_trip dt
+                    JOIN Date_of_trip d ON dt.id_date_of_trip = d.id_date_of_trip
+                    JOIN Trip tr ON dt.id_trip = tr.id_trip
+                    JOIN Train t ON tr.id_train = t.id_train
+                    JOIN Train_brand tb ON t.id_train_brand = tb.id_train_brand
+                    JOIN Time_station ts_start ON tr.id_time_station_start = ts_start.id_time_station
+                    JOIN Time_station ts_end ON tr.id_time_station_end = ts_end.id_time_station
+                    JOIN Time_of_station tos_start ON ts_start.id_time_of_station = tos_start.id_time_of_station
+                    JOIN Time_of_station tos_end ON ts_end.id_time_of_station = tos_end.id_time_of_station
+                    JOIN Station s_start ON ts_start.id_station = s_start.id_station
+                    JOIN Station s_end ON ts_end.id_station = s_end.id_station
+                    WHERE tb.id_train_brand = ?
+                    LIMIT 100;
+                     """;
+        PreparedStatement ps;
+        List<Trip> list = new ArrayList<>();
+        try {
+            ps = connect.prepareStatement(sql);
+            ps.setInt(1, id_train_brand);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Trip t = new Trip();
+
+                t.setId_trip(rs.getInt("id_date_trip"));
+                t.setName_train(rs.getString("name_train"));
+                t.setTime_start_ticket(rs.getString("time_start"));
+                t.setTime_end_ticket(rs.getString("time_end"));
+                t.setName_station_start(rs.getString("station_from"));
+                t.setName_station_end(rs.getString("station_to"));
+                t.setPrice_trip(rs.getFloat("price_trip"));
+                t.setDate_trip(rs.getString("trip_date"));
+                t.setTrip_status(rs.getInt("trip_status"));
+                list.add(t);
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public void disableTrip(int id_trip) throws SQLException {
+        String sql = """
+                    UPDATE Date_trip 
+                    SET trip_status = 1 
+                    WHERE id_date_trip = ?
+                     """;
+
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+            ps.setInt(1, id_trip);
+            int affectedRows = ps.executeUpdate();
+
+            if (affectedRows == 0) {
+                System.out.println("⚠ Không có chuyến nào được cập nhật! Kiểm tra id_trip: " + id_trip);
+            } else {
+                System.out.println("✔ Đã cập nhật trạng thái của chuyến có id: " + id_trip);
+            }
+        } catch (SQLException e) {
+            System.err.println("❌ Lỗi khi cập nhật trạng thái chuyến: " + e.getMessage());
+            throw e; // Ném lại lỗi để xử lý ở lớp gọi phương thức này
+        }
     }
 
     public List<TripDTO> searchTrips(String id_station_start, String id_station_end, String train_brand) {
@@ -407,11 +481,64 @@ public class TripDAO {
         return res;
     }
 
+    public ArrayList<String> getNameTrainAndBrand(int id_trip) {
+        ArrayList<String> res = new ArrayList<>();
+        String sql = " SELECT train.name_train, train_brand.name_train_brand\n"
+                + "FROM trip, train, train_brand\n"
+                + "WHERE trip.id_train = train.id_train\n"
+                + "AND train.id_train_brand = train_brand.id_train_brand\n"
+                + "AND trip.id_trip = ?";
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+            ps.setInt(1, id_trip);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    String name_train = rs.getString("name_train");
+                    String name_train_brand = rs.getString("name_train_brand");
+                    res.add(name_train);
+                    res.add(name_train_brand);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+    
+    public int getPriceTripFromTripID(int id_trip){
+        String sql = " Select * from trip where id_trip = ? ";
+        int res = 0;
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+            ps.setInt(1, id_trip);
+            
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    res = rs.getInt("price_trip");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+    public int getIdTrainByIdTrip(int id_trip){
+        String sql = " Select * from trip where id_trip = ? ";
+        int res = 0;
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+            ps.setInt(1, id_trip);
+            
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    res = rs.getInt("id_train");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
     public static void main(String[] args) {
-//        TripDAO td = new TripDAO();
-//        List<Pair<Integer,String> > ans = td.getNameTrainCarriage(1);
-//        for(int i = 0 ; i < ans.size(); ++i){
-//            System.out.println(ans.get(i).getLeft() + " " + ans.get(i).getRight());
-//        }
+        TripDAO td = new TripDAO();
+        System.out.println(td.getIdTrainByIdTrip(10));
     }
 }

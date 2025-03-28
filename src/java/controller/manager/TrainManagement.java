@@ -17,43 +17,27 @@ import model.Train;
  * @author dinhphu
  */
 public class TrainManagement extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        StatusDAO sDAO = new StatusDAO();
-        List<Status> statusTrain = sDAO.getStatusTrain();
-        request.setAttribute("status_train", statusTrain);
-
-        List<Status> statusCarriage = sDAO.getStatusSeat();
-        request.setAttribute("status_carriage", statusCarriage);
-
-        TrainDAO tDAO = new TrainDAO();
-        List<Train> topTrains = tDAO.getTopTrains(10);
-        request.setAttribute("topTrains", topTrains);
-
+            throws ServletException, IOException {
         request.getRequestDispatcher("Views/Manager/TrainManagement.jsp").forward(request, response);
-    } 
+    }
 
-    /** 
-     * Handles the HTTP <code>POST</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        StatusDAO sDAO = new StatusDAO();
-        List<Status> statusTrain = sDAO.getStatusTrain();
-        request.setAttribute("status_train", statusTrain);
+            throws ServletException, IOException {
+        String idStatusStr = request.getParameter("id_status");
+        String idTrainBrandStr = request.getParameter("id_train_brand");
 
-        List<Status> statusCarriage = sDAO.getStatusSeat();
-        request.setAttribute("status_carriage", statusCarriage);
+        Integer id_status = (idStatusStr != null && !idStatusStr.isEmpty()) ? Integer.parseInt(idStatusStr) : null;
+        Integer id_train_brand = (idTrainBrandStr != null && !idTrainBrandStr.isEmpty()) ? Integer.parseInt(idTrainBrandStr) : null;
 
-        TrainDAO tDAO = new TrainDAO();
-        List<Train> topTrains = tDAO.getTopTrains(10);
-        request.setAttribute("topTrains", topTrains);
+        if (id_status != null && id_train_brand != null) {
+            TrainDAO dao = new TrainDAO();
+            List<Train> trainsbyfilter = dao.getTrainByFilter(id_train_brand, id_status);
+            request.setAttribute("trainsbyfilter", trainsbyfilter);
+        }
 
         request.getRequestDispatcher("Views/Manager/TrainManagement.jsp").forward(request, response);
     }

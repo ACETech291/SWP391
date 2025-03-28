@@ -34,7 +34,8 @@
             <!-- Chọn trạng thái -->
             <label for="id_status">Trạng thái:</label>
             <select id="id_status" name="id_status" required>
-                <option value="">XXXXX</option>
+                <option value="">X
+                </option>
                 <c:forEach var="status" items="${status_train}">
                     <option value="${status.id}">${status.statusName}</option>
                 </c:forEach>

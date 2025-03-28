@@ -5,6 +5,7 @@ package model;
  * @author dinhphu
  */
 public class TrainSeat {
+
     private int id_train_seat;
     private String code_train_seat;
     private int price_seat;
@@ -53,7 +54,6 @@ public class TrainSeat {
         this.price_seat = price_seat;
     }
 
-
     public int getId_train_carriage() {
         return id_train_carriage;
     }
@@ -69,5 +69,16 @@ public class TrainSeat {
     public void setId_status(int id_status) {
         this.id_status = id_status;
     }
-    
+
+    @Override
+    public String toString() {
+        return "TrainSeat{"
+                + "id_train_seat=" + id_train_seat
+                + ", code_train_seat='" + code_train_seat + '\''
+                + ", price_seat=" + price_seat
+                + ", id_train_carriage=" + id_train_carriage
+                + ", id_status=" + id_status
+                + '}';
+    }
+
 }
