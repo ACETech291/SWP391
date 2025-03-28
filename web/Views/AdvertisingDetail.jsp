@@ -67,6 +67,40 @@
                 -webkit-box-orient: vertical;
                 overflow: hidden;
             }
+            .comment-content {
+                flex: 1;
+                min-height: 100px; /* Chiều cao tối thiểu */
+                max-height: 150px; /* Chiều cao tối đa */
+                overflow: hidden; /* Ẩn nội dung vượt quá */
+                text-overflow: ellipsis; /* Cắt nội dung dài bằng dấu "..." */
+            }
+
+            .comment-content p.comment {
+                display: -webkit-box;
+                -webkit-line-clamp: 3; /* Giới hạn số dòng hiển thị */
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+            .rating-filter {
+                display: flex;
+                gap: 10px;
+                margin-top: 10px;
+            }
+            .rating-btn {
+                padding: 8px 12px;
+                background-color: #f4f4f4;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                text-decoration: none;
+                color: #333;
+                transition: background 0.3s;
+            }
+            .rating-btn:hover {
+                background-color: #ddd;
+            }
+            .rating-btn.all {
+                font-weight: bold;
+            }
         </style>
     </head>
     <body>
@@ -106,15 +140,16 @@
                     <div class="col-lg-12">
                         <div class="blog-single">
                             <div class="blog-imagelist mb-3">
-                                <img src="${advertising.image_advertising}" alt="image" style="width: 100%; height: auto;"
+                                <img src="${pageContext.request.contextPath}/${advertising.image_advertising}" alt="image" style="width: 100%; height: auto;"
                             </div>
                             <div class="row">
                                 <div class="col-lg-10 col-md-10">
                                     <div class="blog-content mb-4 pt-0">
-                                        <h4  class="blog-title"><a href="#" class="yellow" style=" color: grey">Tác giả: ${advertising.managerName}</a></h4>
-                                        <div class="para-content mb-2">
-                                            <span class="mr-2"><a href="#" class="pink"><i class="fa fa-user mr-1"></i>Thời điểm đăng bài: ${advertising.create_at}</a></span>
-                                        </div>
+                                        <h4  class="blog-title"><p  class="yellow" style=" color: grey">Tác giả: ${advertising.managerName}</p></h4>
+                                        <p >${result}<small class="fa fa-star text-warning"></small></p>
+                                        <p class="para-content mb-2">
+                                            <span class="mr-2"><p  class="pink"><i class="fa fa-user mr-1"></i>Thời điểm đăng bài: ${advertising.create_at}</p></span>
+                                        </p>
                                         <p>${advertising.description_advertising}</p>
                                         <p>${advertising.content}</p>
                                     </div>   
@@ -123,28 +158,43 @@
                             </div>
 
                             <!-- blog comment list -->
-                            <div class="single-comments single-box mb-4">
+                            <div id="comments"></div>
+                            <div  class="single-comments single-box mb-4">
                                 <h4 class="mb-4">Bình luận</h4>
-                                <c:forEach var="feedback" items="${listFeedbacks}">
-                                    <div class="comment-box">
-                                        <div class="comment-image mt-2">
-                                            <img src="${pageContext.request.contextPath}/libs/images/reviewer/1.jpg" alt="image">
-                                        </div>
-                                        <div class="comment-content">
-                                            <h4 class="mb-1 Soldman Kell">${feedback.name_customer}</h4>
-                                            <p class="comment-date">${feedback.create_at}</p>  
+                                <div class="rating-filter">
+                                    <a href="SearchFeedback?rating=5&id_advertising_voting=${advertising.id_advertising}" class="rating-btn">5(${vote5}) <small class="fa fa-star text-warning"></small></a>
+                                    <a href="SearchFeedback?rating=4&id_advertising_voting=${advertising.id_advertising}" class="rating-btn">4(${vote4}) <small class="fa fa-star text-warning"></small></a>
+                                    <a href="SearchFeedback?rating=3&id_advertising_voting=${advertising.id_advertising}" class="rating-btn">3(${vote3}) <small class="fa fa-star text-warning"></small></a>
+                                    <a href="SearchFeedback?rating=2&id_advertising_voting=${advertising.id_advertising}" class="rating-btn">2(${vote2}) <small class="fa fa-star text-warning"></small></a>
+                                    <a href="SearchFeedback?rating=1&id_advertising_voting=${advertising.id_advertising}" class="rating-btn">1(${vote1}) <small class="fa fa-star text-warning"></small></a>
+                                </div>
+                                <c:choose>
+                                    <c:when test="${empty listFeedbacks}">
+                                        <h4 class="text-muted">Không có bình luận nào phù hợp.</h4>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:forEach var="feedback" items="${listFeedbacks}">
+                                            <div class="comment-box">
+                                                <div class="comment-image mt-2">
+                                                    <img src="${pageContext.request.contextPath}/libs/images/reviewer/1.jpg" alt="image">
+                                                </div>
+                                                <div class="comment-content">
+                                                    <h4 class="mb-1 Soldman Kell">${feedback.name_customer}</h4>
+                                                    <p class="comment-date">${feedback.create_at}</p>  
 
-                                            <!-- Hiển thị số sao -->
-                                            <p class="rating">
-                                                <c:forEach begin="1" end="${feedback.voting_feedback}">
-                                                    <i class="fa fa-star text-warning"></i>
-                                                </c:forEach>
-                                            </p>
+                                                    <!-- Hiển thị số sao -->
+                                                    <p class="rating">
+                                                        <c:forEach begin="1" end="${feedback.voting_feedback}">
+                                                            <i class="fa fa-star text-warning"></i>
+                                                        </c:forEach>
+                                                    </p>
 
-                                            <p class="comment">${feedback.content}</p>
-                                        </div>
-                                    </div>     
-                                </c:forEach>
+                                                    <p class="comment">${feedback.content}</p>
+                                                </div>
+                                            </div>     
+                                        </c:forEach>
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
 
                             <!-- blog review -->
@@ -249,5 +299,14 @@
                                         }
                                         return true;
                                     }
+                                    window.onload = function () {
+                                        // Lấy URL hiện tại
+                                        let urlParams = new URLSearchParams(window.location.search);
+                                        // Kiểm tra nếu có tham số "rating"
+                                        if (urlParams.has("rating")) {
+                                            // Cuộn mượt xuống phần bình luận
+                                            document.getElementById("comments").scrollIntoView({behavior: 'smooth'});
+                                        }
+                                    };
     </script>
 </html>

@@ -76,10 +76,12 @@
                                     </div>
                                 </div>
                                 <div class="description-inner mb-2 mt-1">
-                                    <h1>Tàu Cao Tốc <strong>${train.name_train}</strong>: Cột Mốc Mới</h1>
+                                    <h3>Tàu Cao Tốc <strong>${train.name_train}</strong>: Cột Mốc Mới</h3>
+                                    <h4>Hãng tàu: ${brand}</h4>
                                     <p>
                                        ${train.content}
-                                    </p>               
+                                    </p>  
+                                    
                                 </div>
                             </div>
                         </div>

@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <h6>1. Giới thiệu</h6>
+                 <h6>1. Giới thiệu</h6>
                 <p>Chào mừng bạn đến với dịch vụ của chúng tôi. Khi sử dụng trang web này, bạn đồng ý tuân theo các điều khoản sử dụng dưới đây.</p>
 
                 <h6>2. Quy định tài khoản</h6>

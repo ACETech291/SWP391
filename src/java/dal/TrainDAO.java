@@ -63,6 +63,29 @@ public class TrainDAO {
             stmt.execute();
         }
     }
+    
+    public List<Train> getTrainsByBrand(int trainBrandId) throws SQLException {
+    List<Train> trains = new ArrayList<>();
+    String query = "SELECT * FROM train WHERE id_train_brand = ?";
+
+    try (PreparedStatement ps = connect.prepareStatement(query)) {
+        ps.setInt(1, trainBrandId);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            Train train = new Train();
+            train.setId_train(rs.getInt("id_train"));
+            train.setName_train(rs.getString("name_train"));
+            train.setImage_train(rs.getString("image_train"));
+            train.setDescription_train(rs.getString("description_train"));
+            train.setContent(rs.getString("content"));
+            train.setId_train_brand(rs.getInt("id_train_brand"));
+            train.setId_status(rs.getInt("id_status"));
+            trains.add(train);
+        }
+    }
+    return trains;
+}
 
     public void updateTrain(Train train) {
         String sql = "UPDATE train SET name_train = ?, image_train = ?, description_train = ?, content = ?, id_train_brand = ?, id_status = ? WHERE id_train = ?";

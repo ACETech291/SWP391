@@ -75,29 +75,56 @@ public class ChangePassword extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        CustomerDAO customerDAO = new CustomerDAO();
         HttpSession session = request.getSession();
-        String email = request.getParameter("email");
-        String raw_password = request.getParameter("password");
-        String password_encode = Encoding.toSHA1(raw_password);
-        String confirmPassword = request.getParameter("confirm_password");
-        //validate password...
-        if (raw_password.length() < 6) {
-            request.setAttribute("err", "Mật khẩu phải chứa ít nhất 6 kí tự");
-            request.setAttribute("email", email);
-            request.getRequestDispatcher("Views/ChangePassword.jsp").forward(request, response);
-            return;
-        }
-        if (!raw_password.equals(confirmPassword)) {
-            request.setAttribute("err", "Mật khẩu nhập lại không khớp");
-            request.setAttribute("email", email);
-            request.getRequestDispatcher("Views/ChangePassword.jsp").forward(request, response);
-            return;
-        }
-        customerDAO.updatePassword(email, password_encode);
-        request.setAttribute("success", "Đổi mật khẩu thành công");
-        request.getRequestDispatcher("Profile").forward(request, response);
+        CustomerDAO customerDAO = new CustomerDAO();
 
+        // Kiểm tra đăng nhập
+        Customer customer = (Customer) session.getAttribute("account");
+        if (customer == null) {
+            response.sendRedirect("login.jsp");
+            return;
+        }
+
+        String email = customer.getEmail();
+        String currentPassword = request.getParameter("current_password");
+        String newPassword = request.getParameter("password");
+        String confirmPassword = request.getParameter("confirm_password");
+
+        // Kiểm tra mật khẩu hiện tại có đúng không
+        String hashedCurrentPassword = Encoding.toSHA1(currentPassword);
+        if (!hashedCurrentPassword.equals(customer.getPassword())) {
+            request.setAttribute("err1", "Mật khẩu hiện tại không đúng");
+            request.getRequestDispatcher("Views/Profile.jsp").forward(request, response);
+            return;
+        }
+
+        // Kiểm tra độ dài mật khẩu mới
+        if (newPassword.length() < 6) {
+            request.setAttribute("err1", "Mật khẩu mới phải chứa ít nhất 6 kí tự");
+            request.getRequestDispatcher("Views/Profile.jsp").forward(request, response);
+            return;
+        }
+
+        // Kiểm tra nhập lại mật khẩu mới
+        if (!newPassword.equals(confirmPassword)) {
+            request.setAttribute("err1", "Mật khẩu nhập lại không khớp");
+            request.getRequestDispatcher("Views/Profile.jsp").forward(request, response);
+            return;
+        }
+
+        // Mã hóa mật khẩu mới
+        String newPasswordHashed = Encoding.toSHA1(newPassword);
+        customerDAO.updatePassword(email, newPasswordHashed);
+
+        // Cập nhật session
+        customer.setPassword(newPasswordHashed);
+        session.setAttribute("account", customer);
+            request.setAttribute("email", customer.getEmail());
+            request.setAttribute("name", customer.getUserName());
+            request.setAttribute("phone", customer.getPhoneNumber());
+            request.setAttribute("img", customer.getImage_url());
+        request.setAttribute("success1", "Đổi mật khẩu thành công");
+        request.getRequestDispatcher("Views/Profile.jsp").forward(request, response);
     }
 
     /**

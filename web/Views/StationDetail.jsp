@@ -57,7 +57,7 @@
                                 <div class="thumbnail-images">
                                     <div class="slider-store">
                                         <div>
-                                            <img src="${station.image_station}" alt="1">
+                                            <img src="${pageContext.request.contextPath}/${station.image_station}" alt="1">
                                         </div>
                                     </div>
                                 </div>

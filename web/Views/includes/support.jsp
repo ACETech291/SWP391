@@ -10,23 +10,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <h6>1. Chọn hành trình</h6>
-                <p>- Truy cập trang web và chọn điểm đi, điểm đến, ngày đi</p>
-
-                <h6>2. Chọn chuyến tàu</h6>
-                <p>- Xem danh sách các chuyến tàu phù hợp và chọn vị trí theo ý muốn.</p>
-
-                <h6>3. Nhập thông tin hành khách</h6>
-                <p>- Điền thông tin cá nhân: Họ tên, số điện thoại, email.</p>
-
-                <h6>4. Thanh toán</h6>
-                <p>- Chọn phương thức thanh toán: Ví điện tử, thẻ ngân hàng hoặc tại quầy.</p>
-
-                <h6>5. Nhận vé</h6>
-                <p>- Sau khi thanh toán, bạn sẽ nhận được vé điện tử qua email hoặc SMS.</p>
-
-                <h6>6. Lên tàu</h6>
-                <p>- Đến ga trước giờ khởi hành ít nhất 30 phút, xuất trình vé điện tử để lên tàu.</p>
+                <p>${introduction}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>

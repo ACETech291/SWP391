@@ -80,22 +80,42 @@ public class ChangeInformation extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        CustomerDAO customerDAO = new CustomerDAO();
-        HttpSession session = request.getSession();
-        String email = request.getParameter("email");
-        String name = request.getParameter("name");
-        String phone = request.getParameter("phone");
-        customerDAO.updatePhone(email, phone);
-        customerDAO.updateName(email, name);
-        request.setAttribute("email", email);
-        request.setAttribute("name", name);
-        request.setAttribute("phone", phone);
-        request.setAttribute("success", "Đổi mật khẩu thành công");
-        request.getRequestDispatcher("Profile").forward(request, response);
-
+protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    CustomerDAO customerDAO = new CustomerDAO();
+    HttpSession session = request.getSession();
+    
+    // Lấy thông tin khách hàng từ session
+    Customer customer = (Customer) session.getAttribute("account");
+    if (customer == null) {
+        response.sendRedirect("login.jsp"); // Nếu chưa đăng nhập, chuyển hướng
+        return;
     }
+
+    // Lấy thông tin từ form
+    String name = request.getParameter("name");
+    String phone = request.getParameter("phone");
+    String email = customer.getEmail(); // Lấy email từ session vì form không có trường email
+    
+    // Cập nhật thông tin vào database
+    customerDAO.updatePhone(email, phone);
+    customerDAO.updateName(email, name);
+
+    // Cập nhật đối tượng `cus`
+    customer.setUserName(name);
+    customer.setPhoneNumber(phone);
+    session.setAttribute("account", customer); // Cập nhật session với dữ liệu mới
+
+    // Trả về dữ liệu mới lên form
+    request.setAttribute("email", email);
+    request.setAttribute("name", name);
+    request.setAttribute("phone", phone);
+    request.setAttribute("img", customer.getImage_url());
+    request.setAttribute("success", "Cập nhật thông tin thành công");
+
+    // Chuyển hướng đến trang Profile
+    request.getRequestDispatcher("Views/Profile.jsp").forward(request, response);
+}
 
     /**
      * Returns a short description of the servlet.

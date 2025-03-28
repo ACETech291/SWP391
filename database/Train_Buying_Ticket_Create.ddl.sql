@@ -29,7 +29,7 @@ CREATE TABLE Customer (
   email_customer        varchar(255) NOT NULL, 
   password_customer     varchar(255) NOT NULL, 
   status_customer       bit(1) NOT NULL, 
-  image_customer        blob, 
+  image_customer        VARCHAR(255) NULL, 
   id_role               int(11) NOT NULL, 
   PRIMARY KEY (id_customer), 
   INDEX (id_customer));
@@ -98,6 +98,21 @@ CREATE TABLE Role (
   name_role varchar(255) NOT NULL, 
   PRIMARY KEY (id_role));
   
+CREATE TABLE Policy (
+  id_policy   int(11) NOT NULL AUTO_INCREMENT, 
+  content LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,  
+  status_policy   INT(11) NOT NULL,
+  create_at               TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id_policy));
+  
+CREATE TABLE Introduction (
+  id_introduction   int(11) NOT NULL AUTO_INCREMENT, 
+  content LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci, 
+  status_introduction   INT(11) NOT NULL,
+  create_at               TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id_introduction));
+  
+      
 CREATE TABLE Station (
   id_station          int(11) NOT NULL AUTO_INCREMENT, 
   name_station        varchar(255) NOT NULL, 

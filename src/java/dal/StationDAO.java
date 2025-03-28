@@ -146,7 +146,7 @@ public class StationDAO extends HttpServlet {
         }
         return listStations;
     }
-    
+
     public List<Station> getNext6Stations(int amount) {
         List<Station> listStations = new ArrayList<Station>();
         String sql = "SELECT * FROM station ORDER BY id_station LIMIT 6 OFFSET ?";
@@ -224,9 +224,5 @@ public class StationDAO extends HttpServlet {
         }
     }
 
-    public static void main(String[] args) {
-        StationDAO sd = new StationDAO();
-        sd.deleteStation(1);
-        System.out.println("OKKK");
-    }
+
 }

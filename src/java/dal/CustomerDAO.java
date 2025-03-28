@@ -37,7 +37,17 @@ public class CustomerDAO {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Role role = new Role(rs.getInt(8), rs.getString(9));
-                listCustomers.add(new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), role));
+                listCustomers.add(new Customer(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getInt(6),
+                        rs.getString(7),
+                        role)
+            
+         );
             }
         } catch (Exception e) {
         }
@@ -88,7 +98,15 @@ public class CustomerDAO {
                 if (rs.getString(9) != null) {
                     Role role = new Role(rs.getInt(8),
                             rs.getString(9));
-                    return new Customer(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), role);
+                    return new Customer(
+                            rs.getInt(1),
+                            rs.getString(2),
+                            rs.getString(3),
+                            rs.getString(4),
+                            rs.getString(5),
+                            rs.getInt(6),
+                            rs.getString(7),
+                            role);
                 }
                 if (rs.getString(9) == null) {
                     return null;
@@ -111,7 +129,15 @@ public class CustomerDAO {
                 if (rs.getString(9) != null) {
                     Role role = new Role(rs.getInt(8),
                             rs.getString(9));
-                    return new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), role);
+                    return new Customer(
+                            rs.getInt(1),
+                            rs.getString(2),
+                            rs.getString(3),
+                            rs.getString(4),
+                            rs.getString(5),
+                            rs.getInt(6),
+                            rs.getString(7),
+                            role);
                 }
                 if (rs.getString(9) == null) {
                     return null;
@@ -120,6 +146,12 @@ public class CustomerDAO {
         } catch (Exception e) {
         }
         return null;
+    }
+
+    public static void main(String[] args) {
+        CustomerDAO customerDAO = new CustomerDAO();
+        Customer customer = customerDAO.getUserById(15);
+        System.out.println(customer);
     }
 
     public Customer getCustomerByEmail(String email) {
@@ -132,7 +164,15 @@ public class CustomerDAO {
                 if (rs.getString(9) != null) {
                     Role role = new Role(rs.getInt(8),
                             rs.getString(9));
-                    return new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), role);
+                    return new Customer(
+                            rs.getInt(1), 
+                            rs.getString(2), 
+                            rs.getString(3), 
+                            rs.getString(4), 
+                            rs.getString(5), 
+                            rs.getInt(6),
+                            rs.getString(7),
+                            role);
                 }
                 if (rs.getString(9) == null) {
                     return null;
@@ -215,6 +255,18 @@ public class CustomerDAO {
             System.out.println("Error updating customer: " + e.getMessage());
         }
         return false;
+    }
+
+    public void updateAvatarPath(String email, String imagePath) {
+        try (Connection conn = connect) {
+            String sql = "UPDATE Customer SET image_customer = ? WHERE email_customer = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, imagePath);
+            stmt.setString(2, email);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 //    public List<Customer> getListCustomer() {

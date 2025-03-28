@@ -68,7 +68,26 @@ public class BrandDetail extends HttpServlet {
         String id = request.getParameter("id"); 
         try {
             TrainBrand trainBrand = trainBrandDAO.getTrainBrandById(Integer.parseInt(id));
-            List<model.Comment> listComment = commentDAO.getAllComments(Integer.parseInt(id));
+            List<model.Comment> listAllComment = commentDAO.getAllComments(Integer.parseInt(id));
+            List<model.Comment> listComment = commentDAO.getAllCommentsByVoting(Integer.parseInt(id),5);
+            int rating=0;
+        for (model.Comment comment : listAllComment) {
+            rating+= comment.getVoting_comment();
+        }
+        int vote1 = commentDAO.countCommentsByVoting(Integer.parseInt(id), 1);
+        int vote2 = commentDAO.countCommentsByVoting(Integer.parseInt(id), 2);
+        int vote3 = commentDAO.countCommentsByVoting(Integer.parseInt(id), 3);
+        int vote4 = commentDAO.countCommentsByVoting(Integer.parseInt(id), 4);
+        int vote5 = commentDAO.countCommentsByVoting(Integer.parseInt(id), 5);
+        double result = Double.parseDouble(String.valueOf(rating));
+        result = result/listAllComment.size();
+        result = Math.round(result * 10.0) / 10.0;
+        request.setAttribute("vote1",vote1);
+        request.setAttribute("vote2",vote2);
+        request.setAttribute("vote3",vote3);
+        request.setAttribute("vote4",vote4);
+        request.setAttribute("vote5",vote5);
+        request.setAttribute("result", result);
             request.setAttribute("trainBrand",trainBrand);
             request.setAttribute("listComment", listComment);
             request.getRequestDispatcher("Views/BrandDetail.jsp").forward(request, response);

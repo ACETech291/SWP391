@@ -33,6 +33,7 @@ public class LoadTrain extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+                    String contextPath = request.getContextPath();
             TrainDAO trainDAO = new TrainDAO();
             String xamount = request.getParameter("exists");
             int amount = Integer.parseInt(xamount);
@@ -47,7 +48,7 @@ public class LoadTrain extends HttpServlet {
                         + "                                                        <c:choose>\n"
                         + "                                                            <c:when test=\"${not empty " + train.getImage_train() + "\">\n"
                         + "                                                                <a href=\"traindetail?id="+train.getId_train()+"\">\n"
-                        + "                                                                    <img src=\""+train.getImage_train()+"\" alt=\"image\" class=\"half-image\">\n"
+                        + "                                                                    <img src=\""+contextPath+train.getImage_train()+"\" alt=\"image\" class=\"half-image\">\n"
                         + "                                                                </a>"
                         + "                                                            </c:when>\n"
                         + "                                                            <c:otherwise>\n"

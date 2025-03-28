@@ -18,6 +18,10 @@ public class Train implements SQLInsert {
     private int id_train_brand;
     private int id_status;
 
+    public Train() {
+    }
+
+    
     public Train(int id_train, String name_train, String image_train, String description_train, int id_train_brand, int id_status) {
         this.id_train = id_train;
         this.name_train = name_train;

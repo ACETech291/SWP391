@@ -20,6 +20,7 @@
         <filter-name>LoginFilter</filter-name>
         <url-pattern>/BookTicket</url-pattern>
         <url-pattern>/Feedback</url-pattern>
+        <url-pattern>/ChooseSeat</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>AuthorizationFilter</filter-name>
@@ -288,7 +289,7 @@
     </servlet>
     <servlet>
         <servlet-name>UploadServlet</servlet-name>
-        <servlet-class>controller.UploadServlet</servlet-class>
+        <servlet-class>controller.UploadAvatarServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ChooseSeat</servlet-name>
@@ -301,6 +302,54 @@
     <servlet>
         <servlet-name>ConfirmBooking</servlet-name>
         <servlet-class>controller.ConfirmBooking</servlet-class>
+    </servlet>        
+    <servlet>
+        <servlet-name>SearchComment</servlet-name>
+        <servlet-class>controller.SearchComment</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchFeedback</servlet-name>
+        <servlet-class>controller.SearchFeedback</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdvertisingManagement</servlet-name>
+        <servlet-class>controller.manager.AdvertisingManagement</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddAdvertising</servlet-name>
+        <servlet-class>controller.manager.AddAdvertising</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditAdvertising</servlet-name>
+        <servlet-class>controller.manager.EditAdvertising</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteAdvertising</servlet-name>
+        <servlet-class>controller.manager.DeleteAdvertising</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BrandManagement</servlet-name>
+        <servlet-class>controller.manager.BrandManagement</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditBrand</servlet-name>
+        <servlet-class>controller.manager.EditBrand</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PolicyList</servlet-name>
+        <servlet-class>controller.admin.PolicyList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditPolicy</servlet-name>
+        <servlet-class>controller.admin.EditPolicy</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>IntroductionList</servlet-name>
+        <servlet-class>controller.admin.IntroductionList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditIntroduction</servlet-name>
+        <servlet-class>controller.admin.EditIntroduction</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>home</servlet-name>
@@ -561,5 +610,53 @@
     <servlet-mapping>
         <servlet-name>ConfirmBooking</servlet-name>
         <url-pattern>/ConfirmBooking</url-pattern>
+        </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>SearchComment</servlet-name>
+        <url-pattern>/SearchComment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchFeedback</servlet-name>
+        <url-pattern>/SearchFeedback</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdvertisingManagement</servlet-name>
+        <url-pattern>/AdvertisingManagement</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddAdvertising</servlet-name>
+        <url-pattern>/AddAdvertising</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditAdvertising</servlet-name>
+        <url-pattern>/EditAdvertising</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteAdvertising</servlet-name>
+        <url-pattern>/DeleteAdvertising</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BrandManagement</servlet-name>
+        <url-pattern>/BrandManagement</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditBrand</servlet-name>
+        <url-pattern>/EditBrand</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PolicyList</servlet-name>
+        <url-pattern>/PolicyList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditPolicy</servlet-name>
+        <url-pattern>/EditPolicy</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IntroductionList</servlet-name>
+        <url-pattern>/IntroductionList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditIntroduction</servlet-name>
+        <url-pattern>/EditIntroduction</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -16,7 +16,9 @@ public class Customer implements SQLInsert {
     private String phoneNumber;
     private String email;
     private String password;
+
     private int status;
+    private String image_url;
     private Role role;
 
     public Customer() {
@@ -47,6 +49,25 @@ public class Customer implements SQLInsert {
         this.password = password;
         this.status = status;
         this.role = role;
+    }
+
+    public Customer(int id_customer, String userName, String phoneNumber, String email, String password, int status, String image_url, Role role) {
+        this.id_customer = id_customer;
+        this.userName = userName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.password = password;
+        this.status = status;
+        this.image_url = image_url;
+        this.role = role;
+    }
+
+    public String getImage_url() {
+        return image_url;
+    }
+
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
     }
 
     public int getId_customer() {
@@ -107,7 +128,7 @@ public class Customer implements SQLInsert {
 
     @Override
     public String toString() {
-        return "Customer{" + "id=" + id_customer + ", userName=" + userName + ", phoneNumber=" + phoneNumber + ", email=" + email + ", password=" + password + ", status=" + status + ", role=" + role + '}';
+        return "Customer{" + "id_customer=" + id_customer + ", userName=" + userName + ", phoneNumber=" + phoneNumber + ", email=" + email + ", password=" + password + ", status=" + status + ", image_url=" + image_url + ", role=" + role + '}';
     }
 
     @Override
@@ -115,6 +136,5 @@ public class Customer implements SQLInsert {
         return String.format("INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer)"
                 + " VALUES ('%s','%s','%s','%s',3,%d); ", userName, email, password, phoneNumber, status);
     }
- 
 
 }

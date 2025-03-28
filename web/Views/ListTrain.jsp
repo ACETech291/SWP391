@@ -57,9 +57,19 @@
                                     <div class="sortby d-flex align-items-center justify-content-between ml-2">
                                         <form action="SortServlet" method="POST">
                                             <select name="order" class="niceSelect" onchange="this.form.submit()">
-                                                <option value="1">Sắp xếp theo</option>
-                                                <option value="2">A->Z</option>
-                                                <option value="3">Z->A</option>
+                                                <option value="1" ${param.order == '1' ? 'selected' : ''}>Sắp xếp theo</option>
+                                                <option value="2" ${param.order == '2' ? 'selected' : ''}>A->Z</option>
+                                                <option value="3" ${param.order == '3' ? 'selected' : ''}>Z->A</option>
+                                            </select>
+                                        </form>
+                                        <form style="margin-left: 100px" action="listtrain" method="POST">
+                                            <select name="choose" class="niceSelect" onchange="this.form.submit()">
+                                                <option value="all">Chọn hãng theo</option>
+                                                <c:forEach var="brand" items="${brandList}">
+                                                    <option value="${brand.id_train_brand}" ${selectedBrand == brand.id_train_brand ? 'selected' : ''}>
+                                                        ${brand.name_train_brand}
+                                                    </option>
+                                                </c:forEach>
                                             </select>
                                         </form>
                                     </div>
@@ -89,7 +99,6 @@
                                                         <div class="trend-content pt-2 pb-2">
                                                             <h3 class="mb-2"><a href="traindetail?id=${train.id_train}">${train.name_train}</a></h3>
                                                             <div class="rating border-b pb-1 mb-1">
-                                                                <p class="mb-0"><span class="pink">Hãng tàu ${train.id_train_brand}</span></p>
                                                             </div>
                                                             <p>
                                                                 ${train.description_train}
@@ -111,11 +120,13 @@
                 </div>
             </div>
         </section>
-        <div class="text-center">
-            <button onclick="loadMore()" class="per-btn">
-                <span class="grey">Xem thêm</span>
-            </button>
-        </div>
+        <c:if test="${param.order == null and param.order == '1'}">
+            <div class="text-center">
+                <button onclick="loadMore()" class="per-btn">
+                    <span class="grey">Xem thêm</span>
+                </button>
+            </div>
+        </c:if>
         <!-- blog Ends -->  
 
         <!-- footer starts -->
@@ -142,22 +153,22 @@
     <script src="${pageContext.request.contextPath}/libs/js/custom-date.js"></script>
     <script>
 
-                function loadMore() {
-                    var amount = document.getElementsByClassName("train").length;
-                    $.ajax({
-                        url: "/SWP391/LoadTrain",
-                        type: "get",
-                        data: {
-                            exists: amount},
-                        success: function (data) {
-                            var row = document.getElementById("abc");
-                            row.innerHTML += data;
-                        },
-                        error: function (xhr) {
-                            console.error("Error loading more data");
-                        }
-                    });
-                }
+                    function loadMore() {
+                        var amount = document.getElementsByClassName("train").length;
+                        $.ajax({
+                            url: "/SWP391/LoadTrain",
+                            type: "get",
+                            data: {
+                                exists: amount},
+                            success: function (data) {
+                                var row = document.getElementById("abc");
+                                row.innerHTML += data;
+                            },
+                            error: function (xhr) {
+                                console.error("Error loading more data");
+                            }
+                        });
+                    }
 
     </script>
 </html>

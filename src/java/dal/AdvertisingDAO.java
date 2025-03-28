@@ -49,6 +49,7 @@ public class AdvertisingDAO {
         }
         return list;
     }
+
     public List<Advertising> get12Advertising(int amount) {
         List<Advertising> list = new ArrayList<>();
         String sql = "SELECT a.id_advertising, a.image_advertising, a.description_advertising, a.content, a.create_at, m.username_manager\n"
@@ -127,48 +128,47 @@ public class AdvertisingDAO {
         }
     }
 
-public List<Advertising> filterAdvertising(String sort, String brand) {
-    List<Advertising> list = new ArrayList<>();
-    String sql = "SELECT a.id_advertising, a.image_advertising, a.description_advertising, a.content, a.create_at, m.username_manager, b.name_train_brand " +
-                 "FROM advertising a " +
-                 "JOIN manager m ON a.id_manager = m.id_manager " +
-                 "JOIN train_brand b ON a.id_manager = b.id_manager ";
+    public List<Advertising> filterAdvertising(String sort, String brand) {
+        List<Advertising> list = new ArrayList<>();
+        String sql = "SELECT a.id_advertising, a.image_advertising, a.description_advertising, a.content, a.create_at, m.username_manager, b.name_train_brand "
+                + "FROM advertising a "
+                + "JOIN manager m ON a.id_manager = m.id_manager "
+                + "JOIN train_brand b ON a.id_manager = b.id_manager ";
 
-    // Thêm điều kiện lọc theo brand nếu không phải 'all'
-    if (!"all".equals(brand)) {
-        sql += "WHERE b.name_train_brand = ? ";
-    }
-
-    // Xử lý sắp xếp theo ngày
-    if ("newest".equals(sort)) {
-        sql += "ORDER BY a.create_at DESC";
-    } else if ("oldest".equals(sort)) {
-        sql += "ORDER BY a.create_at ASC";
-    }
-
-    try (PreparedStatement ps = connect.prepareStatement(sql)) {
-        // Nếu có lọc theo brand, gán giá trị tham số
+        // Thêm điều kiện lọc theo brand nếu không phải 'all'
         if (!"all".equals(brand)) {
-            ps.setString(1, brand);
+            sql += "WHERE b.name_train_brand = ? ";
         }
 
-        ResultSet rs = ps.executeQuery();
-        while (rs.next()) {
-            Advertising ad = new Advertising();
-            ad.setId_advertising(rs.getInt("id_advertising"));
-            ad.setImage_advertising(rs.getString("image_advertising"));
-            ad.setDescription_advertising(rs.getString("description_advertising"));
-            ad.setContent(rs.getString("content"));
-            ad.setCreate_at(rs.getTimestamp("create_at"));
-            ad.setManagerName(rs.getString("username_manager"));
-            list.add(ad);
+        // Xử lý sắp xếp theo ngày
+        if ("newest".equals(sort)) {
+            sql += "ORDER BY a.create_at DESC";
+        } else if ("oldest".equals(sort)) {
+            sql += "ORDER BY a.create_at ASC";
         }
-    } catch (Exception e) {
-        e.printStackTrace();
+
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+            // Nếu có lọc theo brand, gán giá trị tham số
+            if (!"all".equals(brand)) {
+                ps.setString(1, brand);
+            }
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Advertising ad = new Advertising();
+                ad.setId_advertising(rs.getInt("id_advertising"));
+                ad.setImage_advertising(rs.getString("image_advertising"));
+                ad.setDescription_advertising(rs.getString("description_advertising"));
+                ad.setContent(rs.getString("content"));
+                ad.setCreate_at(rs.getTimestamp("create_at"));
+                ad.setManagerName(rs.getString("username_manager"));
+                list.add(ad);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
     }
-    return list;
-}
-
 
     public List<Advertising> getListByPage(List<Advertising> list, int start, int end) {
         ArrayList<Advertising> arr = new ArrayList<>();
@@ -178,11 +178,53 @@ public List<Advertising> filterAdvertising(String sort, String brand) {
         return arr;
     }
 
-    public static void main(String[] args) {
-        AdvertisingDAO ad = new AdvertisingDAO();
-        List<model.Advertising> list = ad.filterAdvertising("newest", "");
-        for (Advertising advertising : list) {
-            System.out.println(advertising);
+    public List<Advertising> getAdvertisingByManagerId(int managerId) {
+        List<Advertising> list = new ArrayList<>();
+        String sql = "SELECT a.id_advertising, a.image_advertising, a.description_advertising, a.content, a.create_at, m.username_manager "
+                + "FROM advertising a "
+                + "JOIN manager m ON a.id_manager = m.id_manager "
+                + "WHERE a.id_manager = ?";
+
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+            ps.setInt(1, managerId);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Advertising ad = new Advertising();
+                    ad.setId_advertising(rs.getInt("id_advertising"));
+                    ad.setImage_advertising(rs.getString("image_advertising"));
+                    ad.setDescription_advertising(rs.getString("description_advertising"));
+                    ad.setContent(rs.getString("content"));
+                    ad.setCreate_at(rs.getTimestamp("create_at"));
+                    ad.setManagerName(rs.getString("username_manager"));
+                    list.add(ad);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return list;
     }
+    public boolean updateAdvertising(int id, String image, String description, String content) {
+    String sql = "UPDATE advertising SET image_advertising = ?, description_advertising = ?, content = ? WHERE id_advertising = ?";
+    try (PreparedStatement ps = connect.prepareStatement(sql)) {
+        ps.setString(1, image);
+        ps.setString(2, description);
+        ps.setString(3, content);
+        ps.setInt(4, id);
+        return ps.executeUpdate() > 0;
+    } catch (Exception e) {
+        e.printStackTrace();
+        return false;
+    }
+    }
+    public boolean deleteAdvertising(int id) {
+    String sql = "DELETE FROM advertising WHERE id_advertising = ?";
+    try (PreparedStatement ps = connect.prepareStatement(sql)) {
+        ps.setInt(1, id);
+        return ps.executeUpdate() > 0;
+    } catch (Exception e) {
+        e.printStackTrace();
+        return false;
+    }
+}
 }
