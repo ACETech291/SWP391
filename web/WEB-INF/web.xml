@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
-<!--        <filter>
+<web-app version="6.0"
+    xmlns="https://jakarta.ee/xml/ns/jakartaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+    
+<!--            <filter>
         <filter-name>LoginFilter</filter-name>
         <filter-class>filter.LoginFilter</filter-class>
     </filter>
@@ -27,6 +30,23 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>-->
     
+    
+    <servlet>
+        <servlet-name>ajaxServlet</servlet-name>
+        <servlet-class>com.vnpay.common.ajaxServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ajaxServlet</servlet-name>
+        <url-pattern>/payment</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>VnpayReturn</servlet-name>
+        <servlet-class>com.vnpay.common.VnpayReturn</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VnpayReturn</servlet-name>
+        <url-pattern>/vnpayReturn</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>home</servlet-name>
         <servlet-class>controller.home</servlet-class>
@@ -284,6 +304,10 @@
         <servlet-class>controller.GetNumberOfSeats</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ConfirmBooking</servlet-name>
+        <servlet-class>controller.ConfirmBooking</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>SearchComment</servlet-name>
         <servlet-class>controller.SearchComment</servlet-class>
     </servlet>
@@ -330,6 +354,34 @@
     <servlet>
         <servlet-name>EditIntroduction</servlet-name>
         <servlet-class>controller.admin.EditIntroduction</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CommentManagement</servlet-name>
+        <servlet-class>controller.manager.CommentManagement</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchTripManager</servlet-name>
+        <servlet-class>controller.manager.SearchTripManager</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TripManagement</servlet-name>
+        <servlet-class>controller.manager.TripManagement</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteTrip</servlet-name>
+        <servlet-class>controller.manager.DeleteTrip</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteComment</servlet-name>
+        <servlet-class>controller.manager.DeleteComment</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FeedbackManagement</servlet-name>
+        <servlet-class>controller.manager.FeedbackManagement</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteFeedback</servlet-name>
+        <servlet-class>controller.manager.DeleteFeedback</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>home</servlet-name>
@@ -588,6 +640,10 @@
         <url-pattern>/GetNumberOfSeats</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ConfirmBooking</servlet-name>
+        <url-pattern>/ConfirmBooking</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>SearchComment</servlet-name>
         <url-pattern>/SearchComment</url-pattern>
     </servlet-mapping>
@@ -634,5 +690,33 @@
     <servlet-mapping>
         <servlet-name>EditIntroduction</servlet-name>
         <url-pattern>/EditIntroduction</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CommentManagement</servlet-name>
+        <url-pattern>/CommentManagement</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchTripManager</servlet-name>
+        <url-pattern>/SearchTripManager</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TripManagement</servlet-name>
+        <url-pattern>/TripManagement</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteTrip</servlet-name>
+        <url-pattern>/DeleteTrip</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteComment</servlet-name>
+        <url-pattern>/DeleteComment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FeedbackManagement</servlet-name>
+        <url-pattern>/FeedbackManagement</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteFeedback</servlet-name>
+        <url-pattern>/DeleteFeedback</url-pattern>
     </servlet-mapping>
 </web-app>

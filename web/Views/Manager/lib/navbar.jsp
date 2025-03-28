@@ -75,9 +75,6 @@
                     <a class="nav-link" href="FeedbackManagement" role="button">
                         <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-user-plus"></span></span><span class="nav-link-text ps-1">Xem đánh giá</span></div>
                     </a>
-                    <a class="nav-link" href="AuthorizationManagement" role="button">
-                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-user-shield"></span></span><span class="nav-link-text ps-1">Phân quyền</span></div>
-                    </a>
                 </li>
                 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                 <li class="nav-item"><!-- label-->
