@@ -26,20 +26,79 @@ public class TripDAO {
     }
 
     // Lấy tất cả chuyến đi
-    public List<Trip> getAllTrips() {
-        List<Trip> listTrips = new ArrayList<>();
-        String sql = "SELECT * FROM trip";
+    public List<TripDTO> getAllTrips() {
+        List<TripDTO> trips = new ArrayList<>();
+        String sql = "SELECT t.id_trip, \n"
+                + "           s1.name_station AS start_station, \n"
+                + "           s2.name_station AS end_station,\n"
+                + "           tr.name_train, \n"
+                + "           tos1.time_train_in_station AS start_time, \n"
+                + "           tos2.time_train_in_station AS end_time,\n"
+                + "           t.price_trip  -- Lấy thêm giá vé\n"
+                + "    FROM trip t\n"
+                + "    JOIN time_station ts1 ON t.id_time_station_start = ts1.id_time_station\n"
+                + "    JOIN time_station ts2 ON t.id_time_station_end = ts2.id_time_station\n"
+                + "    JOIN station s1 ON ts1.id_station = s1.id_station\n"
+                + "    JOIN station s2 ON ts2.id_station = s2.id_station\n"
+                + "    JOIN train tr ON t.id_train = tr.id_train\n"
+                + "    JOIN time_of_station tos1 ON ts1.id_time_of_station = tos1.id_time_of_station\n"
+                + "    JOIN time_of_station tos2 ON ts2.id_time_of_station = tos2.id_time_of_station";
         try (PreparedStatement ps = connect.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
-                listTrips.add(new Trip(
-                        rs.getInt(1), rs.getInt(2), rs.getInt(3),
-                        rs.getTimestamp(4), rs.getTimestamp(5), rs.getInt(6), rs.getInt(7)
+                trips.add(new TripDTO(
+                        rs.getInt("id_trip"),
+                        rs.getString("start_station"),
+                        rs.getString("end_station"),
+                        rs.getString("name_train"),
+                        rs.getObject("start_time", LocalTime.class),
+                        rs.getObject("end_time", LocalTime.class),
+                        rs.getDouble("price_trip") // Lấy thêm giá vé
                 ));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return listTrips;
+        return trips;
+    }
+
+    public List<TripDTO> getTripsByTrainBrand(int managerId) {
+        List<TripDTO> trips = new ArrayList<>();
+        String sql = "SELECT t.id_trip, "
+                + "       s1.name_station AS start_station, "
+                + "       s2.name_station AS end_station, "
+                + "       tr.name_train, "
+                + "       tos1.time_train_in_station AS start_time, "
+                + "       tos2.time_train_in_station AS end_time, "
+                + "       t.price_trip "
+                + "FROM Trip t "
+                + "JOIN Train tr ON t.id_train = tr.id_train "
+                + "JOIN Train_brand tb ON tr.id_train_brand = tb.id_train_brand "
+                + "JOIN Time_station ts1 ON t.id_time_station_start = ts1.id_time_station "
+                + "JOIN Time_station ts2 ON t.id_time_station_end = ts2.id_time_station "
+                + "JOIN Station s1 ON ts1.id_station = s1.id_station "
+                + "JOIN Station s2 ON ts2.id_station = s2.id_station "
+                + "JOIN Time_of_station tos1 ON ts1.id_time_of_station = tos1.id_time_of_station "
+                + "JOIN Time_of_station tos2 ON ts2.id_time_of_station = tos2.id_time_of_station "
+                + "WHERE tb.id_manager = ?";
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+            ps.setInt(1, managerId);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    trips.add(new TripDTO(
+                            rs.getInt("id_trip"),
+                            rs.getString("start_station"),
+                            rs.getString("end_station"),
+                            rs.getString("name_train"),
+                            rs.getObject("start_time", LocalTime.class),
+                            rs.getObject("end_time", LocalTime.class),
+                            rs.getDouble("price_trip")
+                    ));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return trips;
     }
 
     // Lấy danh sách chuyến đi theo ngày

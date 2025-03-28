@@ -120,8 +120,8 @@
         <servlet-class>controller.Search</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Manager</servlet-name>
-        <servlet-class>controller.manager.Manager</servlet-class>
+        <servlet-name>ManagerServlet</servlet-name>
+        <servlet-class>controller.manager.ManagerServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddTrain</servlet-name>
@@ -408,7 +408,7 @@
         <url-pattern>/Search</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Manager</servlet-name>
+        <servlet-name>ManagerServlet</servlet-name>
         <url-pattern>/Manager</url-pattern>
     </servlet-mapping>
     <servlet-mapping>

@@ -168,11 +168,36 @@ public class ManagerDAO {
         return false;
     }
 
+    public List<Manager> getManagersByTrainBrand(int trainBrandId) {
+        List<Manager> managers = new ArrayList<>();
+        String sql = "SELECT * FROM Manager m\n"
+                + "JOIN `role` r ON r.id_role = m.id_role\n"
+                + "JOIN Train_brand tb ON m.id_manager = tb.id_manager \n"
+                + "WHERE tb.id_train_brand = ?";
+        try (PreparedStatement ps = connect.prepareStatement(sql)) {
+            ps.setInt(1, trainBrandId);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Role role = new Role(rs.getInt("id_role"), rs.getString("name_role"));
+                    managers.add(new Manager(
+                            rs.getInt("id_manager"),
+                            rs.getString("username_manager"),
+                            rs.getString("password_manager"),
+                            rs.getString("email_manager"),
+                            role,
+                            rs.getString("image_manager"),
+                            rs.getInt("status_manager")
+                    ));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return managers;
+    }
+
     public static void main(String[] args) {
         ManagerDAO d = new ManagerDAO();
-        //        Manager m = d.getManagerByEmailAndPassword("manager1@gmail.com", "6NWFIsI1V5KNFeeazNcq35qxRUE=");
-        //                
-        //        System.out.println(m.getPassword_manager());
 
         List<Manager> managers = d.getManagerActive();
 
