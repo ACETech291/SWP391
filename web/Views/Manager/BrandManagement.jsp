@@ -74,7 +74,7 @@
                         <div class="section-title text-center mb-5 pb-2 w-50 mx-auto">
                             <h2 class="m-0"><span>Quản lý thông tin hãng</span></h2>
                         </div> 
-                                            <%
+                    <%
                         String successEdit = request.getParameter("success1");
                         if ("updated".equals(successEdit)) {
                     %>
@@ -91,16 +91,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                    <tr>
-                                        <td class="text-center align-middle">
-                                            <img src="${pageContext.request.contextPath}/${trainBrand.image_train_brand}" alt="Ảnh quảng cáo" width="100" height="70">
-                                        </td>
-                                        <td class="text-center align-middle">${trainBrand.name_train_brand}</td>
-                                        <td class="text-center align-middle">${trainBrand.description_train_brand}</td>
-                                        <td class="text-center align-middle">
-                                            <a href="EditBrand?id=${trainBrand.id_train_brand}" class="btn btn-warning btn-sm">Sửa</a>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td class="text-center align-middle">
+                                        <img src="${pageContext.request.contextPath}/${trainBrand.image_train_brand}" alt="Ảnh quảng cáo" width="100" height="70">
+                                    </td>
+                                    <td class="text-center align-middle">${trainBrand.name_train_brand}</td>
+                                    <td class="text-center align-middle">${trainBrand.description_train_brand}</td>
+                                    <td class="text-center align-middle">
+                                        <a href="EditBrand?id=${trainBrand.id_train_brand}" class="btn btn-warning btn-sm">Sửa</a>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -125,12 +125,12 @@
     <script src="${pageContext.request.contextPath}/Views/Admin/vendors/simplebar/simplebar.min.js"></script>
 
     <script>
-                                    var isFluid = JSON.parse(localStorage.getItem('isFluid'));
-                                    if (isFluid) {
-                                        var container = document.querySelector('[data-layout]');
-                                        container.classList.remove('container');
-                                        container.classList.add('container-fluid');
-                                    }
+        var isFluid = JSON.parse(localStorage.getItem('isFluid'));
+        if (isFluid) {
+            var container = document.querySelector('[data-layout]');
+            container.classList.remove('container');
+            container.classList.add('container-fluid');
+        }
     </script>
 
     <script>
@@ -202,5 +202,12 @@
         }
 
     </script>
-    
+
+    <c:if test="${param.success1 == 'updated'}">
+        <div style="color: green;">Thêm bản tin thành công! Trang sẽ tự động reload sau 5s.</div>
+        <script>
+            setTimeout(() => window.location.href = 'BrandManagement', 5000); // reload sạch sẽ
+        </script>
+    </c:if>
+
 </html>

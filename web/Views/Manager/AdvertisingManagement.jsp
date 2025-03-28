@@ -80,9 +80,14 @@
                     %>
                     <div style="color: green;">Xóa bản tin thành công!</div>
                     <% }%>
-                    
-                    <div style="color: green;">${sucessAdded}</div>
-                    
+
+                    <%
+                        String sucessAdd = request.getParameter("success3");
+                        if ("added".equals(successDelete)) {
+                    %>
+                    <div style="color: green;">Thêm mới bản tin thành công!</div>
+                    <% }%>
+
                     <%
                         String successEdit = request.getParameter("success1");
                         if ("updated".equals(successEdit)) {
@@ -195,12 +200,12 @@
     <script src="${pageContext.request.contextPath}/Views/Admin/vendors/simplebar/simplebar.min.js"></script>
 
     <script>
-                                    var isFluid = JSON.parse(localStorage.getItem('isFluid'));
-                                    if (isFluid) {
-                                        var container = document.querySelector('[data-layout]');
-                                        container.classList.remove('container');
-                                        container.classList.add('container-fluid');
-                                    }
+                                                var isFluid = JSON.parse(localStorage.getItem('isFluid'));
+                                                if (isFluid) {
+                                                    var container = document.querySelector('[data-layout]');
+                                                    container.classList.remove('container');
+                                                    container.classList.add('container-fluid');
+                                                }
     </script>
 
     <script>
@@ -296,17 +301,20 @@
         }
 
     </script>
-    
-    <script>
-    var successMessage = "${sucessAdded}";
 
-    if (successMessage.trim() !== "" && !sessionStorage.getItem("reloaded")) {
-        setTimeout(function () {
-            sessionStorage.setItem("reloaded", "true"); // Đánh dấu đã reload
-            window.location.reload();
-        }, 5000);
-    } else {
-        sessionStorage.removeItem("reloaded"); // Xóa trạng thái khi load lại
-    }
-</script>
+    <script>
+        // Lấy thông báo thành công từ request
+        var successAdded = "<%= request.getParameter("success3")%>";
+        var successEdit = "<%= request.getParameter("success1")%>";
+
+        // Nếu có success thì reload sau 5s
+        if ((successAdded.trim() !== "" || successEdit === "updated") && !sessionStorage.getItem("reloaded")) {
+            setTimeout(function () {
+                sessionStorage.setItem("reloaded", "true"); // Đánh dấu đã reload
+                window.location.reload();
+            }, 5000);
+        } else {
+            sessionStorage.removeItem("reloaded"); // Clear khi load lại
+        }
+    </script>
 </html>

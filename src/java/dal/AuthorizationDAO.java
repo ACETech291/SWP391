@@ -101,9 +101,6 @@ public class AuthorizationDAO {
     }
 
     public boolean authorizationCheck(int role_id, String url_authorization) {
-        if (url_authorization.contains("/css") || url_authorization.contains("/vendors") || url_authorization.contains("/img") || url_authorization.contains("/app")) {
-            return true;
-        }
         String query = "SELECT COUNT(*) FROM Authorization WHERE role_id = ? AND url_authorization = ?";
 
         try (PreparedStatement preparedStatement = connect.prepareStatement(query)) {

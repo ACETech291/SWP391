@@ -65,8 +65,7 @@ public class AddAdvertising extends HttpServlet {
         List<Advertising> listAdvertising = advertisingDAO.getAdvertisingByManagerId(manager.getId_manager());
         request.setAttribute("listAdvertising", listAdvertising);
         request.setAttribute("sucessAdded", "Thêm mới bản tin thành công");
-        request.getRequestDispatcher("Views/Manager/AdvertisingManagement.jsp").forward(request, response);
-           // response.sendRedirect("AdvertisingManagement?success=added"); // Quay lại trang quản lý
+        response.sendRedirect("AdvertisingManagement?success3=added"); // Quay lại trang quản lý
         } else {
             request.setAttribute("error", "Thêm bản tin thất bại!");
             request.getRequestDispatcher("Views/Manager/AdvertisingManagement.jsp").forward(request, response);

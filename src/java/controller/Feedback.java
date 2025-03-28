@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.Customer;
 
 /**
  *
@@ -74,6 +75,7 @@ public class Feedback extends HttpServlet {
         FeedbackDAO feedbackDAO = new FeedbackDAO();
         HttpSession session = request.getSession();
         Integer role_id = (Integer) session.getAttribute("role_id");
+        Customer customer = (Customer)session.getAttribute("account");
 
         if (role_id == null) {
             response.sendRedirect("login.jsp"); 
@@ -83,7 +85,7 @@ public class Feedback extends HttpServlet {
         String comment = request.getParameter("comment");
 
         // Gửi dữ liệu đến DAO để lưu vào database
-        feedbackDAO.insertFeedback(rating, comment, role_id, id_advertising);
+        feedbackDAO.insertFeedback(rating, comment, customer.getId_customer(), id_advertising);
 
         response.sendRedirect("advertisingdetail?id=" + id_advertising);
     }

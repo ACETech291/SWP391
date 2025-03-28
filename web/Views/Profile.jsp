@@ -417,5 +417,17 @@
                                                                                         document.getElementById("uploadForm").submit();
                                                                                     }
                                                                                 }
+                                                                                   
+    var successMessage = "${success2}";
+
+    if (successMessage.trim() !== "" && !sessionStorage.getItem("reloaded")) {
+        setTimeout(function () {
+            sessionStorage.setItem("reloaded", "true"); // Đánh dấu đã reload
+            window.location.reload();
+        }, 5000);
+    } else {
+        sessionStorage.removeItem("reloaded"); // Xóa trạng thái khi load lại
+    }
+
     </script>
 </html>

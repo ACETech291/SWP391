@@ -18,6 +18,7 @@ import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.Customer;
 
 /**
  *
@@ -111,6 +112,14 @@ public class AuthorizationFilter implements Filter {
         String url = httpServletRequest.getRequestURI();
         AuthorizationDAO authorizationDAO = new AuthorizationDAO();
         HttpSession session = httpServletRequest.getSession();
+        String contextPath = httpServletRequest.getContextPath();
+        String path = url.substring(contextPath.length());
+        if (path.endsWith(".png") || path.endsWith(".jpg") || path.endsWith(".jpeg")
+                || path.endsWith(".gif") || path.endsWith(".css") || path.endsWith(".js")
+                || path.endsWith(".ico")) {
+            chain.doFilter(request, response); // Bỏ qua filter cho tài nguyên tĩnh
+            return;
+        }
         int role_id;
 
         if (session == null || session.getAttribute("role_id") == null) {

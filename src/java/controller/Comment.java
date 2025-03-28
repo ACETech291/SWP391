@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.Customer;
 
 /**
  *
@@ -73,6 +74,7 @@ public class Comment extends HttpServlet {
             throws ServletException, IOException {
         CommentDAO commentDAO = new CommentDAO();
         HttpSession session = request.getSession();
+        Customer customer = (Customer)session.getAttribute("account");
         Integer role_id = (Integer) session.getAttribute("role_id");
         if (role_id == null) {
             response.sendRedirect("login.jsp"); 
@@ -81,7 +83,7 @@ public class Comment extends HttpServlet {
         int rating = Integer.parseInt(request.getParameter("rating"));
         String comment = request.getParameter("comment");
         
-        commentDAO.insertComment(rating, comment, role_id, id_brand);
+        commentDAO.insertComment(rating, comment, customer.getId_customer(), id_brand);
         response.sendRedirect("BrandDetail?id="+id_brand);
     }
 
