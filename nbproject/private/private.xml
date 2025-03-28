@@ -3,10 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/SWPFinal/SWP391/web/Views/Manager/CommentManagement.jsp</file>
+            <file>file:/D:/SWPFinal/SWP391/web/Views/Manager/lib/navbar.jsp</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/dal/DatabaseInitializer.java</file>
+            <file>file:/D:/SWPFinal/SWP391/web/Views/Manager/TripManagement.jsp</file>
             <file>file:/D:/SWPFinal/SWP391/web/Views/Manager/AdvertisingManagement.jsp</file>
             <file>file:/D:/SWPFinal/SWP391/web/Views/Manager/FeedbackManagement.jsp</file>
-            <file>file:/D:/SWPFinal/SWP391/web/Views/Manager/TripManagement.jsp</file>
+            <file>file:/D:/SWPFinal/SWP391/web/Views/Manager/CommentManagement.jsp</file>
             <file>file:/D:/SWPFinal/SWP391/web/WEB-INF/web.xml</file>
         </group>
     </open-files>

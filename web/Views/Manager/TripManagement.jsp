@@ -129,10 +129,6 @@
                                         <!-- Nút hành động -->
                                         
 
-                                        <form id="deleteForm-<%= trip.getId_trip() %>" action="DeleteTrip" method="POST" style="display: inline;">
-                                            <input type="hidden" name="id_trip" value="<%= trip.getId_trip() %>">
-                                            <button type="button" class="btn btn-danger btn-sm" onclick="confirmDeleteTrain(<%= trip.getId_trip() %>)">Xóa</button>
-                                        </form>
 
                                     </td>                                        
                                 </tr>

@@ -9,6 +9,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import model.SQLInsert;
@@ -43,7 +44,27 @@ public class AddCarriage extends HttpServlet {
         int id_train = Integer.parseInt(request.getParameter("id_train"));
         int id_status = Integer.parseInt(request.getParameter("id_status"));
         int total_seat = Integer.parseInt(request.getParameter("total_seat"));
+        
+        if(Integer.parseInt(request.getParameter("total_seat")) == -1){
+            response.sendRedirect("carriagemanagement?false1=add");
+        }
+        
 
+        
+        if(Integer.parseInt(request.getParameter("total_seat")) == 0){
+            response.sendRedirect("carriagemanagement?false2=add");
+        }
+        
+                if(name == null){
+            response.sendRedirect("carriagemanagement?false3=add");
+        }
+                
+                        if(description == null){
+            response.sendRedirect("carriagemanagement?false4=add");
+        }
+                        
+        
+        
         TrainCarriage carriage = new TrainCarriage(name, description, id_train, id_status, total_seat);
         
         TrainCarriageDAO carriageDAO = new TrainCarriageDAO();
@@ -51,8 +72,9 @@ public class AddCarriage extends HttpServlet {
         carriageDAO.addTrainCarriage(carriage);
         
         //insertDatabase(carriage);
-        
-        response.sendRedirect("carriagemanagement");
+        HttpSession session = request.getSession();
+        session.setAttribute("abcd", "Thêm mới khoang thành công");
+        response.sendRedirect("carriagemanagement?success1=added");
     }
 
     @Override

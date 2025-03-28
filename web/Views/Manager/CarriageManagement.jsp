@@ -86,6 +86,7 @@
                         <!-- Form thêm khoang tàu -->
                         <div id="addCarriage" class="add-form">
                             <h3>Thêm khoang tàu mới</h3>
+                            <p>${abcd}</p>
                             <form id="carriageForm" action="AddCarriage" method="POST"> 
                                 <%
                                     TrainDAO tDAO = new TrainDAO();

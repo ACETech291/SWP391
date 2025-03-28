@@ -164,10 +164,6 @@
                                         %>
                                         <a href="advertisingdetail?id=${id_ad}" class="btn btn-warning btn-sm">Xem chi tiết </a>
 
-                                        <form id="deleteForm-<%= fb.getId_feedback() %>" action="DeleteFeedback" method="POST" style="display: inline;">
-                                            <input type="hidden" name="id_Feedback" value="<%= fb.getId_feedback() %>">
-                                            <button type="button" class="btn btn-danger btn-sm" onclick="confirmDeleteTrain(<%= fb.getId_feedback() %>)">Xóa</button>
-                                        </form>
                                     </td>
 
                                 </tr>

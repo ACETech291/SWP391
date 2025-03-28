@@ -128,10 +128,6 @@
                                     <td class="text-center align-middle">
                                         <a href="BrandDetail?id=${id_train_brand}" class="btn btn-warning btn-sm">Xem chi tiết </a>
                                         
-                                        <form id="deleteForm-<%= com.getId_comment() %>" action="DeleteComment" method="POST" style="display: inline;">
-                                            <input type="hidden" name="id_comment" value="<%= com.getId_comment() %>">
-                                            <button type="button" class="btn btn-danger btn-sm" onclick="confirmDeleteTrain(<%= com.getId_comment() %>)">Xóa</button>
-                                        </form>
                                     </td>
                                     
                                 </tr>
