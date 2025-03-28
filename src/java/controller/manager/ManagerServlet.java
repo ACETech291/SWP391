@@ -2,6 +2,7 @@ package controller.manager;
 
 import dal.DashboardManagerDAO;
 import dal.ManagerDAO;
+import dal.RevenueDAO;
 import dal.TripDAO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
@@ -11,6 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.Calendar;
 import java.util.List;
 import model.Manager;
+import model.Revenue;
 import model.TripDTO;
 
 public class ManagerServlet extends HttpServlet {
@@ -19,6 +21,11 @@ public class ManagerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        RevenueDAO revenueDAO = new RevenueDAO();
+        List<Revenue> revenueList = revenueDAO.getRevenueDayAll();
+
+        request.setAttribute("revenueList", revenueList);
+        
         TripDAO tripDAO = new TripDAO();
         ManagerDAO managerDAO = new ManagerDAO();
         DashboardManagerDAO dashboardManagerDAO = new DashboardManagerDAO();

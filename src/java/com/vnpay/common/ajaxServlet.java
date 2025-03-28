@@ -93,11 +93,11 @@ public class ajaxServlet extends HttpServlet {
         start = td.getNumberOfTicket() + 1;
         int id_train = tripdao.getIdTrainByIdTrip(id_trip);
         TrainSeatDAO tsd = new TrainSeatDAO();
-        
+
         int price_trip = tripdao.getPriceTripFromTripID(id_trip);
         for (Map.Entry<String, List<Integer>> entry : selectedSeatByCoach.entrySet()) {
             String xid_train_carriage = entry.getKey();
-            
+
             List<Integer> list = entry.getValue();
             int sum = list.size();
             double price = tsd.getTotalPrice(Integer.parseInt(xid_train_carriage), list);
@@ -105,7 +105,7 @@ public class ajaxServlet extends HttpServlet {
             for (int i = 0; i < list.size(); ++i) {
                 String find = id_train + " - " + xid_train_carriage + " - " + list.get(i);
                 int id_train_seat = tsd.searchIdTrainSeatByCodeTrainSeat(find);
-                System.out.println("FIND:" + find +  " ID_TRAIN_SEAT:" + id_train_seat );
+                System.out.println("FIND:" + find + " ID_TRAIN_SEAT:" + id_train_seat);
                 newTicket.setId_train_seat(id_train_seat);
                 td.insertTicketToDataBase(newTicket);
             }

@@ -9,6 +9,7 @@ package model;
  * @author HieuPham
  */
 public class DateTrip {
+
     private int id_date_trip;
     private int id_trip;
     private int id_date_of_trip;
@@ -42,5 +43,5 @@ public class DateTrip {
     public void setId_date_of_trip(int id_date_of_trip) {
         this.id_date_of_trip = id_date_of_trip;
     }
-    
+
 }

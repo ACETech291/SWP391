@@ -7,29 +7,27 @@ package controller;
 import dal.AdvertisingDAO;
 import dal.IntroductionDAO;
 import dal.PolicyDAO;
+import dal.StationDAO;
+import dal.TrainBrandDAO;
+import dal.TrainDAO;
+import dal.TripDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import dal.StationDAO;
-import dal.TrainBrandDAO;
-import dal.TrainDAO;
-import dal.TripDAO;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Advertising;
 import model.Station;
 import model.Train;
-import model.TripDTO;
-import model.Advertising;
-import model.Introduction;
-import model.Policy;
 import model.TrainBrand;
+import model.TripDTO;
 
 /**
  *
@@ -41,6 +39,7 @@ public class home extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
         StationDAO stationDAO = new StationDAO();
         TrainDAO trainDAO = new TrainDAO();
         TripDAO tripDAO = new TripDAO();

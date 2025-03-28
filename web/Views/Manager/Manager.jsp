@@ -14,6 +14,7 @@
 <%@page import="dal.TrainDAO"%>
 <%@page import="dal.StationDAO"%>
 <%@page import="dal.RevenueDAO"%>
+
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en-US" dir="ltr">
 
@@ -276,86 +277,38 @@
                                 </div>
                             </div>
                         </div>
+                    </div>  
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Biểu đồ doanh thu vé tàu</h5>
+                            <canvas id="revenueChart"></canvas>
+                        </div>
                     </div>
 
-                    <!-- Phản hồi khách hàng và dự báo doanh thu -->
-                    <div class="row g-0">
-                        <!-- Phản hồi khách hàng -->
-                        <div class="col-md-6 col-xxl-3 pe-md-2">
-                            <div class="card h-md-100">
-                                <div class="card-header d-flex flex-between-center pb-0">
-                                    <h6 class="mb-0">Phản hồi khách hàng</h6>
-                                </div>
-                                <div class="card-body pt-2">
-                                    <div class="row g-0 h-100 align-items-center">
-                                        <div class="col">
-                                            <h6 class="mb-2">Đánh giá: 4.5/5</h6>
-                                            <div class="fs-10 fw-semi-bold">
-                                                <div class="text-warning">Khiếu nại: 5</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- Dự báo doanh thu -->
-                        <div class="col-md-6 col-xxl-9 ps-md-2">
-                            <div class="card h-lg-100">
-                                <div class="card-header bg-body-tertiary">
-                                    <div class="row align-items-center">
-                                        <div class="col">
-                                            <h6 class="mb-0">Dự báo doanh thu</h6>
-                                        </div>
-                                        <div class="col-auto text-center pe-x1">
-                                            <select class="form-select form-select-sm">
-                                                <option>Tháng tới</option>
-                                                <option>Quý tới</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body h-100 pe-0">
-                                    <div class="echart-line-total-sales h-100" data-echart-responsive="true"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>      
-                        <div class="section-title text-center mb-5 pb-2 w-50 mx-auto">
-                            <h2 class="m-0"><span>Dashbroad</span></h2>
-                        </div> 
-                        
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Biểu đồ doanh thu vé tàu</h5>
-                                <canvas id="revenueChart"></canvas>
-                            </div>
-                        </div>
-
-
-                    </div>
                 </div>
-            </main>
-            <!-- ===============================================--><!--    End of Main Content--><!-- ===============================================-->
-        </body>
+            </div>
+        </main>
+        <!-- ===============================================--><!--    End of Main Content--><!-- ===============================================-->
+    </body>
 
-        <!-- Thư viện Chart.js -->
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <!-- Thư viện Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         let revenueData = [];
         let dateLabels = [];
-        
-        <% 
-            List<Revenue> revenueList = (List<Revenue>) request.getAttribute("revenueList");
-            if (revenueList != null) {
-                for (Revenue r : revenueList) {
+
+        <%
+        List<Revenue> revenueList = (List<Revenue>) request.getAttribute("revenueList");
+        if (revenueList != null) {
+            for (Revenue r : revenueList) {
         %>
-                    dateLabels.push("<%= r.getDate() %>");
-                    revenueData.push(<%= r.getRevenue() %>);
-        <% 
-                }
+        dateLabels.push("<%= r.getDate()%>");
+        revenueData.push(<%= r.getRevenue()%>);
+        <%
             }
+        }
         %>
 
         const ctx = document.getElementById('revenueChart').getContext('2d');
@@ -364,24 +317,24 @@
             data: {
                 labels: dateLabels,
                 datasets: [{
-                    label: 'Doanh thu (VND)',
-                    data: revenueData,
-                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                }]
+                        label: 'Doanh thu (VND)',
+                        data: revenueData,
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
             },
             options: {
                 responsive: true,
                 scales: {
-                    x: { title: { display: true, text: "Ngày" } },
-                    y: { title: { display: true, text: "Doanh thu (VND)" } }
+                    x: {title: {display: true, text: "Ngày"}},
+                    y: {title: {display: true, text: "Doanh thu (VND)"}}
                 }
             }
         });
     </script>
 
-        <script src="${pageContext.request.contextPath}/Views/Admin/vendors/popper/popper.min.js"></script>
+    <script src="${pageContext.request.contextPath}/Views/Admin/vendors/popper/popper.min.js"></script>
     <script src="${pageContext.request.contextPath}/Views/Admin/vendors/bootstrap/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/Views/Admin/vendors/anchorjs/anchor.min.js"></script>
     <script src="${pageContext.request.contextPath}/Views/Admin/vendors/is/is.min.js"></script>

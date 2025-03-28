@@ -9,6 +9,7 @@ package model;
  * @author admin
  */
 public class Role {
+
     private int id;
     private String role_name;
 
@@ -41,6 +42,4 @@ public class Role {
         return "Role{" + "id=" + id + ", role_name=" + role_name + '}';
     }
 
-
-    
 }

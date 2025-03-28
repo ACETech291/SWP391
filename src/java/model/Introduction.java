@@ -11,8 +11,9 @@ import java.sql.Timestamp;
  * @author Nguyen Ba Hien
  */
 public class Introduction {
+
     private int id_introduction;
-    private String content;    
+    private String content;
     private Timestamp create_at;
     private int status_introduction;
 
@@ -57,6 +58,5 @@ public class Introduction {
     public void setStatus_introduction(int status_introduction) {
         this.status_introduction = status_introduction;
     }
-    
-    
+
 }

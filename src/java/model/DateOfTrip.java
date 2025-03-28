@@ -11,6 +11,7 @@ import java.util.Date;
  * @author HieuPham
  */
 public class DateOfTrip {
+
     private int id_date_of_trip;
     private Date date_details;
 
@@ -34,5 +35,5 @@ public class DateOfTrip {
     public void setDate_details(Date date_details) {
         this.date_details = date_details;
     }
-    
+
 }

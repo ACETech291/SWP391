@@ -2,11 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/SWPFinal/SWP391/src/java/model/Manager.java</file>
-            <file>file:/D:/SWPFinal/SWP391/web/Views/Manager/Manager.jsp</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/model/TripDTO.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/controller/manager/ManagerServlet.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

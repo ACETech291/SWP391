@@ -9,6 +9,7 @@ package model;
  * @author admin
  */
 public class Authorization {
+
     private int id_authorization;
     private int role_id;
     private String url_authorization;
@@ -25,8 +26,7 @@ public class Authorization {
         this.feature_authorization = feature_authorization;
         this.status_authorization = status_authorization;
     }
-    
-    
+
     public int getId_authorization() {
         return id_authorization;
     }
@@ -67,9 +67,4 @@ public class Authorization {
         this.status_authorization = status_authorization;
     }
 
-    
-
-    
-    
-    
 }
