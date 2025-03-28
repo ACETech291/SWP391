@@ -65,6 +65,7 @@ public class ChooseSeat extends HttpServlet {
         String name_station_start = td.getNameStationStart(id_trip);
         String name_station_end = td.getNameStationEnd(id_trip);
         String name_train_brand = td.getNameTrainBrand(id_trip);
+        String end_time = request.getParameter("end_time");
         String date = request.getParameter("date");
         String start_time = request.getParameter("start_time");
         String time_date_start = date + " " + start_time;
@@ -77,6 +78,8 @@ public class ChooseSeat extends HttpServlet {
         request.setAttribute("name_train_brand", name_train_brand);
         request.setAttribute("time_date_start", time_date_start);
         request.setAttribute("id_trip", id_trip);
+        request.setAttribute("start_time", start_time);
+        request.setAttribute("end_time", end_time);
         request.getRequestDispatcher("Views/ChooseSeat.jsp").forward(request, response);
         
     }
