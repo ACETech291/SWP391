@@ -174,6 +174,8 @@
     </head>
     <body>
         <%
+            String start_time = (String) request.getAttribute("start_time");
+            String end_time = (String) request.getAttribute("end_time");
             Integer id_trip = (Integer) request.getAttribute("id_trip");
             String name_train = (String) request.getAttribute("name_train");
             String name_station_start = (String) request.getAttribute("name_station_start");
@@ -230,6 +232,8 @@
         <script>
             let id_trip = <%= id_trip%>;
             let date_start = "<%= date_start%>";
+            let start_time = "<%= start_time%>";
+            let end_time = "<%= end_time%>";
             let selectedSeatsByCoach = {}; // Lưu ghế theo từng khoang
             const seatPrice = 50000;
             let selectElement = document.getElementById("coachSelect");
@@ -253,6 +257,8 @@
                 param.append("id", idTrain);
                 param.append("totalSeat", totalSeat);
                 param.append("id_trip", id_trip);
+                param.append("start_time", start_time);
+                param.append("end_time", end_time);
                 url.search = param.toString();
 
                 console.log("URL Fetch:", url.toString());
@@ -380,6 +386,8 @@
                     param.append("id", idTrain);
                     param.append("totalSeat", totalSeat);
                     param.append("id_trip", id_trip);
+                    param.append("start_time", start_time);
+                    param.append("end_time", end_time);
                     url.search = param.toString();
 
                     console.log("URL Fetch:", url.toString());
