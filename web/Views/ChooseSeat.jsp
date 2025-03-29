@@ -259,6 +259,7 @@
                 param.append("id_trip", id_trip);
                 param.append("start_time", start_time);
                 param.append("end_time", end_time);
+                param.append("date",date_start);
                 url.search = param.toString();
 
                 console.log("URL Fetch:", url.toString());
@@ -388,6 +389,7 @@
                     param.append("id_trip", id_trip);
                     param.append("start_time", start_time);
                     param.append("end_time", end_time);
+                    param.append("date",date_start);
                     url.search = param.toString();
 
                     console.log("URL Fetch:", url.toString());

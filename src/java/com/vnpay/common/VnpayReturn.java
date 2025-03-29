@@ -17,7 +17,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
-import model.Ticket;
 
 /**
  *
@@ -68,10 +67,10 @@ public class VnpayReturn extends HttpServlet {
                 String status = null;
                 if ("00".equals(request.getParameter("vnp_TransactionStatus"))) {
                     //update banking system
-                    status = "Completed";
+                    status = "Preparing";
                     transSuccess = true;
                 } else {
-                    status = "Failed";
+                    status = "Cancelled";
                 }
                 TicketDAO tkd = new TicketDAO();
                 for (int i = start; i <= end; ++i) {

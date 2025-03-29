@@ -50,6 +50,12 @@
         <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet">
     </head>
     <body>
+        <%!
+            public String formatCurrency(double amount) {
+                java.text.NumberFormat formatter = java.text.NumberFormat.getCurrencyInstance(new java.util.Locale("vi", "VN"));
+                return formatter.format(amount);
+            }
+        %>
         <!-- Preloader -->
         <div id="preloader">
             <div id="status"></div>
