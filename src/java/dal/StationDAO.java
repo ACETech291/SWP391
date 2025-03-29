@@ -194,17 +194,22 @@ public class StationDAO extends HttpServlet {
         }
     }
 
-    public void updateStation(Station station) {
-        String sql = "UPDATE Station SET name_station = ?, description_station = ? WHERE id_station = ?";
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, station.getName_station());
-            ps.setString(2, station.getDescription_station());
-            ps.setInt(3, station.getId_station());
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public boolean updateStation(int id_station, String imagePath, String description, String content) {
+    String sql = "UPDATE Station SET image_station = ?, description_station = ?, content = ? WHERE id_station = ?";
+
+    try (PreparedStatement ps = connection.prepareStatement(sql)) {
+        ps.setString(1, imagePath);
+        ps.setString(2, description);
+        ps.setString(3, content);
+        ps.setInt(4, id_station);
+
+        int rowsUpdated = ps.executeUpdate();
+        return rowsUpdated > 0;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
     }
+}
 
     public void deleteStation(int id_station) {
         String sql = "DELETE FROM Station WHERE id_station = ?";
