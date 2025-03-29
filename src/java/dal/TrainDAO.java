@@ -23,7 +23,7 @@ public class TrainDAO {
 
     public List<Train> getAllTrains() {
         List<Train> listTrains = new ArrayList<>();
-        String sql = "SELECT * FROM train";
+        String sql = "SELECT * FROM train where is_delete = 0";
         try (PreparedStatement ps = connect.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 listTrains.add(new Train(
@@ -37,7 +37,7 @@ public class TrainDAO {
     }
 
     public Train getTrainById(int id) {
-        String sql = "SELECT * FROM train WHERE id_train = ?";
+        String sql = "SELECT * FROM train WHERE is_delete = 0 AND id_train = ?";
         try (PreparedStatement ps = connect.prepareStatement(sql)) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -67,7 +67,7 @@ public class TrainDAO {
 
     public List<Train> getTrainsByBrand(int trainBrandId) throws SQLException {
         List<Train> trains = new ArrayList<>();
-        String query = "SELECT * FROM train WHERE id_train_brand = ?";
+        String query = "SELECT * FROM train WHERE is_delete = 0 And id_train_brand = ?";
 
         try (PreparedStatement ps = connect.prepareStatement(query)) {
             ps.setInt(1, trainBrandId);
@@ -122,7 +122,7 @@ public class TrainDAO {
     }
 
     public void deleteTrain(int id_train) {
-        String sql = "DELETE FROM train WHERE id_train = ?";
+        String sql = "UPDATE train SET is_delete = 1 WHERE id_train = ?";
         try (PreparedStatement ps = connect.prepareStatement(sql)) {
             ps.setInt(1, id_train);
             ps.executeUpdate();

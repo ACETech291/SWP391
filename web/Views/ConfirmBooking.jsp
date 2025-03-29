@@ -179,6 +179,9 @@
                 <button type="button" class="confirm-btn" onclick="confirmBooking()">Xác Nhận Đặt Vé</button>
             </form>
         </div>
+                    <jsp:include page="includes/footer.jsp"></jsp:include>
+    <jsp:include page="includes/rule.jsp"></jsp:include>
+    <jsp:include page="includes/support.jsp"></jsp:include>
         <script>
             function confirmBooking() {
                 // Lấy thời gian hiện tại

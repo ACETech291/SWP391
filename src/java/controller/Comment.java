@@ -5,6 +5,8 @@
 package controller;
 
 import dal.CommentDAO;
+import dal.IntroductionDAO;
+import dal.PolicyDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -58,6 +60,10 @@ public class Comment extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+                PolicyDAO policyDAO = new PolicyDAO();
+        IntroductionDAO introductionDAO = new IntroductionDAO();
+        request.setAttribute("policy",policyDAO.getLastPolicy().getContent());
+        request.setAttribute("introduction", introductionDAO.getLastIntroduction().getContent());
         response.sendRedirect("home");
     }
 
