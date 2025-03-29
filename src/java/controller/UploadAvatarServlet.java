@@ -17,6 +17,7 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import java.io.File;
 import java.nio.file.Paths;
+import java.util.UUID;
 import model.Customer;
 
 /**
@@ -38,42 +39,53 @@ public class UploadAvatarServlet extends HttpServlet {
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
         CustomerDAO customerDAO = new CustomerDAO();
         HttpSession session = request.getSession();
+
         if (fileName == null || fileName.isEmpty()) {
             Customer customer = (Customer) session.getAttribute("account");
-            session.setAttribute("account", customer);
             request.setAttribute("err2", "Tải ảnh lên không thành công");
             request.setAttribute("img", customer.getImage_url());
             request.setAttribute("email", customer.getEmail());
             request.setAttribute("name", customer.getUserName());
             request.setAttribute("phone", customer.getPhoneNumber());
-            request.setAttribute("img", customer.getImage_url());
             request.getRequestDispatcher("Views/Profile.jsp").forward(request, response);
             return;
         } else {
-            System.out.println(fileName);
-            // Lưu ảnh vào thư mục
+            // --- Tạo tên file mới ---
+            String uuid = UUID.randomUUID().toString();
+            String extension = fileName.substring(fileName.lastIndexOf(".")); // lấy đuôi ảnh .jpg .png
+            String newFileName = uuid + extension;
+
+            // --- Tạo thư mục upload ---
             String uploadPath = "D:\\SWPFinal\\SWP391\\web\\images\\avatar";
             File uploadDir = new File(uploadPath);
             if (!uploadDir.exists()) {
                 uploadDir.mkdirs();
             }
 
-            String filePath = uploadPath + File.separator + fileName;
-            filePart.write(filePath);
-
-            // Lưu đường dẫn ảnh vào database (giả sử có userId)
+            // --- XÓA ẢNH CŨ ---
             Customer customer = (Customer) session.getAttribute("account");
-            customerDAO.updateAvatarPath(customer.getEmail(), "/images/avatar/" + fileName);
+            String oldImage = customer.getImage_url();
+            if (oldImage != null && !oldImage.equals("/images/avatar/default.png")) {
+                File oldFile = new File(uploadPath + File.separator + Paths.get(oldImage).getFileName());
+                if (oldFile.exists()) {
+                    oldFile.delete();
+                }
+            }
 
-            customer.setImage_url("/images/avatar/" + fileName);
-            customerDAO.updateAvatarPath(String.valueOf(customer.getEmail()), "/images/avatar/" + fileName);
-            request.setAttribute("success2", "Tải ảnh lên thành công");
+            // --- Ghi file vào đúng thư mục ---
+            filePart.write(uploadPath + File.separator + newFileName);
+
+            // --- Update DB ---
+            String relativePath = "/images/avatar/" + newFileName;
+            customer.setImage_url(relativePath);
+            customerDAO.updateAvatarPath(customer.getEmail(), relativePath);
+
+            // --- Truyền dữ liệu về JSP ---
+            request.setAttribute("success2", "Tải ảnh lên thành công, vui lòng chờ trong chốc lát rồi tải lại trang!");
             request.setAttribute("img", customer.getImage_url());
             request.setAttribute("email", customer.getEmail());
             request.setAttribute("name", customer.getUserName());
             request.setAttribute("phone", customer.getPhoneNumber());
-            request.setAttribute("img", customer.getImage_url());
-            // Chuyển hướng về trang profile
             request.getRequestDispatcher("Views/Profile.jsp").forward(request, response);
         }
     }

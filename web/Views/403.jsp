@@ -41,9 +41,9 @@
                 <div class="error-content text-center">
                     <h2 class="mb-2">403</h2>
                     <img src="images/404-1.svg" alt="" class="mb-4 w-75 mx-auto">
-                    <h3 class="m-0">We are sorry, but the page you requested was not allow</h3>
+                    <h3 class="m-0">Chúng tôi xin lỗi, nhưng bạn không có quyền truy cập tài nguyên này!</h3>
                     <div class="error-btn mt-4">
-                        <a href="home" class="nir-btn mr-2">GO TO HOMEPAGE</a>
+                        <a href="home" class="nir-btn mr-2">Quay về trang chủ</a>
                     </div>
                 </div>
             </div>

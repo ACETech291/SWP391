@@ -16,6 +16,7 @@ import jakarta.servlet.http.Part;
 import java.io.File;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.TrainBrand;
@@ -25,9 +26,9 @@ import model.TrainBrand;
  * @author Nguyen Ba Hien
  */
 @MultipartConfig(
-    fileSizeThreshold = 1024 * 1024 * 2,  // 2MB
-    maxFileSize = 1024 * 1024 * 10,       // 10MB
-    maxRequestSize = 1024 * 1024 * 50     // 50MB
+        fileSizeThreshold = 1024 * 1024 * 2, // 2MB
+        maxFileSize = 1024 * 1024 * 10, // 10MB
+        maxRequestSize = 1024 * 1024 * 50 // 50MB
 )
 public class EditBrand extends HttpServlet {
 
@@ -100,7 +101,6 @@ public class EditBrand extends HttpServlet {
         String name_brand = request.getParameter("name_brand");
         String content = request.getParameter("content");
 
-        
         TrainBrandDAO trainBrandDAO = new TrainBrandDAO();
         TrainBrand trainBrand = null;
         try {
@@ -112,34 +112,49 @@ public class EditBrand extends HttpServlet {
             response.sendRedirect("BrandManagement?error=notfound");
             return;
         }
+
         // Xử lý upload ảnh (nếu có file mới)
         Part filePart = request.getPart("image");
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
         String imagePath = trainBrand.getImage_train_brand(); // Ảnh cũ
 
         if (fileName != null && !fileName.isEmpty()) {
-            //String uploadPath = getServletContext().getRealPath("/") + "images/advertising";
             String uploadPath = "D:\\SWPFinal\\SWP391\\web\\images\\brands";
             File uploadDir = new File(uploadPath);
-            if (!uploadDir.exists()) uploadDir.mkdirs(); // Tạo thư mục nếu chưa có
+            if (!uploadDir.exists()) {
+                uploadDir.mkdirs(); // Tạo thư mục nếu chưa có
+            }
+            // --- XÓA ẢNH CŨ ---
+            if (imagePath != null && !imagePath.isEmpty() && !imagePath.equals("/images/avatar/default.png")) {
+                File oldFile = new File(uploadPath + File.separator + Paths.get(imagePath).getFileName());
+                if (oldFile.exists()) {
+                    oldFile.delete();
+                }
+            }
 
-            String filePath = uploadPath + File.separator + fileName;
+            // --- ĐỔI TÊN ẢNH MỚI BẰNG UUID ---
+            String uuid = UUID.randomUUID().toString();
+            String extension = fileName.substring(fileName.lastIndexOf("."));
+            String newFileName = uuid + extension;
+
+            String filePath = uploadPath + File.separator + newFileName;
             filePart.write(filePath);
 
-            imagePath = "/images/brands/" + fileName; // Cập nhật ảnh mới
+            imagePath = "/images/brands/" + newFileName; // Cập nhật đường dẫn ảnh mới
         }
+
         trainBrand.setName_train_brand(name_brand);
         trainBrand.setImage_train_brand(imagePath);
         trainBrand.setDescription_train_brand(content);
 
         // Cập nhật database
-        boolean success=false;
+        boolean success = false;
         try {
             success = trainBrandDAO.updateTrainBrand(trainBrand);
         } catch (SQLException ex) {
             Logger.getLogger(EditBrand.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         if (success) {
             response.sendRedirect("BrandManagement?success1=updated");
         } else {

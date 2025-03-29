@@ -4,7 +4,6 @@
  */
 package filter;
 
-import dal.AuthorizationDAO;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -19,27 +18,28 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.Customer;
+import model.Manager;
 
 /**
  *
  * @author Nguyen Ba Hien
  */
-public class AuthorizationFilter implements Filter {
-
+public class BlockFilter implements Filter {
+    
     private static final boolean debug = true;
 
     // The filter configuration object we are associated with.  If
     // this value is null, this filter instance is not currently
     // configured.
     private FilterConfig filterConfig = null;
-
-    public AuthorizationFilter() {
+    
+    public BlockFilter() {
     }
-
+    
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("AuthorizationFilter:DoBeforeProcessing");
+            log("BlockFilter:DoBeforeProcessing");
         }
 
         // Write code here to process the request and/or response before
@@ -63,11 +63,11 @@ public class AuthorizationFilter implements Filter {
 	}
          */
     }
-
+    
     private void doAfterProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("AuthorizationFilter:DoAfterProcessing");
+            log("BlockFilter:DoAfterProcessing");
         }
 
         // Write code here to process the request and/or response after
@@ -101,37 +101,31 @@ public class AuthorizationFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
-
+        
         if (debug) {
-            log("AuthorizationFilter:doFilter()");
+            log("BlockFilter:doFilter()");
         }
-
+        
+        
         doBeforeProcessing(request, response);
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-        String url = httpServletRequest.getRequestURI();
-        AuthorizationDAO authorizationDAO = new AuthorizationDAO();
         HttpSession session = httpServletRequest.getSession();
-        String contextPath = httpServletRequest.getContextPath();
-        String path = url.substring(contextPath.length());
-        if (path.endsWith(".png") || path.endsWith(".jpg") || path.endsWith(".jpeg")
-                || path.endsWith(".gif") || path.endsWith(".css") || path.endsWith(".js")
-                || path.endsWith(".ico")) {
-            chain.doFilter(request, response); 
-            return;
+        Object acc = (Object) session.getAttribute("account");
+        if(acc instanceof Customer customer){
+            if(customer.getStatus() == 0){
+                System.out.println(customer.getStatus());
+                httpServletResponse.sendRedirect("login");
+                return;
+            }
         }
-        int role_id;
-
-        if (session == null || session.getAttribute("role_id") == null) {
-            role_id = 4;
-        } else {
-            role_id = (Integer) session.getAttribute("role_id");
+        if(acc instanceof  Manager manager){
+            if(manager.getStatus() == 0){
+                httpServletResponse.sendRedirect("login");
+                return;
+            }
         }
-        if (!authorizationDAO.authorizationCheck(role_id, url.substring(httpServletRequest.getContextPath().length()))) {
-            httpServletResponse.sendRedirect("403");
-            return;
-        }
-
+        
         Throwable problem = null;
         try {
             chain.doFilter(request, response);
@@ -142,7 +136,7 @@ public class AuthorizationFilter implements Filter {
             problem = t;
             t.printStackTrace();
         }
-
+        
         doAfterProcessing(request, response);
 
         // If there was a problem, we want to rethrow it if it is
@@ -187,7 +181,7 @@ public class AuthorizationFilter implements Filter {
         this.filterConfig = filterConfig;
         if (filterConfig != null) {
             if (debug) {
-                log("AuthorizationFilter:Initializing filter");
+                log("BlockFilter:Initializing filter");
             }
         }
     }
@@ -198,17 +192,17 @@ public class AuthorizationFilter implements Filter {
     @Override
     public String toString() {
         if (filterConfig == null) {
-            return ("AuthorizationFilter()");
+            return ("BlockFilter()");
         }
-        StringBuffer sb = new StringBuffer("AuthorizationFilter(");
+        StringBuffer sb = new StringBuffer("BlockFilter(");
         sb.append(filterConfig);
         sb.append(")");
         return (sb.toString());
     }
-
+    
     private void sendProcessingError(Throwable t, ServletResponse response) {
         String stackTrace = getStackTrace(t);
-
+        
         if (stackTrace != null && !stackTrace.equals("")) {
             try {
                 response.setContentType("text/html");
@@ -235,7 +229,7 @@ public class AuthorizationFilter implements Filter {
             }
         }
     }
-
+    
     public static String getStackTrace(Throwable t) {
         String stackTrace = null;
         try {
@@ -249,9 +243,9 @@ public class AuthorizationFilter implements Filter {
         }
         return stackTrace;
     }
-
+    
     public void log(String msg) {
         filterConfig.getServletContext().log(msg);
     }
-
+    
 }

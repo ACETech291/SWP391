@@ -19,6 +19,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
+import java.util.UUID;
 
 @MultipartConfig(
     fileSizeThreshold = 1024 * 1024 * 2,  // 2MB
@@ -49,17 +50,24 @@ public class AddAdvertising extends HttpServlet {
         // Xử lý upload ảnh
         Part filePart = request.getPart("image");
         String fileName = extractFileName(filePart);
+        String uuid = UUID.randomUUID().toString();
+
+        // Tách đuôi file (.png, .jpg, ...)
+        String extension = fileName.substring(fileName.lastIndexOf("."));
+
+        // Tạo fileName mới có uuid
+        String newFileName = uuid + extension;
         String uploadPath = "D:\\SWPFinal\\SWP391\\web\\images\\advertising";
         System.out.println(uploadPath);
         File uploadDir = new File(uploadPath);
         if (!uploadDir.exists()) uploadDir.mkdir();
 
-        String filePath = uploadPath + File.separator + fileName;
+        String filePath = uploadPath + File.separator + newFileName;
         filePart.write(filePath);
 
         // Lưu vào database
         AdvertisingDAO advertisingDAO = new AdvertisingDAO();
-        boolean success = advertisingDAO.insertAdvertising("/images/advertising/" + fileName, description, managerId, content);
+        boolean success = advertisingDAO.insertAdvertising("/images/advertising/" + newFileName, description, managerId, content);
         
         if (success) {
         List<Advertising> listAdvertising = advertisingDAO.getAdvertisingByManagerId(manager.getId_manager());
