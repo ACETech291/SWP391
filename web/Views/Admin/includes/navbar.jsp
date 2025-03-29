@@ -34,7 +34,7 @@
                         <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-home"></span></span><span class="nav-link-text ps-1">Trang chủ</span></div>
                     </a>
                     <a class="nav-link" href="managerlist" role="button">
-                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-building"></span></span><span class="nav-link-text ps-1">Các hãng tàu</span></div>
+                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-building"></span></span><span class="nav-link-text ps-1">Quản lý</span></div>
                     </a>
                     <a class="nav-link" href="customerlist" role="button">
                         <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-users"></span></span><span class="nav-link-text ps-1">Người dùng</span></div>
