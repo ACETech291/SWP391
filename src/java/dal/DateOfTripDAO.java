@@ -7,6 +7,9 @@ package dal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+import model.DateOfTrip;
 
 
 /**
@@ -41,5 +44,33 @@ public class DateOfTripDAO {
         } catch (Exception e) {
         }
         return val;
+    }
+    
+        // Phương thức lấy tất cả dữ liệu từ bảng date_of_trip
+    public List<DateOfTrip> getAllDateOfTrips() {
+        List<DateOfTrip> list = new ArrayList<>();
+        String sql = "SELECT * FROM date_of_trip";
+        try {
+            PreparedStatement ps = connect.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                DateOfTrip dateOfTrip = new DateOfTrip(
+                    rs.getInt("id_date_of_trip"),
+                    rs.getDate("date_details")
+                );
+                list.add(dateOfTrip);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    
+    public static void main(String[] args) {
+        DateOfTripDAO dotdao = new DateOfTripDAO();
+        List<DateOfTrip> listdot = dotdao.getAllDateOfTrips();
+        for (DateOfTrip dateOfTrip : listdot) {
+            System.out.println(dateOfTrip.getDate_details());
+        }
     }
 }

@@ -293,4 +293,44 @@
         }
     </script>
 
+     <!-- Hiển thị thông báo -->
+    <% if (session.getAttribute("successMessage") != null) { %>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let toast = document.createElement("div");
+            toast.id = "toastMessage";  // Thêm ID để dễ tìm bằng Selenium
+            toast.textContent = "<%= session.getAttribute("successMessage") %>";
+            toast.style.cssText = "position: fixed; top: 20px; right: 20px; background: #4CAF50; color: white; padding: 10px 20px; border-radius: 5px; z-index: 1000; transition: opacity 0.5s ease-in-out;";
+            document.body.appendChild(toast);
+            console.log("Toast hiển thị:", toast.textContent); // Kiểm tra hiển thị trong Console
+
+            setTimeout(() => {
+                toast.style.opacity = "0";
+                setTimeout(() => toast.remove(), 500);
+            }, 3000);
+        });
+    </script>
+    <% session.removeAttribute("successMessage"); %>
+    <% } %>
+
+    
+    <!-- Hiển thị thông báo -->
+    <% if (session.getAttribute("errorMessage") != null) { %>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let toast = document.createElement("div");
+            toast.id = "toastMessage";  // Thêm ID để dễ tìm bằng Selenium
+            toast.textContent = "<%= session.getAttribute("errorMessage") %>";
+            toast.style.cssText = "position: fixed; top: 20px; right: 20px; background: red; color: white; padding: 10px 20px; border-radius: 5px; z-index: 1000; transition: opacity 0.5s ease-in-out;";
+            document.body.appendChild(toast);
+            console.log("Toast hiển thị:", toast.textContent); // Kiểm tra hiển thị trong Console
+
+            setTimeout(() => {
+                toast.style.opacity = "0";
+                setTimeout(() => toast.remove(), 500);
+            }, 3000);
+        });
+    </script>
+    <% session.removeAttribute("errorMessage"); %>
+    <% } %>
 </html>
