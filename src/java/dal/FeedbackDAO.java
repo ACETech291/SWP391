@@ -120,7 +120,7 @@ public class FeedbackDAO {
         List<Feedback> feedbackList = new ArrayList<>();
         String query = "SELECT f.id_feedback, f.voting_feedback, f.content, c.name_customer, f.create_at, f.id_advertising "
                 + "FROM Feedback f "
-                + "JOIN Customer c ON f.id_customer = c.id_customer where id_advertising = " + id;
+                + "JOIN Customer c ON f.id_customer = c.id_customer where feedback_status = 0 AND id_advertising = " + id;
 
         try (PreparedStatement ps = connect.prepareStatement(query); ResultSet rs = ps.executeQuery()) {
 
@@ -132,7 +132,7 @@ public class FeedbackDAO {
                 feedback.setName_customer(rs.getString("name_customer"));
                 feedback.setCreate_at(rs.getTimestamp("create_at"));
                 feedback.setId_advertising(rs.getInt("id_advertising"));
-
+                
                 feedbackList.add(feedback);
             }
         } catch (Exception e) {
@@ -146,7 +146,7 @@ public class FeedbackDAO {
         String query = "SELECT f.id_feedback, f.voting_feedback, f.content, c.name_customer, f.create_at, f.id_advertising "
                 + "FROM Feedback f "
                 + "JOIN Customer c ON f.id_customer = c.id_customer "
-                + "WHERE f.id_advertising = ? AND f.voting_feedback = ?";
+                + "WHERE feedback_status = 0 AND f.id_advertising = ? AND f.voting_feedback = ?";
 
         try (PreparedStatement ps = connect.prepareStatement(query)) {
             ps.setInt(1, id);
@@ -172,7 +172,7 @@ public class FeedbackDAO {
 
     public int countFeedbackByVoting(int id, int voting_feedback) {
         int count = 0;
-        String query = "SELECT COUNT(*) AS total FROM Feedback WHERE id_advertising = ? AND voting_feedback = ?";
+        String query = "SELECT COUNT(*) AS total FROM Feedback WHERE feedback_status = 0  AND id_advertising = ? AND voting_feedback = ?";
 
         try (PreparedStatement ps = connect.prepareStatement(query)) {
             ps.setInt(1, id);
