@@ -33519,6 +33519,9 @@ VALUES ('/images/advertising/NUITHANH.jpg', 'Núi Thành, Nơi cảm xúc dâng 
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer,image_customer, id_role, status_customer) VALUES ('Hiển Nguyễn Bá','hiennbhe181773@fpt.edu.vn','6NWFIsI1V5KNFeeazNcq35qxRUE=','0332671182',null,3,1); 
 
 INSERT INTO authorization(role_id,URL_authorization,feature_authorization,status_authorization) VALUE
+
+(3,"/ChooseSeat","Chọn ghế",1),(3,"/GetNumberOfSeats","Thông tin ghế trong khoang",1),(3,"/ConfirmBooking","Xác nhận đơn hàng",1),
+(3,"/payment","Thanh toán",1),(3,"/vnpayReturn","Trả data từ VNPay về",1),
 (1,"/home","Trang chủ",1),(2,"/home","Trang chủ",1),(3,"/home","Trang chủ",1),(4,"/home","Trang chủ",1),
 (1,"/login","Trang đăng nhập",1),(2,"/login","Trang đăng nhập",1),(3,"/login","Trang đăng nhập",1),(4,"/login","Trang đăng nhập",1),
 (1,"/register","Trang đăng ký",1),(2,"/register","Trang đăng ký",1),(3,"/register","Trang đăng ký",1),(4,"/register","Trang đăng ký",1),
