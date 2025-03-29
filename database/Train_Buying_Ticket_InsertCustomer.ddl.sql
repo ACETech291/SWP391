@@ -99,41 +99,4 @@ INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_
 ('Đinh Thị Thanh Tâm','dinhthitt@gmail.com','6NWFIsI1V5KNFeeazNcq35qxRUE=','123',3,1),
 ('Hồ Ngọc Uyên','hongocu@gmail.com','6NWFIsI1V5KNFeeazNcq35qxRUE=','123',3,1),
 ('Lưu Đức Vinh','luuducv@gmail.com','6NWFIsI1V5KNFeeazNcq35qxRUE=','123',3,1),
-('Nguyễn Thị Yến Nhi','nguyenthihyn@gmail.com','6NWFIsI1V5KNFeeazNcq35qxRUE=','123',3,1);
-	
-	-- customer
-INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) 
-	VALUES ('BenKei','dungquentena@gmail.com','LwwQbBAWkqpsESVxiB0LwFd7fDc=','123456789',3,1); 
-INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) 
-	VALUES ('GÃƒÆ’Ã‚Â  Hp','st1989mp3@gmail.com','JzKOKpzxikm6sWiQvTqU8B3WZOg=','0966755095',3,1); 
-INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) 
-	VALUES ('GÃƒÆ’Ã‚Â  Hp','hiepnhhe181338@fpt.edu.vn','62BNYU3mbXUmmlJnctlLNdXK+FU=','0966755095',3,1); 
-INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) 
-	VALUES ('Nguy?n BÃƒÂ¯Ã‚Â¿Ã‚Â½ Hi?n','hiennbhe181773@fpt.edu.vnsadsadd','6NWFIsI1V5KNFeeazNcq35qxRUE=','0332671182',3,1); 
-INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) 
-	VALUES ('122','djas@gdsk.com','6NWFIsI1V5KNFeeazNcq35qxRUE=','123',3,1); 
-INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) 
-	VALUES ('122','nguyenbahien170604@gmail.com','6NWFIsI1V5KNFeeazNcq35qxRUE=','123',3,1); 
-INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) 
-	VALUES ('122','djas@gdsk.comn','6NWFIsI1V5KNFeeazNcq35qxRUE=','123',3,1); 
-INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) 
-	VALUES ('122','123@gmail','6NWFIsI1V5KNFeeazNcq35qxRUE=','123',3,1); 
-INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) 
-	VALUES ('Nguy?n BÃƒÂ¯Ã‚Â¿Ã‚Â½ Hi?n','hiennbhe181773@fpt.edu.vnsadsaddd','6NWFIsI1V5KNFeeazNcq35qxRUE=','0332671182',3,1); 
-INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) 
-	VALUES ('Nguy?n BÃƒÂ¯Ã‚Â¿Ã‚Â½ Hi?n','hiennbhe181773@fpt.edu.vnsadsadddd','6NWFIsI1V5KNFeeazNcq35qxRUE=','0332671182',3,1); 
-INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) 
-	VALUES ('122','djas@gdsk.coma','6NWFIsI1V5KNFeeazNcq35qxRUE=','123',3,1); 
-INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) 
-	VALUES ('NguyÃƒÂ¡Ã‚Â»Ã¢â‚¬Â¦n HÃƒÂ¡Ã‚Â»Ã‚Â¯u HiÃƒÂ¡Ã‚Â»Ã¢â‚¬Â¡p','admin@gmail.com','Gzy3BSM1BTMz8WpR7DvTP17/IxU=','0123456789',3,1); 
-INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) 
-	VALUES ('Dinh Phu QP1281 Duong','ddinhphu2004@gmail.com','tpG2ZscAgcBKEZ89b1f4u3BUGaA=','0123456',3,1); 
-INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('gÃƒÂ  HP','hiepgacute1989@gmail.com','NuyZcP1OLwPNEz9ZcmaqJN5i2+0=','0123456',3,1); INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Dinh Phu QP1281 Duong','ddinhphu2004@gmail.com','aAej96e20R0gpCz7ihIKCic+W/k=','0123456',3,1); 
-INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('gÃƒÂ  HP','hiepgacute1989@gmail.com','M2KNYvKv5wPHWHMSrCQR1HiQmKw=','0123456',3,1); 
-INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Tech ACE','acetech291@gmail.com','lEItluUMq4S0F5H3VsJuAoN+6Zc=','0123456',3,1); 
-INSERT INTO Feedback (voting_feedback, content, id_customer, id_advertising, create_at) VALUES 
-(5, 'em lÃ  bÃºp mÄƒng non em lá»›n lÃªn trong mÃ¹a cÃ¡ch máº¡ng', 1, 1, NOW()),
-(5, 'em lÃ  bÃºp mÄƒng non em lá»›n lÃªn trong mÃ¹a cÃ¡ch máº¡ng', 2, 2, NOW()),
-(5, 'em lÃ  bÃºp mÄƒng non em lá»›n lÃªn trong mÃ¹a cÃ¡ch máº¡ng', 3, 3, NOW()),
-(5, 'em lÃ  bÃºp mÄƒng non em lá»›n lÃªn trong mÃ¹a cÃ¡ch máº¡ng', 4, 4, NOW())
-;
+('Nguyễn Thị Yến Nhi','nguyenthihyn@gmail.com','6NWFIsI1V5KNFeeazNcq35qxRUE=','123',3,1);INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Nguyen Huu Hiep (K18 Hl)','hiepnhhe181338@fpt.edu.vn','boGMWesdxPBADDgutT7i9LvxeAU=','0123456',3,1); 
