@@ -46,8 +46,7 @@ public class CustomerDAO {
                         rs.getInt(6),
                         rs.getString(7),
                         role)
-            
-         );
+                );
             }
         } catch (Exception e) {
         }
@@ -165,11 +164,11 @@ public class CustomerDAO {
                     Role role = new Role(rs.getInt(8),
                             rs.getString(9));
                     return new Customer(
-                            rs.getInt(1), 
-                            rs.getString(2), 
-                            rs.getString(3), 
-                            rs.getString(4), 
-                            rs.getString(5), 
+                            rs.getInt(1),
+                            rs.getString(2),
+                            rs.getString(3),
+                            rs.getString(4),
+                            rs.getString(5),
                             rs.getInt(6),
                             rs.getString(7),
                             role);
@@ -269,6 +268,20 @@ public class CustomerDAO {
         }
     }
 
+    public int getIdCustomerByEmail(String email) {
+        String sql = " SELECT id_customer FROM customer WHERE customer.email_customer = ? ";
+        int id = -1;
+        try {
+            PreparedStatement ps = connect.prepareStatement(sql);
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                id = rs.getInt("id_customer");
+            }
+        } catch (Exception e) {
+        }
+        return id;
+    }
 //    public List<Customer> getListCustomer() {
 //        List<Customer> listCustomer = new ArrayList<>();
 //        String sql = "select *\n"

@@ -47,6 +47,10 @@
                                         <ul>
                                             <li class="active">
                                                 <a href="Profile"><i class="sl sl-icon-user"></i> Thông tin cá nhân</a>
+
+                                            </li>
+                                            <li>
+                                                <a href="HistoryBooking"><i class="sl sl-icon-user"></i> Lịch sử mua vé</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -237,16 +241,16 @@
                                                 <!-- Profile -->
                                                 <div class="col-lg-6 col-md-6 col-xs-12 padding-right-30">
                                                     <div class="dashboard-list">
-                                                                 <% if (request.getAttribute("err2") != null) {%>
-                                                <p style="color: red;"><%= request.getAttribute("err2")%></p>
-                                                <% }%>
-                                                <% if (request.getAttribute("success2") != null) {%>
-                                                <p style="color: green;"><%= request.getAttribute("success2")%></p>
-                                                <% }%>
+                                                        <% if (request.getAttribute("err2") != null) {%>
+                                                        <p style="color: red;"><%= request.getAttribute("err2")%></p>
+                                                        <% }%>
+                                                        <% if (request.getAttribute("success2") != null) {%>
+                                                        <p style="color: green;"><%= request.getAttribute("success2")%></p>
+                                                        <% }%>
                                                         <h4 class="gray">Thông tin cá nhân</h4>
                                                         <div class="dashboard-list-static">
                                                             <!-- Avatar -->
-                                                   
+
                                                             <form action="${pageContext.request.contextPath}/uploadAvatar" method="post" enctype="multipart/form-data">
                                                                 <div class="edit-profile-photo">
                                                                     <img src="${pageContext.request.contextPath}${account.image_url}" alt="Avatar customer" />
@@ -361,6 +365,23 @@
     <script src="${pageContext.request.contextPath}/libs/js/dashboard-custom.js"></script>
 
     <script>
+                                                                                document.addEventListener("DOMContentLoaded", function () {
+                                                                                    const menuItems = document.querySelectorAll("#menu li a");
+
+                                                                                    menuItems.forEach(link => {
+                                                                                        // Lấy pathname của URL hiện tại và URL của từng link
+                                                                                        const currentPath = window.location.pathname;
+                                                                                        const linkPath = new URL(link.href, window.location.origin).pathname;
+
+                                                                                        // Nếu trùng khớp thì đặt class active
+                                                                                        if (currentPath === linkPath) {
+                                                                                            link.parentElement.classList.add("active");
+                                                                                        } else {
+                                                                                            link.parentElement.classList.remove("active");
+                                                                                        }
+                                                                                    });
+                                                                                });
+
                                                                                 (function () {
                                                                                     function c() {
                                                                                         var b = a.contentDocument || a.contentWindow.document;
@@ -417,17 +438,17 @@
                                                                                         document.getElementById("uploadForm").submit();
                                                                                     }
                                                                                 }
-                                                                                   
-    var successMessage = "${success2}";
 
-    if (successMessage.trim() !== "" && !sessionStorage.getItem("reloaded")) {
-        setTimeout(function () {
-            sessionStorage.setItem("reloaded", "true"); // Đánh dấu đã reload
-            window.location.reload();
-        }, 5000);
-    } else {
-        sessionStorage.removeItem("reloaded"); // Xóa trạng thái khi load lại
-    }
+                                                                                var successMessage = "${success2}";
+
+                                                                                if (successMessage.trim() !== "" && !sessionStorage.getItem("reloaded")) {
+                                                                                    setTimeout(function () {
+                                                                                        sessionStorage.setItem("reloaded", "true"); // Đánh dấu đã reload
+                                                                                        window.location.reload();
+                                                                                    }, 5000);
+                                                                                } else {
+                                                                                    sessionStorage.removeItem("reloaded"); // Xóa trạng thái khi load lại
+                                                                                }
 
     </script>
 </html>
