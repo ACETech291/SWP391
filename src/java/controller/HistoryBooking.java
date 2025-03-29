@@ -4,9 +4,9 @@
  */
 package controller;
 
-import dal.CommentDAO;
-import dal.IntroductionDAO;
-import dal.PolicyDAO;
+import dal.CustomerDAO;
+import dal.TicketDAO;
+import dal.TrainDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,13 +14,16 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 import model.Customer;
+import model.InformationBooking;
 
 /**
  *
- * @author Nguyen Ba Hien
+ * @author HieuPham
  */
-public class Comment extends HttpServlet {
+public class HistoryBooking extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +42,10 @@ public class Comment extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Comment</title>");
+            out.println("<title>Servlet HistoryBooking</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Comment at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet HistoryBooking at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,11 +63,28 @@ public class Comment extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                PolicyDAO policyDAO = new PolicyDAO();
-        IntroductionDAO introductionDAO = new IntroductionDAO();
-        request.setAttribute("policy",policyDAO.getLastPolicy().getContent());
-        request.setAttribute("introduction", introductionDAO.getLastIntroduction().getContent());
-        response.sendRedirect("home");
+        response.setContentType("text/html;charset=UTF-8");
+        
+        HttpSession session = request.getSession();
+        Customer customer = (Customer) session.getAttribute("account");
+        TicketDAO td = new TicketDAO();
+        CustomerDAO cd = new CustomerDAO();
+        TrainDAO traindao = new TrainDAO();
+        List<InformationBooking> list = td.getAllInformationBooking(cd.getIdCustomerByEmail(customer.getEmail()));
+        List<String> code_train_seat = new ArrayList<>();
+        for(int i = 0 ; i < list.size(); ++i){
+            code_train_seat.add(td.getCodeTrainSeatAllInformation(list.get(i).getId_ticket()));
+        }
+        List<String> name_train = new ArrayList<>();
+        for(int i = 0 ; i < code_train_seat.size(); ++i){
+            String[] token = code_train_seat.get(i).split(" - ");
+            name_train.add(traindao.getNameTrainById(Integer.parseInt(token[0])));
+        }
+        request.setAttribute("HistoryBooking", list);
+        request.setAttribute("code_train_seat", code_train_seat);
+        request.setAttribute("name_train", name_train);
+        request.getRequestDispatcher("Views/HistoryBooking.jsp").forward(request, response);
+        
     }
 
     /**
@@ -78,19 +98,7 @@ public class Comment extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        CommentDAO commentDAO = new CommentDAO();
-        HttpSession session = request.getSession();
-        Customer customer = (Customer)session.getAttribute("account");
-        Integer role_id = (Integer) session.getAttribute("role_id");
-        if (role_id == null) {
-            response.sendRedirect("login.jsp"); 
-        }
-        int id_brand = Integer.parseInt(request.getParameter("id_brand"));
-        int rating = Integer.parseInt(request.getParameter("rating"));
-        String comment = request.getParameter("comment");
-        
-        commentDAO.insertComment(rating, comment, customer.getId_customer(), id_brand);
-        response.sendRedirect("BrandDetail?id="+id_brand);
+        processRequest(request, response);
     }
 
     /**

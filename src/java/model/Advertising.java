@@ -13,6 +13,7 @@ public class Advertising {
     private String content;
     private String managerName;
     private Timestamp create_at;
+    private int is_delete;
 
     public Advertising() {
     }
@@ -25,6 +26,26 @@ public class Advertising {
         this.managerName = managerName;
         this.create_at = create_at;
     }
+
+    public Advertising(int id_advertising, String image_advertising, String description_advertising, String content, String managerName, Timestamp create_at, int is_delete) {
+        this.id_advertising = id_advertising;
+        this.image_advertising = image_advertising;
+        this.description_advertising = description_advertising;
+        this.content = content;
+        this.managerName = managerName;
+        this.create_at = create_at;
+        this.is_delete = is_delete;
+    }
+
+    public int getIs_delete() {
+        return is_delete;
+    }
+
+    public void setIs_delete(int is_delete) {
+        this.is_delete = is_delete;
+    }
+    
+    
     
     public int getId_advertising() {
         return id_advertising;

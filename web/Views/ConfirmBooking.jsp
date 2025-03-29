@@ -89,6 +89,12 @@
         </style>
     </head>
     <body>
+        <%!
+            public String formatCurrency(double amount) {
+                java.text.NumberFormat formatter = java.text.NumberFormat.getCurrencyInstance(new java.util.Locale("vi", "VN"));
+                return formatter.format(amount);
+            }
+        %>
         <div class="container">
             <h2>Xác Nhận Đặt Vé</h2>
             <%
@@ -142,7 +148,7 @@
                         <td> <%= name_train%> </td>
                         <td><%= list.get(1)%></td>
                         <td><%= String.join(", ", seats.stream().map(String::valueOf).toArray(String[]::new))%></td>
-                        <td><%= price%> </td>
+                        <td><%= formatCurrency(price)%> </td>
                     </tr>
 
                     <% }
@@ -151,7 +157,7 @@
                         <td><strong>Price Trip</strong></td>
                         <td></td>
                         <td></td>
-                        <td><%= price_trip%></td>
+                        <td><%= formatCurrency(price_trip)%></td>
 
                     </tr>
                     <%} else { %>
@@ -164,7 +170,7 @@
             </table>
             <div class="total-trip">
                 <span class="total-label">Tổng chi phí chuyến đi:</span>
-                <span class="total-amount"><%= total_price + price_trip * sum%> VND</span>
+                <span class="total-amount"><%= formatCurrency(total_price + price_trip * sum)%> VND</span>
             </div>
             <%
                 Gson gson = new Gson();
@@ -174,11 +180,14 @@
                 <input type="hidden" name="id_trip" value="<%= id_trip%>">
                 <input type="hidden" name="total_bill" value="<%= total_price + price_trip * sum%>">
                 <input type="hidden" name="booking_time" id="currentDateTime">
-                <input type="hidden" name="date" value="<%= date %>">
+                <input type="hidden" name="date" value="<%= date%>">
                 <input type="hidden" name="selectedSeats" id="selectedSeats" value='<%= selectedSeatsJson%>'>
                 <button type="button" class="confirm-btn" onclick="confirmBooking()">Xác Nhận Đặt Vé</button>
             </form>
         </div>
+                    <jsp:include page="includes/footer.jsp"></jsp:include>
+    <jsp:include page="includes/rule.jsp"></jsp:include>
+    <jsp:include page="includes/support.jsp"></jsp:include>
         <script>
             function confirmBooking() {
                 // Lấy thời gian hiện tại

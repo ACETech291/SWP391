@@ -228,7 +228,9 @@
                 <button type="button" onclick="confirmBooking()">Xác Nhận</button>
             </form>
         </div>
-
+                    <jsp:include page="includes/footer.jsp"></jsp:include>
+    <jsp:include page="includes/rule.jsp"></jsp:include>
+    <jsp:include page="includes/support.jsp"></jsp:include>
         <script>
             let id_trip = <%= id_trip%>;
             let date_start = "<%= date_start%>";
@@ -259,6 +261,7 @@
                 param.append("id_trip", id_trip);
                 param.append("start_time", start_time);
                 param.append("end_time", end_time);
+                param.append("date",date_start);
                 url.search = param.toString();
 
                 console.log("URL Fetch:", url.toString());
@@ -388,6 +391,7 @@
                     param.append("id_trip", id_trip);
                     param.append("start_time", start_time);
                     param.append("end_time", end_time);
+                    param.append("date",date_start);
                     url.search = param.toString();
 
                     console.log("URL Fetch:", url.toString());

@@ -2,6 +2,8 @@ package controller;
 
 import dal.AdvertisingDAO;
 import dal.FeedbackDAO;
+import dal.IntroductionDAO;
+import dal.PolicyDAO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -44,6 +46,10 @@ public class AdvertisingDetail extends HttpServlet {
         request.setAttribute("vote3",vote3);
         request.setAttribute("vote4",vote4);
         request.setAttribute("vote5",vote5);
+                PolicyDAO policyDAO = new PolicyDAO();
+        IntroductionDAO introductionDAO = new IntroductionDAO();
+        request.setAttribute("policy",policyDAO.getLastPolicy().getContent());
+        request.setAttribute("introduction", introductionDAO.getLastIntroduction().getContent());
         request.setAttribute("result", result);
         request.setAttribute("advertising", advertising);
         request.setAttribute("listFeedbacks", listFeedbacks);

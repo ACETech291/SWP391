@@ -46,6 +46,12 @@
             .add-form {
                 display: none;
             }
+            .delete-btn {
+                color: white;
+                cursor: pointer;
+                font-weight: bold;
+            }
+
         </style>
 
     </head>
@@ -169,8 +175,8 @@
                                             <!-- Nút hành động -->
                                             <a href="EditAdvertising?id=${ad.id_advertising}" class="btn btn-warning btn-sm">Sửa</a>
 
-                                            <a href="DeleteAdvertising?id=${ad.id_advertising}" onclick="return confirm('Bạn có chắc chắn muốn xóa bản tin này?');">
-                                                <button>Delete</button>
+                                            <a href="DeleteAdvertising?id=${ad.id_advertising}" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa bản tin này?');">
+                                                <button class="delete-btn">Xóa</button>
                                             </a>
                                         </td>
                                     </tr>

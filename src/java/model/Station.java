@@ -15,6 +15,7 @@ public class Station implements SQLUpdate {
     private String image_station;
     private String description_station;
     private String content;
+    private int is_delete;
 
     public Station(String name_station, String description_station) {
         this.name_station = name_station;
@@ -47,6 +48,25 @@ public class Station implements SQLUpdate {
         this.description_station = description_station;
         this.content = content;
     }
+
+    public Station(int id_station, String name_station, String image_station, String description_station, String content, int is_delete) {
+        this.id_station = id_station;
+        this.name_station = name_station;
+        this.image_station = image_station;
+        this.description_station = description_station;
+        this.content = content;
+        this.is_delete = is_delete;
+    }
+
+    public int getIs_delete() {
+        return is_delete;
+    }
+
+    public void setIs_delete(int is_delete) {
+        this.is_delete = is_delete;
+    }
+    
+    
 
     public Station() {
     }

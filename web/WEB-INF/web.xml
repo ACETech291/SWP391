@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="6.0"
-         xmlns="https://jakarta.ee/xml/ns/jakartaee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
-    
-    <filter>
+    xmlns="https://jakarta.ee/xml/ns/jakartaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+
+        <filter>
         <filter-name>LoginFilter</filter-name>
         <filter-class>filter.LoginFilter</filter-class>
     </filter>
@@ -15,20 +15,14 @@
         <filter-name>RouterFilter</filter-name>
         <filter-class>filter.RouterFilter</filter-class>
     </filter>
-    <filter>
-        <filter-name>BlockFilter</filter-name>
-        <filter-class>filter.BlockFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>BlockFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
+    
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
         <url-pattern>/BookTicket</url-pattern>
-        <url-pattern>/ChooseSeat</url-pattern>
         <url-pattern>/ConfirmBooking</url-pattern>
+        <url-pattern>/ChooseSeat</url-pattern>
     </filter-mapping>
+
     <filter-mapping>
         <filter-name>RouterFilter</filter-name>
         <url-pattern>/*</url-pattern>
@@ -37,14 +31,34 @@
         <filter-name>AuthorizationFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    
+
     <servlet>
         <servlet-name>ajaxServlet</servlet-name>
         <servlet-class>com.vnpay.common.ajaxServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>HistoryBooking</servlet-name>
+        <servlet-class>controller.HistoryBooking</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewTicketDetail</servlet-name>
+        <servlet-class>controller.ViewTicketDetail</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RefundTicket</servlet-name>
+        <servlet-class>controller.RefundTicket</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ajaxServlet</servlet-name>
         <url-pattern>/payment</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>vnpayRefund</servlet-name>
+        <servlet-class>com.vnpay.common.vnpayRefund</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>vnpayRefund</servlet-name>
+        <url-pattern>/refund</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>VnpayReturn</servlet-name>
@@ -725,5 +739,17 @@
     <servlet-mapping>
         <servlet-name>DeleteFeedback</servlet-name>
         <url-pattern>/DeleteFeedback</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HistoryBooking</servlet-name>
+        <url-pattern>/HistoryBooking</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewTicketDetail</servlet-name>
+        <url-pattern>/ViewTicketDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RefundTicket</servlet-name>
+        <url-pattern>/RefundTicket</url-pattern>
     </servlet-mapping>
 </web-app>

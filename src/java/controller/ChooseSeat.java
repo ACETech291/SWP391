@@ -4,6 +4,8 @@
  */
 package controller;
 
+import dal.IntroductionDAO;
+import dal.PolicyDAO;
 import dal.TripDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -80,6 +82,10 @@ public class ChooseSeat extends HttpServlet {
         request.setAttribute("id_trip", id_trip);
         request.setAttribute("start_time", start_time);
         request.setAttribute("end_time", end_time);
+                PolicyDAO policyDAO = new PolicyDAO();
+        IntroductionDAO introductionDAO = new IntroductionDAO();
+        request.setAttribute("policy",policyDAO.getLastPolicy().getContent());
+        request.setAttribute("introduction", introductionDAO.getLastIntroduction().getContent());
         request.getRequestDispatcher("Views/ChooseSeat.jsp").forward(request, response);
         
     }

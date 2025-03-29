@@ -19,6 +19,7 @@ CREATE TABLE Advertising (
   id_manager              int(11) NOT NULL, 
   content                 LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   create_at               TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  is_delete           BIT(1)  DEFAULT b'0',
   PRIMARY KEY (id_advertising), 
   INDEX (id_advertising));
   
@@ -73,19 +74,14 @@ CREATE TABLE Payment_method (
   name_payment_method varchar(255) NOT NULL, 
   PRIMARY KEY (id_payment_method));
   
-CREATE TABLE Purchase_detail_history (
-  id_purchase_detail_history int(11) NOT NULL AUTO_INCREMENT, 
-  id_purchase_history        int(11) NOT NULL, 
-  id_ticket                  int(11) NOT NULL, 
-  PRIMARY KEY (id_purchase_detail_history));
-  
 CREATE TABLE Purchase_history (
   id_purchase_history int(11) NOT NULL AUTO_INCREMENT, 
-  code_order          varchar(255) NOT NULL, 
-  name_banking        int(11) NOT NULL, 
+  id_ticket          int(11) NOT NULL, 
+  name_banking        NVARCHAR(255) NOT NULL, 
   account_number      int(11) NOT NULL, 
   id_customer         int(11) NOT NULL, 
   id_payment_method   int(11) NOT NULL, 
+  name_user 		 NVARCHAR(255) NOT NULL,
   PRIMARY KEY (id_purchase_history), 
   INDEX (id_purchase_history));
   
@@ -119,7 +115,7 @@ CREATE TABLE Station (
   name_station        varchar(255) NOT NULL, 
   image_station       BLOB, 
   description_station varchar(255), 
-  content                 LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,	
+  content                 LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (id_station));
   
 CREATE TABLE Time_of_station  (
@@ -148,7 +144,7 @@ CREATE TABLE Ticket (
   id_customer         int(11) NOT NULL, 
   id_train_seat       int(11) NOT NULL, 
   total_bill 			 FLOAT8,
-  status ENUM('Processing', 'Completed', 'Failed') NOT NULL DEFAULT 'Processing',
+  status ENUM('Preparing', 'Completed', 'Awaiting Departure','Cancelled') NOT NULL DEFAULT 'Cancelled',
   PRIMARY KEY (id_ticket), 
   INDEX (id_ticket));
   
@@ -169,6 +165,7 @@ CREATE TABLE Train (
   description_train varchar(255) NOT NULL, 
   id_train_brand    int(11) NOT NULL, 
   id_status         int(11) NOT NULL, 
+  is_delete           BIT(1)  DEFAULT b'0',
   PRIMARY KEY (id_train));
   
 CREATE TABLE Train_brand (
@@ -239,6 +236,8 @@ CREATE TABLE Comment (
   PRIMARY KEY (id_comment), 
   FOREIGN KEY (id_train_brand) REFERENCES train_brand(id_train_brand)
 );
+
+ALTER TABLE purchase_history ADD CONSTRAINT FKPurchaseHistory465121 FOREIGN KEY (id_ticket) REFERENCES ticket(id_ticket);
 ALTER TABLE Admin ADD CONSTRAINT FKAdmin775394 FOREIGN KEY (id_role) REFERENCES Role (id_role);
 ALTER TABLE Manager ADD CONSTRAINT FKManager24576 FOREIGN KEY (id_role) REFERENCES Role (id_role);
 ALTER TABLE Customer ADD CONSTRAINT FKCustomer71540 FOREIGN KEY (id_role) REFERENCES Role (id_role);
@@ -267,8 +266,6 @@ ALTER TABLE Revenue ADD CONSTRAINT FKRevenue325678 FOREIGN KEY (id_manager) REFE
 ALTER TABLE Purchase_history ADD CONSTRAINT FKPurchase_h933427 FOREIGN KEY (id_customer) REFERENCES Customer (id_customer);
 ALTER TABLE Purchase_history ADD CONSTRAINT FKPurchase_h731114 FOREIGN KEY (id_payment_method) REFERENCES Payment_method (id_payment_method);
 
-ALTER TABLE Purchase_detail_history ADD CONSTRAINT FKPurchase_d794887 FOREIGN KEY (id_purchase_history) REFERENCES Purchase_history (id_purchase_history);
-ALTER TABLE Purchase_detail_history ADD CONSTRAINT FKPurchase_d53355 FOREIGN KEY (id_ticket) REFERENCES Ticket (id_ticket);
 
 ALTER TABLE Trip ADD CONSTRAINT FKTrip894600 FOREIGN KEY (id_time_station_start) REFERENCES Time_station (id_time_station);
 ALTER TABLE Trip ADD CONSTRAINT FKTrip894609 FOREIGN KEY (id_time_station_end) REFERENCES Time_station (id_time_station);

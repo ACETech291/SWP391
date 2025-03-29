@@ -30,7 +30,7 @@ public class AdvertisingDAO {
         List<Advertising> list = new ArrayList<>();
         String sql = "SELECT a.id_advertising, a.image_advertising, a.description_advertising, a.content, a.create_at, m.username_manager\n"
                 + "FROM advertising a\n"
-                + "JOIN manager m ON a.id_manager = m.id_manager\n"
+                + "JOIN manager m ON a.id_manager = m.id_manager WHERE a.is_delete =0\n"
                 + "LIMIT 50;";
 
         try (PreparedStatement ps = connect.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
@@ -54,7 +54,7 @@ public class AdvertisingDAO {
         List<Advertising> list = new ArrayList<>();
         String sql = "SELECT a.id_advertising, a.image_advertising, a.description_advertising, a.content, a.create_at, m.username_manager\n"
                 + "FROM advertising a\n"
-                + "JOIN manager m ON a.id_manager = m.id_manager\n"
+                + "JOIN manager m ON a.id_manager = m.id_manager WHERE a.is_delete =0\n "
                 + "LIMIT 3 offset ?;";
 
         try (PreparedStatement ps = connect.prepareStatement(sql)) {
@@ -80,7 +80,7 @@ public class AdvertisingDAO {
         String sql = "SELECT a.id_advertising, a.image_advertising, a.description_advertising, a.content, a.create_at, m.username_manager "
                 + "FROM advertising a "
                 + "JOIN manager m ON a.id_manager = m.id_manager "
-                + "WHERE a.id_advertising = ?";
+                + "WHERE a.is_delete =0 AND a.id_advertising = ?";
 
         try {
             int advertisingId = Integer.parseInt(id);
@@ -183,7 +183,7 @@ public class AdvertisingDAO {
         String sql = "SELECT a.id_advertising, a.image_advertising, a.description_advertising, a.content, a.create_at, m.username_manager "
                 + "FROM advertising a "
                 + "JOIN manager m ON a.id_manager = m.id_manager "
-                + "WHERE a.id_manager = ?";
+                + "WHERE a.is_delete =0 AND a.id_manager = ?";
 
         try (PreparedStatement ps = connect.prepareStatement(sql)) {
             ps.setInt(1, managerId);
@@ -225,7 +225,7 @@ public class AdvertisingDAO {
             FROM Advertising a
             JOIN Manager m ON a.id_manager = m.id_manager
             JOIN Train_brand tb ON m.id_manager = tb.id_manager
-            WHERE tb.id_train_brand = ?;
+            WHERE a.is_delete =0 AND tb.id_train_brand = ?;
         """;
 
         List<Advertising> list = new ArrayList<>();
@@ -261,7 +261,7 @@ public class AdvertisingDAO {
             FROM Advertising a
             JOIN Feedback f ON a.id_advertising = f.id_advertising
             JOIN Manager m ON a.id_manager = m.id_manager
-            WHERE f.id_feedback = ?
+            WHERE a.is_delete =0 AND f.id_feedback = ?
         """;
         try (
                 PreparedStatement ps = connect.prepareStatement(sql)) {
@@ -284,15 +284,15 @@ public class AdvertisingDAO {
     }
 
     public boolean deleteAdvertising(int id) {
-        String sql = "DELETE FROM advertising WHERE id_advertising = ?";
-        try (PreparedStatement ps = connect.prepareStatement(sql)) {
-            ps.setInt(1, id);
-            return ps.executeUpdate() > 0;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+    String sql = "UPDATE advertising SET is_delete = 1 WHERE id_advertising = ?";
+    try (PreparedStatement ps = connect.prepareStatement(sql)) {
+        ps.setInt(1, id);
+        return ps.executeUpdate() > 0;
+    } catch (Exception e) {
+        e.printStackTrace();
+        return false;
     }
+}
 
     public static void main(String[] args) {
         AdvertisingDAO adDAO = new AdvertisingDAO();

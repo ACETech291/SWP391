@@ -57,6 +57,8 @@
             </div>
         </c:if>
     </section>
-
+    <jsp:include page="includes/footer.jsp"></jsp:include>
+    <jsp:include page="includes/rule.jsp"></jsp:include>
+    <jsp:include page="includes/support.jsp"></jsp:include>
 </body>
 </html>

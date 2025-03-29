@@ -4,6 +4,8 @@
  */
 package controller;
 
+import dal.IntroductionDAO;
+import dal.PolicyDAO;
 import dal.TrainBrandDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -62,6 +64,10 @@ public class ListBrand extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         TrainBrandDAO trainBrandDAO = new TrainBrandDAO();
+                PolicyDAO policyDAO = new PolicyDAO();
+        IntroductionDAO introductionDAO = new IntroductionDAO();
+        request.setAttribute("policy",policyDAO.getLastPolicy().getContent());
+        request.setAttribute("introduction", introductionDAO.getLastIntroduction().getContent());
         try {
             List<TrainBrand> listBrand = trainBrandDAO.getAllTrainBrands();
             request.setAttribute("listBrand", listBrand);

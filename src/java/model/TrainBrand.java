@@ -15,6 +15,7 @@ public class TrainBrand {
     private String name_train_brand;
     private String image_train_brand;
     private String description_train_brand;
+        private int is_delete;
 
     public TrainBrand(int id_train_brand, Manager manager, String name_train_brand, String description_train_brand) {
         this.id_train_brand = id_train_brand;
@@ -30,6 +31,25 @@ public class TrainBrand {
         this.image_train_brand = image_train_brand;
         this.description_train_brand = description_train_brand;
     }
+
+    public TrainBrand(int id_train_brand, Manager manager, String name_train_brand, String image_train_brand, String description_train_brand, int is_delete) {
+        this.id_train_brand = id_train_brand;
+        this.manager = manager;
+        this.name_train_brand = name_train_brand;
+        this.image_train_brand = image_train_brand;
+        this.description_train_brand = description_train_brand;
+        this.is_delete = is_delete;
+    }
+
+    public int getIs_delete() {
+        return is_delete;
+    }
+
+    public void setIs_delete(int is_delete) {
+        this.is_delete = is_delete;
+    }
+    
+    
 
     public TrainBrand() {
     }

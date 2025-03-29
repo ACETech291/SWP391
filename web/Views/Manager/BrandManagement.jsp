@@ -78,7 +78,7 @@
                         String successEdit = request.getParameter("success1");
                         if ("updated".equals(successEdit)) {
                     %>
-                    <div style="color: green;">Cập nhật thông tin hãng thành công!</div>
+                    <div style="color: green;">Cập nhật thông tin hãng thành công, vui lòng chờ trong giây lát!</div>
                     <% }%>
                     <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
                         <table class="table table-hover mb-0">

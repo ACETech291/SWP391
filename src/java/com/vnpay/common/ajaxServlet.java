@@ -120,7 +120,7 @@ public class ajaxServlet extends HttpServlet {
 
         long amount = (long) (amountDouble * 100);
 
-        String vnp_TxnRef = start + "-" + end + "";//dky ma rieng
+        String vnp_TxnRef = start + "-" + end + "-"+ Math.random();//dky ma rieng
         String vnp_IpAddr = Config.getIpAddress(req);
 
         String vnp_TmnCode = Config.vnp_TmnCode;

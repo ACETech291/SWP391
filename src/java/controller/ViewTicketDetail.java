@@ -4,23 +4,22 @@
  */
 package controller;
 
-import dal.CommentDAO;
-import dal.IntroductionDAO;
-import dal.PolicyDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import com.google.gson.Gson;
 import jakarta.servlet.http.HttpSession;
 import model.Customer;
+import model.InformationBooking;
 
 /**
  *
- * @author Nguyen Ba Hien
+ * @author HieuPham
  */
-public class Comment extends HttpServlet {
+public class ViewTicketDetail extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +38,10 @@ public class Comment extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Comment</title>");
+            out.println("<title>Servlet ViewTicketDetail</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Comment at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ViewTicketDetail at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,11 +59,7 @@ public class Comment extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                PolicyDAO policyDAO = new PolicyDAO();
-        IntroductionDAO introductionDAO = new IntroductionDAO();
-        request.setAttribute("policy",policyDAO.getLastPolicy().getContent());
-        request.setAttribute("introduction", introductionDAO.getLastIntroduction().getContent());
-        response.sendRedirect("home");
+
     }
 
     /**
@@ -78,19 +73,22 @@ public class Comment extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        CommentDAO commentDAO = new CommentDAO();
+        response.setContentType("application/json");
+//        <input type = "hidden" name = "booking" value = "<%= currentBooking %>"
+//                > <input type = "hidden" name = "code_train_seat" value = "<%= code_train_seat.get(i) %>"
+//                > <input type = "hidden" name = "name_train" value = "<%= name_train.get(i) %>" >
+        String code_train_seat = request.getParameter("code_train_seat");
+        String name_train = request.getParameter("name_train");
+        String bookingJson = request.getParameter("booking");
+        Gson gson = new Gson();
+        InformationBooking booking = gson.fromJson(bookingJson, InformationBooking.class);
         HttpSession session = request.getSession();
-        Customer customer = (Customer)session.getAttribute("account");
-        Integer role_id = (Integer) session.getAttribute("role_id");
-        if (role_id == null) {
-            response.sendRedirect("login.jsp"); 
-        }
-        int id_brand = Integer.parseInt(request.getParameter("id_brand"));
-        int rating = Integer.parseInt(request.getParameter("rating"));
-        String comment = request.getParameter("comment");
-        
-        commentDAO.insertComment(rating, comment, customer.getId_customer(), id_brand);
-        response.sendRedirect("BrandDetail?id="+id_brand);
+        Customer customer = (Customer) session.getAttribute("account");
+        request.setAttribute("customer", customer);
+        request.setAttribute("code_train_seat", code_train_seat);
+        request.setAttribute("name_train", name_train);
+        request.setAttribute("booking", booking);
+        request.getRequestDispatcher("Views/MoreDetailsBookingHistory.jsp").forward(request, response);
     }
 
     /**

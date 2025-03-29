@@ -45,8 +45,7 @@ public class home extends HttpServlet {
         TripDAO tripDAO = new TripDAO();
         AdvertisingDAO advertisingDAO = new AdvertisingDAO();
         TrainBrandDAO trainBrandDAO = new TrainBrandDAO();
-        PolicyDAO policyDAO = new PolicyDAO();
-        IntroductionDAO introductionDAO = new IntroductionDAO();
+        
         
         List<Train> trains = trainDAO.getAllTrains();
         List<Station> listStation = stationDAO.getAllStations();
@@ -77,7 +76,8 @@ public class home extends HttpServlet {
         int start = (page-1)*numberPerPage;
         int end = Math.min(page*numberPerPage, size);
         List<TripDTO> listTrips = tripDAO.getListByPage(list1, start, end);
-
+        PolicyDAO policyDAO = new PolicyDAO();
+        IntroductionDAO introductionDAO = new IntroductionDAO();
         request.setAttribute("policy",policyDAO.getLastPolicy().getContent());
         request.setAttribute("introduction", introductionDAO.getLastIntroduction().getContent());
         request.setAttribute("listBrand", listBrand);
