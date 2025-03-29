@@ -31,7 +31,7 @@ public class StationManagement extends HttpServlet {
         TrainDAO tDAO = new TrainDAO();
         List<Train> topTrains = tDAO.getTopTrains(10);
         request.setAttribute("topTrains", topTrains);
-
+        
         request.getRequestDispatcher("Views/Manager/StationManagement.jsp").forward(request, response);
     }
 

@@ -34,18 +34,18 @@ public class LoadAdvertising extends HttpServlet {
         System.out.println("contextPath: " + contextPath);
         for (model.Advertising advertising : listAdvertisings) {
             out.println("<div class=\"advertising col-lg-4 col-md-6 col-sm-12 col-xs-12 mansonry-item mb-2\">\n"
-                    + "                                <div class=\"blog-full text-center p-3\">\n"
-                    + "                                    <img src=\"" + contextPath + advertising.getImage_advertising() + "\" alt=\"\">\n"
-                    + "                                    <div class=\"blog-content pb-0\">\n"
-                    + "                                        <span class=\"h-date pink mb-1 font-weight-light d-block\"> 5-3-2025</span>\n"
-                    + "                                        <h3 class=\"mb-2\"><a href=\"advertisingdetail?id=" + advertising.getId_advertising() + "\" class=\"\">" + advertising.getDescription_advertising() + "</a></h3>\n"
-                    + "                                        <p class=\"date-cats mb-0 border-t pt-2 pb-2\">\n"
-                    + "                                            <a href=\"#\" class=\"\"><i class=\"fa fa-user\"></i> " + advertising.getManagerName() + "</a>\n"
-                    + "                                        </p> \n"
-                    + "                                        <a href=\"advertisingdetail?id=" + advertising.getId_advertising() + "\" class=\"grey font-weight-light\">Chi tiết ở đây <i class=\"fa fa-long-arrow-alt-right\"></i></a>\n"
-                    + "                                    </div>                        \n"
-                    + "                                </div>\n"
-                    + "                            </div>");
+                    + "    <div class=\"blog-full text-center p-3\">\n"
+                    + "        <img src=\"" + contextPath + advertising.getImage_advertising() + "\" alt=\"\">\n"
+                    + "        <div class=\"blog-content pb-0\">\n"
+                    + "            <span class=\"h-date pink mb-1 font-weight-light d-block\"> "+advertising.getCreate_at()+"</span>\n"
+                    + "            <h3 class=\"mb-2\"><a href=\"advertisingdetail?id=" + advertising.getId_advertising() + "\" class=\"\">" + advertising.getDescription_advertising() + "</a></h3>\n"
+                    + "            <p class=\"date-cats mb-0 border-t pt-2 pb-2\">\n"
+                    + "                <a href=\"#\" class=\"\"><i class=\"fa fa-user\"></i> " + advertising.getManagerName() + "</a>\n"
+                    + "            </p> \n"
+                    + "            <a href=\"advertisingdetail?id=" + advertising.getId_advertising() + "\" class=\"grey font-weight-light\">Chi tiết ở đây <i class=\"fa fa-long-arrow-alt-right\"></i></a>\n"
+                    + "        </div>                        \n"
+                    + "    </div>\n"
+                    + "</div>");
         }
     }
 

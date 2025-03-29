@@ -108,10 +108,8 @@
                     <table class="table table-hover mb-0">
                         <thead class="thead-light">
                             <tr>
-                                <th class="text-center align-middle">Tên nhà ga</th>
-                                <!-- comment 
-                                <th class="text-center align-middle">Hình ảnh</th>
-                                -->
+                                <th class="text-center align-middle">Hình ảnh</th>                    
+                                <th class="text-center align-middle">Tên nhà ga</th>                             
                                 <th class="text-center align-middle">Mô tả</th>
 <!--                                <th class="text-center align-middle">Hành động</th>-->
                             </tr>
@@ -125,6 +123,9 @@
                                     for (Station station : stations) {
                             %>
                             <tr>
+                                <td>
+                                    <img src="${pageContext.request.contextPath}/<%= station.getImage_station()%>" alt="Ảnh ga tàu" width="100" height="100">
+                                </td>
                                 <td class="text-center align-middle"><%= station.getName_station() %></td>
                                 <!-- comment 
                                 <td class="text-center align-middle">

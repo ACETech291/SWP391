@@ -26,7 +26,7 @@ public class CommentDAO {
         List<Comment> commentList = new ArrayList<>();
         String query = "SELECT c.id_comment, c.voting_comment, c.content, cu.name_customer, c.create_at, c.id_train_brand "
                 + "FROM Comment c "
-                + "JOIN Customer cu ON c.id_customer = cu.id_customer WHERE id_train_brand = ?";
+                + "JOIN Customer cu ON c.id_customer = cu.id_customer WHERE comment_status = 0 AND id_train_brand = ?";
 
         try (PreparedStatement ps = connect.prepareStatement(query)) {
             ps.setInt(1, id);
@@ -53,7 +53,7 @@ public class CommentDAO {
         List<Comment> commentList = new ArrayList<>();
         String query = "SELECT c.id_comment, c.voting_comment, c.content, cu.name_customer, c.create_at, c.id_train_brand "
                 + "FROM Comment c "
-                + "JOIN Customer cu ON c.id_customer = cu.id_customer WHERE id_train_brand = ? and voting_comment=?";
+                + "JOIN Customer cu ON c.id_customer = cu.id_customer WHERE comment_status = 0 AND id_train_brand = ? and voting_comment=?";
 
         try (PreparedStatement ps = connect.prepareStatement(query)) {
             ps.setInt(1, id);
@@ -78,7 +78,7 @@ public class CommentDAO {
 
     public int countCommentsByVoting(int id, int voting_comment) {
         int count = 0;
-        String query = "SELECT COUNT(*) AS total FROM Comment WHERE id_train_brand = ? AND voting_comment = ?";
+        String query = "SELECT COUNT(*) AS total FROM Comment WHERE comment_status =0 AND id_train_brand = ? AND voting_comment = ?";
 
         try (PreparedStatement ps = connect.prepareStatement(query)) {
             ps.setInt(1, id);
@@ -117,7 +117,7 @@ public class CommentDAO {
                        SELECT c.id_comment, c.voting_comment, c.content, cu.name_customer, c.create_at, c.id_train_brand, c.comment_status
                                        FROM Comment c 
                                        JOIN Customer cu ON c.id_customer = cu.id_customer 
-                                       WHERE c.id_train_brand = ?
+                                       WHERE comment_status = 0 AND c.id_train_brand = ?
                                        ORDER BY c.create_at DESC
                        """; // Sắp xếp theo thời gian mới nhất
 
