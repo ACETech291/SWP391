@@ -123,13 +123,11 @@
                                     <td class="text-center align-middle"><%= trip.getName_train() %></td>
                                     <td class="text-center align-middle"><%= trip.getPrice_trip() %></td>
                                     <td class="text-center align-middle">
-                                        <%= trip.getTrip_status() == 0 ? "Hoạt động" : "Không hoạt động" %>
+                                        <%= trip.getTrip_status()== 0 ? "Hoạt động" : "Không hoạt động" %>
+                                        
                                     </td>
                                     <td class="text-center align-middle">
-                                        <!-- Nút hành động -->
-                                        
-
-
+                                        <a href="EditTrip?id=<%= trip.getId_trip()%>" class="btn btn-warning btn-sm">Sửa</a>
                                     </td>                                        
                                 </tr>
                                 <%
