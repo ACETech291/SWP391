@@ -15,14 +15,12 @@
         <filter-name>RouterFilter</filter-name>
         <filter-class>filter.RouterFilter</filter-class>
     </filter>
-    
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
         <url-pattern>/BookTicket</url-pattern>
         <url-pattern>/ConfirmBooking</url-pattern>
         <url-pattern>/ChooseSeat</url-pattern>
     </filter-mapping>
-
     <filter-mapping>
         <filter-name>RouterFilter</filter-name>
         <url-pattern>/*</url-pattern>
