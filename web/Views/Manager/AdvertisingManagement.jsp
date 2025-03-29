@@ -47,10 +47,11 @@
                 display: none;
             }
             .delete-btn {
-                color: white;
-                cursor: pointer;
-                font-weight: bold;
-            }
+    background-color: #e74c3c; /* đỏ tươi */
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
 
         </style>
 
@@ -206,12 +207,12 @@
     <script src="${pageContext.request.contextPath}/Views/Admin/vendors/simplebar/simplebar.min.js"></script>
 
     <script>
-                                                var isFluid = JSON.parse(localStorage.getItem('isFluid'));
-                                                if (isFluid) {
-                                                    var container = document.querySelector('[data-layout]');
-                                                    container.classList.remove('container');
-                                                    container.classList.add('container-fluid');
-                                                }
+                                            var isFluid = JSON.parse(localStorage.getItem('isFluid'));
+                                            if (isFluid) {
+                                                var container = document.querySelector('[data-layout]');
+                                                container.classList.remove('container');
+                                                container.classList.add('container-fluid');
+                                            }
     </script>
 
     <script>
