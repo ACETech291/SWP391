@@ -64,6 +64,12 @@
                                         <div class="dashboard-form mb-4">
                                             <div class="row">
                                                 <!-- Profile -->
+                                                <%
+                                                    String successUpdate = request.getParameter("success3");
+                                                    if ("update".equals(successUpdate)) {
+                                                %>
+                                                <div style="color: green;">Tải ảnh lên thành công, vui lòng chờ trong chốc lát rồi tải lại trang</div>
+                                                <% }%>
                                                 <div class="col-lg-6 col-md-6 col-xs-12 padding-right-30">
                                                     <div class="dashboard-list">
                                                         <h4 class="gray">Thông tin cá nhân</h4>
@@ -244,16 +250,26 @@
                                                         <% if (request.getAttribute("err2") != null) {%>
                                                         <p style="color: red;"><%= request.getAttribute("err2")%></p>
                                                         <% }%>
-                                                        <% if (request.getAttribute("success2") != null) {%>
-                                                        <p style="color: green;"><%= request.getAttribute("success2")%></p>
-                                                        <% }%>
+                                                        <% String successMessage = request.getParameter("success3"); %>
+                                                        <% if ("update".equals(successMessage)) { %>
+                                                        <p style="color: green;">Tải ảnh lên thành công, vui lòng chờ trong chốc lát rồi tải lại trang!</p>
+                                                        <% } %>
                                                         <h4 class="gray">Thông tin cá nhân</h4>
                                                         <div class="dashboard-list-static">
                                                             <!-- Avatar -->
 
-                                                            <form action="${pageContext.request.contextPath}/uploadAvatar" method="post" enctype="multipart/form-data">
+                                                            <form action="uploadAvatar" method="post" enctype="multipart/form-data">
                                                                 <div class="edit-profile-photo">
-                                                                    <img src="${pageContext.request.contextPath}${account.image_url}" alt="Avatar customer" />
+
+                                                                    <c:choose>
+                                                                        <c:when test="${empty account.image_url}">
+                                                                            <img src="${pageContext.request.contextPath}/images/avatar/AvatarDefault.png" alt="Avatar khách hàng" />
+                                                                        </c:when>
+                                                                        <c:otherwise>
+                                                                            <img src="${pageContext.request.contextPath}${account.image_url}" alt="Avatar khách hàng" />
+                                                                        </c:otherwise>
+                                                                    </c:choose>
+
                                                                     <div class="change-photo-btn">
                                                                         <div class="photoUpload">                                                                      
                                                                             <input type="file" name="avatar" class="upload" />
@@ -439,9 +455,9 @@
                                                                                     }
                                                                                 }
 
-                                                                                var successMessage = "${success2}";
+                                                                                var successMessage = "<%= request.getParameter("success3")%>"; // Lấy từ URL query thay vì EL
 
-                                                                                if (successMessage.trim() !== "" && !sessionStorage.getItem("reloaded")) {
+                                                                                if (successMessage.trim() !== "" && successMessage === "update" && !sessionStorage.getItem("reloaded")) {
                                                                                     setTimeout(function () {
                                                                                         sessionStorage.setItem("reloaded", "true"); // Đánh dấu đã reload
                                                                                         window.location.reload();
