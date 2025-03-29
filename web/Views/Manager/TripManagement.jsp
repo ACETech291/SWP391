@@ -63,7 +63,7 @@
             Integer id_status = (Integer) session.getAttribute("id_status");
            
             Integer id_train_brand = (Integer) session.getAttribute("id_train_brand");
-            List<Trip> ListTrip = (List<Trip>) session.getAttribute("ListTrip");
+//            List<Trip> ListTrip = (List<Trip>) session.getAttribute("ListTrip");
             
             StatusDAO sDAO = new StatusDAO();
             List<Status> statusTrain = sDAO.getStatusTrainFull();
@@ -72,6 +72,40 @@
             StationDAO stationDAO = new StationDAO();
             List<Station> listStation = stationDAO.getAllStations();
             request.setAttribute("listStation", listStation);
+            
+            // Xử lý filter form
+            String stationStartRaw = request.getParameter("stationStart");
+            String stationEndRaw = request.getParameter("stationEnd");
+            String dateTripRaw = request.getParameter("dateTrip");
+            String trainNameRaw = request.getParameter("trainName");
+            String tripStatusRaw = request.getParameter("tripStatus");
+
+            // Kiểm tra và chuyển đổi giá trị
+            int stationStart = (stationStartRaw != null && !stationStartRaw.isEmpty()) ? Integer.parseInt(stationStartRaw) : -1;
+            int stationEnd = (stationEndRaw != null && !stationEndRaw.isEmpty()) ? Integer.parseInt(stationEndRaw) : -1;
+            String dateTrip = (dateTripRaw != null && !dateTripRaw.isEmpty()) ? dateTripRaw : null;
+            int trainName = (trainNameRaw != null && !trainNameRaw.isEmpty()) ? Integer.parseInt(trainNameRaw) : -1;
+            int tripStatus = (tripStatusRaw != null && !tripStatusRaw.isEmpty()) ? Integer.parseInt(tripStatusRaw) : -1;
+
+            TripDAO tripdao = new TripDAO();
+            List<Trip> ListTrip;
+
+            // Nếu có ít nhất một bộ lọc được chọn, gọi filterTrips(), nếu không, lấy toàn bộ danh sách
+            if (stationStart != -1 || stationEnd != -1 || dateTrip != null || trainName != -1 || tripStatus != -1) {
+                ListTrip = tripdao.filterTrips(stationStart, stationEnd, dateTrip, trainName, tripStatus, id_train_brand);
+            } else {
+                ListTrip = tripdao.ListAllTripTrandBrand(id_train_brand);
+            }
+
+            
+            StationDAO sdao = new StationDAO();
+            List<Station> listStaion = sdao.getAllStations();
+            
+//            DateOfTripDAO dotdao = new DateOfTripDAO();
+//            List<DateOfTrip> listdot = dotdao.getAllDateOfTrips();
+            
+            TrainDAO trainDAO = new TrainDAO();
+            List<Train> listtrain = trainDAO.getAllTrainsSameBrand(id_train_brand);
         %>
 
         <!-- ===============================================--><!--    Main Content--><!-- ===============================================-->
@@ -87,13 +121,67 @@
                             <h2 class="m-0"><span>Quản lý chuyến đi</span></h2>
                         </div> 
 
+                        <form action="" method="GET" class="mb-3">
+                            <div class="row">
+                                <!-- Ga đi -->
+                                <div class="col-md-2">
+                                    <label>Ga đi:</label>
+                                    <select name="stationStart" class="form-control">
+                                        <option value="">Tất cả</option>
+                                    <% for (Station station : listStaion) { %>
+                                    <option value="<%= station.getId_station() %>">
+                                        <%= station.getName_station() %>
+                                    </option>
+                                    <% } %>
+                                </select>
+                            </div>
 
-                    <%
-                                        //if(ListTrip == null) {
-                                            TripDAO tripdao = new TripDAO();
-                                            ListTrip = tripdao.ListAllTripTrandBrand(id_train_brand);
-                                        //}
-                    %>
+                            <!-- Ga đến -->
+                            <div class="col-md-2">
+                                <label>Ga đến:</label>
+                                <select name="stationEnd" class="form-control">
+                                    <option value="">Tất cả</option>
+                                    <% for (Station station : listStaion) { %>
+                                    <option value="<%= station.getId_station() %>" >
+                                        <%= station.getName_station() %>
+                                    </option>
+                                    <% } %>
+                                </select>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label>Ngày đi:</label>
+                                <input type="date" name="dateTrip" class="form-control">
+                            </div>
+
+                            <!-- Tàu -->
+                            <div class="col-md-2">
+                                <label>Tàu:</label>
+                                <select name="trainName" class="form-control">
+                                    <option value="">Tất cả</option>
+                                    <% for (Train train : listtrain) { %>
+                                    <option value="<%= train.getId_train() %>" >
+                                        <%= train.getName_train() %>
+                                    </option>
+                                    <% } %>
+                                </select>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label>Trạng thái:</label>
+                                <select name="tripStatus" class="form-control">
+                                    <option value="">Tất cả</option>
+                                    <option value="0">Hoạt động</option>
+                                    <option value="1">Không hoạt động</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label>&nbsp;</label>
+                                <button type="submit" class="btn btn-primary w-100">Lọc</button>
+                            </div>
+                        </div>
+                    </form>
+
                     <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
                         <table class="table table-hover mb-0">
                             <thead class="thead-light">
@@ -103,7 +191,7 @@
                                     <th class="text-center align-middle">Ga đến</th>
                                     <th class="text-center align-middle">Giờ đến</th>
                                     <th class="text-center align-middle">Ngày đi</th>
-                                    <th class="text-center align-middle">Mã tàu</th>
+                                    <th class="text-center align-middle">Tàu</th>
                                     <th class="text-center align-middle">Giá vé</th>
                                     <th class="text-center align-middle">Trạng thái</th>
                                     <th class="text-center align-middle">Hành động</th>
@@ -127,7 +215,7 @@
                                     </td>
                                     <td class="text-center align-middle">
                                         <!-- Nút hành động -->
-                                        
+
 
 
                                     </td>                                        
@@ -261,24 +349,24 @@
     <% session.removeAttribute("successMessage"); %>
     <% } %>
 
-
-    <% if (request.getAttribute("errorMessage") != null) { %>
+<!-- Hiển thị thông báo -->
+    <% if (session.getAttribute("errorMessage") != null) { %>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             let toast = document.createElement("div");
-            toast.id = "toastMessage";
-            toast.textContent = "<%= request.getAttribute("errorMessage") %>";
-            toast.style.cssText = "position: fixed; top: 20px; right: 20px; background: #f44336; color: white; padding: 10px 20px; border-radius: 5px; z-index: 1000; transition: opacity 0.5s ease-in-out;";
+            toast.id = "toastMessage";  // Thêm ID để dễ tìm bằng Selenium
+            toast.textContent = "<%= session.getAttribute("successMessage") %>";
+            toast.style.cssText = "position: fixed; top: 20px; right: 20px; background: #4CAF50; color: white; padding: 10px 20px; border-radius: 5px; z-index: 1000; transition: opacity 0.5s ease-in-out;";
             document.body.appendChild(toast);
+            console.log("Toast hiển thị:", toast.textContent); // Kiểm tra hiển thị trong Console
 
             setTimeout(() => {
                 toast.style.opacity = "0";
                 setTimeout(() => toast.remove(), 500);
-            }, 1000);
+            }, 3000);
         });
     </script>
+    <% session.removeAttribute("errorMessage"); %>
     <% } %>
-
-
-
+    
 </html>

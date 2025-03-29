@@ -64,23 +64,26 @@ public class TripDAO {
 
     public List<TripDTO> getTripsByTrainBrand(int managerId) {
         List<TripDTO> trips = new ArrayList<>();
-        String sql = "SELECT t.id_trip, "
-                + "       s1.name_station AS start_station, "
-                + "       s2.name_station AS end_station, "
-                + "       tr.name_train, "
-                + "       tos1.time_train_in_station AS start_time, "
-                + "       tos2.time_train_in_station AS end_time, "
-                + "       t.price_trip "
-                + "FROM Trip t "
-                + "JOIN Train tr ON t.id_train = tr.id_train "
-                + "JOIN Train_brand tb ON tr.id_train_brand = tb.id_train_brand "
-                + "JOIN Time_station ts1 ON t.id_time_station_start = ts1.id_time_station "
-                + "JOIN Time_station ts2 ON t.id_time_station_end = ts2.id_time_station "
-                + "JOIN Station s1 ON ts1.id_station = s1.id_station "
-                + "JOIN Station s2 ON ts2.id_station = s2.id_station "
-                + "JOIN Time_of_station tos1 ON ts1.id_time_of_station = tos1.id_time_of_station "
-                + "JOIN Time_of_station tos2 ON ts2.id_time_of_station = tos2.id_time_of_station "
-                + "WHERE tb.id_manager = ?";
+        String sql = """
+                    SELECT t.id_trip, 
+                           s1.name_station AS start_station, 
+                           s2.name_station AS end_station, 
+                           tr.name_train, 
+                           tos1.time_train_in_station AS start_time, 
+                           tos2.time_train_in_station AS end_time, 
+                           t.price_trip 
+                    FROM Trip t 
+                    JOIN Train tr ON t.id_train = tr.id_train 
+                    JOIN Train_brand tb ON tr.id_train_brand = tb.id_train_brand 
+                    JOIN Time_station ts1 ON t.id_time_station_start = ts1.id_time_station 
+                    JOIN Time_station ts2 ON t.id_time_station_end = ts2.id_time_station 
+                    JOIN Station s1 ON ts1.id_station = s1.id_station 
+                    JOIN Station s2 ON ts2.id_station = s2.id_station 
+                    JOIN Time_of_station tos1 ON ts1.id_time_of_station = tos1.id_time_of_station 
+                    JOIN Time_of_station tos2 ON ts2.id_time_of_station = tos2.id_time_of_station 
+                    WHERE tb.id_manager = ?
+                    """;
+
         try (PreparedStatement ps = connect.prepareStatement(sql)) {
             ps.setInt(1, managerId);
             try (ResultSet rs = ps.executeQuery()) {
@@ -207,7 +210,7 @@ public class TripDAO {
                     JOIN Station s_start ON ts_start.id_station = s_start.id_station
                     JOIN Station s_end ON ts_end.id_station = s_end.id_station
                     WHERE tb.id_train_brand = ?
-                    LIMIT 100;
+                    LIMIT 500;
                      """;
         PreparedStatement ps;
         List<Trip> list = new ArrayList<>();
@@ -254,6 +257,90 @@ public class TripDAO {
             System.err.println("❌ Lỗi khi cập nhật trạng thái chuyến: " + e.getMessage());
             throw e; // Ném lại lỗi để xử lý ở lớp gọi phương thức này
         }
+    }
+
+    public List<Trip> filterTrips(int stationStart, int stationEnd, String dateTrip, int trainName, int tripStatus, int id_train_brand) {
+        List<Trip> trips = new ArrayList<>();
+        StringBuilder sql = new StringBuilder("""
+        SELECT 
+            dt.id_date_trip,
+            t.name_train,
+            d.date_details AS trip_date,
+            tos_start.time_train_in_station AS time_start,
+            tos_end.time_train_in_station AS time_end,
+            s_start.name_station AS station_from,
+            s_end.name_station AS station_to,
+            tr.price_trip,
+            dt.trip_status
+        FROM Date_trip dt
+        JOIN Date_of_trip d ON dt.id_date_of_trip = d.id_date_of_trip
+        JOIN Trip tr ON dt.id_trip = tr.id_trip
+        JOIN Train t ON tr.id_train = t.id_train
+        JOIN Train_brand tb ON t.id_train_brand = tb.id_train_brand
+        JOIN Time_station ts_start ON tr.id_time_station_start = ts_start.id_time_station
+        JOIN Time_station ts_end ON tr.id_time_station_end = ts_end.id_time_station
+        JOIN Time_of_station tos_start ON ts_start.id_time_of_station = tos_start.id_time_of_station
+        JOIN Time_of_station tos_end ON ts_end.id_time_of_station = tos_end.id_time_of_station
+        JOIN Station s_start ON ts_start.id_station = s_start.id_station
+        JOIN Station s_end ON ts_end.id_station = s_end.id_station
+        WHERE tb.id_train_brand = ?
+    """);
+
+        // Kiểm tra điều kiện lọc và thêm vào SQL query
+        List<Object> params = new ArrayList<>();
+        params.add(id_train_brand);
+
+        if (stationStart > 0) {
+            sql.append(" AND s_start.id_station = ?");
+            params.add(stationStart);
+        }
+        if (stationEnd > 0) {
+            sql.append(" AND s_end.id_station = ?");
+            params.add(stationEnd);
+        }
+        if (dateTrip != null && !dateTrip.isEmpty()) {
+            sql.append(" AND d.date_details = STR_TO_DATE(?, '%Y-%m-%d')");
+            params.add(dateTrip);
+        }
+        if (trainName > 0) {
+            sql.append(" AND t.id_train = ?");
+            params.add(trainName);
+        }
+        if (tripStatus >= 0) {
+            sql.append(" AND dt.trip_status = ?");
+            params.add(tripStatus);
+        }
+
+        sql.append("\n LIMIT 100;");
+
+        try (PreparedStatement ps = connect.prepareStatement(sql.toString())) {
+            // Gán giá trị vào câu lệnh SQL
+            for (int i = 0; i < params.size(); i++) {
+                if (params.get(i) instanceof Integer) {
+                    ps.setInt(i + 1, (int) params.get(i));
+                } else if (params.get(i) instanceof String) {
+                    ps.setString(i + 1, (String) params.get(i));
+                }
+            }
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Trip t = new Trip();
+                t.setId_trip(rs.getInt("id_date_trip"));
+                t.setName_station_start(rs.getString("station_from"));
+                t.setTime_start_ticket(rs.getString("time_start"));
+                t.setName_station_end(rs.getString("station_to"));
+                t.setTime_end_ticket(rs.getString("time_end"));
+                t.setDate_trip(rs.getString("trip_date"));
+                t.setName_train(rs.getString("name_train"));
+                t.setPrice_trip(rs.getInt("price_trip"));
+                t.setTrip_status(rs.getInt("trip_status"));
+                trips.add(t);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return trips;
     }
 
     public List<TripDTO> searchTrips(String id_station_start, String id_station_end, String train_brand) {
@@ -563,13 +650,13 @@ public class TripDAO {
         }
         return res;
     }
-    
-    public int getPriceTripFromTripID(int id_trip){
+
+    public int getPriceTripFromTripID(int id_trip) {
         String sql = " Select * from trip where id_trip = ? ";
         int res = 0;
         try (PreparedStatement ps = connect.prepareStatement(sql)) {
             ps.setInt(1, id_trip);
-            
+
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     res = rs.getInt("price_trip");
@@ -580,12 +667,13 @@ public class TripDAO {
         }
         return res;
     }
-    public int getIdTrainByIdTrip(int id_trip){
+
+    public int getIdTrainByIdTrip(int id_trip) {
         String sql = " Select * from trip where id_trip = ? ";
         int res = 0;
         try (PreparedStatement ps = connect.prepareStatement(sql)) {
             ps.setInt(1, id_trip);
-            
+
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     res = rs.getInt("id_train");
@@ -596,6 +684,7 @@ public class TripDAO {
         }
         return res;
     }
+
     public static void main(String[] args) {
         TripDAO td = new TripDAO();
         System.out.println(td.getIdTrainByIdTrip(10));

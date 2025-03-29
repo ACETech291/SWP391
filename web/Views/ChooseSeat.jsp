@@ -228,7 +228,9 @@
                 <button type="button" onclick="confirmBooking()">Xác Nhận</button>
             </form>
         </div>
-
+                    <jsp:include page="includes/footer.jsp"></jsp:include>
+    <jsp:include page="includes/rule.jsp"></jsp:include>
+    <jsp:include page="includes/support.jsp"></jsp:include>
         <script>
             let id_trip = <%= id_trip%>;
             let date_start = "<%= date_start%>";

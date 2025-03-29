@@ -45,22 +45,26 @@ public class AddCarriage extends HttpServlet {
         int id_status = Integer.parseInt(request.getParameter("id_status"));
         int total_seat = Integer.parseInt(request.getParameter("total_seat"));
         
-        if(Integer.parseInt(request.getParameter("total_seat")) == -1){
-            response.sendRedirect("carriagemanagement?false1=add");
-        }
-        
+         // Danh sách lỗi
+        StringBuilder errors = new StringBuilder();
 
-        
-        if(Integer.parseInt(request.getParameter("total_seat")) == 0){
-            response.sendRedirect("carriagemanagement?false2=add");
+        if (name.length() > 50) {
+            errors.append("Tên khoang tàu không được vượt quá 50 ký tự. ");
         }
-        
-                if(name == null){
-            response.sendRedirect("carriagemanagement?false3=add");
+
+        if (description.length() > 255) {
+            errors.append("Mô tả không được vượt quá 255 ký tự. ");
         }
-                
-                        if(description == null){
-            response.sendRedirect("carriagemanagement?false4=add");
+
+        if (total_seat <= 0) {
+            errors.append("Tổng số ghế phải lớn hơn 0. ");
+        }
+
+        // Nếu có lỗi, lưu vào session và chuyển hướng về trang quản lý khoang tàu
+        if (errors.length() > 0) {
+            request.getSession().setAttribute("errorMessage", errors.toString());
+            response.sendRedirect("carriagemanagement");
+            return;
         }
                         
         
@@ -72,13 +76,8 @@ public class AddCarriage extends HttpServlet {
         carriageDAO.addTrainCarriage(carriage);
         
         //insertDatabase(carriage);
-        HttpSession session = request.getSession();
-        session.setAttribute("abcd", "Thêm mới khoang thành công");
-        response.sendRedirect("carriagemanagement?success1=added");
+        request.getSession().setAttribute("successMessage", "Sửa tàu thành công!");
+        response.sendRedirect("carriagemanagement");
     }
 
-    @Override
-    public String getServletInfo() {
-        return "Servlet for adding train carriages";
-    }
 }

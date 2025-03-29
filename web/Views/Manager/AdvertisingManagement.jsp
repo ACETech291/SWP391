@@ -47,11 +47,10 @@
                 display: none;
             }
             .delete-btn {
-    background-color: #e74c3c; /* đỏ tươi */
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-}
+                color: white;
+                cursor: pointer;
+                font-weight: bold;
+            }
 
         </style>
 

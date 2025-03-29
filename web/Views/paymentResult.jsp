@@ -60,5 +60,44 @@
         <div class="error-btn mt-4">
             <a href="home" class="nir-btn mr-2">Quay về trang chủ</a>
         </div>
-    </body>
+
+        <!-- Giao dịch thành công -->
+        <c:if test="${transResult}">
+            <div>
+                <h3 style="font-weight: bold; color: #28a745;">
+                    Bạn đã giao dịch thành công! 
+                    <i class="fas fa-check-circle"></i>
+                </h3>
+                <p style="font-size: 18px; margin-top: 15px;">Vui lòng để ý số điện thoại của nhân viên tư vấn:</p>
+                <strong style="color: red; font-size: 24px;">0383459560</strong>
+            </div>
+        </c:if>
+
+        <!-- Giao dịch thất bại -->
+        <c:if test="${transResult == false}">
+            <div>
+                <h3 style="font-weight: bold; color: #dc3545;">
+                    Đơn hàng giao dịch thất bại!
+                </h3>
+                <p style="font-size: 18px; margin-top: 15px;">Cảm ơn quý khách đã dùng dịch vụ của chúng tôi.</p>
+                <p style="font-size: 18px;">Liên hệ tổng đài để được tư vấn:</p>
+                <strong style="color: red; font-size: 24px;">0383456xxx</strong>
+            </div>
+        </c:if>
+
+        <!-- Đang xử lý giao dịch -->
+        <c:if test="${transResult == null}">
+            <div>
+                <h3 style="font-weight: bold; color: #ffc107;">
+                    Chúng tôi đã tiếp nhận đơn hàng, xin chờ quá trình xử lý!
+                </h3>
+                <p style="font-size: 18px; margin-top: 15px;">Vui lòng để ý số điện thoại của nhân viên tư vấn:</p>
+                <strong style="color: red; font-size: 24px;">0383456xxx</strong>
+            </div>
+        </c:if>
+    </section>
+    <jsp:include page="includes/footer.jsp"></jsp:include>
+    <jsp:include page="includes/rule.jsp"></jsp:include>
+    <jsp:include page="includes/support.jsp"></jsp:include>
+</body>
 </html>

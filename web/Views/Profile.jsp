@@ -250,15 +250,14 @@
                                                         <% if (request.getAttribute("err2") != null) {%>
                                                         <p style="color: red;"><%= request.getAttribute("err2")%></p>
                                                         <% }%>
-                                                        <% String successMessage = request.getParameter("success3"); %>
-                                                        <% if ("update".equals(successMessage)) { %>
-                                                        <p style="color: green;">Tải ảnh lên thành công, vui lòng chờ trong chốc lát rồi tải lại trang!</p>
-                                                        <% } %>
+                                                        <% if (request.getAttribute("success2") != null) {%>
+                                                        <p style="color: green;"><%= request.getAttribute("success2")%></p>
+                                                        <% }%>
                                                         <h4 class="gray">Thông tin cá nhân</h4>
                                                         <div class="dashboard-list-static">
                                                             <!-- Avatar -->
 
-                                                            <form action="uploadAvatar" method="post" enctype="multipart/form-data">
+                                                            <form action="${pageContext.request.contextPath}/uploadAvatar" method="post" enctype="multipart/form-data">
                                                                 <div class="edit-profile-photo">
 
                                                                     <c:choose>
@@ -455,9 +454,9 @@
                                                                                     }
                                                                                 }
 
-                                                                                var successMessage = "<%= request.getParameter("success3")%>"; // Lấy từ URL query thay vì EL
+                                                                                var successMessage = "${success2}";
 
-                                                                                if (successMessage.trim() !== "" && successMessage === "update" && !sessionStorage.getItem("reloaded")) {
+                                                                                if (successMessage.trim() !== "" && !sessionStorage.getItem("reloaded")) {
                                                                                     setTimeout(function () {
                                                                                         sessionStorage.setItem("reloaded", "true"); // Đánh dấu đã reload
                                                                                         window.location.reload();

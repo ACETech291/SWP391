@@ -43,18 +43,7 @@ public class AddTrain extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        StatusDAO sDAO = new StatusDAO();
-        List<Status> statusTrain = sDAO.getStatusTrain();
-        request.setAttribute("status_train", statusTrain);
-
-        List<Status> statusCarriage = sDAO.getStatusSeat();
-        request.setAttribute("status_carriage", statusCarriage);
-
-        TrainDAO tDAO = new TrainDAO();
-        List<Train> topTrains = tDAO.getTopTrains(10);
-        request.setAttribute("topTrains", topTrains);
-
-        request.getRequestDispatcher("Views/Manager/Manager.jsp").forward(request, response);
+        response.sendRedirect("trainmanagement");
     }
 
 
@@ -65,42 +54,30 @@ public class AddTrain extends HttpServlet {
         String des = request.getParameter("description_train");
         String idTrainBrandStr = request.getParameter("id_train_brand");
         String idStatusStr = request.getParameter("id_status");
+        int id_train_brand = Integer.parseInt(idTrainBrandStr);
+        int id_status = Integer.parseInt(idStatusStr);
 
         // Danh sách lỗi
         StringBuilder errors = new StringBuilder();
 
         // Kiểm tra tên tàu (Tên tàu: 1-50 ký tự, không chứa ký tự đặc biệt)
         if (name == null || name.trim().isEmpty()) {
-            errors.append("Tên tàu không được để trống.<br>");
+            errors.append("Tên tàu không được để trống");
         } else if (name.length() > 50) {
-            errors.append("Tên tàu không được vượt quá 50 ký tự.<br>");
-        } else if (!name.matches("^[a-zA-Z0-9\\s]+$")) {
-            errors.append("Tên tàu không được chứa ký tự đặc biệt.<br>");
-        }
+            errors.append("Tên tàu không được vượt quá 50 ký tự");
+        } 
 
         // Kiểm tra mô tả (Mô tả: 1-255 ký tự, không chứa URL)
         if (des == null || des.trim().isEmpty()) {
-            errors.append("Mô tả không được để trống.<br>");
+            errors.append("Mô tả không được để trống");
         } else if (des.length() > 255) {
-            errors.append("Mô tả không được vượt quá 255 ký tự.<br>");
-        } else if (des.matches(".*(http://|https://|www\\.).*")) {
-            errors.append("Mô tả không được chứa URL.<br>");
-        }
-
-        // Kiểm tra trạng thái (Phải chọn từ danh sách có sẵn)
-        int id_train_brand = 0;
-        int id_status = 0;
-        try {
-            id_train_brand = Integer.parseInt(idTrainBrandStr);
-            id_status = Integer.parseInt(idStatusStr);
-        } catch (NumberFormatException e) {
-            errors.append("Vui lòng chọn giá trị hợp lệ cho thương hiệu tàu và trạng thái.<br>");
-        }
+            errors.append("Mô tả không được vượt quá 255 ký tự");
+        } 
 
         // Nếu có lỗi, quay lại trang và hiển thị thông báo
         if (errors.length() > 0) {
-            request.setAttribute("errorMessage", errors.toString());
-            doGet(request, response);
+            request.getSession().setAttribute("errorMessage", errors.toString());
+            response.sendRedirect("trainmanagement");
             return;
         }
 
