@@ -15,18 +15,21 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 import java.io.File;
 import java.nio.file.Paths;
+import java.util.UUID;
 import model.Advertising;
+import model.Customer;
 
 /**
  *
  * @author Nguyen Ba Hien
  */
 @MultipartConfig(
-    fileSizeThreshold = 1024 * 1024 * 2,  // 2MB
-    maxFileSize = 1024 * 1024 * 10,       // 10MB
-    maxRequestSize = 1024 * 1024 * 50     // 50MB
+        fileSizeThreshold = 1024 * 1024 * 2, // 2MB
+        maxFileSize = 1024 * 1024 * 10, // 10MB
+        maxRequestSize = 1024 * 1024 * 50 // 50MB
 )
 public class EditAdvertising extends HttpServlet {
+
     private static final String UPLOAD_DIR = "images/advertising";
 
     /**
@@ -67,7 +70,7 @@ public class EditAdvertising extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         int id = Integer.parseInt(request.getParameter("id"));
         AdvertisingDAO advertisingDAO = new AdvertisingDAO();
         Advertising ad = advertisingDAO.getAdvertisingById(request.getParameter("id"));
@@ -79,6 +82,7 @@ public class EditAdvertising extends HttpServlet {
             response.sendRedirect("ManagerAdvertising?error=notfound");
         }
     }
+
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -90,7 +94,7 @@ public class EditAdvertising extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         int id = Integer.parseInt(request.getParameter("id_advertising"));
         String description = request.getParameter("description");
         String content = request.getParameter("content");
@@ -109,20 +113,35 @@ public class EditAdvertising extends HttpServlet {
         String imagePath = ad.getImage_advertising(); // Ảnh cũ
 
         if (fileName != null && !fileName.isEmpty()) {
-            //String uploadPath = getServletContext().getRealPath("/") + "images/advertising";
             String uploadPath = "D:\\SWPFinal\\SWP391\\web\\images\\advertising";
             File uploadDir = new File(uploadPath);
-            if (!uploadDir.exists()) uploadDir.mkdirs(); // Tạo thư mục nếu chưa có
+            if (!uploadDir.exists()) {
+                uploadDir.mkdirs(); // Tạo thư mục nếu chưa có
+            }
+            // Xóa ảnh cũ nếu có
+            String oldImage = ad.getImage_advertising();
+            if (oldImage != null && !oldImage.equals("/images/avatar/default.png")) {
+                File oldFile = new File(uploadPath + File.separator + Paths.get(oldImage).getFileName());
+                if (oldFile.exists()) {
+                    oldFile.delete();
+                }
+            }
 
-            String filePath = uploadPath + File.separator + fileName;
+            // Thêm UUID vào tên file mới
+            String uuid = UUID.randomUUID().toString();
+            String extension = fileName.substring(fileName.lastIndexOf(".")); // Lấy đuôi file
+            String newFileName = uuid + extension; // Định dạng: uuid.jpg, uuid.png, ...
+
+            // Ghi file mới
+            String filePath = uploadPath + File.separator + newFileName;
             filePart.write(filePath);
 
-            imagePath = "/images/advertising/" + fileName; // Cập nhật ảnh mới
+            imagePath = "/images/advertising/" + newFileName; // Cập nhật đường dẫn ảnh mới
         }
 
         // Cập nhật database
         boolean success = advertisingDAO.updateAdvertising(id, imagePath, description, content);
-        
+
         if (success) {
             response.sendRedirect("AdvertisingManagement?success1=updated");
         } else {
@@ -131,7 +150,7 @@ public class EditAdvertising extends HttpServlet {
             request.getRequestDispatcher("Views/Manager/EditAdvertising.jsp").forward(request, response);
         }
     }
-    
+
     @Override
     public String getServletInfo() {
         return "Short description";

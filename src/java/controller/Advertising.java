@@ -2,6 +2,8 @@ package controller;
 
 import dal.AdvertisingDAO;
 import dal.FeedbackDAO;
+import dal.IntroductionDAO;
+import dal.PolicyDAO;
 import dal.TrainBrandDAO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
@@ -57,6 +59,10 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
     }
 
     // Lưu giá trị đã chọn để hiển thị lại trên giao diện
+        PolicyDAO policyDAO = new PolicyDAO();
+        IntroductionDAO introductionDAO = new IntroductionDAO();
+        request.setAttribute("policy",policyDAO.getLastPolicy().getContent());
+        request.setAttribute("introduction", introductionDAO.getLastIntroduction().getContent());
     request.setAttribute("brandList", brandList);
     request.setAttribute("listAdvertisings", listAdvertisings);
     request.setAttribute("sort", sort);

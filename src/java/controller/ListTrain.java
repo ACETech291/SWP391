@@ -1,5 +1,7 @@
 package controller;
 
+import dal.IntroductionDAO;
+import dal.PolicyDAO;
 import dal.TrainBrandDAO;
 import dal.TrainDAO;
 import java.io.IOException;
@@ -26,6 +28,10 @@ public class ListTrain extends HttpServlet {
         TrainDAO trainDAO = new TrainDAO();
         TrainBrandDAO trainBrandDAO = new TrainBrandDAO();
         List<TrainBrand> brandList = null;
+                PolicyDAO policyDAO = new PolicyDAO();
+        IntroductionDAO introductionDAO = new IntroductionDAO();
+        request.setAttribute("policy",policyDAO.getLastPolicy().getContent());
+        request.setAttribute("introduction", introductionDAO.getLastIntroduction().getContent());
         try {
              brandList = trainBrandDAO.getAllTrainBrands();
         } catch (SQLException ex) {

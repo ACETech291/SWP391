@@ -17,6 +17,7 @@ public class Train implements SQLInsert {
     private String description_train;
     private int id_train_brand;
     private int id_status;
+    private int is_delete;
 
     public Train() {
     }
@@ -53,6 +54,27 @@ public class Train implements SQLInsert {
         this.id_train_brand = id_train_brand;
         this.id_status = id_status;
     }
+
+    public Train(int id_train, String name_train, String image_train, String content, String description_train, int id_train_brand, int id_status, int is_delete) {
+        this.id_train = id_train;
+        this.name_train = name_train;
+        this.image_train = image_train;
+        this.content = content;
+        this.description_train = description_train;
+        this.id_train_brand = id_train_brand;
+        this.id_status = id_status;
+        this.is_delete = is_delete;
+    }
+
+    public int getIs_delete() {
+        return is_delete;
+    }
+
+    public void setIs_delete(int is_delete) {
+        this.is_delete = is_delete;
+    }
+    
+    
 
     public int getId_train() {
         return id_train;

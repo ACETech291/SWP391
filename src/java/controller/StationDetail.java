@@ -1,5 +1,7 @@
 package controller;
 
+import dal.IntroductionDAO;
+import dal.PolicyDAO;
 import dal.StationDAO;
 import dal.TripDAO;
 import model.Station;
@@ -18,7 +20,10 @@ public class StationDetail extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         StationDAO stationDAO = new StationDAO();
-        
+                PolicyDAO policyDAO = new PolicyDAO();
+        IntroductionDAO introductionDAO = new IntroductionDAO();
+        request.setAttribute("policy",policyDAO.getLastPolicy().getContent());
+        request.setAttribute("introduction", introductionDAO.getLastIntroduction().getContent());
         String id = request.getParameter("id");      
         Station station = stationDAO.getStationById(Integer.parseInt(id));
         request.setAttribute("station", station);

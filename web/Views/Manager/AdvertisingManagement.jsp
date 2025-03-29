@@ -46,6 +46,12 @@
             .add-form {
                 display: none;
             }
+            .delete-btn {
+                color: white;
+                cursor: pointer;
+                font-weight: bold;
+            }
+
         </style>
 
     </head>
@@ -82,17 +88,17 @@
                     <% }%>
 
                     <%
-                        String sucessAdd = request.getParameter("success3");
-                        if ("added".equals(successDelete)) {
+                        String successAdd = request.getParameter("success3");
+                        if ("added".equals(successAdd)) {
                     %>
-                    <div style="color: green;">Thêm mới bản tin thành công!</div>
+                    <div style="color: green;">Thêm mới bản tin thành công, vui lòng chờ trong chốc lát!</div>
                     <% }%>
 
                     <%
                         String successEdit = request.getParameter("success1");
                         if ("updated".equals(successEdit)) {
                     %>
-                    <div style="color: green;">Cập nhật bản tin thành công!</div>
+                    <div style="color: green;">Cập nhật bản tin thành công, vui lòng chờ trong chốc lát!</div>
                     <% }%>
 
                     <%
@@ -169,8 +175,8 @@
                                             <!-- Nút hành động -->
                                             <a href="EditAdvertising?id=${ad.id_advertising}" class="btn btn-warning btn-sm">Sửa</a>
 
-                                            <a href="DeleteAdvertising?id=${ad.id_advertising}" onclick="return confirm('Bạn có chắc chắn muốn xóa bản tin này?');">
-                                                <button>Delete</button>
+                                            <a href="DeleteAdvertising?id=${ad.id_advertising}" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa bản tin này?');">
+                                                <button class="delete-btn">Xóa</button>
                                             </a>
                                         </td>
                                     </tr>

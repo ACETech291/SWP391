@@ -19,6 +19,7 @@ CREATE TABLE Advertising (
   id_manager              int(11) NOT NULL, 
   content                 LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   create_at               TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  is_delete           BIT(1)  DEFAULT b'0',
   PRIMARY KEY (id_advertising), 
   INDEX (id_advertising));
   
@@ -114,7 +115,7 @@ CREATE TABLE Station (
   name_station        varchar(255) NOT NULL, 
   image_station       BLOB, 
   description_station varchar(255), 
-  content                 LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,	
+  content                 LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (id_station));
   
 CREATE TABLE Time_of_station  (
@@ -164,6 +165,7 @@ CREATE TABLE Train (
   description_train varchar(255) NOT NULL, 
   id_train_brand    int(11) NOT NULL, 
   id_status         int(11) NOT NULL, 
+  is_delete           BIT(1)  DEFAULT b'0',
   PRIMARY KEY (id_train));
   
 CREATE TABLE Train_brand (

@@ -11,7 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- ===============================================--><!--    Document Title--><!-- ===============================================-->
-        <title>Quản lý các hãng tàu</title>
+        <title>Quản lý</title>
         <jsp:include page="../includes/icon.jsp"></jsp:include>
             <!-- ===============================================--><!--    Stylesheets--><!-- ===============================================-->
             <link rel="preconnect" href="https://fonts.gstatic.com/">
@@ -41,7 +41,7 @@
                                     <div class="card-header bg-body-tertiary py-2">
                                         <div class="row flex-between-center">
                                             <div class="col-auto">
-                                                <h6 class="mb-0">Các Hãng tàu</h6>
+                                                <h6 class="mb-0">Các quản lý</h6>
                                             </div>
                                         </div>
                                     </div>

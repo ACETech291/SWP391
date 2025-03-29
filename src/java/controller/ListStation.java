@@ -1,5 +1,7 @@
 package controller;
 
+import dal.IntroductionDAO;
+import dal.PolicyDAO;
 import dal.StationDAO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
@@ -17,6 +19,10 @@ public class ListStation extends HttpServlet {
             throws ServletException, IOException {
         StationDAO stationDAO = new StationDAO();
         List<Station> listStation = stationDAO.getNext6Stations(0);  
+                PolicyDAO policyDAO = new PolicyDAO();
+        IntroductionDAO introductionDAO = new IntroductionDAO();
+        request.setAttribute("policy",policyDAO.getLastPolicy().getContent());
+        request.setAttribute("introduction", introductionDAO.getLastIntroduction().getContent());
         request.setAttribute("listStation", listStation);
         request.getRequestDispatcher("Views/ListStation.jsp").forward(request, response);
     }

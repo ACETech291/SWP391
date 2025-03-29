@@ -77,7 +77,11 @@
                                     </button>
 
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="Profile"><i class="sl sl-icon-user"></i> Thông tin cá nhân</a>
+                                        <c:choose>
+                                            <c:when test="${sessionScope.account.role.id != 2}">
+                                                <a class="dropdown-item" href="Profile"><i class="sl sl-icon-user"></i> Thông tin cá nhân</a>
+                                            </c:when>
+                                        </c:choose>
                                         <a class="dropdown-item" href="Logout"><i class="sl sl-icon-power"></i> Đăng xuất</a>
                                     </div>
                                 </div>
