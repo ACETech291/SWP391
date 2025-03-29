@@ -82,17 +82,17 @@
                     <% }%>
 
                     <%
-                        String sucessAdd = request.getParameter("success3");
-                        if ("added".equals(successDelete)) {
+                        String successAdd = request.getParameter("success3");
+                        if ("added".equals(successAdd)) {
                     %>
-                    <div style="color: green;">Thêm mới bản tin thành công!</div>
+                    <div style="color: green;">Thêm mới bản tin thành công, vui lòng chờ trong chốc lát!</div>
                     <% }%>
 
                     <%
                         String successEdit = request.getParameter("success1");
                         if ("updated".equals(successEdit)) {
                     %>
-                    <div style="color: green;">Cập nhật bản tin thành công!</div>
+                    <div style="color: green;">Cập nhật bản tin thành công, vui lòng chờ trong chốc lát!</div>
                     <% }%>
 
                     <%

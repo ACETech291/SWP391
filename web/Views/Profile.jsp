@@ -237,16 +237,16 @@
                                                 <!-- Profile -->
                                                 <div class="col-lg-6 col-md-6 col-xs-12 padding-right-30">
                                                     <div class="dashboard-list">
-                                                                 <% if (request.getAttribute("err2") != null) {%>
-                                                <p style="color: red;"><%= request.getAttribute("err2")%></p>
-                                                <% }%>
-                                                <% if (request.getAttribute("success2") != null) {%>
-                                                <p style="color: green;"><%= request.getAttribute("success2")%></p>
-                                                <% }%>
+                                                        <% if (request.getAttribute("err2") != null) {%>
+                                                        <p style="color: red;"><%= request.getAttribute("err2")%></p>
+                                                        <% }%>
+                                                        
+                                                        <div style="color: green;">${success2}</div>
+                                                        
                                                         <h4 class="gray">Thông tin cá nhân</h4>
                                                         <div class="dashboard-list-static">
                                                             <!-- Avatar -->
-                                                   
+
                                                             <form action="${pageContext.request.contextPath}/uploadAvatar" method="post" enctype="multipart/form-data">
                                                                 <div class="edit-profile-photo">
                                                                     <img src="${pageContext.request.contextPath}${account.image_url}" alt="Avatar customer" />
@@ -417,17 +417,9 @@
                                                                                         document.getElementById("uploadForm").submit();
                                                                                     }
                                                                                 }
-                                                                                   
-    var successMessage = "${success2}";
 
-    if (successMessage.trim() !== "" && !sessionStorage.getItem("reloaded")) {
-        setTimeout(function () {
-            sessionStorage.setItem("reloaded", "true"); // Đánh dấu đã reload
-            window.location.reload();
-        }, 5000);
-    } else {
-        sessionStorage.removeItem("reloaded"); // Xóa trạng thái khi load lại
-    }
+                                                                                
+                                                                                
 
     </script>
 </html>

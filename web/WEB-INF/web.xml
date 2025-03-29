@@ -1,31 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="6.0"
-         xmlns="https://jakarta.ee/xml/ns/jakartaee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
-    
-    <filter>
+<web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+<!--    <filter>
         <filter-name>LoginFilter</filter-name>
         <filter-class>filter.LoginFilter</filter-class>
     </filter>
-<!--    <filter>
+    <filter>
         <filter-name>AuthorizationFilter</filter-name>
         <filter-class>filter.AuthorizationFilter</filter-class>
-    </filter>-->
+    </filter>
     <filter>
         <filter-name>RouterFilter</filter-name>
         <filter-class>filter.RouterFilter</filter-class>
     </filter>
-    
+    <filter>
+        <filter-name>BlockFilter</filter-name>
+        <filter-class>filter.BlockFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>BlockFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
         <url-pattern>/BookTicket</url-pattern>
+        <url-pattern>/ChooseSeat</url-pattern>
+        <url-pattern>/ConfirmBooking</url-pattern>
     </filter-mapping>
-
     <filter-mapping>
         <filter-name>RouterFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-<!--    <filter-mapping>
+    <filter-mapping>
         <filter-name>AuthorizationFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>-->
@@ -381,7 +386,6 @@
         <servlet-name>DeleteFeedback</servlet-name>
         <servlet-class>controller.manager.DeleteFeedback</servlet-class>
     </servlet>
-    
     <servlet-mapping>
         <servlet-name>home</servlet-name>
         <url-pattern>/home</url-pattern>
