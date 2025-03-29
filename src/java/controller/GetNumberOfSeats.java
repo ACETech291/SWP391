@@ -28,6 +28,8 @@ public class GetNumberOfSeats extends HttpServlet {
         String xid_trip = request.getParameter("id_trip");
         String xtotalSeat = request.getParameter("totalSeat");
         String xid_train_carriage = request.getParameter("id");
+        String date = request.getParameter("date");
+        System.out.println(date);
         int id_train_carriage = Integer.parseInt(xid_train_carriage);
         TripDAO tripdao = new TripDAO();
         int id_train = tripdao.getIdTrainByIdTrip(Integer.parseInt(xid_trip));
@@ -35,9 +37,10 @@ public class GetNumberOfSeats extends HttpServlet {
         List<Integer> code_train_seat = td.getCodeTrainSeat(id_train, id_train_carriage);
         List<String> st = td.getStartDate(id_train, id_train_carriage);
         List<String> et = td.getEndDate(id_train, id_train_carriage);
+        List<String> bookdate = td.getDateInBooking(id_train, id_train_carriage);
         List<Integer> res = new ArrayList<>();
         for(int i = 0 ; i < st.size(); ++i){
-            if(st.get(i).compareTo(end_time) >= 0 || et.get(i).compareTo(start_time) <= 0){
+            if(st.get(i).compareTo(end_time) >= 0 || et.get(i).compareTo(start_time) <= 0 || date.compareTo(bookdate.get(i)) != 0){
                 
             }
             else{

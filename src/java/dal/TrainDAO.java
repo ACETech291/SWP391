@@ -230,7 +230,20 @@ public class TrainDAO {
         }
         return listTrains;
     }
-
+    public String getNameTrainById(int id_train){
+        String sql = "SELECT name_train FROM train WHERE train.id_train = ?";
+        String res = null;
+        try {
+            PreparedStatement ps = connect.prepareStatement(sql);
+            ps.setInt(1, id_train);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                res = rs.getString("name_train");
+            }
+        } catch (SQLException e) {
+        }
+        return res;
+    }
     public static void main(String[] args) {
         TrainDAO trainDAO = new TrainDAO();
         List<Train> lst = trainDAO.getNext4Stations(0);
