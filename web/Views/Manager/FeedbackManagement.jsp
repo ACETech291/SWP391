@@ -94,7 +94,7 @@
                     <jsp:include page="lib/header.jsp"></jsp:include>
                         <!-- Content -->
                         <div class="section-title text-center mb-5 pb-2 w-50 mx-auto">
-                            <h2 class="m-0"><span>Quản lý bình luận</span></h2>
+                            <h2 class="m-0"><span>Quản lý đánh giá</span></h2>
                         </div> 
                         
                         <!-- 

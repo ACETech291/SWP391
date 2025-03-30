@@ -173,7 +173,7 @@
                                         </td>
                                         <td class="text-center align-middle">
                                             <!-- Nút hành động -->
-                                            <a href="EditAdvertising?id=${ad.id_advertising}" class="btn btn-warning btn-sm">Sửa</a>
+                                            <a href="EditAdvertising?id=${ad.id_advertising}" class="btn btn-warning btn-sm">Sửa giá vé</a>
 
                                             <a href="DeleteAdvertising?id=${ad.id_advertising}" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa bản tin này?');">
                                                 <button class="delete-btn">Xóa</button>

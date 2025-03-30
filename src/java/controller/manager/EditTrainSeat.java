@@ -87,7 +87,7 @@ public class EditTrainSeat extends HttpServlet {
             Logger.getLogger(EditTrainSeat.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        request.getSession().setAttribute("successMessage", "Thêm ghế tàu thành công!");
+        request.getSession().setAttribute("successMessage", "Sửa ghế tàu thành công!");
         response.sendRedirect("seatmanagement");
     }
 }

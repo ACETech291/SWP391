@@ -62,7 +62,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <a class="nav-link" href="trainmanagement" role="button">
             <div class="d-flex align-items-center">
               <span class="nav-link-icon"
-                ><span class="fas fa-home"></span></span
+                ><span class="fas fa-train"></span></span
               ><span class="nav-link-text ps-1">Quản lý tàu</span>
             </div>
           </a>
@@ -70,7 +70,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <a class="nav-link" href="carriagemanagement" role="button">
             <div class="d-flex align-items-center">
               <span class="nav-link-icon"
-                ><span class="fas fa-home"></span></span
+                ><span class="fas fa-th-large"></span></span
               ><span class="nav-link-text ps-1">Quản lý khoang</span>
             </div>
           </a>
@@ -78,7 +78,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <a class="nav-link" href="seatmanagement" role="button">
             <div class="d-flex align-items-center">
               <span class="nav-link-icon"
-                ><span class="fas fa-home"></span></span
+                ><span class="fas fa-chair"></span></span
               ><span class="nav-link-text ps-1">Quản lý ghế</span>
             </div>
           </a>
@@ -86,7 +86,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <a class="nav-link" href="stationmanagement" role="button">
             <div class="d-flex align-items-center">
               <span class="nav-link-icon"
-                ><span class="fas fa-home"></span></span
+                ><span class="fas fa-map-marker-alt"></span></span
               ><span class="nav-link-text ps-1">Quản lý ga</span>
             </div>
           </a>
@@ -94,7 +94,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <a class="nav-link" href="AdvertisingManagement" role="button">
             <div class="d-flex align-items-center">
               <span class="nav-link-icon"
-                ><span class="fas fa-home"></span></span
+                ><span class="fas fa-newspaper"></span></span
               ><span class="nav-link-text ps-1">Quản lý bản tin</span>
             </div>
           </a>
@@ -102,7 +102,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <a class="nav-link" href="BrandManagement" role="button">
             <div class="d-flex align-items-center">
               <span class="nav-link-icon"
-                ><span class="fas fa-home"></span></span
+                ><span class="fas fa-building"></span></span
               ><span class="nav-link-text ps-1">Quản lý thông tin hãng</span>
             </div>
           </a>
@@ -110,7 +110,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <a class="nav-link" href="TripManagement" role="button">
             <div class="d-flex align-items-center">
               <span class="nav-link-icon"
-                ><span class="fas fa-home"></span></span
+                ><span class="fas fa-route
+
+"></span></span
               ><span class="nav-link-text ps-1">Quản lý chuyến đi</span>
             </div>
           </a>
@@ -127,14 +129,14 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <a class="nav-link" href="CommentManagement" role="button">
             <div class="d-flex align-items-center">
               <span class="nav-link-icon"
-                ><span class="fas fa-user-plus"></span></span
+                ><span class="fas fa-comments"></span></span
               ><span class="nav-link-text ps-1">Xem bình luận</span>
             </div>
           </a>
           <a class="nav-link" href="FeedbackManagement" role="button">
             <div class="d-flex align-items-center">
               <span class="nav-link-icon"
-                ><span class="fas fa-user-plus"></span></span
+                ><span class="fas fa-star"></span></span
               ><span class="nav-link-text ps-1">Xem đánh giá</span>
             </div>
           </a>
