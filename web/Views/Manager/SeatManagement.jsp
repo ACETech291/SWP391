@@ -72,7 +72,7 @@
                     <jsp:include page="lib/header.jsp"></jsp:include>
                         <!-- Content -->
                         <div class="section-title text-center mb-5 pb-2 w-50 mx-auto">
-                            <h2 class="m-0"><span>Quản lý tàu</span></h2>
+                            <h2 class="m-0"><span>Quản lý ghế</span></h2>
                         </div> 
 
                         <div>
