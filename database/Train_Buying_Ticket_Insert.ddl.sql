@@ -33526,6 +33526,7 @@ INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_
 INSERT INTO authorization(role_id,URL_authorization,feature_authorization,status_authorization) VALUE
 (3,"/RefundTicket","Hoàn trả lại vé",1),
 (2,"/ChangeRefund","Trả tiền cho khách hàng",1),
+(2,"/CustomerManagement","Quản lý khách khàng",1),
 (3,"/ViewTicketDetail","Xem kĩ hơn lịch sử mua hang",1),
 (3,"/HistoryBooking","Lịch sử mua hàng",1),
 (3,"/ChooseSeat","Chọn ghế",1),(3,"/GetNumberOfSeats","Thông tin ghế trong khoang",1),(3,"/ConfirmBooking","Xác nhận đơn hàng",1),
