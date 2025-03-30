@@ -140,9 +140,16 @@ uri="http://java.sun.com/jsp/jstl/core" %>
               ><span class="nav-link-text ps-1">Xem đánh giá</span>
             </div>
           </a>
+          <a class="nav-link" href="CustomerManagement" role="button">
+            <div class="d-flex align-items-center">
+              <span class="nav-link-icon"
+                ><span class="fas fa-user-plus"></span></span
+              ><span class="nav-link-text ps-1">Xem khách hàng</span>
+            </div>
+          </a>
         </li>
 
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
         <li class="nav-item">
           <!-- label-->
           <div class="row navbar-vertical-label-wrapper mt-2 mb-2">

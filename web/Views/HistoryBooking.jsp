@@ -154,6 +154,7 @@
                                                     <input type="hidden" name="booking" value='<%= bookingJson%>'>
                                                     <input type="hidden" name="code_train_seat" value="<%= code_train_seat.get(i)%>">
                                                     <input type="hidden" name="name_train" value="<%= name_train.get(i)%>">
+                                                    <input type="hidden" name="cusomter_require" value="1">
                                                     <button type="submit" class="btn btn-danger btn-sm">Hoàn vé</button>
                                                 </form>
                                                 <%

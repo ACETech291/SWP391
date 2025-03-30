@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
 /**
@@ -20,6 +16,15 @@ public class Customer implements SQLInsert {
     private int status;
     private String image_url;
     private Role role;
+    private int ticket_quantity;
+
+    public int getTicket_quantity() {
+        return ticket_quantity;
+    }
+
+    public void setTicket_quantity(int ticket_quantity) {
+        this.ticket_quantity = ticket_quantity;
+    }
 
     public Customer() {
     }

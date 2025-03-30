@@ -3,16 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/SWPFinal/SWP391/src/java/dal/DatabaseInitializer.java</file>
-            <file>file:/D:/SWPFinal/SWP391/web/WEB-INF/web.xml</file>
-            <file>file:/D:/SWPFinal/SWP391/web/Views/Admin/ManagerList.jsp</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/dal/TicketDAO.java</file>
+            <file>file:/D:/SWPFinal/SWP391/web/Views/Manager/lib/navbar.jsp</file>
             <file>file:/D:/SWPFinal/SWP391/web/Views/HistoryBooking.jsp</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/dal/TrainDAO.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/controller/HistoryBooking.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/controller/GetNumberOfSeats.java</file>
-            <file>file:/D:/SWPFinal/SWP391/src/java/controller/ChooseSeat.java</file>
-            <file>file:/D:/SWPFinal/SWP391/web/Views/ChooseSeat.jsp</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/dal/CustomerDAO.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/model/PurchaseHistory.java</file>
+            <file>file:/D:/SWPFinal/SWP391/web/Views/Admin/CustomerDetail.jsp</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/model/Customer.java</file>
+            <file>file:/D:/SWPFinal/SWP391/web/Views/Profile.jsp</file>
+            <file>file:/D:/SWPFinal/SWP391/web/Views/Manager/CustomerManagement.jsp</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/dal/PurchaseHistoryDAO.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/RefundTicket.java</file>
         </group>
     </open-files>
 </project-private>

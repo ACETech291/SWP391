@@ -103,9 +103,11 @@
                                             </div>
                                             
                                             <input type="hidden" name="id_ticket" value="${booking.getId_ticket()}"> 
+                                            <input type="hidden" name="cusomter_require" value="1">
                                             <button type="submit" class="btn btn-danger">Yêu cầu hoàn vé</button>
                                         </form>
                                         <% if (message != null && message.equals("True")) { %>
+                                        
                                         <p> Bạn đã thao tác hủy vé thành công, hãy đợi Admin phản hồi
                                         <% }%>
                                     </div>

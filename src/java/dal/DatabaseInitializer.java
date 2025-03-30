@@ -14,12 +14,12 @@ public class DatabaseInitializer implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         System.out.println("Initializing database...");
-        DBConnect.executeSQLFile("D:\\SWPFinal\\SWP391\\database\\Train_Buying_Ticket_Create.ddl.sql");
-        DBConnect.executeSQLFile("D:\\SWPFinal\\SWP391\\database\\Train_Buying_Ticket_Insert.ddl.sql");
-        DBConnect.executeSQLFile("D:\\SWPFinal\\SWP391\\database\\Train_Buying_Ticket_InsertCustomer.ddl.sql");
-        DBConnect.executeSQLFile("D:\\SWPFinal\\SWP391\\database\\Train_Buying_Ticket_InsertTicket.ddl.sql");
-        DBConnect.executeSQLFile("D:\\SWPFinal\\SWP391\\database\\Important_train_seat.ddl.sql");
-        System.out.println("Database initialized successfully!");
+//        DBConnect.executeSQLFile("D:\\SWPFinal\\SWP391\\database\\Train_Buying_Ticket_Create.ddl.sql");
+//        DBConnect.executeSQLFile("D:\\SWPFinal\\SWP391\\database\\Train_Buying_Ticket_Insert.ddl.sql");
+//        DBConnect.executeSQLFile("D:\\SWPFinal\\SWP391\\database\\Train_Buying_Ticket_InsertCustomer.ddl.sql");
+//        DBConnect.executeSQLFile("D:\\SWPFinal\\SWP391\\database\\Train_Buying_Ticket_InsertTicket.ddl.sql");
+//        DBConnect.executeSQLFile("D:\\SWPFinal\\SWP391\\database\\Important_train_seat.ddl.sql");
+//        System.out.println("Database initialized successfully!");
     }
 
     @Override

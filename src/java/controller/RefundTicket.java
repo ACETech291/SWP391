@@ -50,7 +50,6 @@ public class RefundTicket extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -66,6 +65,13 @@ public class RefundTicket extends HttpServlet {
         String accountName = request.getParameter("accountName");
         String name_banking = request.getParameter("nameBanking");
         String accountNumber = request.getParameter("accountNumber");
+        //String name_customer = request.getParameter("name_customer");
+        
+        
+        String xcustomerRequire = request.getParameter("cusomter_require");
+        
+        int customer_require = Integer.parseInt(xcustomerRequire);  
+        
         HttpSession session = request.getSession();
         Customer customer = (Customer) session.getAttribute("account");
         CustomerDAO cd = new CustomerDAO();
@@ -74,21 +80,14 @@ public class RefundTicket extends HttpServlet {
         
         int id_ticket = Integer.parseInt(xid_ticket);
         
-        PurchaseHistory purchaseHistory = new PurchaseHistory(id_ticket, name_banking, Integer.parseInt(accountNumber), id_customer, 1, accountName);
+        PurchaseHistory purchaseHistory = new PurchaseHistory(id_ticket, name_banking, Integer.parseInt(accountNumber), id_customer, 1, accountName,customer_require);
         PurchaseHistoryDAO phd = new PurchaseHistoryDAO();
         phd.insertPurchaseHistory(purchaseHistory);
         request.setAttribute("message", "True");
         request.getRequestDispatcher("Views/Refund.jsp").forward(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -96,6 +95,7 @@ public class RefundTicket extends HttpServlet {
         String code_train_seat = request.getParameter("code_train_seat");
         String name_train = request.getParameter("name_train");
         String bookingJson = request.getParameter("booking");
+        int cusomter_require = Integer.parseInt(request.getParameter("cusomter_require"));
         Gson gson = new Gson();
         InformationBooking booking = gson.fromJson(bookingJson, InformationBooking.class);
         HttpSession session = request.getSession();
@@ -104,17 +104,9 @@ public class RefundTicket extends HttpServlet {
         request.setAttribute("code_train_seat", code_train_seat);
         request.setAttribute("name_train", name_train);
         request.setAttribute("booking", booking);
+        request.setAttribute("cusomter_require", cusomter_require);
         request.getRequestDispatcher("Views/Refund.jsp").forward(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }
