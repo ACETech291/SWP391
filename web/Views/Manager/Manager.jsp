@@ -70,7 +70,7 @@
                             <div class="col-md-6 col-xxl-6">
                                 <div class="card h-md-100 ecommerce-card-min-width">
                                     <div class="card-header pb-0">
-                                        <h6 class="mb-0 mt-2 d-flex align-items-center">Doanh thu trung bình</h6>
+                                        <h6 class="mb-0 mt-2 d-flex align-items-center">Doanh thu tổng</h6>
                                     </div>
                                     <div class="card-body d-flex flex-column justify-content-end">
                                         <div class="row">
@@ -106,7 +106,7 @@
                         </div>
 
                         <!-- Tổng số vé bán ra -->
-                        <div class="col-md-6 col-xxl-4">
+                        <div class="col-md-6 col-xxl-6">
                             <div class="card h-md-100">
                                 <div class="card-header pb-0">
                                     <h6 class="mb-0 mt-2">Tổng số vé bán ra</h6>
@@ -136,26 +136,6 @@
                                                  }' 
                                                  data-echart-responsive="true">
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Tỷ lệ huỷ vé -->
-                        <div class="col-md-6 col-xxl-2">
-                            <div class="card h-md-100">
-                                <div class="card-header pb-0">
-                                    <h6 class="mb-0 mt-2">Tỉ lệ huỷ vé</h6>
-                                </div>
-                                <div class="card-body d-flex flex-column justify-content-end">
-                                    <div class="row">
-                                        <div class="col">
-                                            <p class="font-sans-serif lh-1 mb-1 fs-5">${cancellationRate}%</p>
-                                            <span class="badge rounded-pill fs-11 bg-200 text-primary"><span class="fas fa-caret-up me-1"></span>0%</span>
-                                        </div>
-                                        <div class="col-auto ps-0">
-                                            <div class="echart-pie-average-fill h-100"></div>
                                         </div>
                                     </div>
                                 </div>

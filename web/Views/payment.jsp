@@ -65,6 +65,3 @@
     </form>
 </body>
 </html>
-    <jsp:include page="includes/footer.jsp"></jsp:include>
-    <jsp:include page="includes/rule.jsp"></jsp:include>
-    <jsp:include page="includes/support.jsp"></jsp:include>
