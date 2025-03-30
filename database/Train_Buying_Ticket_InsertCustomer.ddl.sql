@@ -101,3 +101,4 @@ INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_
 ('Lưu Đức Vinh','luuducv@gmail.com','6NWFIsI1V5KNFeeazNcq35qxRUE=','123',3,1),
 ('Nguyễn Thị Yến Nhi','nguyenthihyn@gmail.com','6NWFIsI1V5KNFeeazNcq35qxRUE=','123',3,1);
 INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Nguyen Huu Hiep (K18 Hl)','hiepnhhe181338@fpt.edu.vn','boGMWesdxPBADDgutT7i9LvxeAU=','0123456',3,1); 
+INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('Dinh Phu QP1281 Duong','ddinhphu2004@gmail.com','l83O7g6u9wRxkpqpELyBqmf6Pko=','0123456',3,1); 

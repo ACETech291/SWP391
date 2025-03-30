@@ -82,6 +82,7 @@ CREATE TABLE Purchase_history (
   id_customer         int(11) NOT NULL, 
   id_payment_method   int(11) NOT NULL, 
   name_user 		 NVARCHAR(255) NOT NULL,
+   cusomter_require		 BIT(1),
   PRIMARY KEY (id_purchase_history), 
   INDEX (id_purchase_history));
   

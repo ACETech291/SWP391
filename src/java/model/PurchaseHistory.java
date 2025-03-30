@@ -13,6 +13,37 @@ public class PurchaseHistory {
     private int id_customer;
     private int id_payment_method;
     private String name_user;
+    private int cusomter_require;
+    private String name_customer;
+
+    public String getName_customer() {
+        return name_customer;
+    }
+
+    public void setName_customer(String name_customer) {
+        this.name_customer = name_customer;
+    }
+
+    public int getCusomter_require() {
+        return cusomter_require;
+    }
+
+    public void setCusomter_require(int cusomter_require) {
+        this.cusomter_require = cusomter_require;
+    }
+
+    public PurchaseHistory(int id_ticket, String name_banking, int account_number, int id_customer, int id_payment_method, String name_user, int cusomter_require) {
+        this.id_ticket = id_ticket;
+        this.name_banking = name_banking;
+        this.account_number = account_number;
+        this.id_customer = id_customer;
+        this.id_payment_method = id_payment_method;
+        this.name_user = name_user;
+        this.cusomter_require = cusomter_require;
+        //this.name_customer = name_customer;
+    }
+    
+    
 
     public PurchaseHistory(int id_ticket, String name_banking, int account_number, int id_customer, int id_payment_method, String name_user) {
 

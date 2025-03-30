@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="6.0"
-    xmlns="https://jakarta.ee/xml/ns/jakartaee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
-
-        <filter>
+<web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+    <!--        <filter>
         <filter-name>LoginFilter</filter-name>
         <filter-class>filter.LoginFilter</filter-class>
     </filter>
@@ -28,8 +25,7 @@
     <filter-mapping>
         <filter-name>AuthorizationFilter</filter-name>
         <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
+    </filter-mapping>-->
     <servlet>
         <servlet-name>ajaxServlet</servlet-name>
         <servlet-class>com.vnpay.common.ajaxServlet</servlet-class>
@@ -45,6 +41,14 @@
     <servlet>
         <servlet-name>RefundTicket</servlet-name>
         <servlet-class>controller.RefundTicket</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerManagement</servlet-name>
+        <servlet-class>controller.manager.CustomerManagement</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangeRefund</servlet-name>
+        <servlet-class>controller.manager.ChangeRefund</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ajaxServlet</servlet-name>
@@ -749,5 +753,13 @@
     <servlet-mapping>
         <servlet-name>RefundTicket</servlet-name>
         <url-pattern>/RefundTicket</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerManagement</servlet-name>
+        <url-pattern>/CustomerManagement</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangeRefund</servlet-name>
+        <url-pattern>/ChangeRefund</url-pattern>
     </servlet-mapping>
 </web-app>

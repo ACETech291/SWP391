@@ -10,12 +10,14 @@
 <%@page import="model.Station"%>
 <%@page import="model.Comment"%>
 <%@page import="model.Customer"%>
+<%@page import="model.PurchaseHistory"%>
 <%@page import="dal.TrainCarriageDAO"%>
 <%@page import="dal.TrainSeatDAO"%>
 <%@page import="dal.TrainDAO"%>
 <%@page import="dal.StationDAO"%>
 <%@page import="dal.CommentDAO"%>
 <%@page import="dal.CustomerDAO"%>
+<%@page import="dal.PurchaseHistoryDAO"%>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.Date" %>
 <!DOCTYPE html>
@@ -72,6 +74,12 @@
             
             CommentDAO dao = new CommentDAO();
             List<Comment> commentList = (voting > 0) ? dao.getAllCommentsByVoting(id_train_brand,voting) : dao.getCommentsByTrainBrandId(id_train_brand);
+            
+            CustomerDAO customerDAO = new CustomerDAO();
+            List<Customer> ListCustomer = customerDAO.getCustomersWithTicketsByTrainBrand(id_train_brand);
+            
+        PurchaseHistoryDAO pdao = new PurchaseHistoryDAO();
+        List<PurchaseHistory> listP = pdao.getAllPurchaseHistory();
         %>
         <!-- ===============================================--><!--    Main Content--><!-- ===============================================-->
         <main class="main" id="top">
@@ -83,68 +91,96 @@
                     <jsp:include page="lib/header.jsp"></jsp:include>
                         <!-- Content -->
                         <div class="section-title text-center mb-5 pb-2 w-50 mx-auto">
-                            <h2 class="m-0"><span>Quản lý bình luận</span></h2>
+                            <h2 class="m-0"><span>Khách hàng</span></h2>
                         </div> 
 
-                        <form action="" method="GET" class="mb-3 d-flex align-items-center">
-                            <label for="voting" class="mr-2">Lọc theo đánh giá:</label>
-                            <select name="voting" id="voting" class="form-control w-auto">
-                                <option value="">Tất cả</option>
-                                <option value="5">⭐ 5 Sao</option>
-                                <option value="4">⭐ 4 Sao</option>
-                                <option value="3">⭐ 3 Sao</option>
-                                <option value="2">⭐ 2 Sao</option>
-                                <option value="1">⭐ 1 Sao</option>
-                            </select>
-                            <button type="submit" class="btn btn-primary ml-2">Lọc</button>
-                        </form>
-
-
+                        <h3 class="m-0"><span>Khách hàng đã mua vé</span></h3>
                         <!-- Table comment -->
                         <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
                             <table class="table table-hover mb-0">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th class="text-center align-middle">Thời gian bình luận</th>
-                                        <th class="text-center align-middle">Đánh giá</th>
-                                        <th class="text-center align-middle">Nội dung</th>
-                                        <th class="text-center align-middle">Người dùng</th>
-                                        <th class="text-center align-middle">Trạng thái</th>
-                                        <th class="text-center align-middle">Hành động</th>
+                                        <th class="text-center align-middle">Tên khách hàng</th>
+                                        <th class="text-center align-middle">Email</th>
+                                        <th class="text-center align-middle">Số điện thoại</th>
+                                        <th class="text-center align-middle">Số lượng vé đã mua</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <% 
                                 
-                                    if (commentList != null && !commentList.isEmpty()) {
-                                        for (Comment com : commentList) {
+                                    if (ListCustomer != null && !ListCustomer.isEmpty()) {
+                                        for (Customer c : ListCustomer) {
                                 %>
                                 <tr>
-                                    <td class="text-center align-middle"><%= sdf.format(com.getCreate_at()) %></td>
-                                    <td class="text-center align-middle"><%= com.getVoting_comment() %></td>
-                                    <td class="text-center align-middle"><%= com.getContent() %></td>
-                                    <td class="text-center align-middle"><%= com.getName_customer() %></td>
-                                    <td class="text-center align-middle">
-                                        <%= com.getComment_status() ==  0 ? "Hoạt động" : "Không hoạt động" %>
-                                    </td>
-                                    <td class="text-center align-middle">
-                                        <a href="BrandDetail?id=${id_train_brand}" class="btn btn-warning btn-sm">Xem chi tiết </a>
-                                        
-                                    </td>
-                                    
+                                    <td class="text-center align-middle"><%= c.getUserName() %></td>
+                                    <td class="text-center align-middle"><%= c.getEmail() %></td>
+                                    <td class="text-center align-middle"><%= c.getPhoneNumber() %></td>
+                                    <td class="text-center align-middle"><%= c.getTicket_quantity() %></td>                                 
                                 </tr>
                                 <% 
                                         }
                                     } else { 
                                 %>
                                 <tr>
-                                    <td colspan="5" class="text-center">Không có bình luận nào.</td>
+                                    <td colspan="5" class="text-center">Không có khách hàng mua vé</td>
                                 </tr>
                                 <% } %>
                             </tbody>
                         </table>
                     </div><br><br>
 
+                    <!<!-- list yêu cầu -->
+                    <h3 class="m-0"><span>Yêu cầu hoàn trả</span></h3>
+                    <!-- Table comment -->
+                    <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
+                        <table class="table table-hover mb-0">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th class="text-center align-middle">Tên tài khoản ngân hàng</th>
+                                    <th class="text-center align-middle">Tài khoản ngân hàng</th>
+                                    <th class="text-center align-middle">Số tài khoản</th>
+                                    <th class="text-center align-middle">Yêu cầu</th>
+                                    <th class="text-center align-middle">Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% 
+                                
+                                    
+                                        if (listP != null && !listP.isEmpty()) {
+                                        for (PurchaseHistory c : listP) {
+                                %>
+                                <tr>
+                                    <td class="text-center align-middle"><%= c.getName_user() %></td>
+                                    <td class="text-center align-middle"><%= c.getName_banking() %></td>
+                                    <td class="text-center align-middle"><%= c.getAccount_number() %></td>
+                                    <td class="text-center align-middle">
+                                        <%= (c.getCusomter_require() == 1) ? "Yêu cầu hoàn trả" : "Đã hoàn trả" %>
+                                    </td>   
+                                    <td class="text-center align-middle">
+                                        <% if (c.getCusomter_require() == 1) { %>
+                                        <form action="ChangeRefund" method="post" style="display:inline;">
+                                            <input type="hidden" name="id_purchase_history" value="<%= c.getId_purchase_history() %>">
+                                            <button type="submit" class="btn btn-success btn-sm">Xác nhận hoàn trả</button>
+                                        </form>
+                                        <% } %>
+                                    </td>
+
+
+                                </tr>
+                                <% 
+                                        }
+                                    } else { 
+                                %>
+                                <tr>
+                                    <td colspan="5" class="text-center">Không có yêu cầu từ khách hàng</td>
+                                </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div><br><br>
                 </div>
             </div>
         </main>

@@ -149,8 +149,11 @@ public class CustomerDAO {
 
     public static void main(String[] args) {
         CustomerDAO customerDAO = new CustomerDAO();
-        Customer customer = customerDAO.getUserById(15);
-        System.out.println(customer);
+        List<Customer> customer = customerDAO.getCustomersWithTicketsByTrainBrand(1);
+        for (Customer customer1 : customer) {
+            System.out.println(customer1.getUserName());
+        }
+        
     }
 
     public Customer getCustomerByEmail(String email) {
@@ -275,13 +278,52 @@ public class CustomerDAO {
             PreparedStatement ps = connect.prepareStatement(sql);
             ps.setString(1, email);
             ResultSet rs = ps.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 id = rs.getInt("id_customer");
             }
         } catch (Exception e) {
         }
         return id;
     }
+
+    public List<Customer> getCustomersWithTicketsByTrainBrand(int trainBrandId) {
+        List<Customer> customers = new ArrayList<>();
+        String sql = """
+    SELECT c.id_customer, c.name_customer, c.email_customer, c.phone_number_customer, 
+               tb.id_train_brand, tb.name_train_brand, COUNT(t.id_ticket) AS ticket_count 
+        FROM Customer c 
+        JOIN Ticket t ON c.id_customer = t.id_customer 
+        JOIN Train_seat ts ON t.id_train_seat = ts.id_train_seat 
+        JOIN Train_carriage tc ON ts.id_train_carriage = tc.id_train_carriage 
+        JOIN Train tr ON tc.id_train = tr.id_train 
+        JOIN Train_brand tb ON tr.id_train_brand = tb.id_train_brand 
+        WHERE tb.id_train_brand = ? 
+        GROUP BY c.id_customer, c.name_customer, c.email_customer, c.phone_number_customer, 
+                 tb.id_train_brand, tb.name_train_brand
+    """;
+
+        try (
+                PreparedStatement stmt = connect.prepareStatement(sql)) {
+            stmt.setInt(1, trainBrandId);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Customer c = new Customer();
+                c.setId(rs.getInt("id_customer"));
+                c.setUserName(rs.getString("name_customer"));
+                c.setEmail(rs.getString("email_customer"));
+                c.setPhoneNumber(rs.getString("phone_number_customer"));
+                c.setTicket_quantity(rs.getInt("ticket_count"));
+                
+                customers.add(c);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return customers;
+    }
+    
+
 //    public List<Customer> getListCustomer() {
 //        List<Customer> listCustomer = new ArrayList<>();
 //        String sql = "select *\n"
