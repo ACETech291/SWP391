@@ -91,7 +91,7 @@
                                     <input type="text" id="name_train" name="name_train" required>
                                     <br>
                                     <label for="description_train">Mô tả:</label>
-                                    <input type="text" id="description_train" name="description_train" required>
+                                    <textarea id="description_train" name="description_train" required></textarea>
                                     <br>                                                                                       
                                     <input type="hidden" id="id_train_brand" name="id_train_brand" value="<%= id_train_brand %>" >
 
@@ -307,24 +307,26 @@
     <% session.removeAttribute("successMessage"); %>
     <% } %>
 
-
-    <% if (request.getAttribute("errorMessage") != null) { %>
+    
+    <!-- Hiển thị thông báo -->
+    <% if (session.getAttribute("errorMessage") != null) { %>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             let toast = document.createElement("div");
-            toast.id = "toastMessage";
-            toast.textContent = "<%= request.getAttribute("errorMessage") %>";
-            toast.style.cssText = "position: fixed; top: 20px; right: 20px; background: #f44336; color: white; padding: 10px 20px; border-radius: 5px; z-index: 1000; transition: opacity 0.5s ease-in-out;";
+            toast.id = "toastMessage";  // Thêm ID để dễ tìm bằng Selenium
+            toast.textContent = "<%= session.getAttribute("errorMessage") %>";
+            toast.style.cssText = "position: fixed; top: 20px; right: 20px; background: red; color: white; padding: 10px 20px; border-radius: 5px; z-index: 1000; transition: opacity 0.5s ease-in-out;";
             document.body.appendChild(toast);
+            console.log("Toast hiển thị:", toast.textContent); // Kiểm tra hiển thị trong Console
 
             setTimeout(() => {
                 toast.style.opacity = "0";
                 setTimeout(() => toast.remove(), 500);
-            }, 1000);
+            }, 3000);
         });
     </script>
+    <% session.removeAttribute("errorMessage"); %>
     <% } %>
-
 
 
 </html>

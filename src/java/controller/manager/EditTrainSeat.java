@@ -63,6 +63,21 @@ public class EditTrainSeat extends HttpServlet {
         int id_train_carriage = Integer.parseInt(request.getParameter("id_train_carriage"));
         int id_status = Integer.parseInt(request.getParameter("id_status"));
 
+        // Danh sách lỗi
+        StringBuilder errors = new StringBuilder();
+
+        if (price_seat <= 0) {
+            errors.append("Giá ghế phải lớn hơn 0. ");
+        }
+
+        // Nếu có lỗi, lưu vào session và chuyển hướng về trang quản lý khoang tàu
+        if (errors.length() > 0) {
+            request.getSession().setAttribute("errorMessage", errors.toString());
+            response.sendRedirect("seatmanagement");
+            return;
+        }
+        
+        
         TrainSeat trainSeat = new TrainSeat(id_train_seat, code_train_seat, price_seat, id_train_carriage, id_status);
         
         TrainSeatDAO dao = new TrainSeatDAO();
@@ -72,6 +87,7 @@ public class EditTrainSeat extends HttpServlet {
             Logger.getLogger(EditTrainSeat.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        request.getSession().setAttribute("successMessage", "Sửa ghế tàu thành công!");
         response.sendRedirect("seatmanagement");
     }
 }

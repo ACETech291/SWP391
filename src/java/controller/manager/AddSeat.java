@@ -46,13 +46,7 @@ public class AddSeat extends HttpServlet {
         request.getRequestDispatcher("Views/Manager/Manager.jsp").forward(request, response);
     } 
 
-    /** 
-     * Handles the HTTP <code>POST</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
@@ -61,6 +55,20 @@ public class AddSeat extends HttpServlet {
         int id_train_carriage = Integer.parseInt(request.getParameter("id_train_carriage"));
         int id_status = Integer.parseInt(request.getParameter("id_status"));
 
+        // Danh sách lỗi
+        StringBuilder errors = new StringBuilder();
+
+        if (price_seat <= 0) {
+            errors.append("Giá ghế phải lớn hơn 0. ");
+        }
+
+        // Nếu có lỗi, lưu vào session và chuyển hướng về trang quản lý khoang tàu
+        if (errors.length() > 0) {
+            request.getSession().setAttribute("errorMessage", errors.toString());
+            response.sendRedirect("seatmanagement");
+            return;
+        }
+        
         TrainSeat seat = new TrainSeat(code, price_seat, id_train_carriage, id_status);
         
         TrainSeatDAO dao = new TrainSeatDAO();
@@ -70,16 +78,9 @@ public class AddSeat extends HttpServlet {
             Logger.getLogger(AddSeat.class.getName()).log(Level.SEVERE, null, ex);
         }
        
+        request.getSession().setAttribute("successMessage", "Thêm ghế tàu thành công!");
         response.sendRedirect("seatmanagement");
     }
 
-    /** 
-     * Returns a short description of the servlet.
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

@@ -51,23 +51,36 @@ public class EditCarriage extends HttpServlet {
         int id_status = Integer.parseInt(request.getParameter("id_status"));
         int total_seat = Integer.parseInt(request.getParameter("total_seat"));
 
+        // Danh sách lỗi
+        StringBuilder errors = new StringBuilder();
+
+        if (name_train_carriage.length() > 50) {
+            errors.append("Tên khoang tàu không được vượt quá 50 ký tự. ");
+        }
+
+        if (description_train_carriage.length() > 255) {
+            errors.append("Mô tả không được vượt quá 255 ký tự. ");
+        }
+
+        if (total_seat <= 0) {
+            errors.append("Tổng số ghế phải lớn hơn 0. ");
+        }
+
+        // Nếu có lỗi, lưu vào session và chuyển hướng về trang quản lý khoang tàu
+        if (errors.length() > 0) {
+            request.getSession().setAttribute("errorMessage", errors.toString());
+            response.sendRedirect("carriagemanagement");
+            return;
+        }
+        
         TrainCarriage traincarriage = new TrainCarriage(id_train_carriage, name_train_carriage, 
                 description_train_carriage, id_status, total_seat);
         
         TrainCarriageDAO dao = new TrainCarriageDAO();
         dao.updateTrainCarriage(traincarriage);
 
+        request.getSession().setAttribute("successMessage", "Sửa khoang tàu thành công!");
         response.sendRedirect("carriagemanagement");
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

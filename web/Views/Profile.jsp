@@ -64,6 +64,12 @@
                                         <div class="dashboard-form mb-4">
                                             <div class="row">
                                                 <!-- Profile -->
+                                                <%
+                                                    String successUpdate = request.getParameter("success3");
+                                                    if ("update".equals(successUpdate)) {
+                                                %>
+                                                <div style="color: green;">Tải ảnh lên thành công, vui lòng chờ trong chốc lát rồi tải lại trang</div>
+                                                <% }%>
                                                 <div class="col-lg-6 col-md-6 col-xs-12 padding-right-30">
                                                     <div class="dashboard-list">
                                                         <h4 class="gray">Thông tin cá nhân</h4>
@@ -253,7 +259,16 @@
 
                                                             <form action="${pageContext.request.contextPath}/uploadAvatar" method="post" enctype="multipart/form-data">
                                                                 <div class="edit-profile-photo">
-                                                                    <img src="${pageContext.request.contextPath}${account.image_url}" alt="Avatar customer" />
+
+                                                                    <c:choose>
+                                                                        <c:when test="${empty account.image_url}">
+                                                                            <img src="${pageContext.request.contextPath}/images/avatar/AvatarDefault.png" alt="Avatar khách hàng" />
+                                                                        </c:when>
+                                                                        <c:otherwise>
+                                                                            <img src="${pageContext.request.contextPath}${account.image_url}" alt="Avatar khách hàng" />
+                                                                        </c:otherwise>
+                                                                    </c:choose>
+
                                                                     <div class="change-photo-btn">
                                                                         <div class="photoUpload">                                                                      
                                                                             <input type="file" name="avatar" class="upload" />

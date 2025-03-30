@@ -86,7 +86,8 @@ public class UploadAvatarServlet extends HttpServlet {
             request.setAttribute("email", customer.getEmail());
             request.setAttribute("name", customer.getUserName());
             request.setAttribute("phone", customer.getPhoneNumber());
-            request.getRequestDispatcher("Views/Profile.jsp").forward(request, response);
+//            request.getRequestDispatcher("Views/Profile.jsp").forward(request, response);
+            response.sendRedirect("Profile?success3=update");
         }
     }
 

@@ -6,6 +6,13 @@
             <file>file:/D:/SWPFinal/SWP391/src/java/dal/DatabaseInitializer.java</file>
             <file>file:/D:/SWPFinal/SWP391/web/WEB-INF/web.xml</file>
             <file>file:/D:/SWPFinal/SWP391/web/Views/Admin/ManagerList.jsp</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/dal/TicketDAO.java</file>
+            <file>file:/D:/SWPFinal/SWP391/web/Views/HistoryBooking.jsp</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/dal/TrainDAO.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/HistoryBooking.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/GetNumberOfSeats.java</file>
+            <file>file:/D:/SWPFinal/SWP391/src/java/controller/ChooseSeat.java</file>
+            <file>file:/D:/SWPFinal/SWP391/web/Views/ChooseSeat.jsp</file>
         </group>
     </open-files>
 </project-private>

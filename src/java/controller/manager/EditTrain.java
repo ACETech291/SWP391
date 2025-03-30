@@ -17,16 +17,6 @@ import model.Train;
  * @author dinhphu
  */
 public class EditTrain extends HttpServlet {
-
-
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -55,27 +45,41 @@ public class EditTrain extends HttpServlet {
         request.getRequestDispatcher("Views/Manager/EditTrain.jsp").forward(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int id_train = Integer.parseInt(request.getParameter("id_train"));
-        String name_train = request.getParameter("name_train");
-        String description_train = request.getParameter("description_train");
+        String name = request.getParameter("name_train");
+        String des = request.getParameter("description_train");
         int id_status = Integer.parseInt(request.getParameter("id_status"));
         
-        Train train = new Train(id_train,name_train, description_train, id_status);
+        // Danh sách lỗi
+        StringBuilder errors = new StringBuilder();
+
+        if (name.length() > 50) {
+            errors.append("Tên tàu không được vượt quá 50 ký tự");
+        }
+        
+        if (des == null || des.trim().isEmpty()) {
+            errors.append("Mô tả không được để trống");
+        } else if (des.length() > 255) {
+            errors.append("Mô tả không được vượt quá 255 ký tự");
+        }
+
+        
+        if (errors.length() > 0) {
+            request.getSession().setAttribute("errorMessage", errors.toString());
+            response.sendRedirect("trainmanagement");
+            return;
+        }
+        
+        Train train = new Train(id_train,name, des, id_status);
         
         TrainDAO dao = new TrainDAO();
         dao.updateTrain1(train);
        
+        request.getSession().setAttribute("successMessage", "Sửa tàu thành công!");
         response.sendRedirect("trainmanagement");
     }
 }

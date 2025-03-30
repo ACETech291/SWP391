@@ -45,7 +45,7 @@
 <body>
 
 <div class="container mt-5">
-    <h2 class="text-center mb-4">Chỉnh Sửa Bản Tin</h2>
+    <h2 class="text-center mb-4">Chỉnh sửa ga tàu</h2>
 
     <form action="EditStation" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id_station" value="${station.id_station}">

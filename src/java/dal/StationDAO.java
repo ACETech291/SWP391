@@ -232,5 +232,8 @@ public class StationDAO extends HttpServlet {
         }
     }
 
-
+    public static void main(String[] args) {
+        StationDAO sdao = new StationDAO();
+       List<Station> listStaion = sdao.getAllStations();
+    }
 }

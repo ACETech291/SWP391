@@ -246,9 +246,9 @@ public class TrainDAO {
     }
     public static void main(String[] args) {
         TrainDAO trainDAO = new TrainDAO();
-        List<Train> lst = trainDAO.getNext4Stations(0);
-        for (Train train : lst) {
-            System.out.println(train);
+        List<Train> listtrain = trainDAO.getAllTrainsSameBrand(1);
+        for (Train train : listtrain) {
+            System.out.println(train.getName_train());
         }
     }
 

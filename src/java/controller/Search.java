@@ -76,8 +76,8 @@ public class Search extends HttpServlet {
         TrainDAO trainDAO = new TrainDAO();
         AdvertisingDAO advertisingDAO = new AdvertisingDAO();
         HttpSession session = request.getSession();
-        String dateStr = (String)session.getAttribute("dateStr");
-        if(dateStr == null){
+        String dateStr = (String) session.getAttribute("dateStr");
+        if (dateStr == null) {
             session.removeAttribute("dateStr");
         }
 
@@ -134,7 +134,7 @@ public class Search extends HttpServlet {
         TrainBrandDAO trainBrandDAO = new TrainBrandDAO();
         List<TrainBrand> listBrand = null;
         try {
-             listBrand = trainBrandDAO.getAllTrainBrands();
+            listBrand = trainBrandDAO.getAllTrainBrands();
         } catch (SQLException ex) {
             Logger.getLogger(home.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -152,21 +152,26 @@ public class Search extends HttpServlet {
                 // Chuyển đổi sang định dạng "dd-MM-yyyy"
                 SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
                 dateStr = outputFormat.format(inputDate);
-
-                // Lấy ngày hiện tại
                 Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.HOUR_OF_DAY, 0);
+                calendar.set(Calendar.MINUTE, 0);
+                calendar.set(Calendar.SECOND, 0);
+                calendar.set(Calendar.MILLISECOND, 0);
                 Date currentDate = calendar.getTime();
+                // Lấy ngày hiện tại
 
                 // Cộng thêm 30 ngày vào ngày hiện tại
                 calendar.add(Calendar.DAY_OF_MONTH, 30);
                 Date maxDate = calendar.getTime();
 
                 // So sánh inputDate với maxDate
-                if (inputDate.after(maxDate)) {
+                if (inputDate.before(currentDate)) {
+                    request.setAttribute("message", "Không thể chọn ngày trong quá khứ.");
+                } else if (inputDate.after(maxDate)) {
                     request.setAttribute("message", "Không có chuyến đi trong khoảng thời gian này.");
                 } else {
                     session.setAttribute("dateStr", dateStr);
-                    request.setAttribute("date", dateStr); // Định dạng chuẩn dd-MM-yyyy
+                    request.setAttribute("date", dateStr);
                 }
             } catch (Exception e) {
                 e.printStackTrace();

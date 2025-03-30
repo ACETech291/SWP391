@@ -71,18 +71,18 @@
             List<Status> statusCarriage = (List<Status>) request.getAttribute("status_carriage");
             List<Status> statusTrain = (List<Status>) request.getAttribute("status_train");
             
-                String votingParam = request.getParameter("voting");
-    int voting = (votingParam != null && !votingParam.isEmpty()) ? Integer.parseInt(votingParam) : 0;
+            String votingParam = request.getParameter("voting");
+            int voting = (votingParam != null && !votingParam.isEmpty()) ? Integer.parseInt(votingParam) : 0;
 
-    String idAdv = request.getParameter("id_advertising");
-    int idAdvertising = (idAdv != null && !idAdv.isEmpty()) ? Integer.parseInt(idAdv) : 0;
+            String idAdv = request.getParameter("id_advertising");
+            int idAdvertising = (idAdv != null && !idAdv.isEmpty()) ? Integer.parseInt(idAdv) : 0;
 
-    FeedbackDAO fbdao = new FeedbackDAO();
-    List<Feedback> feedbackList = (voting > 0 || idAdvertising > 0) ? fbdao.getFilteredFeedback(idAdvertising, voting) : null;
-    
-    if (feedbackList == null || feedbackList.isEmpty()) {
-        feedbackList = fbdao.getFeedbackByTrainBrandId(id_train_brand);
-    }
+            FeedbackDAO fbdao = new FeedbackDAO();
+            List<Feedback> feedbackList = (voting > 0 || idAdvertising > 0) ? fbdao.getFilteredFeedback(idAdvertising, voting) : null;
+
+            if (feedbackList == null || feedbackList.isEmpty()) {
+                feedbackList = fbdao.getFeedbackByTrainBrandId(id_train_brand);
+            }
         %>
         <!-- ===============================================--><!--    Main Content--><!-- ===============================================-->
         <main class="main" id="top">
@@ -94,10 +94,12 @@
                     <jsp:include page="lib/header.jsp"></jsp:include>
                         <!-- Content -->
                         <div class="section-title text-center mb-5 pb-2 w-50 mx-auto">
-                            <h2 class="m-0"><span>Quản lý bình luận</span></h2>
+                            <h2 class="m-0"><span>Quản lý đánh giá</span></h2>
                         </div> 
                         
-
+                        <!-- 
+                            
+                        -->
                         <form action="" method="GET" class="mb-3 d-flex align-items-center">
                             <label for="id_advertising" class="mr-2">Chọn quảng cáo:</label>
                             <select name="id_advertising" id="id_advertising" class="form-control w-auto">
@@ -165,7 +167,7 @@
                                         <a href="advertisingdetail?id=<%= fb.getId_feedback() %>" class="btn btn-warning btn-sm">Xem chi tiết </a>
 
                                     </td>
-
+                                    
                                 </tr>
                                 <% 
                                         }
