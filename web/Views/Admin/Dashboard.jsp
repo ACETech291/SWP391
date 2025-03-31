@@ -37,7 +37,7 @@
 
                         <!-- Dashboard -->
                         <div class="row g-3 mb-3">
-                            <div class="col-md-6 col-xxl-4">
+                            <div class="col-md-6 col-xxl-6">
                                 <div class="card h-md-100">
                                     <div class="card-header pb-0">
                                         <h6 class="mb-0 mt-2">Tổng số hãng tàu</h6>
@@ -51,7 +51,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-xxl-4">
+                        <div class="col-md-6 col-xxl-6">
                             <div class="card h-md-100">
                                 <div class="card-header pb-0">
                                     <h6 class="mb-0 mt-2">Tổng số người dùng trong hệ thống</h6>
@@ -60,20 +60,6 @@
                                     <div class="row justify-content-between">
                                         <div class="col-auto align-self-end">
                                             <div class="fs-5 fw-normal font-sans-serif text-700 lh-1 mb-1">${sumCustomer}</div><span class="badge rounded-pill fs-11 bg-200 text-primary"><span class="fas fa-caret-up me-1"></span>0%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xxl-4">
-                            <div class="card h-md-100">
-                                <div class="card-header pb-0">
-                                    <h6 class="mb-0 mt-2">Doanh thu tổng</h6>
-                                </div>
-                                <div class="card-body d-flex flex-column justify-content-end">
-                                    <div class="row justify-content-between">
-                                        <div class="col-auto align-self-end">
-                                            <div class="fs-5 fw-normal font-sans-serif text-700 lh-1 mb-1"><fmt:setLocale value="vi_VN" /><fmt:formatNumber value="${sumFinance}" type="currency" currencySymbol="₫" maxFractionDigits="0" /></div><span class="badge rounded-pill fs-11 bg-200 text-primary"><span class="fas fa-caret-up me-1"></span>0%</span>
                                         </div>
                                     </div>
                                 </div>

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
-          <filter>
+<web-app version="6.0"
+         xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+
+    <filter>
         <filter-name>LoginFilter</filter-name>
         <filter-class>filter.LoginFilter</filter-class>
     </filter>
@@ -833,13 +836,15 @@
         <servlet-name>CustomerManagement</servlet-name>
         <url-pattern>/CustomerManagement</url-pattern>
     </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>ChangeRefund</servlet-name>
         <url-pattern>/ChangeRefund</url-pattern>
-        </servlet-mapping>
-        <servlet-mapping>
-        
+    </servlet-mapping>
+
+    <servlet-mapping>        
         <servlet-name>EditTrip</servlet-name>
         <url-pattern>/EditTrip</url-pattern>
     </servlet-mapping>
+
 </web-app>
