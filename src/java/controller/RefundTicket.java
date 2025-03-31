@@ -83,6 +83,7 @@ public class RefundTicket extends HttpServlet {
         PurchaseHistory purchaseHistory = new PurchaseHistory(id_ticket, name_banking, Integer.parseInt(accountNumber), id_customer, 1, accountName,customer_require);
         PurchaseHistoryDAO phd = new PurchaseHistoryDAO();
         phd.insertPurchaseHistory(purchaseHistory);
+        
         request.setAttribute("message", "True");
         request.getRequestDispatcher("Views/Refund.jsp").forward(request, response);
     }
@@ -95,15 +96,19 @@ public class RefundTicket extends HttpServlet {
         String code_train_seat = request.getParameter("code_train_seat");
         String name_train = request.getParameter("name_train");
         String bookingJson = request.getParameter("booking");
+        int id_ticket = Integer.parseInt(request.getParameter("id_ticket"));
         int cusomter_require = Integer.parseInt(request.getParameter("cusomter_require"));
+        
         Gson gson = new Gson();
         InformationBooking booking = gson.fromJson(bookingJson, InformationBooking.class);
         HttpSession session = request.getSession();
+        
         Customer customer = (Customer) session.getAttribute("account");
         request.setAttribute("customer", customer);
         request.setAttribute("code_train_seat", code_train_seat);
         request.setAttribute("name_train", name_train);
         request.setAttribute("booking", booking);
+        request.setAttribute("id_ticket", id_ticket);
         request.setAttribute("cusomter_require", cusomter_require);
         request.getRequestDispatcher("Views/Refund.jsp").forward(request, response);
     }

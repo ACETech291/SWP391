@@ -119,6 +119,7 @@
                                             <td>Đợi tàu chạy</td>
 
                                             <%}%>
+                                            
                                             <td>
                                                 <form action="ViewTicketDetail" method="post" style="display:inline;">
                                                     <%

@@ -5,6 +5,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="dal.PurchaseHistoryDAO"%>
+<%@page import="model.PurchaseHistory"%>
 <html lang="vi">
     <head>
         <meta charset="UTF-8">
@@ -24,7 +26,7 @@
     </head>
     <body>
         <%
-
+            int id_ticket = (Integer) request.getAttribute("id_ticket");
             Customer customer = (Customer) request.getAttribute("customer");
             String code_train_seat = (String) request.getAttribute("code_train_seat");
             String name_train = (String) request.getAttribute("name_train");
@@ -81,13 +83,26 @@
                                         <p><strong>Tàu:</strong> <%= name_train == null ? "" : name_train%></p>
                                     </div>
                                 </div>
-                                    
+
                                 <!-- Refund Form -->
                                 <div class="card mt-3">
                                     <div class="card-header bg-danger text-white">
-                                        <strong>Hoàn vé</strong>
+                                        <strong>
+                                            <% 
+                                                PurchaseHistoryDAO pdao = new PurchaseHistoryDAO();
+                                                PurchaseHistory p = pdao.getPurchaseHistoryByTicketIT(id_ticket);
+                
+                                                if (p.getCusomter_require() == 0) { 
+                                            %>
+                                            Đã hoàn trả
+                                            <% } else { %>
+                                            Hoàn vé
+                                            <% } %>
+                                        </strong>           
                                     </div>
+                                    <% if (p.getCusomter_require() != 0) { %>
                                     <div class="card-body">
+
                                         <form action="RefundTicket" method="GET">
                                             <div class="form-group">
                                                 <label for="accountName">Họ và tên chủ tài khoản</label>
@@ -101,17 +116,20 @@
                                                 <label for="nameBanking">Tên ngân hàng:</label>
                                                 <input type="text" id="nameBanking" name="nameBanking" class="form-control" required>
                                             </div>
-                                            
-                                            <input type="hidden" name="id_ticket" value="${booking.getId_ticket()}"> 
+
+                                            <input type="hidden" name="id_ticket" value="${booking.getId_ticket()}">
                                             <input type="hidden" name="cusomter_require" value="1">
                                             <button type="submit" class="btn btn-danger">Yêu cầu hoàn vé</button>
                                         </form>
+                                        <% } %>
+
                                         <% if (message != null && message.equals("True")) { %>
-                                        
-                                        <p> Bạn đã thao tác hủy vé thành công, hãy đợi Admin phản hồi
-                                        <% }%>
+                                        <p> Bạn đã thao tác hủy vé thành công, hãy đợi Admin phản hồi </p>
+
                                     </div>
+                                    <% } %>
                                 </div>
+
                                 <!-- End Refund Form -->
                             </div>
                         </div> <!-- End Ticket Info -->
