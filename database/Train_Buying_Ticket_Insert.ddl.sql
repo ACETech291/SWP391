@@ -33649,4 +33649,4 @@ INSERT INTO Introduction (content, status_introduction) VALUES ('<h6> 1. Chọn 
                 <p>- Sau khi thanh toán, bạn sẽ nhận được vé điện tử qua email hoặc SMS.</p>
 
                 <h6>6. Lên tàu</h6>
-                <p>- Đến ga trước giờ khởi hành ít nhất 30 phút, xuất trình vé điện tử để lên tàu.</p>', 1);
+                <p>- Đến ga trước giờ khởi hành ít nhất 30 phút, xuất trình vé điện tử để lên tàu.</p>', 1);INSERT INTO `customer` (name_customer, email_customer, password_customer, phone_number_customer, id_role, status_customer) VALUES ('adasdasda','hieup3503@gmail.com','6NWFIsI1V5KNFeeazNcq35qxRUE=','asdwa',3,1); 

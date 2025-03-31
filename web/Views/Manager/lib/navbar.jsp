@@ -113,7 +113,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 ><span class="fas fa-route
 
 "></span></span
-              ><span class="nav-link-text ps-1">Quản lý chuyến đi</span>
+              ><span class="nav-link-text ps-1"></span>
             </div>
           </a>
         </li>
