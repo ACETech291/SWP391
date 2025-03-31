@@ -161,7 +161,7 @@
                                     </td>   
                                     <td class="text-center align-middle">
                                         <% if (c.getCusomter_require() == 1) { %>
-                                        <form action="ChangeRefund" method="post" style="display:inline;">
+                                        <form action="ChangeRefund" method="POST" style="display:inline;">
                                             <input type="hidden" name="id_purchase_history" value="<%= c.getId_purchase_history() %>">
                                             <button type="submit" class="btn btn-success btn-sm">Xác nhận hoàn trả</button>
                                         </form>

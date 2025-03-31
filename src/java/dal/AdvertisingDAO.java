@@ -19,10 +19,10 @@ public class AdvertisingDAO {
 
     public AdvertisingDAO() {
         this.connect = DBConnect.MySQLConnect();
+        System.out.println("ADVERTISING SUCCESS");
+        
         if (this.connect == null) {
-            System.err.println("Database connection failed!");
-        } else {
-            System.out.println("Database connected successfully!");
+            System.out.println("Database connection failed! - ADVERTISING");
         }
     }
 

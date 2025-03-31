@@ -32,6 +32,9 @@ public class PurchaseHistory {
         this.cusomter_require = cusomter_require;
     }
 
+    public PurchaseHistory() {
+    }
+
     public PurchaseHistory(int id_ticket, String name_banking, int account_number, int id_customer, int id_payment_method, String name_user, int cusomter_require) {
         this.id_ticket = id_ticket;
         this.name_banking = name_banking;

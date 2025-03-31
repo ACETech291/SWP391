@@ -10,9 +10,11 @@ public class AdminDAO {
 
     public AdminDAO() {
         this.connection = DBConnect.MySQLConnect();
-
+        
+        System.out.println("ADMIN SUCCESS");
+        
         if (this.connection == null) {
-            System.out.println("Database connection failed!17");
+            System.out.println("Database connection failed! - ADMIN");
         }
     }
 

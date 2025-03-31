@@ -23,10 +23,10 @@ public class PurchaseHistoryDAO {
 
     public PurchaseHistoryDAO() {
         this.connect = DBConnect.MySQLConnect();
+        System.out.println("PURCHASE HISTORY SUCCESS");
+        
         if (this.connect == null) {
-            System.err.println("Database connection failed!");
-        } else {
-            System.out.println("Database connected successfully!");
+            System.out.println("Database connection failed! - PURCHASE HISTORY");
         }
     }
 
@@ -65,17 +65,15 @@ public class PurchaseHistoryDAO {
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                purchases.add(new PurchaseHistory(
-                        rs.getInt("id_ticket"),
-                        rs.getString("name_banking"),
-                        rs.getInt("account_number"),
-                        rs.getInt("id_customer"),
-                        rs.getInt("id_payment_method"),
-                        rs.getString("name_user"),
-                        rs.getInt("cusomter_require")
-                        //rs.getString("name_customer")
-                        // Chú ý: "cusomter_require" có thể bị sai chính tả
-                ));
+                PurchaseHistory p = new PurchaseHistory();
+                p.setId_purchase_history(rs.getInt("id_purchase_history"));
+                p.setId_ticket(rs.getInt("id_ticket"));
+                p.setName_banking(rs.getString("name_banking"));
+                p.setId_customer(rs.getInt("id_customer"));
+                p.setName_user(rs.getString("name_user"));
+                p.setCusomter_require(rs.getInt("cusomter_require"));
+                
+                purchases.add(p);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -94,11 +92,7 @@ public class PurchaseHistoryDAO {
             ps.setInt(1, id);
             int affectedRows = ps.executeUpdate();
 
-            if (affectedRows == 0) {
-                System.out.println("⚠ Không có chuyến nào được cập nhật! Kiểm tra id_trip: " + id);
-            } else {
-                System.out.println("✔ Đã cập nhật trạng thái của chuyến có id: " + id);
-            }
+            System.out.println(id +" --------------");
         } catch (SQLException e) {
             System.err.println("❌ Lỗi khi cập nhật trạng thái chuyến: " + e.getMessage());
             throw e; // Ném lại lỗi để xử lý ở lớp gọi phương thức này
@@ -109,7 +103,7 @@ public class PurchaseHistoryDAO {
         PurchaseHistoryDAO pdao = new PurchaseHistoryDAO();
         List<PurchaseHistory> listP = pdao.getAllPurchaseHistory();
         for (PurchaseHistory purchaseHistory : listP) {
-            System.out.println(purchaseHistory.getCusomter_require());
+            System.out.println(purchaseHistory.getId_purchase_history());
         }
     }
             
